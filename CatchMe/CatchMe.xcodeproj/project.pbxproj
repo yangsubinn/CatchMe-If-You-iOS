@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,7 +48,6 @@
 				FA81EEA78BCF660FE64D2B45 /* Pods-CatchMe.debug.xcconfig */,
 				25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +80,103 @@
 		ED63E87E268A14E5000F058F /* CatchMe */ = {
 			isa = PBXGroup;
 			children = (
-				ED63E87F268A14E5000F058F /* AppDelegate.swift */,
-				ED63E881268A14E5000F058F /* SceneDelegate.swift */,
-				ED63E883268A14E5000F058F /* ViewController.swift */,
-				ED63E885268A14E5000F058F /* Main.storyboard */,
-				ED63E888268A14E7000F058F /* Assets.xcassets */,
-				ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */,
-				ED63E88D268A14E7000F058F /* Info.plist */,
+				ED63E894268A1B3E000F058F /* Source */,
+				ED63E893268A1B29000F058F /* Resource */,
 			);
 			path = CatchMe;
+			sourceTree = "<group>";
+		};
+		ED63E893268A1B29000F058F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				ED63E88D268A14E7000F058F /* Info.plist */,
+				ED63E888268A14E7000F058F /* Assets.xcassets */,
+				ED63E89E268A1D78000F058F /* APIServices */,
+				ED63E897268A1BC3000F058F /* Xibs */,
+				ED63E896268A1BBB000F058F /* Storyboards */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		ED63E894268A1B3E000F058F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				ED63E89B268A1C56000F058F /* Extensions */,
+				ED63E89A268A1C54000F058F /* Models */,
+				ED63E89D268A1CB9000F058F /* Components */,
+				ED63E899268A1C4A000F058F /* Cells */,
+				ED63E895268A1B98000F058F /* ViewControllers */,
+				ED63E89C268A1C84000F058F /* Supports */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		ED63E895268A1B98000F058F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ED63E883268A14E5000F058F /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ED63E896268A1BBB000F058F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */,
+				ED63E885268A14E5000F058F /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ED63E897268A1BC3000F058F /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		ED63E899268A1C4A000F058F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		ED63E89A268A1C54000F058F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ED63E89B268A1C56000F058F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ED63E89C268A1C84000F058F /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				ED63E881268A14E5000F058F /* SceneDelegate.swift */,
+				ED63E87F268A14E5000F058F /* AppDelegate.swift */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		ED63E89D268A1CB9000F058F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ED63E89E268A1D78000F058F /* APIServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,7 +444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CatchMe/Info.plist;
+				INFOPLIST_FILE = CatchMe/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,7 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CatchMe/Info.plist;
+				INFOPLIST_FILE = CatchMe/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

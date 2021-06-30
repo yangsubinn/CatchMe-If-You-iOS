@@ -11,9 +11,12 @@ on:
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: macos-latest
 
     steps:
-    - name: Xcodebuild Action
-      uses: sersoft-gmbh/xcodebuild-action@v1.4
+    - uses: actions/checkout@v2
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
  

@@ -15,7 +15,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: xcodebuild -workspace 'CatchMe.xcworkspace' -scheme 'CatchMe' -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+    - name: Force Xcode 11
+      run: sudo xcode-select -switch /Applications/Xcode_11.3.app
+    - name: List Simulators
+      run: xcrun instruments -s
     - name: Run tests
-      run: xcodebuild test -workspace 'CatchMe.xcworkspace' -scheme 'CatchMe' -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+      run: xcodebuild clean test -workspace 'CatchMe.xcworkspace' -scheme 'CatchMe' -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=latest'

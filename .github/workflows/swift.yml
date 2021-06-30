@@ -20,4 +20,4 @@ jobs:
     - name: List Simulators
       run: xcrun instruments -s
     - name: Run tests
-      run: xcodebuild clean test -workspace './CatchMe/CatchMe.xcworkspace' -scheme 'CatchMe' -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=latest'
+      run: xcodebuild clean test -workspace './CatchMe/CatchMe.xcworkspace' -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=latest'

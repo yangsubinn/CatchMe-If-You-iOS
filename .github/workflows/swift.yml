@@ -17,5 +17,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run tests
       run: |
-        xcodebuild test -workspace './CatchMe/CatchMe.xcodeproj' -scheme 'CatchMeTests' -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+        xcodebuild test -workspace './CatchMe/CatchMe.xcworkspace' -scheme 'CatchMeTests' -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
  

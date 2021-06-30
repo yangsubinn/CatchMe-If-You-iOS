@@ -16,9 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: 
-        pod install --repo-update --clean-install --project-directory=CatchMe/
-        xcodebuild -workspace CatchMe.xcworkspace -scheme CatchMe -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+      run: xcodebuild -workspace CatchMe.xcworkspace -scheme CatchMe -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
     - name: Run tests
-      run: 
-        xcodebuild test -workspace CatchMe.xcworkspace -scheme CatchMe -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+      run: xcodebuild test -workspace CatchMe.xcworkspace -scheme CatchMe -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'

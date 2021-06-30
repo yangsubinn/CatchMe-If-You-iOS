@@ -14,7 +14,18 @@
 		ED63E887268A14E5000F058F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E885268A14E5000F058F /* Main.storyboard */; };
 		ED63E889268A14E7000F058F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63E888268A14E7000F058F /* Assets.xcassets */; };
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
+		EDF1AD28268C608E00606006 /* CatchMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1AD27268C608E00606006 /* CatchMeTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDF1AD2A268C608E00606006 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED63E874268A14E5000F058F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED63E87B268A14E5000F058F;
+			remoteInfo = CatchMe;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -27,6 +38,9 @@
 		ED63E888268A14E7000F058F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63E88B268A14E7000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDF1AD25268C608E00606006 /* CatchMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDF1AD27268C608E00606006 /* CatchMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchMeTests.swift; sourceTree = "<group>"; };
+		EDF1AD29268C608E00606006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA81EEA78BCF660FE64D2B45 /* Pods-CatchMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.debug.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,6 +50,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDF1AD22268C608E00606006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				ED63E87E268A14E5000F058F /* CatchMe */,
+				EDF1AD26268C608E00606006 /* CatchMeTests */,
 				ED63E87D268A14E5000F058F /* Products */,
 				2020FF0DCEB842A2ADB2317F /* Pods */,
 				45BC39069B9E59892752ABEF /* Frameworks */,
@@ -73,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				ED63E87C268A14E5000F058F /* CatchMe.app */,
+				EDF1AD25268C608E00606006 /* CatchMeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,6 +202,15 @@
 			path = APIServices;
 			sourceTree = "<group>";
 		};
+		EDF1AD26268C608E00606006 /* CatchMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				EDF1AD27268C608E00606006 /* CatchMeTests.swift */,
+				EDF1AD29268C608E00606006 /* Info.plist */,
+			);
+			path = CatchMeTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +233,24 @@
 			productReference = ED63E87C268A14E5000F058F /* CatchMe.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EDF1AD24268C608E00606006 /* CatchMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDF1AD2E268C608E00606006 /* Build configuration list for PBXNativeTarget "CatchMeTests" */;
+			buildPhases = (
+				EDF1AD21268C608E00606006 /* Sources */,
+				EDF1AD22268C608E00606006 /* Frameworks */,
+				EDF1AD23268C608E00606006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDF1AD2B268C608E00606006 /* PBXTargetDependency */,
+			);
+			name = CatchMeTests;
+			productName = CatchMeTests;
+			productReference = EDF1AD25268C608E00606006 /* CatchMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +262,10 @@
 				TargetAttributes = {
 					ED63E87B268A14E5000F058F = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					EDF1AD24268C608E00606006 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = ED63E87B268A14E5000F058F;
 					};
 				};
 			};
@@ -229,6 +283,7 @@
 			projectRoot = "";
 			targets = (
 				ED63E87B268A14E5000F058F /* CatchMe */,
+				EDF1AD24268C608E00606006 /* CatchMeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -241,6 +296,13 @@
 				ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
 				ED63E887268A14E5000F058F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDF1AD23268C608E00606006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +361,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDF1AD21268C608E00606006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDF1AD28268C608E00606006 /* CatchMeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDF1AD2B268C608E00606006 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED63E87B268A14E5000F058F /* CatchMe */;
+			targetProxy = EDF1AD2A268C608E00606006 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		ED63E885268A14E5000F058F /* Main.storyboard */ = {
@@ -475,6 +553,46 @@
 			};
 			name = Release;
 		};
+		EDF1AD2C268C608E00606006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CatchMeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiekle.CatchMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatchMe.app/CatchMe";
+			};
+			name = Debug;
+		};
+		EDF1AD2D268C608E00606006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CatchMeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiekle.CatchMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatchMe.app/CatchMe";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -492,6 +610,15 @@
 			buildConfigurations = (
 				ED63E891268A14E7000F058F /* Debug */,
 				ED63E892268A14E7000F058F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDF1AD2E268C608E00606006 /* Build configuration list for PBXNativeTarget "CatchMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDF1AD2C268C608E00606006 /* Debug */,
+				EDF1AD2D268C608E00606006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

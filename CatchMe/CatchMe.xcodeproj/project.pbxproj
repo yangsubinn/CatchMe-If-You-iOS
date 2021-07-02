@@ -10,10 +10,13 @@
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
-		ED63E884268A14E5000F058F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E883268A14E5000F058F /* ViewController.swift */; };
 		ED63E887268A14E5000F058F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E885268A14E5000F058F /* Main.storyboard */; };
 		ED63E889268A14E7000F058F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63E888268A14E7000F058F /* Assets.xcassets */; };
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
+		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
+		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
+		EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C97268EB27500DF766A /* BottomButton.swift */; };
+		EDD12C9A268EB60100DF766A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C99268EB60100DF766A /* ViewController.swift */; };
 		EDF1AD28268C608E00606006 /* CatchMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1AD27268C608E00606006 /* CatchMeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,11 +36,14 @@
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87F268A14E5000F058F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED63E881268A14E5000F058F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ED63E883268A14E5000F058F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ED63E886268A14E5000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED63E888268A14E7000F058F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63E88B268A14E7000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
+		EDD12C97268EB27500DF766A /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
+		EDD12C99268EB60100DF766A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EDF1AD25268C608E00606006 /* CatchMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF1AD27268C608E00606006 /* CatchMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchMeTests.swift; sourceTree = "<group>"; };
 		EDF1AD29268C608E00606006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,7 +143,7 @@
 		ED63E895268A1B98000F058F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ED63E883268A14E5000F058F /* ViewController.swift */,
+				EDD12C99268EB60100DF766A /* ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EDD12C92268EAD0400DF766A /* Shared */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -200,6 +207,16 @@
 			children = (
 			);
 			path = APIServices;
+			sourceTree = "<group>";
+		};
+		EDD12C92268EAD0400DF766A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				EDD12C93268EAD1F00DF766A /* BackButton.swift */,
+				EDD12C95268EB16800DF766A /* XmarkButton.swift */,
+				EDD12C97268EB27500DF766A /* BottomButton.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		EDF1AD26268C608E00606006 /* CatchMeTests */ = {
@@ -355,7 +372,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED63E884268A14E5000F058F /* ViewController.swift in Sources */,
+				EDD12C9A268EB60100DF766A /* ViewController.swift in Sources */,
+				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
+				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
+				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);

@@ -21,6 +21,12 @@
 		EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CA3268EB80300DF766A /* CharacterVC.swift */; };
 		EDD12CA6268EB82B00DF766A /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDD12CA5268EB82B00DF766A /* Report.storyboard */; };
 		EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CA7268EB84C00DF766A /* ReportVC.swift */; };
+		EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CA9268EBCA000DF766A /* UIView+Extension.swift */; };
+		EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CAB268EBD2200DF766A /* UIViewController+Extension.swift */; };
+		EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CAD268EBDE400DF766A /* UIScreen+Extension.swift */; };
+		EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CAF268EBE1600DF766A /* UITextField+Extension.swift */; };
+		EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CB1268EBE4E00DF766A /* UICollectionView+Extension.swift */; };
+		EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */; };
 		EDF1AD28268C608E00606006 /* CatchMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1AD27268C608E00606006 /* CatchMeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +58,12 @@
 		EDD12CA3268EB80300DF766A /* CharacterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterVC.swift; sourceTree = "<group>"; };
 		EDD12CA5268EB82B00DF766A /* Report.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		EDD12CA7268EB84C00DF766A /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
+		EDD12CA9268EBCA000DF766A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		EDD12CAB268EBD2200DF766A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		EDD12CAD268EBDE400DF766A /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		EDD12CAF268EBE1600DF766A /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		EDD12CB1268EBE4E00DF766A /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		EDF1AD25268C608E00606006 /* CatchMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF1AD27268C608E00606006 /* CatchMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchMeTests.swift; sourceTree = "<group>"; };
 		EDF1AD29268C608E00606006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,6 +205,12 @@
 		ED63E89B268A1C56000F058F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EDD12CA9268EBCA000DF766A /* UIView+Extension.swift */,
+				EDD12CAB268EBD2200DF766A /* UIViewController+Extension.swift */,
+				EDD12CAD268EBDE400DF766A /* UIScreen+Extension.swift */,
+				EDD12CAF268EBE1600DF766A /* UITextField+Extension.swift */,
+				EDD12CB1268EBE4E00DF766A /* UICollectionView+Extension.swift */,
+				EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -389,10 +407,16 @@
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
+				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
+				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
+				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
+				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,
+				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
+				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

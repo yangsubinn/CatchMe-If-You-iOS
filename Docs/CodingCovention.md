@@ -81,14 +81,6 @@ var lookup: [String: Int] = [:]
 ```swift
 var names = [String]()
 var lookup = [String: Int]()
-
-if {
-
-} else if {
-
-} else {
-
-}
 ```
 
 <br/>

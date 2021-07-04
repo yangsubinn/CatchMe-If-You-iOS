@@ -11,6 +11,7 @@ class CharacterHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configUI()
         setupAutoLayout()
     }
     
@@ -21,7 +22,7 @@ class CharacterHeaderView: UIView {
     // MARK: - Property
     
     let lockDateStackView = UIStackView().then {
-        $0.axis = .vertical
+        $0.axis = .horizontal
         $0.spacing = 4
         $0.alignment = .center
     }
@@ -32,14 +33,17 @@ class CharacterHeaderView: UIView {
     }
     
     let dateLabel = UILabel().then {
-        $0.text = "2021.05.01부터"
+        $0.text = "2021.05.01"
         $0.font = .systemFont(ofSize: 15, weight: .regular)
         $0.textAlignment = .left
         $0.textColor = .gray
-        
-        let attributedString = NSMutableAttributedString(string: $0.text!)
-        attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 12), range: ($0.text! as NSString).range(of: "부터"))
-        $0.attributedText = attributedString
+    }
+    
+    let fromLabel = UILabel().then {
+        $0.text = "부터"
+        $0.font = .systemFont(ofSize: 12, weight: .regular)
+        $0.textAlignment = .left
+        $0.textColor = .gray
     }
     
     let writeButton = UIButton().then {
@@ -67,7 +71,7 @@ class CharacterHeaderView: UIView {
     
     private func setupAutoLayout() {
                 
-        addSubviews([lockDateStackView, writeButton, nameLabel])
+        addSubviews([lockDateStackView, fromLabel, writeButton, nameLabel])
         
         lockDateStackView.addArrangedSubview(lockImageView)
         lockDateStackView.addArrangedSubview(dateLabel)
@@ -80,6 +84,11 @@ class CharacterHeaderView: UIView {
         lockDateStackView.snp.makeConstraints { (make) in
             make.top.equalTo(19)
             make.leading.equalTo(26)
+        }
+        
+        fromLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(23)
+            make.leading.equalTo(lockDateStackView.snp.trailing).offset(1)
         }
         
         writeButton.snp.makeConstraints { (make) in

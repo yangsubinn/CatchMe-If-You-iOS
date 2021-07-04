@@ -68,20 +68,64 @@ class CharacterVC: UIViewController {
 
 extension CharacterVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return CharacterHeaderView()
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 126
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return 67
+        default:
+            return 40
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 
 extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        switch section {
+        case 0:
+            
+            return 1 + 20
+            
+        default:
+            return 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC else { return UITableViewCell() }
+        switch indexPath.section {
+        case 0:
+            if indexPath.row == 0 {
+                guard let reportCell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC else { return UITableViewCell() }
+                reportCell.backgroundColor = .green
+                reportCell.setupAutoLayout()
+                return reportCell
+                
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
+                cell.backgroundColor = .yellow
+                cell.setupAutoLayout()
+                return cell
+            }
+            
+        default:
+            return UITableViewCell()
+        }
         
-        return cell
+        
      }
     
     

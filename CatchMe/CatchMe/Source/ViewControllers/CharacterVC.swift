@@ -14,7 +14,7 @@ class CharacterVC: UIViewController {
     
     let upperView = CharacterUpperView()
     
-    let mainTableView = UITableView(frame: .zero, style: .grouped)
+    let mainTableView = UITableView(frame: .zero, style: .plain)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -26,6 +26,8 @@ class CharacterVC: UIViewController {
     
     // MARK: - Custom Method
     func setTableView() {
+        
+        mainTableView.backgroundColor = .black
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -45,7 +47,7 @@ class CharacterVC: UIViewController {
         view.addSubviews([mainTableView, upperView, naviBar])
         
         naviBar.snp.makeConstraints { (make) in
-            make.top.leading.bottom.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(48)
         }
         

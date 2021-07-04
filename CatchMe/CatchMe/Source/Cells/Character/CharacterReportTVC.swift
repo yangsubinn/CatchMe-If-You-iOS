@@ -169,7 +169,7 @@ class CharacterReportTVC: UITableViewCell {
         }
         
         lineView2.snp.makeConstraints { (make) in
-            make.bottom.equalTo(-1)
+            make.bottom.equalTo(levelStackView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }

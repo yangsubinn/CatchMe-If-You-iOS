@@ -82,14 +82,14 @@ class CharacterTVC: UITableViewCell {
         commentView.addSubview(commentLabel)
         
         pinImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(38)
-            make.leading.equalTo(22)
+            make.top.equalTo(self.snp.top).inset(38)
+            make.leading.equalTo(self.snp.leading).inset(22)
             make.width.height.equalTo(12)
         }
         
         lineView.snp.makeConstraints { (make) in
             make.top.equalTo(pinImageView.snp.bottom)
-            make.leading.equalTo(27.5)
+            make.leading.equalTo(self.snp.leading).inset(27.5)
             make.bottom.equalToSuperview().offset(37)
             make.width.equalTo(1)
         }
@@ -100,33 +100,33 @@ class CharacterTVC: UITableViewCell {
         }
         
         moreButton.snp.makeConstraints { (make) in
-            make.top.equalTo(20)
-            make.trailing.equalTo(-6)
+            make.top.equalTo(self.snp.top).inset(20)
+            make.trailing.equalTo(self.snp.trailing).inset(6)
             make.width.height.equalTo(48)
         }
         
         commentView.snp.makeConstraints { (make) in
             make.top.equalTo(dateLabel.snp.bottom).offset(12)
             make.leading.equalTo(lineView.snp.trailing).offset(15.5)
-            make.bottom.equalTo(-5)
-            make.trailing.equalToSuperview().offset(-28)
+            make.bottom.equalTo(self.snp.bottom).inset(5)
+            make.trailing.equalToSuperview().inset(28)
             make.width.equalTo(275)
             make.height.equalTo(18)
             
         }
         
         commentLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(12)
-            make.leading.equalTo(14)
-            make.trailing.equalTo(-14)
-            make.bottom.equalTo(-12)
+            make.top.equalTo(commentView.snp.top).inset(12)
+            make.leading.equalTo(commentView.snp.leading).inset(14)
+            make.trailing.equalTo(commentView.snp.trailing).inset(14)
+            make.bottom.equalTo(commentView.snp.bottom).inset(12)
         }
         
         photoImageView.snp.makeConstraints { (make) in
             make.top.equalTo(commentView.snp.bottom).offset(16)
             make.leading.equalTo(lineView.snp.trailing).offset(15.5)
-            make.bottom.equalTo(-5)
-            make.trailing.equalTo(-28)
+            make.bottom.equalTo(self.snp.bottom).inset(5)
+            make.trailing.equalToSuperview().inset(28)
         }
         
     }

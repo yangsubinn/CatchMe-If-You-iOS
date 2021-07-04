@@ -110,8 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				2B3654DF2691ACBC002C2C5C /* characterCVC.swift */,
-				2B3654EA2691C4D7002C2C5C /* PageControl.swift */,
-				2B3654EE2691D6D9002C2C5C /* mainReportView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -120,6 +118,15 @@
 			isa = PBXGroup;
 			children = (
 				2B3654E02691ACBC002C2C5C /* characterCVC.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2B3654F22691DFD3002C2C5C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2B3654EA2691C4D7002C2C5C /* PageControl.swift */,
+				2B3654EE2691D6D9002C2C5C /* mainReportView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -255,6 +262,7 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2B3654F22691DFD3002C2C5C /* Main */,
 				EDD12C92268EAD0400DF766A /* Shared */,
 			);
 			path = Components;

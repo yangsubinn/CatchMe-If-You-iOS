@@ -19,11 +19,10 @@ class MainVC: UIViewController {
     
     let pageControl = PageControl()
     
-//    let catchingButton = BottomButton()
+    let reportView = mainReportView()
+
     
     @IBOutlet weak var collectionView: UICollectionView!
-//    var characterCVC: UICollectionView!
-//    let cellId = "Cell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +30,7 @@ class MainVC: UIViewController {
         configUI()
         setupCollectionView()
         setupPageControl()
+        setupReportView()
     }
     
     private func configUI() {
@@ -113,6 +113,18 @@ class MainVC: UIViewController {
             pageControl.heightAnchor.constraint(equalToConstant: 12),
             pageControl.widthAnchor.constraint(equalToConstant: 90)
         ])
+    }
+    
+    private func setupReportView() {
+        view.addSubview(reportView)
+        reportView.snp.makeConstraints { (make) in
+            make.leading.equalTo(view.snp.leading).offset(28)
+            make.trailing.equalTo(view.snp.trailing).offset(-28)
+            make.top.equalTo(nameLabel.snp.bottom).offset(338)
+            make.height.equalTo(152)
+        }
+        reportView.backgroundColor = .darkGray
+        reportView.layer.cornerRadius = 14
     }
 }
 

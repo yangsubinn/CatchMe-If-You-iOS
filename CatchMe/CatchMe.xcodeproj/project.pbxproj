@@ -12,6 +12,7 @@
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
 		ED63E889268A14E7000F058F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63E888268A14E7000F058F /* Assets.xcassets */; };
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
+		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
 		EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C97268EB27500DF766A /* BottomButton.swift */; };
@@ -49,6 +50,7 @@
 		ED63E888268A14E7000F058F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63E88B268A14E7000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
 		EDD12C97268EB27500DF766A /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EDC3780A2691D393007C53F2 /* Report */,
 				EDD12C92268EAD0400DF766A /* Shared */,
 			);
 			path = Components;
@@ -237,6 +240,14 @@
 			children = (
 			);
 			path = APIServices;
+			sourceTree = "<group>";
+		};
+		EDC3780A2691D393007C53F2 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				EDC3780B2691D3CC007C53F2 /* ReportView.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		EDD12C92268EAD0400DF766A /* Shared */ = {
@@ -412,6 +423,7 @@
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,
+				EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */,
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,

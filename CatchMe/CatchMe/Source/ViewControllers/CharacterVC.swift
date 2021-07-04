@@ -10,24 +10,21 @@ import UIKit
 class CharacterVC: UIViewController {
     
     // MARK: - Property
-    
     let naviBar = NavigationBar()
     
     let upperView = CharacterUpperView()
     
-    let mainTableView = UITableView(frame: .zero, style: .plain)
+    let mainTableView = UITableView(frame: .zero, style: .grouped)
     
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setTableView()
         setupAutoLayout()
+        setTableView()
+        
     }
     
-    // MARK: - setTableView
-    
+    // MARK: - Custom Method
     func setTableView() {
         
         mainTableView.delegate = self
@@ -38,13 +35,14 @@ class CharacterVC: UIViewController {
         
         mainTableView.separatorStyle = .none
         
+        mainTableView.tableFooterView = UIView(frame: .zero)
+        mainTableView.sectionFooterHeight = 0
+        
     }
-    
-    // MARK: - setAutoLayout
     
     func setupAutoLayout() {
         
-        view.addSubviews([upperView, mainTableView, naviBar])
+        view.addSubviews([mainTableView, upperView, naviBar])
         
         naviBar.snp.makeConstraints { (make) in
             make.top.leading.bottom.trailing.equalToSuperview()
@@ -65,7 +63,6 @@ class CharacterVC: UIViewController {
 }
 
 // MARK: - UITableViewDelegate
-
 extension CharacterVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -80,18 +77,17 @@ extension CharacterVC: UITableViewDelegate {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 67
-        default:
-            return 40
-        }
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch indexPath.row {
+//        case 0:
+//            return 67
+//        default:
+//            return 200
+//        }
+//    }
 }
 
 // MARK: - UITableViewDataSource
-
 extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {

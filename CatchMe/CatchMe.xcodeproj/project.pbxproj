@@ -49,9 +49,9 @@
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
 		5B08504C26919416008F40B2 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		5B08505B26919C0B008F40B2 /* CharacterUpperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUpperView.swift; sourceTree = "<group>"; };
-		5B08505F2691A126008F40B2 /* CharacterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterTVC.swift; path = CatchMe/Source/Components/CharacterTVC.swift; sourceTree = SOURCE_ROOT; };
+		5B08505F2691A126008F40B2 /* CharacterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterTVC.swift; path = CatchMe/Source/Cells/Character/CharacterTVC.swift; sourceTree = SOURCE_ROOT; };
 		5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHeaderView.swift; sourceTree = "<group>"; };
-		5B0850672691A659008F40B2 /* CharacterReportTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterReportTVC.swift; path = CatchMe/Source/Components/CharacterReportTVC.swift; sourceTree = SOURCE_ROOT; };
+		5B0850672691A659008F40B2 /* CharacterReportTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterReportTVC.swift; path = CatchMe/Source/Cells/Character/CharacterReportTVC.swift; sourceTree = SOURCE_ROOT; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87F268A14E5000F058F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +114,25 @@
 				BB4445868E9E1388C569074A /* Pods_CatchMe.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B08506D2691DFB1008F40B2 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				5B0850672691A659008F40B2 /* CharacterReportTVC.swift */,
+				5B08505F2691A126008F40B2 /* CharacterTVC.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		5B08506E2691DFC4008F40B2 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				5B08504C26919416008F40B2 /* NavigationBar.swift */,
+				5B08505B26919C0B008F40B2 /* CharacterUpperView.swift */,
+				5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */,
+			);
+			path = Character;
 			sourceTree = "<group>";
 		};
 		ED63E873268A14E5000F058F = {
@@ -201,8 +220,7 @@
 		ED63E899268A1C4A000F058F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5B0850672691A659008F40B2 /* CharacterReportTVC.swift */,
-				5B08505F2691A126008F40B2 /* CharacterTVC.swift */,
+				5B08506D2691DFB1008F40B2 /* Character */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -239,10 +257,8 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5B08506E2691DFC4008F40B2 /* Character */,
 				EDD12C92268EAD0400DF766A /* Shared */,
-				5B08504C26919416008F40B2 /* NavigationBar.swift */,
-				5B08505B26919C0B008F40B2 /* CharacterUpperView.swift */,
-				5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

@@ -52,6 +52,11 @@ class CharacterReportTVC: UITableViewCell {
         $0.text = "50%"
         $0.textColor = .white
         $0.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        let attributtedString = NSMutableAttributedString(string: $0.text!)
+        attributtedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .bold), range: ($0.text! as NSString).range(of:"%"))
+                
+        $0.attributedText = attributtedString
     }
     
     let catchLabel = UILabel().then {
@@ -164,15 +169,22 @@ class CharacterReportTVC: UITableViewCell {
         }
         
         lineView2.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(-1)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }
     }
     
+    // MARK: - Helpers
+    
     @objc func pressCatchGuidebutton() {
         
     }
     
+    func setData(level: String, percent: String, activity: String) {
+        levelLabel.text = level
+        catchLabel.text = percent
+        activityLabel.text = activity
+    }
 
 }

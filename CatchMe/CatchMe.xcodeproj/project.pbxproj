@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B3654E12691ACBC002C2C5C /* characterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654DF2691ACBC002C2C5C /* characterCVC.swift */; };
+		2B3654E22691ACBC002C2C5C /* characterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3654E02691ACBC002C2C5C /* characterCVC.xib */; };
+		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
+		2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* mainReportView.swift */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
@@ -42,6 +46,10 @@
 
 /* Begin PBXFileReference section */
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
+		2B3654DF2691ACBC002C2C5C /* characterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = characterCVC.swift; sourceTree = "<group>"; };
+		2B3654E02691ACBC002C2C5C /* characterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = characterCVC.xib; sourceTree = "<group>"; };
+		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		2B3654EE2691D6D9002C2C5C /* mainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainReportView.swift; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87F268A14E5000F058F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,24 @@
 				25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		2B3654DE2691ABF6002C2C5C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2B3654DF2691ACBC002C2C5C /* characterCVC.swift */,
+				2B3654EA2691C4D7002C2C5C /* PageControl.swift */,
+				2B3654EE2691D6D9002C2C5C /* mainReportView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2B3654E72691ACCD002C2C5C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2B3654E02691ACBC002C2C5C /* characterCVC.xib */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		45BC39069B9E59892752ABEF /* Frameworks */ = {
@@ -184,6 +210,7 @@
 		ED63E897268A1BC3000F058F /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				2B3654E72691ACCD002C2C5C /* Main */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -191,6 +218,7 @@
 		ED63E899268A1C4A000F058F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B3654DE2691ABF6002C2C5C /* Main */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -342,6 +370,7 @@
 			files = (
 				EDD12CA2268EB7C700DF766A /* Character.storyboard in Resources */,
 				EDD12C9C268EB6E900DF766A /* Main.storyboard in Resources */,
+				2B3654E22691ACBC002C2C5C /* characterCVC.xib in Resources */,
 				ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
 				EDD12CA6268EB82B00DF766A /* Report.storyboard in Resources */,
@@ -410,13 +439,16 @@
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
+				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
+				2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
+				2B3654E12691ACBC002C2C5C /* characterCVC.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

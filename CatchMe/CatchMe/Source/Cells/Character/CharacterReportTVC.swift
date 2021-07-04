@@ -122,14 +122,14 @@ class CharacterReportTVC: UITableViewCell {
         activityStackView.addArrangedSubview(activityLabel)
         
         lineView1.snp.makeConstraints { (make) in
-            make.top.equalTo(4)
+            make.top.equalTo(self.snp.top).inset(4)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }
         
         levelStackView.snp.makeConstraints { (make) in
             make.top.equalTo(lineView1.snp.bottom).offset(12)
-            make.leading.equalTo(57)
+            make.leading.equalTo(self.snp.leading).inset(57)
         }
         
         separateLineView1.snp.makeConstraints { (make) in
@@ -137,6 +137,7 @@ class CharacterReportTVC: UITableViewCell {
             make.bottom.equalTo(lineView2.snp.top).offset(-11)
             make.leading.equalTo(levelStackView.snp.trailing).offset(42)
             make.width.equalTo(1)
+            make.height.equalTo(42)
         }
         
         catchNumberLabel.snp.makeConstraints { (make) in
@@ -161,16 +162,18 @@ class CharacterReportTVC: UITableViewCell {
             make.bottom.equalTo(lineView2.snp.top).offset(-11)
             make.leading.equalTo(catchGuideButton.snp.trailing).offset(22)
             make.width.equalTo(1)
+            make.height.equalTo(42)
         }
         
         activityStackView.snp.makeConstraints { (make) in
             make.top.equalTo(lineView1.snp.bottom).offset(12)
-            make.trailing.equalTo(-50)
+            make.trailing.equalTo(self.snp.trailing).inset(50)
         }
         
         lineView2.snp.makeConstraints { (make) in
-            make.bottom.equalTo(levelStackView.snp.bottom).offset(12)
+            make.top.equalTo(self.snp.top).inset(70)
             make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.snp.bottom).offset(0)
             make.height.equalTo(1)
         }
     }

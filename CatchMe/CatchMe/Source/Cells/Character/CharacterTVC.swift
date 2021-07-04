@@ -43,6 +43,12 @@ class CharacterTVC: UITableViewCell {
         $0.addTarget(self, action: #selector(touchupMoreButton), for: .touchUpInside)
     }
     
+    let contentStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 16
+        $0.alignment = .center
+    }
+    
     let commentView = UIImageView().then {
 //        $0.image = UIImage(named: "icComment")
         $0.backgroundColor = .orange
@@ -57,7 +63,7 @@ class CharacterTVC: UITableViewCell {
         
         let attributedString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
+        paragraphStyle.lineSpacing = 0.08
 
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
                 
@@ -77,7 +83,10 @@ class CharacterTVC: UITableViewCell {
         
         backgroundColor = .black
       
-        addSubviews([pinImageView, lineView, dateLabel, commentView, moreButton, photoImageView])
+        addSubviews([pinImageView, lineView, dateLabel, contentStackView, moreButton])
+        
+        contentStackView.addArrangedSubview(commentView)
+        contentStackView.addArrangedSubview(photoImageView)
         
         commentView.addSubview(commentLabel)
         
@@ -90,7 +99,7 @@ class CharacterTVC: UITableViewCell {
         lineView.snp.makeConstraints { (make) in
             make.top.equalTo(pinImageView.snp.bottom)
             make.leading.equalTo(self.snp.leading).inset(27.5)
-            make.bottom.equalToSuperview().offset(37)
+            make.bottom.equalToSuperview().offset(38)
             make.width.equalTo(1)
         }
         
@@ -105,14 +114,11 @@ class CharacterTVC: UITableViewCell {
             make.width.height.equalTo(48)
         }
         
-        commentView.snp.makeConstraints { (make) in
+        contentStackView.snp.makeConstraints { (make) in
             make.top.equalTo(dateLabel.snp.bottom).offset(12)
             make.leading.equalTo(lineView.snp.trailing).offset(15.5)
             make.bottom.equalTo(self.snp.bottom).inset(5)
-            make.trailing.equalToSuperview().inset(28)
-            make.width.equalTo(275)
-            make.height.equalTo(18)
-            
+            make.trailing.equalTo(self.snp.trailing).inset(28)
         }
         
         commentLabel.snp.makeConstraints { (make) in
@@ -123,12 +129,10 @@ class CharacterTVC: UITableViewCell {
         }
         
         photoImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(commentView.snp.bottom).offset(16)
-            make.leading.equalTo(lineView.snp.trailing).offset(15.5)
-            make.bottom.equalTo(self.snp.bottom).inset(5)
-            make.trailing.equalToSuperview().inset(28)
+            make.width.equalTo(303)
+            make.height.equalTo(228)
         }
-        
+
     }
     
     // MARK: - Helpers

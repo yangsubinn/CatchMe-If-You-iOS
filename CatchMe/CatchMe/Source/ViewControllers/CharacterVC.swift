@@ -78,15 +78,7 @@ extension CharacterVC: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        switch indexPath.row {
-//        case 0:
-//            return 67
-//        default:
-//            return 200
-//        }
-//    }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -95,7 +87,7 @@ extension CharacterVC: UITableViewDataSource {
         switch section {
         case 0:
             
-            return 1 + 20
+            return 1 + 10
             
         default:
             return 0
@@ -108,14 +100,14 @@ extension CharacterVC: UITableViewDataSource {
         case 0:
             if indexPath.row == 0 {
                 guard let reportCell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC else { return UITableViewCell() }
-                reportCell.backgroundColor = .green
                 reportCell.setupAutoLayout()
+                reportCell.selectionStyle = .none
                 return reportCell
                 
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
-                cell.backgroundColor = .yellow
                 cell.setupAutoLayout()
+                cell.selectionStyle = .none
                 return cell
             }
             

@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class CharacterVC: UIViewController {
     // MARK: - Properties
     lazy var naviBar = NavigationBar(vc: self)
@@ -23,6 +26,7 @@ class CharacterVC: UIViewController {
     // MARK: - Custom Method
     func setTableView() {
         mainTableView.backgroundColor = .black
+        upperView.backgroundColor = .white
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -34,7 +38,6 @@ class CharacterVC: UIViewController {
         
         mainTableView.tableFooterView = UIView(frame: .zero)
         mainTableView.sectionFooterHeight = 0
-        
     }
     
     func setupAutoLayout() {
@@ -64,11 +67,58 @@ extension CharacterVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 126
+        return 127
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = UIScreen.main.bounds.width
+        let backgroundWidth = self.upperView.backgroundView.bounds.width
+        let backgroundHeight = self.upperView.backgroundView.bounds.height
+        let offset = scrollView.contentOffset.y
+        
+        if width - offset < 171 {
+            UIView.animate(withDuration: 0.03) {
+                self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
+                self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 203)
+                
+                // 헤더 부분 높이
+                self.upperView.snp.updateConstraints { make in
+                    make.height.equalTo(171)
+                }
+                
+                // 핑크색 배경
+                self.upperView.backgroundView.snp.updateConstraints { make in
+                    make.width.equalTo(self.upperView.backgroundView.bounds.height)
+                    make.height.equalTo(self.upperView.backgroundView.bounds.height)
+                }
+            
+                // 핑크색 둥글기
+                self.upperView.backgroundView.layer.cornerRadius = backgroundWidth / 2
+            }
+        } else {
+            UIView.animate(withDuration: 0.1) {
+                self.upperView.characterImageView.transform = .identity
+                self.upperView.backgroundView.transform = .identity
+                self.upperView.transform = .identity
+
+                // 헤더 부분 높이
+                self.upperView.snp.updateConstraints { make in
+                    make.height.equalTo(width-offset)
+                }
+ 
+                // 캐릭터 상단 constraint
+                self.upperView.characterImageView.snp.updateConstraints { make in
+                    make.top.equalTo(158)
+                }
+                
+                // 핑크색 둥글기
+                self.upperView.backgroundView.layer.cornerRadius = 0
+            }
+        }
     }
 }
 

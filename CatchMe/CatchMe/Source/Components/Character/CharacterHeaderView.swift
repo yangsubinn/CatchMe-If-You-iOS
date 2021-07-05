@@ -88,7 +88,7 @@ class CharacterHeaderView: UIView {
         
         writeButton.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(11)
-            make.trailing.equalToSuperview().inset(27)
+            make.trailing.equalToSuperview().inset(28)
             make.width.equalTo(72)
             make.height.equalTo(48)
         }

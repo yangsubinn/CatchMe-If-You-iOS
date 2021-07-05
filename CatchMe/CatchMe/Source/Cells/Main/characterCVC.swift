@@ -8,7 +8,6 @@
 import UIKit
 
 class characterCVC: UICollectionViewCell {
-
     static let identifier = "characterCVC"
     
     // MARK: - IBOutlet
@@ -17,11 +16,11 @@ class characterCVC: UICollectionViewCell {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        configUI()
+    }
+    
+    func configUI() {
         characterImage.backgroundColor = .purple
-        characterImage.translatesAutoresizingMaskIntoConstraints = false
-        characterImage.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(174)
-        }
+        self.backgroundColor = .blue
     }
 }

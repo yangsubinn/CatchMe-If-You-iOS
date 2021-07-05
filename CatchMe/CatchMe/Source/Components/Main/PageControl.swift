@@ -8,7 +8,6 @@
 import UIKit
 
 class PageControl: UIView {
-
     var pages: Int = 0 {
         didSet {
             invalidateIntrinsicContentSize()
@@ -26,6 +25,7 @@ class PageControl: UIView {
             setNeedsDisplay()
         }
     }
+    
     var selectedColor = UIColor.init(red: 234/255, green: 69/255, blue: 121/255, alpha: 1.0) {
         didSet {
             setNeedsDisplay()
@@ -68,5 +68,4 @@ class PageControl: UIView {
             UIBezierPath(roundedRect: rect, cornerRadius: 3).fill()
         }
     }
-
 }

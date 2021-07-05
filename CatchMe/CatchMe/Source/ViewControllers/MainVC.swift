@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class MainVC: UIViewController {
@@ -19,46 +20,30 @@ class MainVC: UIViewController {
     let catchingButton = UIButton()
     let pageControl = PageControl()
     let reportView = mainReportView()
-
-    // MARK: - IBOutlet
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupReportView()
+        setupLayout()
         configUI()
         setupCollectionView()
         setupPageControl()
-        setupReportView()
     }
     
     // MARK: - Custome Method
-    private func configUI() {
-        view.backgroundColor = .black
+    private func setupLayout() {
+        view.addSubviews([dateLabel, settingButton, calendarButton,
+                          lookButton, allButton, nameLabel,
+                          reportView, catchingButton, collectionView])
         
-        view.addSubviews([dateLabel, settingButton, calendarButton, lookButton, allButton, nameLabel, catchingButton])
-        
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        settingButton.translatesAutoresizingMaskIntoConstraints = false
-        calendarButton.translatesAutoresizingMaskIntoConstraints = false
-        lookButton.translatesAutoresizingMaskIntoConstraints = false
-        allButton.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        catchingButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        dateLabel.text = "7월 4일 일요일"
-        dateLabel.textColor = .white
-        dateLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(view.snp.leading).offset(28)
             make.top.equalToSuperview().offset(64)
         }
-        
-        settingButton.backgroundColor = .cyan
-        calendarButton.backgroundColor = .yellow
-        lookButton.backgroundColor = .gray
-        allButton.backgroundColor = .purple
-        catchingButton.backgroundColor = .lightGray
         
         settingButton.snp.makeConstraints { make in
             make.trailing.equalTo(view.snp.trailing).offset(-13)
@@ -85,54 +70,77 @@ class MainVC: UIViewController {
             make.height.equalTo(30)
         }
         
-        nameLabel.text = "솝트없이 못 사는 솝트러버"
-        nameLabel.textColor = .white
-        nameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(view.snp.leading).offset(28)
             make.top.equalTo(view.snp.top).offset(172)
+        }
+        
+        reportView.snp.makeConstraints { make in
+            make.leading.equalTo(view.snp.leading).offset(28)
+            make.trailing.equalTo(view.snp.trailing).inset(28)
+            make.top.equalTo(nameLabel.snp.bottom).offset(338)
+            make.height.equalTo(152)
         }
         
         catchingButton.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.snp.top).offset(721)
-//            make.top.equalTo(reportView.snp.bottom).offset(-41)
+            make.top.equalTo(reportView.snp.bottom).offset(41)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(21)
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(269)
         }
     }
     
+    private func configUI() {
+        view.backgroundColor = .black
+        
+        dateLabel.text = "7월 4일 일요일"
+        dateLabel.textColor = .white
+        dateLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        
+        nameLabel.text = "솝트없이 못 사는 솝트러버"
+        nameLabel.textColor = .white
+        nameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        
+        settingButton.backgroundColor = .cyan
+        calendarButton.backgroundColor = .yellow
+        lookButton.backgroundColor = .gray
+        allButton.backgroundColor = .purple
+        catchingButton.backgroundColor = .lightGray
+    }
+    
     private func setupCollectionView() {
+        collectionViewFlowLayout.scrollDirection = .horizontal
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        let nib = UINib(nibName: characterCVC.identifier, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: characterCVC.identifier)
+        collectionView.setupCollectionViewNib(nib: characterCVC.identifier)
         collectionView.backgroundColor = .clear
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
     }
     
     private func setupPageControl() {
         pageControl.pages = 5
         
         view.addSubview(pageControl)
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            pageControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-            pageControl.heightAnchor.constraint(equalToConstant: 12),
-            pageControl.widthAnchor.constraint(equalToConstant: 90)
-        ])
+        pageControl.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(100)
+            make.leading.equalTo(view.snp.leading).offset(28)
+            make.height.equalTo(12)
+            make.width.equalTo(90)
+        }
     }
     
     private func setupReportView() {
-        view.addSubview(reportView)
-        reportView.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.trailing.equalTo(view.snp.trailing).offset(-28)
-            make.top.equalTo(nameLabel.snp.bottom).offset(338)
-            make.height.equalTo(152)
-        }
         reportView.backgroundColor = .darkGray
         reportView.layer.cornerRadius = 14
     }

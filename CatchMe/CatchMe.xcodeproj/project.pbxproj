@@ -25,6 +25,14 @@
 		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
 		EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */; };
 		EDBBFCD226936F4600443077 /* CalendarCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCD126936F4600443077 /* CalendarCVC.swift */; };
+		EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCD3269394EE00443077 /* UIColor+Extension.swift */; };
+		EDBBFCDB2693981D00443077 /* SpoqaHanSansNeo-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD52693981C00443077 /* SpoqaHanSansNeo-Medium.otf */; };
+		EDBBFCDC2693981D00443077 /* SpoqaHanSansNeo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD62693981C00443077 /* SpoqaHanSansNeo-Regular.otf */; };
+		EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD72693981D00443077 /* SpoqaHanSansNeo-Bold.otf */; };
+		EDBBFCDE2693981D00443077 /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD82693981D00443077 /* NanumSquareRoundOTFEB.otf */; };
+		EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD92693981D00443077 /* DINPro-Medium.otf */; };
+		EDBBFCE02693981D00443077 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */; };
+		EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCE22693996F00443077 /* UIFont+Extension.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -76,6 +84,14 @@
 		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitleView.swift; sourceTree = "<group>"; };
 		EDBBFCD126936F4600443077 /* CalendarCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCVC.swift; sourceTree = "<group>"; };
+		EDBBFCD3269394EE00443077 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		EDBBFCD52693981C00443077 /* SpoqaHanSansNeo-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.otf"; sourceTree = "<group>"; };
+		EDBBFCD62693981C00443077 /* SpoqaHanSansNeo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.otf"; sourceTree = "<group>"; };
+		EDBBFCD72693981D00443077 /* SpoqaHanSansNeo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.otf"; sourceTree = "<group>"; };
+		EDBBFCD82693981D00443077 /* NanumSquareRoundOTFEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFEB.otf; sourceTree = "<group>"; };
+		EDBBFCD92693981D00443077 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
+		EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
+		EDBBFCE22693996F00443077 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -212,6 +228,7 @@
 			children = (
 				ED63E88D268A14E7000F058F /* Info.plist */,
 				ED63E888268A14E7000F058F /* Assets.xcassets */,
+				EDBBFCE12693982600443077 /* Fonts */,
 				ED63E89E268A1D78000F058F /* APIServices */,
 				ED63E897268A1BC3000F058F /* Xibs */,
 				ED63E896268A1BBB000F058F /* Storyboards */,
@@ -287,6 +304,8 @@
 				EDD12CAF268EBE1600DF766A /* UITextField+Extension.swift */,
 				EDD12CB1268EBE4E00DF766A /* UICollectionView+Extension.swift */,
 				EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */,
+				EDBBFCD3269394EE00443077 /* UIColor+Extension.swift */,
+				EDBBFCE22693996F00443077 /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -324,6 +343,19 @@
 				EDBBFCD126936F4600443077 /* CalendarCVC.swift */,
 			);
 			path = Report;
+			sourceTree = "<group>";
+		};
+		EDBBFCE12693982600443077 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFCD92693981D00443077 /* DINPro-Medium.otf */,
+				EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */,
+				EDBBFCD82693981D00443077 /* NanumSquareRoundOTFEB.otf */,
+				EDBBFCD72693981D00443077 /* SpoqaHanSansNeo-Bold.otf */,
+				EDBBFCD52693981C00443077 /* SpoqaHanSansNeo-Medium.otf */,
+				EDBBFCD62693981C00443077 /* SpoqaHanSansNeo-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		EDC3780A2691D393007C53F2 /* Report */ = {
@@ -438,10 +470,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDBBFCE02693981D00443077 /* DINPro-Regular.otf in Resources */,
 				EDD12CA2268EB7C700DF766A /* Character.storyboard in Resources */,
 				EDD12C9C268EB6E900DF766A /* Main.storyboard in Resources */,
+				EDBBFCDB2693981D00443077 /* SpoqaHanSansNeo-Medium.otf in Resources */,
+				EDBBFCDC2693981D00443077 /* SpoqaHanSansNeo-Regular.otf in Resources */,
+				EDBBFCDE2693981D00443077 /* NanumSquareRoundOTFEB.otf in Resources */,
 				2B3654E22691ACBC002C2C5C /* characterCVC.xib in Resources */,
 				ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */,
+				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
+				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
 				EDD12CA6268EB82B00DF766A /* Report.storyboard in Resources */,
 			);
@@ -510,6 +548,7 @@
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
 				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
+				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
 				5B08504D26919416008F40B2 /* NavigationBar.swift in Sources */,
@@ -523,6 +562,7 @@
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
+				EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */,
 				2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,
 				EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */,

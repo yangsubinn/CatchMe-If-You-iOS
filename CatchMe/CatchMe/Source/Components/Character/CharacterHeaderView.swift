@@ -20,7 +20,6 @@ class CharacterHeaderView: UIView {
     }
     
     // MARK: - Property
-    
     let lockDateStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4
@@ -59,16 +58,13 @@ class CharacterHeaderView: UIView {
         $0.numberOfLines = 2
     }
         
-    // MARK: - configUI() {
-    
+    // MARK: - Custom Method
     func configUI() {
         
         backgroundColor = .black
 
     }
-    
-    // MARK: - setupAutoLayout
-    
+        
     private func setupAutoLayout() {
                 
         addSubviews([lockDateStackView, fromLabel, writeButton, nameLabel])

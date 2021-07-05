@@ -20,7 +20,6 @@ class CharacterUpperView: UIView {
     }
     
     // MARK: - Property
-    
     let backgroundView = UIView().then {
         $0.backgroundColor = .blue
     }
@@ -31,8 +30,7 @@ class CharacterUpperView: UIView {
         
     }
 
-    // MARK: - configUI() {
-    
+    // MARK: - Custom Method
     func configUI() {
         
         clipsToBounds = true

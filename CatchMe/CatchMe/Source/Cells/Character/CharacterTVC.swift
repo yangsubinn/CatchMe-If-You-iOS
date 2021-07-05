@@ -21,7 +21,6 @@ class CharacterTVC: UITableViewCell {
     }
     
     // MARK: - Property
-    
     let pinImageView = UIImageView().then {
 //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .orange
@@ -76,9 +75,7 @@ class CharacterTVC: UITableViewCell {
         $0.layer.cornerRadius = 18
     }
     
-    
-    // MARK: - setupAutoLayout
-    
+    // MARK: - Custom Method
     func setupAutoLayout() {
         
         backgroundColor = .black
@@ -121,6 +118,11 @@ class CharacterTVC: UITableViewCell {
             make.trailing.equalTo(self.snp.trailing).inset(28)
         }
         
+        commentView.snp.makeConstraints { (make) in
+            make.width.equalTo(303)
+            make.height.equalTo(42)
+        }
+        
         commentLabel.snp.makeConstraints { (make) in
             make.top.equalTo(commentView.snp.top).inset(12)
             make.leading.equalTo(commentView.snp.leading).inset(14)
@@ -135,8 +137,6 @@ class CharacterTVC: UITableViewCell {
 
     }
     
-    // MARK: - Helpers
-
     @objc func touchupMoreButton() {
         
     }

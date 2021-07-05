@@ -22,7 +22,6 @@ class NavigationBar: UIView {
     }
     
     // MARK: - Property
-    
     let backButton = BackButton(MainVC())
     
     let editButton = UIButton().then {
@@ -31,8 +30,7 @@ class NavigationBar: UIView {
         $0.backgroundColor = .orange
     }
     
-    // MARK: - configUI()
-    
+    // MARK: - Custom Method
     func configUI() {
         backgroundColor = .clear
         

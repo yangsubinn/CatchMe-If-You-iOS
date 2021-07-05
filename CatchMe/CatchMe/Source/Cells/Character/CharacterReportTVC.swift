@@ -21,7 +21,6 @@ class CharacterReportTVC: UITableViewCell {
     }
     
     // MARK: - Property
-    
     let lineView1 = UIView().then {
         $0.backgroundColor = .gray
     }
@@ -97,16 +96,7 @@ class CharacterReportTVC: UITableViewCell {
         $0.backgroundColor = .gray
     }
    
-    
-    // MARK: - configUI
-    
-    func configUI() {
-        
-        
-    }
-    
-    // MARK: - setupAutoLayout
-    
+    // MARK: - Custom Method
     func setupAutoLayout() {
         
         backgroundColor = .black
@@ -177,8 +167,6 @@ class CharacterReportTVC: UITableViewCell {
             make.height.equalTo(1)
         }
     }
-    
-    // MARK: - Helpers
     
     @objc func pressCatchGuidebutton() {
         

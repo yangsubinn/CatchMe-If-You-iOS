@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class CharacterUpperView: UIView {
     // MARK: - Properties
     let backgroundView = UIView().then {

@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class CharacterReportTVC: UITableViewCell {
     static let idenfitifer = "CharacterReportTVC"
 

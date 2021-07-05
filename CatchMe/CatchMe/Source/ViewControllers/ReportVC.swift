@@ -40,12 +40,12 @@ class ReportVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        setupCalendar()
-        makeMonthDate()
-        calculateCalendarDate()
         setupCollectionView()
         setupLayout()
         setupButtonAction()
+        setupCalendar()
+        makeMonthDate()
+        calculateCalendarDate()
     }
 
     // MARK: - Custom Methods

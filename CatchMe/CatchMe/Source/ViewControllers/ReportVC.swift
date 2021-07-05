@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class ReportVC: UIViewController {
@@ -14,6 +15,7 @@ class ReportVC: UIViewController {
     
     // MARK: - Properties
     let reportView = ReportView()
+    let calendarTitleView = CalendarTitleView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class ReportVC: UIViewController {
     }
     
     private func setupLayout() {
-        view.addSubviews([reportView, backButton])
+        view.addSubviews([reportView, backButton, calendarTitleView])
         
         reportView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -40,6 +42,11 @@ class ReportVC: UIViewController {
         backButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(55)
             make.leading.equalToSuperview().inset(14)
+        }
+        
+        calendarTitleView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(reportView.snp.bottom).offset(37)
         }
     }
 }

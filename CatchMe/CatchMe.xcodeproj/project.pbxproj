@@ -19,6 +19,7 @@
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
 		EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCA26930C4600443077 /* TitleView.swift */; };
 		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
+		EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -64,6 +65,7 @@
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDBBFCCA26930C4600443077 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitleView.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				EDC3780B2691D3CC007C53F2 /* ReportView.swift */,
 				EDBBFCCA26930C4600443077 /* TitleView.swift */,
 				EDBBFCCC2693155F00443077 /* CharacterView.swift */,
+				EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
+				EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,

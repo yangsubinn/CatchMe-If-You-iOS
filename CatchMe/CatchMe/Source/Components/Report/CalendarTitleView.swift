@@ -33,8 +33,6 @@ class CalendarTitleView: UIView {
         $0.textColor = .white
         $0.text = "월"
     }
-    
-    let dateformatter = DateFormatter()
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -72,11 +70,13 @@ class CalendarTitleView: UIView {
     private func configUI() {
         addSubviews([yearLabel, yearTitleLabel,
                      monthLabel, monthTitleLabel])
-        
-        dateformatter.dateFormat = "YYYY"
-        yearLabel.text = dateformatter.string(from: Date())
-        
-        dateformatter.dateFormat = "M"
-        monthLabel.text = dateformatter.string(from: Date())
+    }
+    
+    func applyYearLabel(to year: String) {
+        yearLabel.text = year
+    }
+    
+    func applyMonthLabel(to month: String) {
+        monthLabel.text = month
     }
 }

@@ -17,6 +17,8 @@
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
 		ED63E889268A14E7000F058F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63E888268A14E7000F058F /* Assets.xcassets */; };
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
+		EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCA26930C4600443077 /* TitleView.swift */; };
+		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -60,6 +62,8 @@
 		ED63E888268A14E7000F058F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63E88B268A14E7000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDBBFCCA26930C4600443077 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				EDC3780B2691D3CC007C53F2 /* ReportView.swift */,
+				EDBBFCCA26930C4600443077 /* TitleView.swift */,
+				EDBBFCCC2693155F00443077 /* CharacterView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
+				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
@@ -463,6 +470,7 @@
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,
+				EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */,
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,

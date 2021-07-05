@@ -151,8 +151,6 @@ class MainVC: UIViewController {
         formatterDate.locale = Locale(identifier: "ko_KR")
         formatterDate.dateFormat = "M월 d일 EEEE"
         let currentFormatterDate = formatterDate.string(from: Date())
-        print(currentFormatterDate)
-        
         dateLabel.text = currentFormatterDate
     }
 }

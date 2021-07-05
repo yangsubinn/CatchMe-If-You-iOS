@@ -12,15 +12,16 @@ import SnapKit
 class ReportVC: UIViewController {
     // MARK: - lazy Properties
     lazy var backButton = BackButton(self)
-    lazy var weekdayCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-    lazy var dateCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    lazy var weekdayCollectionView = UICollectionView(frame: .zero, collectionViewLayout: weekdayFlowLayout)
+    lazy var dateCollectionView = UICollectionView(frame: .zero, collectionViewLayout: dateFlowLayout)
     
     // MARK: - Properties
     let reportView = ReportView()
     let calendarTitleView = CalendarTitleView()
     let previousButton = UIButton()
     let nextButton = UIButton()
-    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    let weekdayFlowLayout = UICollectionViewFlowLayout()
+    let dateFlowLayout = UICollectionViewFlowLayout()
     let dateFormatter = DateFormatter()
     
     var components = DateComponents()
@@ -46,7 +47,7 @@ class ReportVC: UIViewController {
         setupLayout()
         setupButtonAction()
     }
-    
+
     // MARK: - Custom Methods
     fileprivate func configUI() {
         /// 색상 들어오면 변경할 것
@@ -59,17 +60,20 @@ class ReportVC: UIViewController {
     }
     
     fileprivate func setupCollectionView() {
-        collectionViewFlowLayout.scrollDirection = .vertical
+        weekdayFlowLayout.scrollDirection = .vertical
+        dateFlowLayout.scrollDirection = .vertical
         
         weekdayCollectionView.delegate = self
         weekdayCollectionView.dataSource = self
         weekdayCollectionView.register(CalendarCVC.self, forCellWithReuseIdentifier: CalendarCVC.identifier)
         weekdayCollectionView.backgroundColor = .black
+        weekdayCollectionView.isScrollEnabled = false
         
         dateCollectionView.delegate = self
         dateCollectionView.dataSource = self
         dateCollectionView.register(CalendarCVC.self, forCellWithReuseIdentifier: CalendarCVC.identifier)
         dateCollectionView.backgroundColor = .black
+        dateCollectionView.isScrollEnabled = false
     }
     
     private func setupLayout() {
@@ -166,16 +170,25 @@ class ReportVC: UIViewController {
     
     private func makeMonthDate() {
         monthDate.removeAll()
+        dummyFormatter.dateFormat = "YYYY"
         dayAndYear = ""
         
         let firstDayOfMonth = Calendar.current.date(from: components)
+        
+        /// title 부분 year 설정
         dateFormatter.dateFormat = "YYYY"
         let year = dateFormatter.string(from: firstDayOfMonth!)
+        calendarTitleView.applyYearLabel(to: year)
+        
+        /// title 부분 month 설정
+        dateFormatter.dateFormat = "M"
+        let titleMonth = dateFormatter.string(from: firstDayOfMonth!)
+        calendarTitleView.applyMonthLabel(to: titleMonth)
+        
+        /// dummyDate를 위한 month 설정
         dateFormatter.dateFormat = "MM"
         let month = dateFormatter.string(from: firstDayOfMonth!)
-        dayAndYear = year + "." + month
         
-        dummyFormatter.dateFormat = "YYYY"
         for date in dummyDate {
             let string = date.split(separator: "-")
             
@@ -189,9 +202,10 @@ class ReportVC: UIViewController {
 
 extension ReportVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section:Int) -> Int {
-        if collectionView == weekdayCollectionView {
+        switch collectionView {
+        case weekdayCollectionView:
             return 7
-        } else {
+        default:
             return days.count
         }
     }
@@ -244,30 +258,27 @@ extension ReportVC: UICollectionViewDataSource {
 
 extension ReportVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let weekBoundSize = UIScreen.main.bounds.size.width - 32 - 42
-        let dayBoundSize = UIScreen.main.bounds.size.width - 32 - 24
+        let boundSize = UIScreen.main.bounds.size.width - 32 - 24
         var cellSize = 0
         
         switch collectionView {
         case weekdayCollectionView:
-            cellSize = Int(weekBoundSize / 7)
+            cellSize = Int(boundSize / 7)
             return CGSize(width: cellSize,
                             height: 43)
         default:
-            cellSize = Int(dayBoundSize / 7)
+            cellSize = Int(boundSize / 7)
             return CGSize(width: cellSize,
                             height: 51)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView {
-        case weekdayCollectionView:
-            return 7
-        default:
-            return 4
-        }
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

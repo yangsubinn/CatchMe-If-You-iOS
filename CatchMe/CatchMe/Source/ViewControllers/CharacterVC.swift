@@ -8,12 +8,9 @@
 import UIKit
 
 class CharacterVC: UIViewController {
-    
-    // MARK: - Property
-    let naviBar = NavigationBar()
-    
+    // MARK: - Properties
+    lazy var naviBar = NavigationBar(vc: self)
     let upperView = CharacterUpperView()
-    
     let mainTableView = UITableView(frame: .zero, style: .plain)
     
     // MARK: - Lifecycle
@@ -21,12 +18,10 @@ class CharacterVC: UIViewController {
         super.viewDidLoad()
         setupAutoLayout()
         setTableView()
-        
     }
     
     // MARK: - Custom Method
     func setTableView() {
-        
         mainTableView.backgroundColor = .black
         
         mainTableView.delegate = self
@@ -43,30 +38,27 @@ class CharacterVC: UIViewController {
     }
     
     func setupAutoLayout() {
-        
         view.addSubviews([mainTableView, upperView, naviBar])
         
-        naviBar.snp.makeConstraints { (make) in
+        naviBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(48)
         }
         
-        upperView.snp.makeConstraints { (make) in
+        upperView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.width)
         }
         
-        mainTableView.snp.makeConstraints { (make) in
+        mainTableView.snp.makeConstraints { make in
             make.top.equalTo(upperView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
-
 }
 
 // MARK: - UITableViewDelegate
 extension CharacterVC: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return CharacterHeaderView()
     }
@@ -78,9 +70,6 @@ extension CharacterVC: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-
-
 }
 
 // MARK: - UITableViewDataSource
@@ -88,13 +77,10 @@ extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            
             return 1 + 10
-            
         default:
             return 0
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,20 +91,14 @@ extension CharacterVC: UITableViewDataSource {
                 reportCell.setupAutoLayout()
                 reportCell.selectionStyle = .none
                 return reportCell
-                
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
                 cell.setupAutoLayout()
                 cell.selectionStyle = .none
                 return cell
             }
-            
         default:
             return UITableViewCell()
         }
-        
-        
-     }
-    
-    
+    }
 }

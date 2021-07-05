@@ -8,20 +8,10 @@
 import UIKit
 
 class CharacterReportTVC: UITableViewCell {
-    
     static let idenfitifer = "CharacterReportTVC"
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    // MARK: - Property
-    let lineView1 = UIView().then {
+    // MARK: - Properties
+    let lineTopView = UIView().then {
         $0.backgroundColor = .gray
     }
     
@@ -43,7 +33,7 @@ class CharacterReportTVC: UITableViewCell {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     
-    let separateLineView1 = UIView().then {
+    let separateLineLeftView = UIView().then {
         $0.backgroundColor = .gray
     }
     
@@ -70,7 +60,7 @@ class CharacterReportTVC: UITableViewCell {
         $0.backgroundColor = .orange
     }
     
-    let separateLineView2 = UIView().then {
+    let separateLineRightView = UIView().then {
         $0.backgroundColor = .gray
     }
     
@@ -92,18 +82,26 @@ class CharacterReportTVC: UITableViewCell {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     
-    let lineView2 = UIView().then {
+    let lineBottomView = UIView().then {
         $0.backgroundColor = .gray
     }
-   
+    
+    // MARK: - Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
     // MARK: - Custom Method
     func setupAutoLayout() {
-        
         backgroundColor = .black
         
-        addSubviews([lineView1, levelStackView, separateLineView1,
+        addSubviews([lineTopView, levelStackView, separateLineLeftView,
                      catchNumberLabel, catchLabel, catchGuideButton,
-                     separateLineView2, activityStackView, lineView2])
+                     separateLineRightView, activityStackView, lineBottomView])
         
         levelStackView.addArrangedSubview(levelNumberLabel)
         levelStackView.addArrangedSubview(levelLabel)
@@ -111,56 +109,55 @@ class CharacterReportTVC: UITableViewCell {
         activityStackView.addArrangedSubview(activityNumberLabel)
         activityStackView.addArrangedSubview(activityLabel)
         
-        lineView1.snp.makeConstraints { (make) in
+        lineTopView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(4)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }
         
-        levelStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(lineView1.snp.bottom).offset(12)
+        levelStackView.snp.makeConstraints { make in
+            make.top.equalTo(lineTopView.snp.bottom).offset(12)
             make.leading.equalTo(self.snp.leading).inset(57)
         }
         
-        separateLineView1.snp.makeConstraints { (make) in
-            make.top.equalTo(lineView1.snp.bottom).offset(12)
-            make.bottom.equalTo(lineView2.snp.top).offset(-11)
+        separateLineLeftView.snp.makeConstraints { make in
+            make.top.equalTo(lineTopView.snp.bottom).offset(12)
+            make.bottom.equalTo(lineBottomView.snp.top).offset(-11)
             make.leading.equalTo(levelStackView.snp.trailing).offset(42)
             make.width.equalTo(1)
             make.height.equalTo(42)
         }
         
-        catchNumberLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(lineView1.snp.bottom).offset(12)
+        catchNumberLabel.snp.makeConstraints { make in
+            make.top.equalTo(lineTopView.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
         }
         
-        catchLabel.snp.makeConstraints { (make) in
+        catchLabel.snp.makeConstraints { make in
             make.top.equalTo(catchNumberLabel.snp.bottom).offset(3)
-            make.leading.equalTo(separateLineView1.snp.trailing).offset(26)
+            make.leading.equalTo(separateLineLeftView.snp.trailing).offset(26)
         }
         
-        catchGuideButton.snp.makeConstraints { (make) in
-            make.top.equalTo(lineView1.snp.bottom).offset(31)
+        catchGuideButton.snp.makeConstraints { make in
+            make.top.equalTo(lineTopView.snp.bottom).offset(31)
             make.leading.equalTo(catchLabel.snp.trailing).offset(-5)
-//            make.bottom.equalTo(lineView2.snp.top).offset(-5)
             make.width.height.equalTo(30)
         }
         
-        separateLineView2.snp.makeConstraints { (make) in
-            make.top.equalTo(lineView1.snp.bottom).offset(12)
-            make.bottom.equalTo(lineView2.snp.top).offset(-11)
+        separateLineRightView.snp.makeConstraints { make in
+            make.top.equalTo(lineTopView.snp.bottom).offset(12)
+            make.bottom.equalTo(lineBottomView.snp.top).offset(-11)
             make.leading.equalTo(catchGuideButton.snp.trailing).offset(22)
             make.width.equalTo(1)
             make.height.equalTo(42)
         }
         
-        activityStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(lineView1.snp.bottom).offset(12)
+        activityStackView.snp.makeConstraints { make in
+            make.top.equalTo(lineTopView.snp.bottom).offset(12)
             make.trailing.equalTo(self.snp.trailing).inset(50)
         }
         
-        lineView2.snp.makeConstraints { (make) in
+        lineBottomView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(70)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.snp.bottom).offset(0)
@@ -177,5 +174,4 @@ class CharacterReportTVC: UITableViewCell {
         catchLabel.text = percent
         activityLabel.text = activity
     }
-
 }

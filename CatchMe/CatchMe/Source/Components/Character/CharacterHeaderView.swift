@@ -8,18 +8,7 @@
 import UIKit
 
 class CharacterHeaderView: UIView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configUI()
-        setupAutoLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Property
+    // MARK: - Properties
     let lockDateStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4
@@ -57,48 +46,54 @@ class CharacterHeaderView: UIView {
         $0.textColor = .white
         $0.numberOfLines = 2
     }
-        
+    
+    // MARK: - Lifecycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configUI()
+        setupAutoLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Custom Method
     func configUI() {
-        
         backgroundColor = .black
-
     }
         
     private func setupAutoLayout() {
-                
         addSubviews([lockDateStackView, fromLabel, writeButton, nameLabel])
-        
         lockDateStackView.addArrangedSubview(lockImageView)
         lockDateStackView.addArrangedSubview(dateLabel)
         
-        lockImageView.snp.makeConstraints { (make) in
+        lockImageView.snp.makeConstraints { make in
             make.width.equalTo(20)
             make.height.equalTo(21)
         }
         
-        lockDateStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(19)
-            make.leading.equalTo(26)
+        lockDateStackView.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(19)
+            make.leading.equalTo(self.snp.leading).inset(26)
         }
         
-        fromLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(23)
+        fromLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(23)
             make.leading.equalTo(lockDateStackView.snp.trailing).offset(1)
         }
         
-        writeButton.snp.makeConstraints { (make) in
-            make.top.equalTo(11)
+        writeButton.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(11)
             make.trailing.equalToSuperview().inset(27)
             make.width.equalTo(72)
             make.height.equalTo(48)
         }
             
-        nameLabel.snp.makeConstraints { (make) in
+        nameLabel.snp.makeConstraints { make in
             make.top.equalTo(lockDateStackView.snp.bottom).offset(10)
-            make.leading.equalTo(28)
+            make.leading.equalTo(self.snp.leading).inset(28)
             make.trailing.equalToSuperview().inset(121)
         }
-            
     }
 }

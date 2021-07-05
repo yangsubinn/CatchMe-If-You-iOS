@@ -11,18 +11,17 @@ class characterCVC: UICollectionViewCell {
 
     static let identifier = "characterCVC"
     
-//    let characterImage = UIImageView()
+    // MARK: - IBOutlet
     @IBOutlet weak var characterImage: UIImageView!
     
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         characterImage.backgroundColor = .purple
         characterImage.translatesAutoresizingMaskIntoConstraints = false
-        characterImage.snp.makeConstraints { (make) in
+        characterImage.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.height.equalTo(174)
         }
     }
-
 }

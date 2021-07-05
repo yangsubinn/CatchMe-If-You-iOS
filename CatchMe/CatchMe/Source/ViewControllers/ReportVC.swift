@@ -200,6 +200,7 @@ class ReportVC: UIViewController {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension ReportVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section:Int) -> Int {
         switch collectionView {
@@ -256,6 +257,7 @@ extension ReportVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ReportVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let boundSize = UIScreen.main.bounds.size.width - 32 - 24

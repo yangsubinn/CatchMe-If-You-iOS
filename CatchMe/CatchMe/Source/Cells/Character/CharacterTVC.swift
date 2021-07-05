@@ -7,20 +7,13 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class CharacterTVC: UITableViewCell {
-    
     static let identifier = "CharacterTVC"
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    // MARK: - Property
+    // MARK: - Properties
     let pinImageView = UIImageView().then {
 //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .orange
@@ -75,66 +68,71 @@ class CharacterTVC: UITableViewCell {
         $0.layer.cornerRadius = 18
     }
     
+    // MARK: - Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
     // MARK: - Custom Method
     func setupAutoLayout() {
-        
         backgroundColor = .black
       
         addSubviews([pinImageView, lineView, dateLabel, contentStackView, moreButton])
-        
+        commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
         
-        commentView.addSubview(commentLabel)
-        
-        pinImageView.snp.makeConstraints { (make) in
+        pinImageView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(38)
             make.leading.equalTo(self.snp.leading).inset(22)
             make.width.height.equalTo(12)
         }
         
-        lineView.snp.makeConstraints { (make) in
+        lineView.snp.makeConstraints { make in
             make.top.equalTo(pinImageView.snp.bottom)
             make.leading.equalTo(self.snp.leading).inset(27.5)
             make.bottom.equalToSuperview().offset(38)
             make.width.equalTo(1)
         }
         
-        dateLabel.snp.makeConstraints { (make) in
+        dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(pinImageView.snp.trailing).offset(9)
             make.bottom.equalTo(pinImageView.snp.bottom)
         }
         
-        moreButton.snp.makeConstraints { (make) in
+        moreButton.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(20)
             make.trailing.equalTo(self.snp.trailing).inset(6)
             make.width.height.equalTo(48)
         }
         
-        contentStackView.snp.makeConstraints { (make) in
+        contentStackView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(12)
             make.leading.equalTo(lineView.snp.trailing).offset(15.5)
             make.bottom.equalTo(self.snp.bottom).inset(5)
             make.trailing.equalTo(self.snp.trailing).inset(28)
         }
         
-        commentView.snp.makeConstraints { (make) in
+        commentView.snp.makeConstraints { make in
             make.width.equalTo(303)
             make.height.equalTo(42)
         }
         
-        commentLabel.snp.makeConstraints { (make) in
+        commentLabel.snp.makeConstraints { make in
             make.top.equalTo(commentView.snp.top).inset(12)
             make.leading.equalTo(commentView.snp.leading).inset(14)
             make.trailing.equalTo(commentView.snp.trailing).inset(14)
             make.bottom.equalTo(commentView.snp.bottom).inset(12)
         }
         
-        photoImageView.snp.makeConstraints { (make) in
+        photoImageView.snp.makeConstraints { make in
             make.width.equalTo(303)
             make.height.equalTo(228)
         }
-
     }
     
     @objc func touchupMoreButton() {
@@ -142,14 +140,11 @@ class CharacterTVC: UITableViewCell {
     }
     
     func setData(date: String, comment: String, image: String) {
-        
         dateLabel.text = date
         commentLabel.text = comment
         
         if image == image {
             photoImageView.image = UIImage(named: image)
         }
-        
     }
-
 }

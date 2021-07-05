@@ -11,23 +11,25 @@ import Then
 import SnapKit
 
 class NavigationBar: UIView {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Property
-    let backButton = BackButton(MainVC())
+    // MARK: - Properties
+    var viewController = UIViewController()
+    lazy var backButton = BackButton(viewController)
     
     let editButton = UIButton().then {
 //        $0.setImage(UIImage(named: "btnWrite"), for: .normal)
         $0.addTarget(self, action: #selector(touchupEditButton), for: .touchUpInside)
         $0.backgroundColor = .orange
+    }
+    
+    // MARK: - Lifecycle
+    init(vc: UIViewController) {
+        super.init(frame: .zero)
+        viewController = vc
+        configUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Custom Method
@@ -36,21 +38,19 @@ class NavigationBar: UIView {
         
         addSubviews([backButton, editButton])
         
-        backButton.snp.makeConstraints { (make) in
-            make.top.equalTo(55)
-            make.leading.equalTo(14)
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(55)
+            make.leading.equalTo(self.snp.leading).inset(14)
         }
         
-        editButton.snp.makeConstraints { (make) in
-            make.top.equalTo(55)
-            make.trailing.equalTo(-15)
+        editButton.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(55)
+            make.trailing.equalTo(self.snp.trailing).inset(15)
             make.width.height.equalTo(48)
         }
-        
     }
     
     @objc func touchupEditButton() {
         
     }
-    
 }

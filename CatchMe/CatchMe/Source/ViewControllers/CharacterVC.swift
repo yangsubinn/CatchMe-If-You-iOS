@@ -7,13 +7,13 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class CharacterVC: UIViewController {
-    
-    // MARK: - Property
-    let naviBar = NavigationBar()
-    
+    // MARK: - Properties
+    lazy var naviBar = NavigationBar(vc: self)
     let upperView = CharacterUpperView()
-    
     let mainTableView = UITableView(frame: .zero, style: .plain)
     
     // MARK: - Lifecycle
@@ -21,13 +21,12 @@ class CharacterVC: UIViewController {
         super.viewDidLoad()
         setupAutoLayout()
         setTableView()
-        
     }
     
     // MARK: - Custom Method
     func setTableView() {
-        
         mainTableView.backgroundColor = .black
+        upperView.backgroundColor = .white
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -39,48 +38,88 @@ class CharacterVC: UIViewController {
         
         mainTableView.tableFooterView = UIView(frame: .zero)
         mainTableView.sectionFooterHeight = 0
-        
     }
     
     func setupAutoLayout() {
-        
         view.addSubviews([mainTableView, upperView, naviBar])
         
-        naviBar.snp.makeConstraints { (make) in
+        naviBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(48)
         }
         
-        upperView.snp.makeConstraints { (make) in
+        upperView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.width)
         }
         
-        mainTableView.snp.makeConstraints { (make) in
+        mainTableView.snp.makeConstraints { make in
             make.top.equalTo(upperView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
-
 }
 
 // MARK: - UITableViewDelegate
 extension CharacterVC: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return CharacterHeaderView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 126
+        return 127
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = UIScreen.main.bounds.width
+        let backgroundWidth = self.upperView.backgroundView.bounds.width
+        let backgroundHeight = self.upperView.backgroundView.bounds.height
+        let offset = scrollView.contentOffset.y
+        
+        if width - offset < 152 {
+            UIView.animate(withDuration: 0.2) {
+                self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -282)
+                self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 158)
+                
+                // 헤더 부분 높이
+                self.upperView.snp.updateConstraints { (make) in
+                    make.height.equalTo(152)
+                }
+                
+                // 핑크색 배경
+                self.upperView.backgroundView.snp.updateConstraints { (make) in
+                    make.width.equalTo(self.upperView.backgroundView.bounds.height)
+                    make.height.equalTo(self.upperView.backgroundView.bounds.height)
+                }
+            
+                // 핑크색 둥글기
+                self.upperView.backgroundView.layer.cornerRadius = backgroundWidth / 2
+            }
+        } else {
+            UIView.animate(withDuration: 0.2) {
+                self.upperView.characterImageView.transform = .identity
+                self.upperView.backgroundView.transform = .identity
+                self.upperView.transform = .identity
 
-
+                // 헤더 부분 높이
+                self.upperView.snp.updateConstraints { (make) in
+                    make.height.equalTo(width-offset)
+                }
+ 
+                // 캐릭터 상단 constraint
+                self.upperView.characterImageView.snp.updateConstraints { (make) in
+                    make.top.equalTo(158)
+                }
+                
+                // 핑크색 둥글기
+                self.upperView.backgroundView.layer.cornerRadius = 0
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -88,13 +127,10 @@ extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            
             return 1 + 10
-            
         default:
             return 0
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,20 +141,14 @@ extension CharacterVC: UITableViewDataSource {
                 reportCell.setupAutoLayout()
                 reportCell.selectionStyle = .none
                 return reportCell
-                
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
                 cell.setupAutoLayout()
                 cell.selectionStyle = .none
                 return cell
             }
-            
         default:
             return UITableViewCell()
         }
-        
-        
-     }
-    
-    
+    }
 }

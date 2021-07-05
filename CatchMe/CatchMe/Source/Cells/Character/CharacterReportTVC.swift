@@ -59,8 +59,13 @@ class CharacterReportTVC: UITableViewCell {
     
     let catchGuideButton = UIButton().then {
 //        $0.setImage(UIImage(named: ""), for: .normal)
-//        $0.addTarget(self, action: #selector(pressCatchGuidebutton), for: .touchDown)
+        $0.addTarget(self, action: #selector(pressCatchGuidebutton), for: .touchDown)
         $0.backgroundColor = .orange
+    }
+    
+    let catchGuideImageView = UIImageView().then {
+//        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.backgroundColor = .purple
     }
     
     let separateLineRightView = UIView().then {
@@ -103,7 +108,7 @@ class CharacterReportTVC: UITableViewCell {
         backgroundColor = .black
         
         addSubviews([lineTopView, levelStackView, separateLineLeftView,
-                     catchNumberLabel, catchLabel, catchGuideButton,
+                     catchNumberLabel, catchLabel, catchGuideButton, 
                      separateLineRightView, activityStackView, lineBottomView])
         
         levelStackView.addArrangedSubview(levelNumberLabel)

@@ -32,7 +32,7 @@ class ReportVC: UIViewController {
     
     // MARK: - Dummy Data
     let dummyFormatter = DateFormatter()
-    var dummyDate: [String] = ["2021-09-13", "2022-01-01", "2021-07-17", "2021-06-15", "2021-06-16", "2021-06-17", "2021-06-18", "2021-06-25"]
+    var dummyDate: [String] = ["2021-09-13", "2021-08-31", "2021-07-17", "2021-06-15", "2021-06-16", "2021-06-17", "2021-06-18", "2021-06-25", "2021-10-31"]
     var monthDate: [String] = []
     var dayAndYear = ""
     

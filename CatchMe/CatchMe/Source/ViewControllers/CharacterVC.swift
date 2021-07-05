@@ -80,18 +80,18 @@ extension CharacterVC: UITableViewDelegate {
         let backgroundHeight = self.upperView.backgroundView.bounds.height
         let offset = scrollView.contentOffset.y
         
-        if width - offset < 152 {
-            UIView.animate(withDuration: 0.2) {
-                self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -282)
-                self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 158)
+        if width - offset < 171 {
+            UIView.animate(withDuration: 0.03) {
+                self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
+                self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 203)
                 
                 // 헤더 부분 높이
-                self.upperView.snp.updateConstraints { (make) in
-                    make.height.equalTo(152)
+                self.upperView.snp.updateConstraints { make in
+                    make.height.equalTo(171)
                 }
                 
                 // 핑크색 배경
-                self.upperView.backgroundView.snp.updateConstraints { (make) in
+                self.upperView.backgroundView.snp.updateConstraints { make in
                     make.width.equalTo(self.upperView.backgroundView.bounds.height)
                     make.height.equalTo(self.upperView.backgroundView.bounds.height)
                 }
@@ -100,18 +100,18 @@ extension CharacterVC: UITableViewDelegate {
                 self.upperView.backgroundView.layer.cornerRadius = backgroundWidth / 2
             }
         } else {
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.1) {
                 self.upperView.characterImageView.transform = .identity
                 self.upperView.backgroundView.transform = .identity
                 self.upperView.transform = .identity
 
                 // 헤더 부분 높이
-                self.upperView.snp.updateConstraints { (make) in
+                self.upperView.snp.updateConstraints { make in
                     make.height.equalTo(width-offset)
                 }
  
                 // 캐릭터 상단 constraint
-                self.upperView.characterImageView.snp.updateConstraints { (make) in
+                self.upperView.characterImageView.snp.updateConstraints { make in
                     make.top.equalTo(158)
                 }
                 

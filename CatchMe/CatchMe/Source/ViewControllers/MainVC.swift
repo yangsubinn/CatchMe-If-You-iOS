@@ -21,12 +21,15 @@ class MainVC: UIViewController {
     let pageControl = PageControl()
     let reportView = mainReportView()
     
+    var formatterDate = DateFormatter()
+    
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDate()
         setupReportView()
         setupLayout()
         configUI()
@@ -100,7 +103,6 @@ class MainVC: UIViewController {
     private func configUI() {
         view.backgroundColor = .black
         
-        dateLabel.text = "7월 4일 일요일"
         dateLabel.textColor = .white
         dateLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         
@@ -143,6 +145,13 @@ class MainVC: UIViewController {
     private func setupReportView() {
         reportView.backgroundColor = .darkGray
         reportView.layer.cornerRadius = 14
+    }
+    
+    private func setupDate() {
+        formatterDate.locale = Locale(identifier: "ko_KR")
+        formatterDate.dateFormat = "M월 d일 EEEE"
+        let currentFormatterDate = formatterDate.string(from: Date())
+        dateLabel.text = currentFormatterDate
     }
 }
 

@@ -96,7 +96,7 @@ class CharacterView: UIView {
                      catchingCountLabel, nameLabel, characterImageView])
         
         backgroundColor = .white
-        layer.cornerRadius = 20
+        layer.cornerRadius = 18
         
         catchingCountLabel.text = "\(catching)"
         nameLabel.text = name

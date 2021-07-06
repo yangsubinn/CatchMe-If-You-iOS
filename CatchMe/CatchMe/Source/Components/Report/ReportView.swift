@@ -45,6 +45,6 @@ class ReportView: UIView {
     
     private func configUI() {
         backgroundColor = .systemPink
-        layer.cornerRadius = 20
+        layer.cornerRadius = 28
     }
 }

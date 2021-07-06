@@ -24,11 +24,17 @@ class ReportPopupVC: UIViewController {
     private func setupLayout() {
         view.addSubview(popupView)
         
+        let height = UIScreen.main.bounds.size.height/667
+        
         popupView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(UIScreen.main.bounds.size.height * 0.2)
             make.centerX.equalToSuperview()
-            make.width.equalTo(280)
-            make.height.equalTo(415)
+            make.width.equalTo(280 * (UIScreen.main.bounds.size.width/375))
+            if height == 1 {
+                make.height.equalTo(415)
+            } else {
+                make.height.equalTo((415 * height)*0.85)
+            }
         }
     }
 }

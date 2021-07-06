@@ -51,7 +51,6 @@ class PopupView: UIView {
     
     // MARK: - Dummy Data
     var catchus: [String] = ["자유로이 세상을 떠도는 탐험가", "눈만 뜨는 암벽등반하는 날다람쥐", "감바스가 먹고 싶은 아요"]
-    
 
     // MARK: - Life Cycle
     init(date: String, vc: UIViewController) {
@@ -59,6 +58,7 @@ class PopupView: UIView {
         viewController = vc
         configUI(date: date)
         setupCollectionView()
+        applyButtonHidden()
     }
     
     required init?(coder: NSCoder) {
@@ -129,6 +129,28 @@ class PopupView: UIView {
         characterCollectionView.isPagingEnabled = true
         characterCollectionView.showsHorizontalScrollIndicator = false
     }
+    
+    private func applyButtonHidden() {
+        let totalCount = catchus.count
+        
+        if totalCount == 1 {
+            leftButton.isHidden = true
+            rightButton.isHidden = true
+            characterCollectionView.isScrollEnabled = false
+        } else {
+            switch Int(currentIndex) {
+            case 0:
+                leftButton.isHidden = true
+                rightButton.isHidden = false
+            case totalCount-1:
+                leftButton.isHidden = false
+                rightButton.isHidden = true
+            default:
+                leftButton.isHidden = false
+                rightButton.isHidden = false
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -187,5 +209,8 @@ extension PopupView: UICollectionViewDelegate {
         
         /// 현재 index로 catchu 이름 설정
         nameLabel.text = catchus[Int(currentIndex)]
+        
+        /// left, right button hidden 처리
+        applyButtonHidden()
     }
 }

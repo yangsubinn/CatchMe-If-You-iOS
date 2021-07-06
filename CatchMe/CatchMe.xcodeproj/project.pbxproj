@@ -33,6 +33,7 @@
 		EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD92693981D00443077 /* DINPro-Medium.otf */; };
 		EDBBFCE02693981D00443077 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */; };
 		EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCE22693996F00443077 /* UIFont+Extension.swift */; };
+		EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -92,6 +93,7 @@
 		EDBBFCD92693981D00443077 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
 		EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
 		EDBBFCE22693996F00443077 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupVC.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				EDD12C9D268EB71000DF766A /* MainVC.swift */,
 				EDD12CA3268EB80300DF766A /* CharacterVC.swift */,
 				EDD12CA7268EB84C00DF766A /* ReportVC.swift */,
+				EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */,
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
+				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
 				2B3654E12691ACBC002C2C5C /* characterCVC.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);

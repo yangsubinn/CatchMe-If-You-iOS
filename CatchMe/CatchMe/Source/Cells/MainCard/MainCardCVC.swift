@@ -24,10 +24,10 @@ class MainCardCVC: UICollectionViewCell {
     
     // MARK: - Custom Method
     func configUI() {
-        self.backgroundColor = .green
+        self.backgroundColor = .white
         self.layer.cornerRadius = 14
-        characterBackView.backgroundColor = .white
-        characterImageView.backgroundColor = .yellow
+        characterBackView.backgroundColor = .systemIndigo
+        characterImageView.backgroundColor = .cyan
         
         nameLabel.text = "캐치미캐치유캐치미를정말정말좋아하는캐츄"
         nameLabel.textColor = .black
@@ -42,18 +42,15 @@ class MainCardCVC: UICollectionViewCell {
         characterImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
             make.centerX.equalToSuperview()
-//            make.leading.trailing.equalToSuperview().offset(27)
             make.height.width.equalTo(101)
         }
         
         characterBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(self.snp.bottom).offset(56)
             make.height.equalTo(144)
         }
         
         nameLabel.snp.makeConstraints { make in
-//            make.top.equalTo(characterBackView.snp.bottom)
             make.leading.equalToSuperview().offset(14)
             make.trailing.equalToSuperview().inset(14)
             make.top.equalTo(characterBackView.snp.bottom).offset(10)

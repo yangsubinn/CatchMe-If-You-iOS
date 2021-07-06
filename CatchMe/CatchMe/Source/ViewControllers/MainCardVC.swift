@@ -71,7 +71,9 @@ class MainCardVC: UIViewController {
             make.leading.equalTo(view.snp.leading).offset(29)
             make.trailing.equalTo(view.snp.trailing).inset(28)
             make.top.equalTo(view.snp.top).offset(260)
-            make.height.equalTo(835)
+            // 여기 셀이 몇개 들어올지 모르니까, height말고 bottom으로 잡는게 맞는건가
+//            make.height.equalTo(835)
+            make.bottom.equalTo(view.snp.bottom)
         }
     }
     
@@ -97,14 +99,15 @@ class MainCardVC: UIViewController {
         collectionView.dataSource = self
         
         collectionView.setupCollectionViewNib(nib: MainCardCVC.identifier)
-        collectionView.backgroundColor = .darkGray
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
     }
 }
 
 // MARK: - Extension
 extension MainCardVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,9 +140,3 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
-
-//extension MainCardVC: UICollectionViewDelegate {
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//
-//    }
-//}

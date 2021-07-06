@@ -13,7 +13,7 @@ class ReportView: UIView {
     // MARK: - Properties
     let titleView = TitleView(nickname: "이지님")
     /// character는 후에 KingFisher로 해야 할 듯
-    let characterView = CharacterView(catching: 13, name: "자유로이 떠도는 탐험가", character: "")
+    let characterView = CharacterView()
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {

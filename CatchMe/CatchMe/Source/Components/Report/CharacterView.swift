@@ -43,7 +43,8 @@ class CharacterView: UIView {
     let characterImageView = UIImageView()
 
     // MARK: - Life Cycle
-    init(catching: Int, name: String, character: String) {
+    /// 후에 character default 이미지 name으로 character 변경
+    init(catching: Int = 0, name: String = "아직 잡은 캐츄가 없어요!", character: String = "") {
         super.init(frame: .zero)
         configUI(catching: catching, name: name, character: character)
     }

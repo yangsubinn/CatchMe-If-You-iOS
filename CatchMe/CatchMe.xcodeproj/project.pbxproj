@@ -12,6 +12,8 @@
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
 		2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* mainReportView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
+		2BDC1ABB26946882008381C3 /* MainCardCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AB926946882008381C3 /* MainCardCVC.swift */; };
+		2BDC1ABC26946882008381C3 /* MainCardCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDC1ABA26946882008381C3 /* MainCardCVC.xib */; };
 		5B08504D26919416008F40B2 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08504C26919416008F40B2 /* NavigationBar.swift */; };
 		5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08505B26919C0B008F40B2 /* CharacterUpperView.swift */; };
 		5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08505F2691A126008F40B2 /* CharacterTVC.swift */; };
@@ -70,6 +72,8 @@
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		2B3654EE2691D6D9002C2C5C /* mainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainReportView.swift; sourceTree = "<group>"; };
 		2BDC1AAF26942973008381C3 /* MainCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardVC.swift; sourceTree = "<group>"; };
+		2BDC1AB926946882008381C3 /* MainCardCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCVC.swift; sourceTree = "<group>"; };
+		2BDC1ABA26946882008381C3 /* MainCardCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCVC.xib; sourceTree = "<group>"; };
 		5B08504C26919416008F40B2 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		5B08505B26919C0B008F40B2 /* CharacterUpperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUpperView.swift; sourceTree = "<group>"; };
 		5B08505F2691A126008F40B2 /* CharacterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterTVC.swift; path = CatchMe/Source/Cells/Character/CharacterTVC.swift; sourceTree = SOURCE_ROOT; };
@@ -167,6 +171,22 @@
 				2B3654EE2691D6D9002C2C5C /* mainReportView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		2BDC1AB7269466AA008381C3 /* MainCard */ = {
+			isa = PBXGroup;
+			children = (
+				2BDC1AB926946882008381C3 /* MainCardCVC.swift */,
+			);
+			path = MainCard;
+			sourceTree = "<group>";
+		};
+		2BDC1AB8269467E9008381C3 /* MainCard */ = {
+			isa = PBXGroup;
+			children = (
+				2BDC1ABA26946882008381C3 /* MainCardCVC.xib */,
+			);
+			path = MainCard;
 			sourceTree = "<group>";
 		};
 		45BC39069B9E59892752ABEF /* Frameworks */ = {
@@ -276,6 +296,7 @@
 		ED63E897268A1BC3000F058F /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				2BDC1AB8269467E9008381C3 /* MainCard */,
 				2B3654E72691ACCD002C2C5C /* Main */,
 			);
 			path = Xibs;
@@ -284,6 +305,7 @@
 		ED63E899268A1C4A000F058F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2BDC1AB7269466AA008381C3 /* MainCard */,
 				EDBBFCD026936F1D00443077 /* Report */,
 				2B3654DE2691ABF6002C2C5C /* Main */,
 				5B08506D2691DFB1008F40B2 /* Character */,
@@ -474,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDBBFCE02693981D00443077 /* DINPro-Regular.otf in Resources */,
+				2BDC1ABC26946882008381C3 /* MainCardCVC.xib in Resources */,
 				EDD12CA2268EB7C700DF766A /* Character.storyboard in Resources */,
 				EDD12C9C268EB6E900DF766A /* Main.storyboard in Resources */,
 				EDBBFCDB2693981D00443077 /* SpoqaHanSansNeo-Medium.otf in Resources */,
@@ -573,6 +596,7 @@
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
 				2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */,
+				2BDC1ABB26946882008381C3 /* MainCardCVC.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

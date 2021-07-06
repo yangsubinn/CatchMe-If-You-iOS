@@ -60,7 +60,7 @@ class MainCardVC: UIViewController {
         alignButton.snp.makeConstraints { make in
             make.width.height.equalTo(48)
             make.trailing.equalTo(view.snp.trailing).inset(13)
-            make.top.equalTo(addButton.snp.bottom).offset(33)
+            make.top.equalTo(addButton.snp.bottom).offset(27)
         }
     }
     

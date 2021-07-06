@@ -189,6 +189,8 @@ class ReportVC: UIViewController {
         dateFormatter.dateFormat = "MM"
         let month = dateFormatter.string(from: firstDayOfMonth!)
         
+        dayAndYear = year + "." + month
+        
         for date in dummyDate {
             let string = date.split(separator: "-")
             
@@ -218,9 +220,9 @@ extension ReportVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.dataLabel.text = weeks[indexPath.row]
-            cell.dataLabel.font = UIFont.systemFont(ofSize: 15)
-            cell.dataLabel.textColor = .darkGray
+            cell.dateLabel.text = weeks[indexPath.row]
+            cell.dateLabel.font = UIFont.systemFont(ofSize: 15)
+            cell.dateLabel.textColor = .darkGray
             
             return cell
             
@@ -229,9 +231,9 @@ extension ReportVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.dataLabel.text = days[indexPath.row]
-            cell.dataLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-            cell.dataLabel.textColor = .white
+            cell.dateLabel.text = days[indexPath.row]
+            cell.dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            cell.dateLabel.textColor = .white
             
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
@@ -239,15 +241,15 @@ extension ReportVC: UICollectionViewDataSource {
                     cell.countLabel.text = days[indexPath.row]
                     cell.countLabel.textColor = .systemGray
                     cell.countLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-                    cell.dataLabel.isHidden = true
+                    cell.dateLabel.isHidden = true
                     monthDate.removeFirst()
                 } else {
-                    cell.dataLabel.isHidden = false
+                    cell.dateLabel.isHidden = false
                     cell.characterImage.isHidden = true
                     cell.countLabel.text = ""
                 }
             } else {
-                cell.dataLabel.isHidden = false
+                cell.dateLabel.isHidden = false
                 cell.characterImage.isHidden = true
                 cell.countLabel.text = ""
             }
@@ -288,12 +290,24 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension ReportVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let currentCell = collectionView.cellForItem(at: indexPath) as? CalendarCVC else { return }
         
         if currentCell.characterImage.isHidden == false {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "ReportPopupVC") as? ReportPopupVC else { return }
+            
+            if let text = currentCell.dateLabel.text {
+                var newText = ""
+                if text.count == 1 {
+                    newText = ".0\(text)"
+                } else {
+                    newText = ".\(text)"
+                }
+                vc.date = dayAndYear + newText
+            }
+            
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             present(vc, animated: true, completion: nil)

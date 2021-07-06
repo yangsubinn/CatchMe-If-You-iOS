@@ -8,22 +8,26 @@
 import UIKit
 
 class ReportPopupVC: UIViewController {
+    // MARK: - lazy Properties
+    lazy var popupView = PopupView(date: date ?? "", vc: self)
+    
+    var date: String?
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Custom Method
+    private func setupLayout() {
+        view.addSubview(popupView)
+        
+        popupView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(145)
+            make.leading.equalToSuperview().inset(47)
+            make.trailing.equalToSuperview().inset(48)
+            make.bottom.equalToSuperview().inset(208)
+        }
     }
-    */
-
 }

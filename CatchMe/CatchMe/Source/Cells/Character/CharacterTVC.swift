@@ -32,8 +32,9 @@ class CharacterTVC: UITableViewCell {
     let moreButton = UIButton().then {
 //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .green
-        $0.addTarget(self, action: #selector(touchupMoreButton), for: .touchUpInside)
     }
+    
+    let moreMenuView = MoreMenuView()
     
     let contentStackView = UIStackView().then {
         $0.axis = .vertical
@@ -69,10 +70,18 @@ class CharacterTVC: UITableViewCell {
     }
     
     // MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.sendSubviewToBack(contentView)
+        moreButton.isSelected = true
+        moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
+        
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -81,7 +90,7 @@ class CharacterTVC: UITableViewCell {
     func setupAutoLayout() {
         backgroundColor = .black
       
-        addSubviews([pinImageView, lineView, dateLabel, contentStackView, moreButton])
+        addSubviews([pinImageView, lineView, dateLabel, contentStackView, moreButton, moreMenuView])
         commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
@@ -135,8 +144,19 @@ class CharacterTVC: UITableViewCell {
         }
     }
     
-    @objc func touchupMoreButton() {
+    @objc func touchupMoreButton(_ sender: UIButton) {
+        if moreButton.isSelected == false {
+            moreButton.isSelected = true
+            moreMenuView.isHidden = true
+        } else if moreButton.isSelected == true {
+            moreButton.isSelected = false
+            moreMenuView.isHidden = false
         
+            moreMenuView.snp.makeConstraints { make in
+                make.top.equalTo(moreButton.snp.top).offset(34)
+                make.leading.equalTo(contentStackView.snp.leading).inset(202)
+            }
+        }
     }
     
     func setData(date: String, comment: String, image: String) {

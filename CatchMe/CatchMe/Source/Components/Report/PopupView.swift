@@ -47,6 +47,7 @@ class PopupView: UIView {
 
     let collectionFlowLayout = UICollectionViewFlowLayout()
     var viewController = UIViewController()
+    var currentIndex: CGFloat = 0
     
     // MARK: - Dummy Data
     var catchus: [String] = ["자유로이 세상을 떠도는 탐험가", "눈만 뜨는 암벽등반하는 날다람쥐", "감바스가 먹고 싶은 아요"]
@@ -160,5 +161,31 @@ extension PopupView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
+extension PopupView: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let cellWidthIncludingSpacing = characterCollectionView.frame.size.width
+        let offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+        var roundedIndex = round(index)
+        
+        if scrollView.contentOffset.x > targetContentOffset.pointee.x {
+            roundedIndex = floor(index)
+        } else if scrollView.contentOffset.x < targetContentOffset.pointee.x {
+            roundedIndex = ceil(index)
+        } else {
+            roundedIndex = round(index)
+        }
+        
+        if currentIndex > roundedIndex {
+            currentIndex -= 1
+        } else if currentIndex < roundedIndex {
+            currentIndex += 1
+        }
+        
+        /// 현재 index로 catchu 이름 설정
+        nameLabel.text = catchus[Int(currentIndex)]
     }
 }

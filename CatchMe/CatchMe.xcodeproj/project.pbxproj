@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B3654E12691ACBC002C2C5C /* characterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654DF2691ACBC002C2C5C /* characterCVC.swift */; };
-		2B3654E22691ACBC002C2C5C /* characterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3654E02691ACBC002C2C5C /* characterCVC.xib */; };
+		2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */; };
+		2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */; };
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
 		2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* mainReportView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
@@ -65,8 +65,8 @@
 
 /* Begin PBXFileReference section */
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
-		2B3654DF2691ACBC002C2C5C /* characterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = characterCVC.swift; sourceTree = "<group>"; };
-		2B3654E02691ACBC002C2C5C /* characterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = characterCVC.xib; sourceTree = "<group>"; };
+		2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCVC.swift; sourceTree = "<group>"; };
+		2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCVC.xib; sourceTree = "<group>"; };
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		2B3654EE2691D6D9002C2C5C /* mainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainReportView.swift; sourceTree = "<group>"; };
 		2BDC1AAF26942973008381C3 /* MainCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardVC.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		2B3654DE2691ABF6002C2C5C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				2B3654DF2691ACBC002C2C5C /* characterCVC.swift */,
+				2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 		2B3654E72691ACCD002C2C5C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				2B3654E02691ACBC002C2C5C /* characterCVC.xib */,
+				2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -479,7 +479,7 @@
 				EDBBFCDB2693981D00443077 /* SpoqaHanSansNeo-Medium.otf in Resources */,
 				EDBBFCDC2693981D00443077 /* SpoqaHanSansNeo-Regular.otf in Resources */,
 				EDBBFCDE2693981D00443077 /* NanumSquareRoundOTFEB.otf in Resources */,
-				2B3654E22691ACBC002C2C5C /* characterCVC.xib in Resources */,
+				2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */,
 				ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */,
 				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
@@ -572,7 +572,7 @@
 				EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */,
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
-				2B3654E12691ACBC002C2C5C /* characterCVC.swift in Sources */,
+				2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

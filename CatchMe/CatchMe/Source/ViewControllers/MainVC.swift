@@ -123,7 +123,7 @@ class MainVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.setupCollectionViewNib(nib: characterCVC.identifier)
+        collectionView.setupCollectionViewNib(nib: CharacterCVC.identifier)
         collectionView.backgroundColor = .clear
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
@@ -162,7 +162,7 @@ extension MainVC: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: characterCVC.identifier, for: indexPath) as? characterCVC else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCVC.identifier, for: indexPath) as? CharacterCVC else {
             return UICollectionViewCell()
         }
         return cell

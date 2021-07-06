@@ -36,6 +36,9 @@
 		EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCD92693981D00443077 /* DINPro-Medium.otf */; };
 		EDBBFCE02693981D00443077 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */; };
 		EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCE22693996F00443077 /* UIFont+Extension.swift */; };
+		EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */; };
+		EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC8002694481A00CDF1B2 /* PopupView.swift */; };
+		EDBDC803269456A800CDF1B2 /* CatchuCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC802269456A800CDF1B2 /* CatchuCVC.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -98,6 +101,9 @@
 		EDBBFCD92693981D00443077 /* DINPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Medium.otf"; sourceTree = "<group>"; };
 		EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
 		EDBBFCE22693996F00443077 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupVC.swift; sourceTree = "<group>"; };
+		EDBDC8002694481A00CDF1B2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		EDBDC802269456A800CDF1B2 /* CatchuCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchuCVC.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -277,6 +283,7 @@
 				EDD12C9D268EB71000DF766A /* MainVC.swift */,
 				EDD12CA3268EB80300DF766A /* CharacterVC.swift */,
 				EDD12CA7268EB84C00DF766A /* ReportVC.swift */,
+				EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */,
 				2BDC1AAF26942973008381C3 /* MainCardVC.swift */,
 			);
 			path = ViewControllers;
@@ -366,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				EDBBFCD126936F4600443077 /* CalendarCVC.swift */,
+				EDBDC802269456A800CDF1B2 /* CatchuCVC.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -390,6 +398,7 @@
 				EDBBFCCA26930C4600443077 /* TitleView.swift */,
 				EDBBFCCC2693155F00443077 /* CharacterView.swift */,
 				EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */,
+				EDBDC8002694481A00CDF1B2 /* PopupView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -590,6 +599,7 @@
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
 				EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */,
+				EDBDC803269456A800CDF1B2 /* CatchuCVC.swift in Sources */,
 				2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,
 				EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */,
@@ -597,6 +607,8 @@
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
 				2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */,
 				2BDC1ABB26946882008381C3 /* MainCardCVC.swift in Sources */,
+				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
+				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

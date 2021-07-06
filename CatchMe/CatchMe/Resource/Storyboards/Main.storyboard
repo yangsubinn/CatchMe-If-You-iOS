@@ -23,6 +23,21 @@
             </objects>
             <point key="canvasLocation" x="114" y="116"/>
         </scene>
+        <!--Main CardVC-->
+        <scene sceneID="KUm-Ah-QED">
+            <objects>
+                <viewController storyboardIdentifier="MainCardVC" id="3el-f5-fVg" customClass="MainCardVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ov2-og-vbr">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="KPi-TO-lMz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1MR-2G-984" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912" y="116"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

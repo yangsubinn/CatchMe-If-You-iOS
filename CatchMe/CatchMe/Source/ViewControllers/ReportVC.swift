@@ -268,12 +268,10 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case weekdayCollectionView:
             cellSize = Int(boundSize / 7)
-            return CGSize(width: cellSize,
-                            height: 43)
+            return CGSize(width: cellSize, height: 43)
         default:
             cellSize = Int(boundSize / 7)
-            return CGSize(width: cellSize,
-                            height: 51)
+            return CGSize(width: cellSize, height: 51)
         }
     }
     
@@ -295,6 +293,7 @@ extension ReportVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let currentCell = collectionView.cellForItem(at: indexPath) as? CalendarCVC else { return }
         
+        /// 이벤트가 일어난 날짜에만 터치 이벤트가 일어날 수 있도록
         if currentCell.characterImage.isHidden == false {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "ReportPopupVC") as? ReportPopupVC else { return }
             

@@ -11,6 +11,7 @@ class ReportPopupVC: UIViewController {
     // MARK: - lazy Properties
     lazy var popupView = PopupView(date: date ?? "", vc: self)
     
+    // MARK: - Properties
     var date: String?
 
     // MARK: - Life Cycle
@@ -24,10 +25,10 @@ class ReportPopupVC: UIViewController {
         view.addSubview(popupView)
         
         popupView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(145)
-            make.leading.equalToSuperview().inset(47)
-            make.trailing.equalToSuperview().inset(48)
-            make.bottom.equalToSuperview().inset(208)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(UIScreen.main.bounds.size.height * 0.2)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(280)
+            make.height.equalTo(415)
         }
     }
 }

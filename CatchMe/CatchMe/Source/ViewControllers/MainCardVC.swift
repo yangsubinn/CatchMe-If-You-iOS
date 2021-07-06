@@ -18,16 +18,20 @@ class MainCardVC: UIViewController {
     let addButton = UIButton()
     let alignButton = UIButton()
     
+    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         configUI()
+        setupCollectionView()
     }
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([backButton, nameLabel, vcTitleLabel, popupButton, addButton, alignButton])
+        view.addSubviews([backButton, nameLabel, vcTitleLabel, popupButton, addButton, alignButton, collectionView])
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(55)
@@ -62,6 +66,13 @@ class MainCardVC: UIViewController {
             make.trailing.equalTo(view.snp.trailing).inset(13)
             make.top.equalTo(addButton.snp.bottom).offset(27)
         }
+        
+        collectionView.snp.makeConstraints { make in
+            make.leading.equalTo(view.snp.leading).offset(29)
+            make.trailing.equalTo(view.snp.trailing).inset(28)
+            make.top.equalTo(view.snp.top).offset(260)
+            make.height.equalTo(835)
+        }
     }
     
     func configUI() {
@@ -79,4 +90,56 @@ class MainCardVC: UIViewController {
         addButton.backgroundColor = .yellow
         alignButton.backgroundColor = .gray300
     }
+    
+    func setupCollectionView() {
+        collectionViewFlowLayout.scrollDirection = .vertical
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.setupCollectionViewNib(nib: MainCardCVC.identifier)
+        collectionView.backgroundColor = .darkGray
+    }
 }
+
+// MARK: - Extension
+extension MainCardVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+}
+
+extension MainCardVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = UIScreen.main.bounds.width
+        let cellWidth = width * (155/375)
+        let cellHeight = cellWidth * (200/155)
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
+//extension MainCardVC: UICollectionViewDelegate {
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//
+//    }
+//}

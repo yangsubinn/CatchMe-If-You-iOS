@@ -43,7 +43,8 @@ class CharacterView: UIView {
     let characterImageView = UIImageView()
 
     // MARK: - Life Cycle
-    init(catching: Int, name: String, character: String) {
+    /// 후에 character default 이미지 name으로 character 변경
+    init(catching: Int = 0, name: String = "아직 잡은\n캐츄가 없어요!", character: String = "") {
         super.init(frame: .zero)
         configUI(catching: catching, name: name, character: character)
     }
@@ -84,7 +85,7 @@ class CharacterView: UIView {
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(22)
             make.top.equalTo(catchingLabel.snp.bottom).offset(20)
-            make.width.equalTo(105)
+            make.trailing.equalTo(characterImageView.snp.leading)
             make.height.lessThanOrEqualTo(50)
         }
     }
@@ -95,7 +96,7 @@ class CharacterView: UIView {
                      catchingCountLabel, nameLabel, characterImageView])
         
         backgroundColor = .white
-        layer.cornerRadius = 20
+        layer.cornerRadius = 18
         
         catchingCountLabel.text = "\(catching)"
         nameLabel.text = name

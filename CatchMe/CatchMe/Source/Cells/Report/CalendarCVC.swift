@@ -14,7 +14,7 @@ class CalendarCVC: UICollectionViewCell {
     static let identifier = "CalendarCVC"
     
     // MARK: - Properties
-    var dataLabel = UILabel()
+    var dateLabel = UILabel()
     var countLabel = UILabel()
     var characterImage = UIImageView().then {
         $0.isHidden = true
@@ -33,11 +33,10 @@ class CalendarCVC: UICollectionViewCell {
     
     // MARK: - Custom Method
     private func setupLayout() {
-        addSubviews([dataLabel, characterImage, countLabel])
+        addSubviews([dateLabel, characterImage, countLabel])
         
-        dataLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+        dateLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
         
         characterImage.snp.makeConstraints { make in

@@ -36,8 +36,7 @@ class CalendarCVC: UICollectionViewCell {
         addSubviews([dateLabel, characterImage, countLabel])
         
         dateLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerX.centerY.equalToSuperview()
         }
         
         characterImage.snp.makeConstraints { make in

@@ -35,10 +35,8 @@ class CatchuCVC: UICollectionViewCell {
         addSubview(characterImage)
         
         characterImage.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalTo(150)
-            make.width.equalTo(150)
+            make.centerX.centerY.equalToSuperview()
+            make.height.width.equalTo(150)
         }
     }
 }

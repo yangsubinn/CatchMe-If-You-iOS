@@ -13,7 +13,7 @@ class SettingVC: UIViewController {
     //MARK: - Properties
     lazy var backButton = BackButton(self)
     let titleLabel = UILabel()
-    let settingTableView = UITableView(frame: .zero, style: .insetGrouped)
+    let settingTableView = UITableView(frame: .zero, style: .plain)
     
     private let sectionList: [String] = ["닉네임 변경", "비밀번호 변경", "이용약관", "오픈소스 라이선스", "로그아웃", "서비스 탈퇴"]
 
@@ -43,7 +43,6 @@ class SettingVC: UIViewController {
         
         settingTableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            // tableView에 기본으로 잡혀있는 좌우패딩이 있나 왜이래
             make.leading.equalToSuperview().offset(28)
             make.trailing.equalToSuperview().inset(28)
             make.bottom.equalToSuperview()
@@ -61,7 +60,7 @@ class SettingVC: UIViewController {
     }
     
     func setTableView() {
-        settingTableView.backgroundColor = .blue
+        settingTableView.backgroundColor = .clear
         
         settingTableView.dataSource = self
         settingTableView.delegate = self
@@ -82,10 +81,21 @@ extension SettingVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Value: \(sectionList[indexPath.section])")
+        tableView.deselectRow(at: indexPath, animated: false)
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54
+    }
+    
+    /// 테이블 셀들간의 간격 조정하는 곳
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 }
 
@@ -97,6 +107,8 @@ extension SettingVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTVC", for: indexPath)
+        
+        cell.layer.cornerRadius = 10
         
         cell.textLabel?.text = "\(sectionList[indexPath.section])"
         cell.backgroundColor = .black200

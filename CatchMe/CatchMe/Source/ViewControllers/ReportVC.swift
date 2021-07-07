@@ -87,13 +87,13 @@ class ReportVC: UIViewController {
         }
         
         backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(55)
-            make.leading.equalToSuperview().inset(14)
+            make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 55 : 41)
+            make.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 14 : 3)
         }
         
         calendarTitleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(reportView.snp.bottom).offset(37)
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 37 : 11)
         }
         
         previousButton.snp.makeConstraints { make in
@@ -110,13 +110,13 @@ class ReportVC: UIViewController {
         
         weekdayCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(calendarTitleView.snp.bottom).offset(14)
-            make.height.equalTo(43)
+            make.top.equalTo(calendarTitleView.snp.bottom).offset(UIScreen.main.hasNotch ? 14 : 11)
+            make.height.equalTo(UIScreen.main.hasNotch ? 43 : 34)
         }
         
         dateCollectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(weekdayCollectionView.snp.bottom).offset(8)
+            make.top.equalTo(weekdayCollectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 8 : 0)
         }
     }
     
@@ -268,10 +268,10 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
         switch collectionView {
         case weekdayCollectionView:
             cellSize = Int(boundSize / 7)
-            return CGSize(width: cellSize, height: 43)
+            return CGSize(width: cellSize, height: UIScreen.main.hasNotch ? 43 : 34)
         default:
             cellSize = Int(boundSize / 7)
-            return CGSize(width: cellSize, height: 51)
+            return CGSize(width: cellSize, height: UIScreen.main.hasNotch ? 51 : 48)
         }
     }
     
@@ -280,7 +280,7 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return UIScreen.main.hasNotch ? 3 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -15,7 +15,8 @@ class CharacterVC: UIViewController {
     lazy var naviBar = NavigationBar(vc: self)
     let upperView = CharacterUpperView()
     let mainTableView = UITableView(frame: .zero, style: .plain)
-    let pop = CharacterPopupView()
+    let moreMenuView = MoreMenuView()
+    let vc = CharacterPopupVC()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class CharacterVC: UIViewController {
     }
     
     func setupAutoLayout() {
-        view.addSubviews([mainTableView, upperView, naviBar, pop])
+        view.addSubviews([mainTableView, upperView, naviBar])
         
         naviBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -58,6 +59,22 @@ class CharacterVC: UIViewController {
             make.top.equalTo(upperView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
         }
+    }
+    
+    @objc func touchupEditButton(_ sender: UIButton) {
+        // 편집VC로 화면 전환 코드 작성해야 함
+        
+    }
+    
+    @objc func touchupDeleteButton(_ sender: UIButton) {
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+    }
+  
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        moreMenuView.isHidden = true
     }
 }
 
@@ -96,7 +113,7 @@ extension CharacterVC: UITableViewDelegate {
                     make.width.equalTo(self.upperView.backgroundView.bounds.height)
                     make.height.equalTo(self.upperView.backgroundView.bounds.height)
                 }
-            
+                
                 // 핑크색 둥글기
                 self.upperView.backgroundView.layer.cornerRadius = backgroundWidth / 2
             }
@@ -105,12 +122,12 @@ extension CharacterVC: UITableViewDelegate {
                 self.upperView.characterImageView.transform = .identity
                 self.upperView.backgroundView.transform = .identity
                 self.upperView.transform = .identity
-
+                
                 // 헤더 부분 높이
                 self.upperView.snp.updateConstraints { make in
                     make.height.equalTo(width-offset)
                 }
- 
+                
                 // 캐릭터 상단 constraint
                 self.upperView.characterImageView.snp.updateConstraints { make in
                     make.top.equalTo(158)
@@ -146,6 +163,7 @@ extension CharacterVC: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
                 cell.setupAutoLayout()
                 cell.selectionStyle = .none
+                cell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
                 return cell
             }
         default:

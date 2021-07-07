@@ -18,16 +18,22 @@ class MoreMenuView: UIView {
 //        $0.addTarget(self, action: #selector(touchupEditButton(_:)), for: .touchUpInside)
     }
     
-    let deleteButton = UIButton().then {
+    lazy var deleteButton = UIButton().then {
         $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .yellow
 //        $0.addTarget(self, action: #selector(touchupDeleteButton), for: .touchUpInside)
     }
     
+    var vc = UIViewController()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+    }
+    
+    init(presentingController: UIViewController) {
+        super.init(frame: .zero)
+        vc = presentingController
         configUI()
         setupAutoLayout()
     }
@@ -56,13 +62,5 @@ class MoreMenuView: UIView {
             make.width.equalTo(50)
             make.height.equalTo(48)
         }
-    }
-//    
-//    @objc func touchupEditButton(_ sender: UIButton) {
-//        
-//    }
-//    
-//    @objc func touchupDeleteButton(_ sender: UIButton) {
-//        print("삭제팝업")
-//    }
+    }    
 }

@@ -18,6 +18,7 @@
 		5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0850672691A659008F40B2 /* CharacterReportTVC.swift */; };
 		5B447CB7269426AB00F79AB7 /* MoreMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CB6269426AB00F79AB7 /* MoreMenuView.swift */; };
 		5B447CBD2694D3D100F79AB7 /* CharacterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */; };
+		5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
@@ -81,6 +82,7 @@
 		5B0850672691A659008F40B2 /* CharacterReportTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterReportTVC.swift; path = CatchMe/Source/Cells/Character/CharacterReportTVC.swift; sourceTree = SOURCE_ROOT; };
 		5B447CB6269426AB00F79AB7 /* MoreMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuView.swift; sourceTree = "<group>"; };
 		5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPopupView.swift; sourceTree = "<group>"; };
+		5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPopupVC.swift; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87F268A14E5000F058F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				EDD12C9D268EB71000DF766A /* MainVC.swift */,
 				EDD12CA3268EB80300DF766A /* CharacterVC.swift */,
+				5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */,
 				EDD12CA7268EB84C00DF766A /* ReportVC.swift */,
 				EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */,
 				EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */,
@@ -590,6 +593,7 @@
 				5B447CBD2694D3D100F79AB7 /* CharacterPopupView.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
+				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
 				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
 				2B3654E12691ACBC002C2C5C /* characterCVC.swift in Sources */,
 				5B447CB7269426AB00F79AB7 /* MoreMenuView.swift in Sources */,

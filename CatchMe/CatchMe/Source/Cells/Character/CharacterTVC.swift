@@ -34,7 +34,7 @@ class CharacterTVC: UITableViewCell {
         $0.backgroundColor = .green
     }
     
-    let moreMenuView = MoreMenuView()
+    let moreMenuView = MoreMenuView(presentingController: CharacterPopupVC())
     
     let contentStackView = UIStackView().then {
         $0.axis = .vertical
@@ -75,8 +75,6 @@ class CharacterTVC: UITableViewCell {
         self.sendSubviewToBack(contentView)
         moreButton.isSelected = true
         moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
-        moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
-
     }
     
     required init?(coder: NSCoder) {
@@ -156,18 +154,12 @@ class CharacterTVC: UITableViewCell {
             moreMenuView.snp.makeConstraints { make in
                 make.top.equalTo(moreButton.snp.top).offset(34)
                 make.leading.equalTo(contentStackView.snp.leading).inset(202)
+                make.width.equalTo(100)
+                make.height.equalTo(48)
             }
         }
     }
-        
-    @objc func touchupEditButton(_ sender: UIButton) {
-        
-    }
-    
-    @objc func touchupDeleteButton(_ sender: UIButton) {
-        print("삭제팝업")
-    }
-    
+
     func setData(date: String, comment: String, image: String) {
         dateLabel.text = date
         commentLabel.text = comment

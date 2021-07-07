@@ -295,7 +295,7 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
             } else {
                 height = 48
             }
-            return CGSize(width: cellSize, height: 51)
+            return CGSize(width: cellSize, height: height)
         }
     }
     

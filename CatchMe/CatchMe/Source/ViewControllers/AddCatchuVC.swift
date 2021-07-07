@@ -24,6 +24,7 @@ class AddCatchuVC: UIViewController {
     let pageControl = AddCatchuPageControl()
     let firstFlowView = FirstFlowView()
     let secondFlowView = SecondFlowView()
+    let thirdFlowView = ThirdFlowView()
     let bottomButton = BottomButton(title: "잡았다!")
     
     var currentFlow = 1
@@ -39,7 +40,8 @@ class AddCatchuVC: UIViewController {
     // MARK: - Custom Methods
     private func setupLayout() {
         view.addSubviews([xmarkButton, backButton, pageControl,
-                          firstFlowView, secondFlowView, bottomButton])
+                          firstFlowView, secondFlowView, thirdFlowView,
+                          bottomButton])
         
         xmarkButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(11)
@@ -74,6 +76,12 @@ class AddCatchuVC: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(bottomButton.snp.top)
         }
+        
+        thirdFlowView.snp.makeConstraints { make in
+            make.top.equalTo(pageControl.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(bottomButton.snp.top)
+        }
     }
     
     private func configUI() {
@@ -83,6 +91,7 @@ class AddCatchuVC: UIViewController {
         
         backButton.isHidden = true
         secondFlowView.isHidden = true
+        thirdFlowView.isHidden = true
         
         hideKeyboardWhenTappedAround()
     }
@@ -124,13 +133,16 @@ class AddCatchuVC: UIViewController {
             /// 뷰 hidden
             firstFlowView.isHidden = false
             secondFlowView.isHidden = true
+            thirdFlowView.isHidden = true
             
             /// bottombutton Change
             bottomButton.changeBottomButtonTitle(title: "잡았다!")
+            bottomButton.changeBottomButton(isEnable: true)
         case Flow.naming.rawValue:
             /// 뷰 hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = false
+            thirdFlowView.isHidden = true
             
             /// bottombutton Change
             secondFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
@@ -146,6 +158,7 @@ class AddCatchuVC: UIViewController {
             /// 뷰 hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = true
+            thirdFlowView.isHidden = false
             
             /// bottombutton Change
             bottomButton.changeBottomButtonTitle(title: "탄생!")
@@ -158,18 +171,20 @@ class AddCatchuVC: UIViewController {
     override func dismissKeyboard() {
         view.endEditing(true)
         
-        UIView.animate(withDuration: 0.2, animations: {
-            self.secondFlowView.characterImageView.transform = .identity
-            self.secondFlowView.textField.transform = .identity
-            self.secondFlowView.countLabel.transform = .identity
-        })
-        
-        if secondFlowView.textField.hasText {
-            bottomButton.isEnabled = true
-            bottomButton.changeBottomButton(isEnable: true)
-        } else {
-            bottomButton.isEnabled = false
-            bottomButton.changeBottomButton(isEnable: false)
+        if currentFlow == 2 {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.secondFlowView.characterImageView.transform = .identity
+                self.secondFlowView.textField.transform = .identity
+                self.secondFlowView.countLabel.transform = .identity
+            })
+            
+            if secondFlowView.textField.hasText {
+                bottomButton.isEnabled = true
+                bottomButton.changeBottomButton(isEnable: true)
+            } else {
+                bottomButton.isEnabled = false
+                bottomButton.changeBottomButton(isEnable: false)
+            }
         }
     }
 }

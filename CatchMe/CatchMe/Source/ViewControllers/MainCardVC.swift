@@ -13,7 +13,7 @@ class MainCardVC: UIViewController {
     //MARK: - Properties
     lazy var backButton = BackButton(self)
     let nameLabel = UILabel()
-    let vcTitleLabel = UILabel()
+    let titleLabel = UILabel()
     let popupButton = UIButton()
     let addButton = UIButton()
     let alignButton = UIButton()
@@ -31,7 +31,9 @@ class MainCardVC: UIViewController {
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([backButton, nameLabel, vcTitleLabel, popupButton, addButton, alignButton, collectionView])
+        view.addSubviews([backButton, nameLabel, titleLabel,
+                          popupButton, addButton, alignButton,
+                          collectionView])
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(55)
@@ -43,15 +45,15 @@ class MainCardVC: UIViewController {
             make.leading.equalTo(view.snp.leading).offset(28)
         }
         
-        vcTitleLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(6)
             make.leading.equalTo(view.snp.leading).offset(28)
         }
         
         popupButton.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
-            make.leading.equalTo(vcTitleLabel.snp.trailing)
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.leading.equalTo(titleLabel.snp.trailing)
+            make.width.height.equalTo(30)
         }
         
         addButton.snp.makeConstraints { make in
@@ -68,12 +70,10 @@ class MainCardVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(29)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
             make.top.equalTo(view.snp.top).offset(260)
-            // 여기 셀이 몇개 들어올지 모르니까, height말고 bottom으로 잡는게 맞는건가
-//            make.height.equalTo(835)
+            make.leading.equalTo(view.snp.leading).offset(29)
             make.bottom.equalTo(view.snp.bottom)
+            make.trailing.equalTo(view.snp.trailing).inset(28)
         }
     }
     
@@ -84,9 +84,9 @@ class MainCardVC: UIViewController {
         nameLabel.textColor = .white
         nameLabel.font = UIFont.stringBoldSystemFont(ofSize: 14)
         
-        vcTitleLabel.text = "캐츄 모아보기"
-        vcTitleLabel.textColor = .white
-        vcTitleLabel.font = UIFont.stringBoldSystemFont(ofSize: 22)
+        titleLabel.text = "캐츄 모아보기"
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.stringBoldSystemFont(ofSize: 22)
         
         popupButton.backgroundColor = .blue
         addButton.backgroundColor = .yellow
@@ -104,7 +104,7 @@ class MainCardVC: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - UICollectionViewDataSource
 extension MainCardVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -118,9 +118,9 @@ extension MainCardVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainCardVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let width = UIScreen.main.bounds.width
         let cellWidth = width * (155/375)
         let cellHeight = cellWidth * (200/155)

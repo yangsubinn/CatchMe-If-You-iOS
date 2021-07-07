@@ -17,6 +17,7 @@ class AddCatchuVC: UIViewController {
     let backButton = BackButton()
     let pageControl = AddCatchuPageControl()
     let firstFlowView = FirstFlowView()
+    let bottomButton = BottomButton(title: "잡았다!")
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -29,7 +30,7 @@ class AddCatchuVC: UIViewController {
     // MARK: - Custom Methods
     private func setupLayout() {
         view.addSubviews([xmarkButton, backButton, pageControl,
-                          firstFlowView])
+                          firstFlowView, bottomButton])
         
         xmarkButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(11)
@@ -48,10 +49,15 @@ class AddCatchuVC: UIViewController {
             make.height.equalTo(12)
         }
         
+        bottomButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(50)
+            make.leading.trailing.equalToSuperview().inset(28)
+        }
+        
         firstFlowView.snp.makeConstraints { make in
             make.top.equalTo(pageControl.snp.bottom).offset(32)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(200)
+            make.bottom.equalTo(bottomButton.snp.top)
         }
     }
     

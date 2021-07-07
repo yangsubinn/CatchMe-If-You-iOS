@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class FirstFlowView: UIView {
+    // MARK: - Properties
     let titleView = CatchuTitleView(title: "새로운 캐츄를 잡아볼까요?", subTitle: "내 모습을 가장 잘 보여주는 캐츄를 골라주세요")
 
     // MARK: - Life Cycle

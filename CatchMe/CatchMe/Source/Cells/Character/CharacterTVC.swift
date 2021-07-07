@@ -168,4 +168,12 @@ class CharacterTVC: UITableViewCell {
             photoImageView.image = UIImage(named: image)
         }
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        let touch = touches.first
+//        if touch?.view != self.moreMenuView {
+//            moreMenuView.is
+//        }
+//    }
 }

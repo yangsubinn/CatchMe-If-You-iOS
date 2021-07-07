@@ -12,6 +12,8 @@ import SnapKit
 
 class CharacterHeaderView: UIView {
     // MARK: - Properties
+    let vc = CharacterVC()
+    
     let lockDateStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4

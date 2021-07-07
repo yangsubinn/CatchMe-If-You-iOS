@@ -62,5 +62,7 @@ class MoreMenuView: UIView {
             make.width.equalTo(50)
             make.height.equalTo(48)
         }
-    }    
+    }
+    
+    
 }

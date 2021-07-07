@@ -61,9 +61,15 @@ class CharacterVC: UIViewController {
         }
     }
     
+    @objc func touchupWriteButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Character", bundle: nil)
+        guard let nextVC = storyboard.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
+    }
+    
     @objc func touchupEditButton(_ sender: UIButton) {
         // 편집VC로 화면 전환 코드 작성해야 함
-        
     }
     
     @objc func touchupDeleteButton(_ sender: UIButton) {
@@ -71,17 +77,22 @@ class CharacterVC: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
-  
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        moreMenuView.isHidden = true
+        let touch = touches.first
+        if touch?.view != self.moreMenuView {
+//            MoreMenuView().dismiss(animated: true, completion: nil)
+        }
     }
 }
 
 // MARK: - UITableViewDelegate
 extension CharacterVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return CharacterHeaderView()
+        let headerView = CharacterHeaderView()
+        headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

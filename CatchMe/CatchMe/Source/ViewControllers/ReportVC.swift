@@ -87,8 +87,13 @@ class ReportVC: UIViewController {
         }
         
         backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(55)
-            make.leading.equalToSuperview().inset(14)
+            if UIScreen.main.hasNotch {
+                make.top.equalToSuperview().inset(55)
+                make.leading.equalToSuperview().inset(14)
+            } else {
+                make.top.equalToSuperview().inset(41)
+                make.leading.equalToSuperview().inset(3)
+            }
         }
         
         calendarTitleView.snp.makeConstraints { make in

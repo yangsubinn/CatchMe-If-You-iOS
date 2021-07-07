@@ -7,13 +7,13 @@
 
 import UIKit
 
-import Then
 import SnapKit
 
 class SecondFlowView: UIView {
     // MARK: - Properties
     let titleView = CatchuTitleView(title: "하나뿐인 내 캐츄의 이름은?", subTitle: "나의 캐츄를 대표할 이름을 지어주세요")
     let characterImageView = UIImageView(image: UIImage(named: ""))
+    let textField = CustomTextField(placeholder: "캐츄 이름 입력")
     
     // MARK: - Dummy Data
     /// 후에 enum으로 사용하면 편리할 듯 -> 아니면 public하게 전체적으로 사용할 수 있도록 만들기
@@ -32,7 +32,7 @@ class SecondFlowView: UIView {
     
     // MARK: - Custom Methods
     private func setupLayout() {
-        addSubviews([titleView, characterImageView])
+        addSubviews([titleView, characterImageView, textField])
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -43,6 +43,11 @@ class SecondFlowView: UIView {
             make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 175 : 115)
             make.centerX.equalToSuperview()
             make.height.width.equalTo(150)
+        }
+        
+        textField.snp.makeConstraints { make in
+            make.top.equalTo(characterImageView.snp.bottom).offset(74)
+            make.leading.trailing.equalToSuperview().inset(28)
         }
     }
     

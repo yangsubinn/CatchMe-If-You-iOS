@@ -77,7 +77,7 @@ class AddCatchuVC: UIViewController {
     }
     
     private func configUI() {
-        view.backgroundColor = .black
+        view.backgroundColor = .black100
         
         pageControl.pages = 3
         

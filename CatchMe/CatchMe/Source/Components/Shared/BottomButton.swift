@@ -37,4 +37,7 @@ class BottomButton: UIButton {
     }
     
     // MARK: - BottomButton Action
+    func changeBottomButtonTitle(title: String) {
+        setTitle(title, for: .normal)
+    }
 }

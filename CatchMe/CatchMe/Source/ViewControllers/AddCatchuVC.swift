@@ -9,6 +9,12 @@ import UIKit
 
 import SnapKit
 
+enum Flow: Int {
+    case select = 1
+    case naming = 2
+    case complete = 3
+}
+
 class AddCatchuVC: UIViewController {
     // MARK: - lazy Properties
     lazy var xmarkButton = XmarkButton(self)
@@ -18,6 +24,8 @@ class AddCatchuVC: UIViewController {
     let pageControl = AddCatchuPageControl()
     let firstFlowView = FirstFlowView()
     let bottomButton = BottomButton(title: "잡았다!")
+    
+    var currentFlow = 1
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -65,12 +73,51 @@ class AddCatchuVC: UIViewController {
         view.backgroundColor = .black
         
         pageControl.pages = 3
+        backButton.isHidden = true
     }
     
     private func setupButtonAction() {
         let previousAction = UIAction { _ in
-            
+            self.currentFlow -= 1
+            self.pageControl.selectedPage -= 1
+            self.changeBackButtonState()
+            self.changeFlowViewState()
         }
         backButton.addAction(previousAction, for: .touchUpInside)
+        
+        let nextAction = UIAction { _ in
+            if self.currentFlow != Flow.complete.rawValue {
+                self.currentFlow += 1
+                self.pageControl.selectedPage += 1
+                self.changeBackButtonState()
+                self.changeFlowViewState()
+            }
+        }
+        bottomButton.addAction(nextAction, for: .touchUpInside)
+    }
+    
+    private func changeBackButtonState() {
+        switch currentFlow {
+        case Flow.select.rawValue:
+            backButton.isHidden = true
+        default:
+            backButton.isHidden = false
+        }
+    }
+    
+    private func changeFlowViewState() {
+        switch currentFlow {
+        case Flow.select.rawValue:
+            firstFlowView.isHidden = false
+            bottomButton.changeBottomButtonTitle(title: "잡았다!")
+        case Flow.naming.rawValue:
+            firstFlowView.isHidden = true
+            bottomButton.changeBottomButtonTitle(title: "너로 정했다!")
+            /// textField에 따라서 isEnable 변경
+        case Flow.complete.rawValue:
+            firstFlowView.isHidden = true
+            bottomButton.changeBottomButtonTitle(title: "탄생!")
+        default: break
+        }
     }
 }

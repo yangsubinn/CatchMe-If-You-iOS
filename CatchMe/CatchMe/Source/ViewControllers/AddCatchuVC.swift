@@ -83,6 +83,8 @@ class AddCatchuVC: UIViewController {
         
         backButton.isHidden = true
         secondFlowView.isHidden = true
+        
+        hideKeyboardWhenTappedAround()
     }
     
     private func setupButtonAction() {
@@ -109,6 +111,8 @@ class AddCatchuVC: UIViewController {
         switch currentFlow {
         case Flow.select.rawValue:
             backButton.isHidden = true
+            secondFlowView.textField.text = ""
+            secondFlowView.countLabel.text = "0/20"
         default:
             backButton.isHidden = false
         }
@@ -117,22 +121,55 @@ class AddCatchuVC: UIViewController {
     private func changeFlowViewState() {
         switch currentFlow {
         case Flow.select.rawValue:
+            /// 뷰 hidden
             firstFlowView.isHidden = false
             secondFlowView.isHidden = true
             
+            /// bottombutton Change
             bottomButton.changeBottomButtonTitle(title: "잡았다!")
         case Flow.naming.rawValue:
+            /// 뷰 hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = false
             
+            /// bottombutton Change
             secondFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
             bottomButton.changeBottomButtonTitle(title: "너로 정했다!")
-            /// textField에 따라서 isEnable 변경
+            if secondFlowView.textField.hasText {
+                bottomButton.isEnabled = true
+                bottomButton.changeBottomButton(isEnable: true)
+            } else {
+                bottomButton.isEnabled = false
+                bottomButton.changeBottomButton(isEnable: false)
+            }
         case Flow.complete.rawValue:
+            /// 뷰 hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = true
+            
+            /// bottombutton Change
             bottomButton.changeBottomButtonTitle(title: "탄생!")
         default: break
+        }
+    }
+    
+    // MARK: - @objc
+    @objc
+    override func dismissKeyboard() {
+        view.endEditing(true)
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.secondFlowView.characterImageView.transform = .identity
+            self.secondFlowView.textField.transform = .identity
+            self.secondFlowView.countLabel.transform = .identity
+        })
+        
+        if secondFlowView.textField.hasText {
+            bottomButton.isEnabled = true
+            bottomButton.changeBottomButton(isEnable: true)
+        } else {
+            bottomButton.isEnabled = false
+            bottomButton.changeBottomButton(isEnable: false)
         }
     }
 }

@@ -29,7 +29,7 @@ class BottomButton: UIButton {
     }
     
     private func configUI(title: String) {
-        backgroundColor = .systemPink
+        backgroundColor = .pink100
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
         titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
@@ -39,5 +39,15 @@ class BottomButton: UIButton {
     // MARK: - BottomButton Action
     func changeBottomButtonTitle(title: String) {
         setTitle(title, for: .normal)
+    }
+    
+    func changeBottomButton(isEnable: Bool?) {
+        if !isEnabled {
+            isEnabled = false
+            backgroundColor = .gray300
+        } else {
+            isEnabled = true
+            backgroundColor = .pink100
+        }
     }
 }

@@ -49,4 +49,12 @@ class CustomTextField: UITextField {
         self.spellCheckingType = .no
         self.textContentType = .none
     }
+    
+    func setupOriginalLine() {
+        layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    func setupPinkLine() {
+        layer.borderColor = UIColor.pink100.cgColor
+    }
 }

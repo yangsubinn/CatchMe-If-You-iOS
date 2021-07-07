@@ -12,7 +12,8 @@ class SettingTVC: UITableViewCell {
     
     // MARK: - Properties
     let titleLabel = UILabel()
-
+    
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()

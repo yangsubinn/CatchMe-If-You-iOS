@@ -60,13 +60,12 @@ class SettingVC: UIViewController {
     }
     
     func setTableView() {
-        settingTableView.backgroundColor = .clear
-        
         settingTableView.dataSource = self
         settingTableView.delegate = self
         
         settingTableView.register(SettingTVC.self, forCellReuseIdentifier: "SettingTVC")
         
+        settingTableView.backgroundColor = .clear
         settingTableView.separatorStyle = .none
         settingTableView.tableFooterView = UIView(frame: .zero)
         settingTableView.sectionFooterHeight = 0
@@ -80,7 +79,6 @@ extension SettingVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Value: \(sectionList[indexPath.section])")
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
@@ -89,7 +87,6 @@ extension SettingVC: UITableViewDelegate {
         return 54
     }
     
-    /// 테이블 셀들간의 간격 조정하는 곳
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 16
     }

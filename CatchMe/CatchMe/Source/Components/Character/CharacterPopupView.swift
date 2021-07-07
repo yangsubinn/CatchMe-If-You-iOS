@@ -13,7 +13,7 @@ import SnapKit
 class CharacterPopupView: UIView {
     // MARK: - Properties
     let popupLabel = UILabel().then {
-        $0.text = "활동을 지우시겠어요?"
+        $0.text = "이 활동을 지울까요?"
         $0.font = .systemFont(ofSize: 16, weight: .medium)
         $0.textColor = .white
         $0.textAlignment = .center
@@ -26,7 +26,7 @@ class CharacterPopupView: UIView {
     }
     
     let cancelButton = UIButton().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .gray300
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -36,7 +36,7 @@ class CharacterPopupView: UIView {
     }
     
     let deleteButton = UIButton().then {
-        $0.backgroundColor = .systemPink
+        $0.backgroundColor = .pink100
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
         $0.setTitle("지울래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)

@@ -41,6 +41,5 @@ class CharacterPopupVC: UIViewController {
     
     @objc func touchupDeleteButton(_ sender: UIButton) {
     // 삭제를 시키는 코드를 작성해야 합니다.
-        
     }
 }

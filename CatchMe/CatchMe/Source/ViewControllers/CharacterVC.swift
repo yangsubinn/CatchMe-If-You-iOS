@@ -84,7 +84,7 @@ class CharacterVC: UIViewController {
             catchGuideImageView.isHidden = false
         }
     }
-    
+
     @objc func touchupWriteButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let nextVC = storyboard.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
@@ -101,7 +101,7 @@ class CharacterVC: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
-    
+
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        super.touchesBegan(touches, with: event)
 //        let touch = touches.first

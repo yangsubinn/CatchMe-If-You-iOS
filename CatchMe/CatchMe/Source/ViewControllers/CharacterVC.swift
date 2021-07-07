@@ -17,6 +17,12 @@ class CharacterVC: UIViewController {
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let moreMenuView = MoreMenuView()
     let vc = CharacterPopupVC()
+    let reportCell = CharacterReportTVC()
+    
+    let catchGuideImageView = UIImageView().then {
+        //        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.backgroundColor = .purple
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -27,6 +33,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Custom Method
     func setTableView() {
+        catchGuideImageView.isHidden = true
         mainTableView.backgroundColor = .black
         upperView.backgroundColor = .white
         
@@ -43,7 +50,7 @@ class CharacterVC: UIViewController {
     }
     
     func setupAutoLayout() {
-        view.addSubviews([mainTableView, upperView, naviBar])
+        view.addSubviews([mainTableView, upperView, naviBar, catchGuideImageView])
         
         naviBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -58,6 +65,23 @@ class CharacterVC: UIViewController {
         mainTableView.snp.makeConstraints { make in
             make.top.equalTo(upperView.snp.bottom)
             make.leading.bottom.trailing.equalToSuperview()
+        }
+        
+        catchGuideImageView.snp.makeConstraints { make in
+            make.top.equalTo(mainTableView.snp.top).inset(104)
+            make.trailing.equalTo(view.snp.trailing).inset(28)
+            make.width.equalTo(166)
+            make.height.equalTo(58)
+        }
+    }
+    
+    @objc func touchupCatchGuidebutton(_ sender: UIButton) {
+        if reportCell.catchGuideButton.isSelected == true {
+            reportCell.catchGuideButton.isSelected = false
+            catchGuideImageView.isHidden = true
+        } else if reportCell.catchGuideButton.isSelected == false {
+            reportCell.catchGuideButton.isSelected = true
+            catchGuideImageView.isHidden = false
         }
     }
     
@@ -78,13 +102,13 @@ class CharacterVC: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        let touch = touches.first
-        if touch?.view != self.moreMenuView {
-//            MoreMenuView().dismiss(animated: true, completion: nil)
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        let touch = touches.first
+//        if touch?.view != self.catchGuideImageView {
+//            catchGuideImageView.isHidden = true
+//        }
+//    }
 }
 
 // MARK: - UITableViewDelegate
@@ -169,6 +193,7 @@ extension CharacterVC: UITableViewDataSource {
                 guard let reportCell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC else { return UITableViewCell() }
                 reportCell.setupAutoLayout()
                 reportCell.selectionStyle = .none
+                reportCell.catchGuideButton.addTarget(self, action: #selector(touchupCatchGuidebutton(_:)), for: .touchUpInside)
                 return reportCell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }

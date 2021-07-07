@@ -26,7 +26,6 @@ class CharacterHeaderView: UIView {
     }
     
     let dateLabel = UILabel().then {
-        $0.text = "2021.05.01"
         $0.font = .systemFont(ofSize: 15, weight: .regular)
         $0.textAlignment = .left
         $0.textColor = .gray
@@ -45,27 +44,30 @@ class CharacterHeaderView: UIView {
     }
     
     let nameLabel = UILabel().then {
-        $0.text = "눈만 뜨면\n암벽등반 생각 뿐인 날다람쥐"
         $0.font = .systemFont(ofSize: 20, weight: .bold)
         $0.textAlignment = .left
         $0.textColor = .white
         $0.numberOfLines = 2
+        $0.lineBreakMode = .byWordWrapping
     }
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configUI()
+    init(date: String = "2021.05.01 ", name: String = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열") {
+        super.init(frame: .zero)
+        configUI(date: date, name: name)
         setupAutoLayout()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Custom Method
-    func configUI() {
+    func configUI(date: String, name: String) {
         backgroundColor = .black
+        
+        dateLabel.text = date
+        nameLabel.text = name
     }
         
     private func setupAutoLayout() {
@@ -75,7 +77,7 @@ class CharacterHeaderView: UIView {
         
         lockImageView.snp.makeConstraints { make in
             make.width.equalTo(20)
-            make.height.equalTo(21)
+            make.height.equalTo(20)
         }
         
         lockDateStackView.snp.makeConstraints { make in
@@ -98,7 +100,8 @@ class CharacterHeaderView: UIView {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(lockDateStackView.snp.bottom).offset(10)
             make.leading.equalTo(self.snp.leading).inset(28)
-            make.trailing.equalToSuperview().inset(121)
+            make.trailing.equalToSuperview().inset(161)
+            make.height.lessThanOrEqualTo(58)
         }
     }
 }

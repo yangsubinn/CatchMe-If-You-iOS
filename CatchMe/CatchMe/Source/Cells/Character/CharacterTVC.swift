@@ -27,6 +27,7 @@ class CharacterTVC: UITableViewCell {
         $0.text = "2021.08.01"
         $0.textColor = .gray
         $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.textAlignment = .left
     }
     
     let moreButton = UIButton().then {
@@ -89,27 +90,27 @@ class CharacterTVC: UITableViewCell {
     func setupAutoLayout() {
         backgroundColor = .black
       
-        addSubviews([pinImageView, lineView, dateLabel, contentStackView, moreButton, moreMenuView])
+        addSubviews([lineView, pinImageView, dateLabel, contentStackView, moreButton, moreMenuView])
         commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
         
         pinImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(38)
+            make.top.equalTo(self.snp.top).inset(36)
             make.leading.equalTo(self.snp.leading).inset(22)
             make.width.height.equalTo(12)
         }
         
         lineView.snp.makeConstraints { make in
-            make.top.equalTo(pinImageView.snp.bottom)
-            make.leading.equalTo(self.snp.leading).inset(27.5)
+            make.top.equalTo(pinImageView.snp.bottom).inset(1)
+            make.leading.equalTo(self.snp.leading).inset(28)
             make.bottom.equalToSuperview().offset(38)
             make.width.equalTo(1)
         }
         
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(pinImageView.snp.trailing).offset(9)
-            make.bottom.equalTo(pinImageView.snp.bottom)
+            make.bottom.equalTo(pinImageView.snp.bottom).offset(2)
         }
         
         moreButton.snp.makeConstraints { make in
@@ -120,7 +121,7 @@ class CharacterTVC: UITableViewCell {
         
         contentStackView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(12)
-            make.leading.equalTo(lineView.snp.trailing).offset(15.5)
+            make.leading.equalTo(lineView.snp.trailing).offset(16)
             make.bottom.equalTo(self.snp.bottom).inset(5)
             make.trailing.equalTo(self.snp.trailing).inset(28)
         }
@@ -168,12 +169,4 @@ class CharacterTVC: UITableViewCell {
             photoImageView.image = UIImage(named: image)
         }
     }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        let touch = touches.first
-//        if touch?.view != self.moreMenuView {
-//            moreMenuView.is
-//        }
-//    }
 }

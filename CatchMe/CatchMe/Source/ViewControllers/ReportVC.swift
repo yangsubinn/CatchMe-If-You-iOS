@@ -93,7 +93,11 @@ class ReportVC: UIViewController {
         
         calendarTitleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(reportView.snp.bottom).offset(37)
+            if UIScreen.main.hasNotch {
+                make.top.equalTo(reportView.snp.bottom).offset(37)
+            } else {
+                make.top.equalTo(reportView.snp.bottom).offset(11)
+            }
         }
         
         previousButton.snp.makeConstraints { make in
@@ -110,13 +114,22 @@ class ReportVC: UIViewController {
         
         weekdayCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(calendarTitleView.snp.bottom).offset(14)
-            make.height.equalTo(43)
+            if UIScreen.main.hasNotch {
+                make.top.equalTo(calendarTitleView.snp.bottom).offset(14)
+                make.height.equalTo(43)
+            } else {
+                make.top.equalTo(calendarTitleView.snp.bottom).offset(11)
+                make.height.equalTo(34)
+            }
         }
         
         dateCollectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(weekdayCollectionView.snp.bottom).offset(8)
+            if UIScreen.main.hasNotch {
+                make.top.equalTo(weekdayCollectionView.snp.bottom).offset(8)
+            } else {
+                make.top.equalTo(weekdayCollectionView.snp.bottom)
+            }
         }
     }
     
@@ -264,13 +277,24 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let boundSize = UIScreen.main.bounds.size.width - 32 - 24
         var cellSize = 0
+        var height = 0
         
         switch collectionView {
         case weekdayCollectionView:
             cellSize = Int(boundSize / 7)
-            return CGSize(width: cellSize, height: 43)
+            if UIScreen.main.hasNotch {
+                height = 43
+            } else {
+                height = 34
+            }
+            return CGSize(width: cellSize, height: height)
         default:
             cellSize = Int(boundSize / 7)
+            if UIScreen.main.hasNotch {
+                height = 51
+            } else {
+                height = 48
+            }
             return CGSize(width: cellSize, height: 51)
         }
     }
@@ -280,7 +304,10 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        if UIScreen.main.hasNotch {
+            return 3
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

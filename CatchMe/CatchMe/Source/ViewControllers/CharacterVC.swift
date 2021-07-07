@@ -15,6 +15,7 @@ class CharacterVC: UIViewController {
     lazy var naviBar = NavigationBar(vc: self)
     let upperView = CharacterUpperView()
     let mainTableView = UITableView(frame: .zero, style: .plain)
+    let pop = CharacterPopupView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -41,7 +42,7 @@ class CharacterVC: UIViewController {
     }
     
     func setupAutoLayout() {
-        view.addSubviews([mainTableView, upperView, naviBar])
+        view.addSubviews([mainTableView, upperView, naviBar, pop])
         
         naviBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()

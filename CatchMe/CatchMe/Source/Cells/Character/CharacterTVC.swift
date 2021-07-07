@@ -75,7 +75,8 @@ class CharacterTVC: UITableViewCell {
         self.sendSubviewToBack(contentView)
         moreButton.isSelected = true
         moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
-        
+        moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+
     }
     
     required init?(coder: NSCoder) {
@@ -157,6 +158,14 @@ class CharacterTVC: UITableViewCell {
                 make.leading.equalTo(contentStackView.snp.leading).inset(202)
             }
         }
+    }
+        
+    @objc func touchupEditButton(_ sender: UIButton) {
+        
+    }
+    
+    @objc func touchupDeleteButton(_ sender: UIButton) {
+        print("삭제팝업")
     }
     
     func setData(date: String, comment: String, image: String) {

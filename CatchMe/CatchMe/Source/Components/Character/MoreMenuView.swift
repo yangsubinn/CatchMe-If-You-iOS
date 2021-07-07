@@ -7,23 +7,27 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class MoreMenuView: UIView {
     // MARK: - Properties
     let editButton = UIButton().then {
         $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .red
-        $0.addTarget(self, action: #selector(touchupEditButton), for: .touchUpInside)
+//        $0.addTarget(self, action: #selector(touchupEditButton(_:)), for: .touchUpInside)
     }
     
     let deleteButton = UIButton().then {
         $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .yellow
-        $0.addTarget(self, action: #selector(touchupDeleteButton), for: .touchUpInside)
+//        $0.addTarget(self, action: #selector(touchupDeleteButton), for: .touchUpInside)
     }
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+//        deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
         configUI()
         setupAutoLayout()
     }
@@ -53,12 +57,12 @@ class MoreMenuView: UIView {
             make.height.equalTo(48)
         }
     }
-    
-    @objc func touchupEditButton() {
-        
-    }
-    
-    @objc func touchupDeleteButton() {
-        
-    }
+//    
+//    @objc func touchupEditButton(_ sender: UIButton) {
+//        
+//    }
+//    
+//    @objc func touchupDeleteButton(_ sender: UIButton) {
+//        print("삭제팝업")
+//    }
 }

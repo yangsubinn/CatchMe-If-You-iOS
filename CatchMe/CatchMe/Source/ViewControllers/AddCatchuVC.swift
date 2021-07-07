@@ -23,6 +23,7 @@ class AddCatchuVC: UIViewController {
     let backButton = BackButton()
     let pageControl = AddCatchuPageControl()
     let firstFlowView = FirstFlowView()
+    let secondFlowView = SecondFlowView()
     let bottomButton = BottomButton(title: "잡았다!")
     
     var currentFlow = 1
@@ -38,7 +39,7 @@ class AddCatchuVC: UIViewController {
     // MARK: - Custom Methods
     private func setupLayout() {
         view.addSubviews([xmarkButton, backButton, pageControl,
-                          firstFlowView, bottomButton])
+                          firstFlowView, secondFlowView, bottomButton])
         
         xmarkButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(11)
@@ -67,13 +68,21 @@ class AddCatchuVC: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(bottomButton.snp.top)
         }
+        
+        secondFlowView.snp.makeConstraints { make in
+            make.top.equalTo(pageControl.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(bottomButton.snp.top)
+        }
     }
     
     private func configUI() {
         view.backgroundColor = .black
         
         pageControl.pages = 3
+        
         backButton.isHidden = true
+        secondFlowView.isHidden = true
     }
     
     private func setupButtonAction() {
@@ -109,13 +118,19 @@ class AddCatchuVC: UIViewController {
         switch currentFlow {
         case Flow.select.rawValue:
             firstFlowView.isHidden = false
+            secondFlowView.isHidden = true
+            
             bottomButton.changeBottomButtonTitle(title: "잡았다!")
         case Flow.naming.rawValue:
             firstFlowView.isHidden = true
+            secondFlowView.isHidden = false
+            
+            secondFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
             bottomButton.changeBottomButtonTitle(title: "너로 정했다!")
             /// textField에 따라서 isEnable 변경
         case Flow.complete.rawValue:
             firstFlowView.isHidden = true
+            secondFlowView.isHidden = true
             bottomButton.changeBottomButtonTitle(title: "탄생!")
         default: break
         }

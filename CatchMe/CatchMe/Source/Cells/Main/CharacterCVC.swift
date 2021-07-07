@@ -1,5 +1,5 @@
 //
-//  characterCVC.swift
+//  CharacterCVC.swift
 //  CatchMe
 //
 //  Created by 양수빈 on 2021/07/04.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class characterCVC: UICollectionViewCell {
-    static let identifier = "characterCVC"
+class CharacterCVC: UICollectionViewCell {
+    static let identifier = "CharacterCVC"
     
     // MARK: - IBOutlet
     @IBOutlet weak var characterImage: UIImageView!

@@ -7,23 +7,49 @@
 
 import UIKit
 
-class SettingVC: UIViewController {
+import SnapKit
 
+class SettingVC: UIViewController {
+    //MARK: - Properties
+    lazy var backButton = BackButton(self)
+    let titleLabel = UILabel()
+
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupLayout()
+        configUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Custom Method
+    func setupLayout() {
+        view.addSubviews([backButton, titleLabel])
+        
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(55)
+            make.leading.equalTo(view.snp.leading).offset(14)
+            make.width.height.equalTo(48)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(66)
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(backButton.snp.centerY)
+        }
     }
-    */
+    
+    func configUI() {
+        view.backgroundColor = .black100
+        
+        backButton.backgroundColor = .blue100
+        
+        titleLabel.text = "설정"
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.stringBoldSystemFont(ofSize: 20)
+    }
+    
+    func setupTableView() {
+        
+    }
 
 }

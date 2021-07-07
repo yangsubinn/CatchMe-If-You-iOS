@@ -30,11 +30,7 @@ class ReportPopupVC: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(UIScreen.main.bounds.size.height * 0.2)
             make.centerX.equalToSuperview()
             make.width.equalTo(280 * (UIScreen.main.bounds.size.width / 375))
-            if height == 1 {
-                make.height.equalTo(415)
-            } else {
-                make.height.equalTo((415 * height) * 0.85)
-            }
+            make.height.equalTo(height == 1 ? 415 : (415 * height) * 0.85)
         }
     }
 }

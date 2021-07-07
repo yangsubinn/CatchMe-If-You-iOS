@@ -87,22 +87,13 @@ class ReportVC: UIViewController {
         }
         
         backButton.snp.makeConstraints { make in
-            if UIScreen.main.hasNotch {
-                make.top.equalToSuperview().inset(55)
-                make.leading.equalToSuperview().inset(14)
-            } else {
-                make.top.equalToSuperview().inset(41)
-                make.leading.equalToSuperview().inset(3)
-            }
+            make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 55 : 41)
+            make.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 14 : 3)
         }
         
         calendarTitleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            if UIScreen.main.hasNotch {
-                make.top.equalTo(reportView.snp.bottom).offset(37)
-            } else {
-                make.top.equalTo(reportView.snp.bottom).offset(11)
-            }
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 37 : 11)
         }
         
         previousButton.snp.makeConstraints { make in
@@ -119,22 +110,13 @@ class ReportVC: UIViewController {
         
         weekdayCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            if UIScreen.main.hasNotch {
-                make.top.equalTo(calendarTitleView.snp.bottom).offset(14)
-                make.height.equalTo(43)
-            } else {
-                make.top.equalTo(calendarTitleView.snp.bottom).offset(11)
-                make.height.equalTo(34)
-            }
+            make.top.equalTo(calendarTitleView.snp.bottom).offset(UIScreen.main.hasNotch ? 14 : 11)
+            make.height.equalTo(UIScreen.main.hasNotch ? 43 : 34)
         }
         
         dateCollectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            if UIScreen.main.hasNotch {
-                make.top.equalTo(weekdayCollectionView.snp.bottom).offset(8)
-            } else {
-                make.top.equalTo(weekdayCollectionView.snp.bottom)
-            }
+            make.top.equalTo(weekdayCollectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 8 : 0)
         }
     }
     
@@ -282,25 +264,14 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let boundSize = UIScreen.main.bounds.size.width - 32 - 24
         var cellSize = 0
-        var height = 0
         
         switch collectionView {
         case weekdayCollectionView:
             cellSize = Int(boundSize / 7)
-            if UIScreen.main.hasNotch {
-                height = 43
-            } else {
-                height = 34
-            }
-            return CGSize(width: cellSize, height: height)
+            return CGSize(width: cellSize, height: UIScreen.main.hasNotch ? 43 : 34)
         default:
             cellSize = Int(boundSize / 7)
-            if UIScreen.main.hasNotch {
-                height = 51
-            } else {
-                height = 48
-            }
-            return CGSize(width: cellSize, height: height)
+            return CGSize(width: cellSize, height: UIScreen.main.hasNotch ? 51 : 48)
         }
     }
     
@@ -309,10 +280,7 @@ extension ReportVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if UIScreen.main.hasNotch {
-            return 3
-        }
-        return 0
+        return UIScreen.main.hasNotch ? 3 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -31,24 +31,14 @@ class ReportView: UIView {
         addSubviews([titleView, characterView])
         
         characterView.snp.makeConstraints { make in
-            if UIScreen.main.hasNotch {
-                make.bottom.equalToSuperview().inset(31)
-                make.leading.trailing.equalToSuperview().inset(28)
-            } else {
-                make.bottom.equalToSuperview().inset(21)
-                make.leading.trailing.equalToSuperview().inset(20)
-            }
+            make.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 31 : 21)
+            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
             make.height.equalTo(136)
         }
         
         titleView.snp.makeConstraints { make in
-            if UIScreen.main.hasNotch {
-                make.trailing.equalToSuperview().inset(28)
-                make.bottom.equalToSuperview().inset(188)
-            } else {
-                make.trailing.equalToSuperview().inset(20)
-                make.bottom.equalToSuperview().inset(172)
-            }
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
+            make.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 188 : 172)
             make.height.equalTo(52)
         }
     }

@@ -21,6 +21,7 @@
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
 		ED63E889268A14E7000F058F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63E888268A14E7000F058F /* Assets.xcassets */; };
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
+		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCA26930C4600443077 /* TitleView.swift */; };
 		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
 		EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */; };
@@ -37,6 +38,8 @@
 		EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC8002694481A00CDF1B2 /* PopupView.swift */; };
 		EDBDC803269456A800CDF1B2 /* CatchuCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC802269456A800CDF1B2 /* CatchuCVC.swift */; };
 		EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */; };
+		EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC8072695816100CDF1B2 /* AddCatchuPageControl.swift */; };
+		EDBDC80A269585F800CDF1B2 /* CatchuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -84,6 +87,7 @@
 		ED63E888268A14E7000F058F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63E88B268A14E7000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDBBFCCA26930C4600443077 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitleView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		EDBDC8002694481A00CDF1B2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		EDBDC802269456A800CDF1B2 /* CatchuCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchuCVC.swift; sourceTree = "<group>"; };
 		EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatchuVC.swift; sourceTree = "<group>"; };
+		EDBDC8072695816100CDF1B2 /* AddCatchuPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatchuPageControl.swift; sourceTree = "<group>"; };
+		EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchuTitleView.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -332,6 +338,7 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EDBDC8062695814100CDF1B2 /* AddCatchu */,
 				EDC3780A2691D393007C53F2 /* Report */,
 				2B3654F22691DFD3002C2C5C /* Main */,
 				5B08506E2691DFC4008F40B2 /* Character */,
@@ -367,6 +374,16 @@
 				EDBBFCD62693981C00443077 /* SpoqaHanSansNeo-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EDBDC8062695814100CDF1B2 /* AddCatchu */ = {
+			isa = PBXGroup;
+			children = (
+				EDBDC8072695816100CDF1B2 /* AddCatchuPageControl.swift */,
+				EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */,
+				EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */,
+			);
+			path = AddCatchu;
 			sourceTree = "<group>";
 		};
 		EDC3780A2691D393007C53F2 /* Report */ = {
@@ -558,9 +575,11 @@
 				EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
+				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
 				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
+				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
@@ -576,6 +595,7 @@
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
 				EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */,
+				EDBDC80A269585F800CDF1B2 /* CatchuTitleView.swift in Sources */,
 				EDBDC803269456A800CDF1B2 /* CatchuCVC.swift in Sources */,
 				2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,

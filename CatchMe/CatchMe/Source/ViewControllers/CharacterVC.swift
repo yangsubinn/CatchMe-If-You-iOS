@@ -11,18 +11,26 @@ import Then
 import SnapKit
 
 class CharacterVC: UIViewController {
-    // MARK: - Properties
+    // MARK: - Lazy Properties
     lazy var naviBar = NavigationBar(vc: self)
+
+    // MARK: - Properties
+    let vc = CharacterPopupVC()
     let upperView = CharacterUpperView()
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let moreMenuView = MoreMenuView()
-    let vc = CharacterPopupVC()
     let reportCell = CharacterReportTVC()
     
     let catchGuideImageView = UIImageView().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
+//      $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .purple
     }
+    
+    var posts = [Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕")]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -137,18 +145,16 @@ extension CharacterVC: UITableViewDelegate {
             UIView.animate(withDuration: 0.03) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
                 self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 203)
-                
+
                 // 헤더 부분 높이
                 self.upperView.snp.updateConstraints { make in
                     make.height.equalTo(171)
                 }
-                
                 // 핑크색 배경
                 self.upperView.backgroundView.snp.updateConstraints { make in
                     make.width.equalTo(self.upperView.backgroundView.bounds.height)
                     make.height.equalTo(self.upperView.backgroundView.bounds.height)
                 }
-                
                 // 핑크색 둥글기
                 self.upperView.backgroundView.layer.cornerRadius = backgroundWidth / 2
             }
@@ -157,17 +163,15 @@ extension CharacterVC: UITableViewDelegate {
                 self.upperView.characterImageView.transform = .identity
                 self.upperView.backgroundView.transform = .identity
                 self.upperView.transform = .identity
-                
+
                 // 헤더 부분 높이
                 self.upperView.snp.updateConstraints { make in
                     make.height.equalTo(width-offset)
                 }
-                
                 // 캐릭터 상단 constraint
                 self.upperView.characterImageView.snp.updateConstraints { make in
                     make.top.equalTo(158)
                 }
-                
                 // 핑크색 둥글기
                 self.upperView.backgroundView.layer.cornerRadius = 0
             }
@@ -180,9 +184,13 @@ extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1 + 10
+            if posts.isEmpty == true {
+                return 1 + 1
+            } else {
+                return 1 + posts.count
+            }
         default:
-            return 0
+            return Int()
         }
     }
     
@@ -197,9 +205,14 @@ extension CharacterVC: UITableViewDataSource {
                 return reportCell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
-                cell.setupAutoLayout()
                 cell.selectionStyle = .none
-                cell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+                if posts.count == 0 {
+                    cell.emptySetupLayout()
+                } else {
+                    cell.setupAutoLayout()
+                    cell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
+                    cell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+                }
                 return cell
             }
         default:

@@ -14,6 +14,22 @@ class CharacterTVC: UITableViewCell {
     static let identifier = "CharacterTVC"
 
     // MARK: - Properties
+    let emptyStateImageView = UIImageView().then {
+//        $0.image = UIImage(named: "icPin")
+        $0.backgroundColor = .gray
+    }
+    
+    let emptyStateLabel = UILabel().then {
+        $0.text = "아직 캐츄의 활동이 없어요"
+        $0.font = .stringRegularSystemFont(ofSize: 18)
+        $0.textColor = .gray200
+        $0.textAlignment = .center
+    }
+    
+    let dummyView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
     let pinImageView = UIImageView().then {
 //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .orange
@@ -141,6 +157,24 @@ class CharacterTVC: UITableViewCell {
         photoImageView.snp.makeConstraints { make in
             make.width.equalTo(303)
             make.height.equalTo(228)
+        }
+    }
+    
+    func emptySetupLayout() {
+        backgroundColor = .black
+        
+        addSubviews([emptyStateImageView, emptyStateLabel])
+        
+        emptyStateImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(40)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(175)
+            make.height.equalTo(102)
+        }
+        
+        emptyStateLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyStateImageView.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
         }
     }
     

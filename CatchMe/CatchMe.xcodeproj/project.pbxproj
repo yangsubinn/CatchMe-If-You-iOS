@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B164B492695A988007F0F4A /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B164B482695A988007F0F4A /* SettingVC.swift */; };
+		2B164B4F2695AA77007F0F4A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B164B4E2695AA77007F0F4A /* Setting.storyboard */; };
 		2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */; };
 		2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */; };
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
@@ -71,6 +73,8 @@
 
 /* Begin PBXFileReference section */
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
+		2B164B482695A988007F0F4A /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		2B164B4E2695AA77007F0F4A /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCVC.swift; sourceTree = "<group>"; };
 		2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCVC.xib; sourceTree = "<group>"; };
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
@@ -154,6 +158,20 @@
 				25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		2B164B4C2695A99F007F0F4A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		2B164B4D2695AA31007F0F4A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		2B3654DE2691ABF6002C2C5C /* Main */ = {
@@ -288,6 +306,7 @@
 				EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */,
 				EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */,
 				2BDC1AAF26942973008381C3 /* MainCardVC.swift */,
+				2B164B482695A988007F0F4A /* SettingVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -299,6 +318,7 @@
 				EDD12C9B268EB6E900DF766A /* Main.storyboard */,
 				EDD12CA1268EB7C700DF766A /* Character.storyboard */,
 				EDD12CA5268EB82B00DF766A /* Report.storyboard */,
+				2B164B4E2695AA77007F0F4A /* Setting.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -315,6 +335,7 @@
 		ED63E899268A1C4A000F058F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B164B4C2695A99F007F0F4A /* Setting */,
 				2BDC1AB7269466AA008381C3 /* MainCard */,
 				EDBBFCD026936F1D00443077 /* Report */,
 				2B3654DE2691ABF6002C2C5C /* Main */,
@@ -357,6 +378,7 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2B164B4D2695AA31007F0F4A /* Setting */,
 				EDC3780A2691D393007C53F2 /* Report */,
 				2B3654F22691DFD3002C2C5C /* Main */,
 				5B08506E2691DFC4008F40B2 /* Character */,
@@ -516,6 +538,7 @@
 				EDBBFCDE2693981D00443077 /* NanumSquareRoundOTFEB.otf in Resources */,
 				2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */,
 				ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */,
+				2B164B4F2695AA77007F0F4A /* Setting.storyboard in Resources */,
 				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
@@ -580,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
+				2B164B492695A988007F0F4A /* SettingVC.swift in Sources */,
 				EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */,
 				EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,

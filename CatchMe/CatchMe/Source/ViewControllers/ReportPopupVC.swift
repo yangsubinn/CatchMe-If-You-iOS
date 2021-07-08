@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class ReportPopupVC: UIViewController {
     // MARK: - lazy Properties
     lazy var popupView = PopupView(date: date ?? "", vc: self)

@@ -1,8 +1,8 @@
 //
-//  CharacterTVC.swift
+//  CharacterFirstTVC.swift
 //  CatchMe
 //
-//  Created by Thisisme Hi on 2021/07/04.
+//  Created by Thisisme Hi on 2021/07/08.
 //
 
 import UIKit
@@ -10,8 +10,8 @@ import UIKit
 import Then
 import SnapKit
 
-class CharacterTVC: UITableViewCell {
-    static let identifier = "CharacterTVC"
+class CharacterFirstTVC: UITableViewCell {
+    static let identifier = "CharacterFirstTVC"
 
     // MARK: - Properties
     let emptyStateImageView = UIImageView().then {
@@ -29,10 +29,6 @@ class CharacterTVC: UITableViewCell {
     let pinImageView = UIImageView().then {
 //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .orange
-    }
-    
-    let lineTopView = UIView().then {
-        $0.backgroundColor = .white10
     }
     
     let lineView = UIView().then {
@@ -106,18 +102,11 @@ class CharacterTVC: UITableViewCell {
     func setupAutoLayout() {
         backgroundColor = .black
       
-        addSubviews([lineTopView, lineView, pinImageView,
+        addSubviews([lineView, pinImageView,
                      dateLabel, contentStackView, moreButton, moreMenuView])
         commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
-        
-        lineTopView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalTo(self.snp.leading).inset(28)
-            make.bottom.equalTo(pinImageView.snp.top)
-            make.width.equalTo(1)
-        }
         
         pinImageView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(36)
@@ -167,7 +156,7 @@ class CharacterTVC: UITableViewCell {
             make.height.equalTo(228)
         }
     }
-
+    
     func emptySetupLayout() {
         backgroundColor = .black
         

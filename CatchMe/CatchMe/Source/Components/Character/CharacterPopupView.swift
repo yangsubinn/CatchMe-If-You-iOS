@@ -26,7 +26,7 @@ class CharacterPopupView: UIView {
     }
     
     let cancelButton = UIButton().then {
-        $0.backgroundColor = .gray300
+        $0.backgroundColor = .clear
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.white, for: .normal)

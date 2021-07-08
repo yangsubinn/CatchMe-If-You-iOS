@@ -26,11 +26,11 @@ class CharacterVC: UIViewController {
         $0.backgroundColor = .purple
     }
     
-    var posts = [Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
+    var posts = [Activity(date: "2021.05.01", comment: "캐치미사랑해?", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "위얼 줌보걸즈 위얼 줌보걸즈 위얼 줌보걸즈", image: "왕"),
                  Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕")]
+                 Activity(date: "2021.05.01", comment: "왜 다를까? 킹이 받아용 왜 다를까? 킹이 받아용 왜 다를까? 킹이 받아용", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "캐치미 너무 너무 조아욜~! 뷰가 킹받는데.. 오카징. 재사용 나가!", image: "왕")]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -49,6 +49,7 @@ class CharacterVC: UIViewController {
         mainTableView.dataSource = self
         
         mainTableView.register(CharacterReportTVC.self, forCellReuseIdentifier: "CharacterReportTVC")
+        mainTableView.register(CharacterFirstTVC.self, forCellReuseIdentifier: "CharacterFirstTVC")
         mainTableView.register(CharacterTVC.self, forCellReuseIdentifier: "CharacterTVC")
         
         mainTableView.separatorStyle = .none
@@ -185,9 +186,9 @@ extension CharacterVC: UITableViewDataSource {
         switch section {
         case 0:
             if posts.isEmpty == true {
-                return 1 + 1
+                return 1 + 1 // reportCell + emptySetupLayout인 경우 emptyState 때문에 무조건 줘야 하는 것
             } else {
-                return 1 + posts.count
+                return 1 + posts.count // reportCell + empty가 아닌 경우
             }
         default:
             return Int()
@@ -199,21 +200,36 @@ extension CharacterVC: UITableViewDataSource {
         case 0:
             if indexPath.row == 0 {
                 guard let reportCell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC else { return UITableViewCell() }
-                reportCell.setupAutoLayout()
                 reportCell.selectionStyle = .none
+                reportCell.setupAutoLayout()
                 reportCell.catchGuideButton.addTarget(self, action: #selector(touchupCatchGuidebutton(_:)), for: .touchUpInside)
                 return reportCell
-            } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
-                cell.selectionStyle = .none
+        
+            } else if indexPath.row == 1 { // 첫 번째 lineView가 안 붙여져 있는 cell
+                guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC else { return UITableViewCell() }
+                firstCell.selectionStyle = .none
+
                 if posts.count == 0 {
-                    cell.emptySetupLayout()
+                    firstCell.emptySetupLayout()
                 } else {
-                    cell.setupAutoLayout()
-                    cell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
-                    cell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+                    firstCell.setupAutoLayout()
+                    firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
+                    firstCell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
                 }
-                return cell
+                return firstCell
+                
+            } else { // 두 번째부터 lineView가 붙여져 있는 cell
+                guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
+                restCell.selectionStyle = .none
+
+                if posts.count == 0 {
+                    restCell.emptySetupLayout()
+                } else {
+                    restCell.setupAutoLayout()
+                    restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
+                    restCell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+                }
+                return restCell
             }
         default:
             return UITableViewCell()

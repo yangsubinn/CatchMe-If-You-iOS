@@ -50,7 +50,6 @@ class SettingVC: UIViewController {
     
     func configUI() {
         view.backgroundColor = .black100
-        
         backButton.backgroundColor = .blue100
         
         titleLabel.text = "설정"

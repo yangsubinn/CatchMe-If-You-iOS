@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class SettingTVC: UITableViewCell {
     static let identifier = "SettingTVC"
     

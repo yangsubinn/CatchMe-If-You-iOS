@@ -67,6 +67,8 @@
 		EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CAF268EBE1600DF766A /* UITextField+Extension.swift */; };
 		EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CB1268EBE4E00DF766A /* UICollectionView+Extension.swift */; };
 		EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */; };
+		EDD262C7269771AD00845F7B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDD262C6269771AD00845F7B /* Login.storyboard */; };
+		EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD262C8269771BD00845F7B /* LoginVC.swift */; };
 		EDF1AD28268C608E00606006 /* CatchMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1AD27268C608E00606006 /* CatchMeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +146,8 @@
 		EDD12CAF268EBE1600DF766A /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		EDD12CB1268EBE4E00DF766A /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		EDD262C6269771AD00845F7B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		EDD262C8269771BD00845F7B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		EDF1AD25268C608E00606006 /* CatchMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF1AD27268C608E00606006 /* CatchMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchMeTests.swift; sourceTree = "<group>"; };
 		EDF1AD29268C608E00606006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */,
 				2BDC1AAF26942973008381C3 /* MainCardVC.swift */,
 				2B164B482695A988007F0F4A /* SettingVC.swift */,
+				EDD262C8269771BD00845F7B /* LoginVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				EDD12CA1268EB7C700DF766A /* Character.storyboard */,
 				EDD12CA5268EB82B00DF766A /* Report.storyboard */,
 				2B164B4E2695AA77007F0F4A /* Setting.storyboard */,
+				EDD262C6269771AD00845F7B /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDD262C7269771AD00845F7B /* Login.storyboard in Resources */,
 				EDBBFCE02693981D00443077 /* DINPro-Regular.otf in Resources */,
 				2BDC1ABC26946882008381C3 /* MainCardCVC.xib in Resources */,
 				EDD12CA2268EB7C700DF766A /* Character.storyboard in Resources */,
@@ -668,6 +675,7 @@
 				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
+				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,

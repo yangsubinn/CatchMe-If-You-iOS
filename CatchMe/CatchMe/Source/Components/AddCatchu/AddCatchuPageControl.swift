@@ -8,11 +8,13 @@
 import UIKit
 
 class AddCatchuPageControl: UIView {
+    // MARK: - Properties
     var pages: Int = 0 {
         didSet {
             setNeedsDisplay()
         }
     }
+    
     var selectedPage: Int = 0 {
         didSet {
             setNeedsDisplay()
@@ -34,6 +36,8 @@ class AddCatchuPageControl: UIView {
     private let dotSize: CGFloat = 6
     private let spacing: CGFloat = 6
     
+    
+    // MARK: - Life Cycle
     init() {
         super.init(frame: .zero)
         isOpaque = false
@@ -43,6 +47,7 @@ class AddCatchuPageControl: UIView {
         fatalError("Unsupported")
     }
     
+    // MARK: - draw
     override func draw(_ rect: CGRect) {
         (0..<pages).forEach { page in
             (page == selectedPage ? selectedColor : dotColor).setFill()

@@ -18,6 +18,7 @@ class FirstFlowView: UIView {
     let titleView = CatchuTitleView(title: "새로운 캐츄를 잡아볼까요?", subTitle: "내 모습을 가장 잘 보여주는 캐츄를 골라주세요")
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     let cellSize = CGSize(width: 150, height: 150)
+    
     var minItemSpacing: CGFloat = 25
     var previousIndex = 0
     
@@ -61,12 +62,13 @@ class FirstFlowView: UIView {
         
         catchuCollectionView.backgroundColor = .clear
         catchuCollectionView.contentInsetAdjustmentBehavior = .never
-        let cellWidth: CGFloat = floor(cellSize.width)
-        let insetX = (UIScreen.main.bounds.size.width - cellWidth) / 2.0
-        catchuCollectionView.contentInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
         catchuCollectionView.decelerationRate = .fast
         catchuCollectionView.contentInsetAdjustmentBehavior = .never
         catchuCollectionView.showsHorizontalScrollIndicator = false
+        
+        let cellWidth: CGFloat = floor(cellSize.width)
+        let insetX = (UIScreen.main.bounds.size.width - cellWidth) / 2.0
+        catchuCollectionView.contentInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
         
         DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute: {
             let indexPath = IndexPath(item: 0, section: 0)
@@ -95,12 +97,12 @@ extension FirstFlowView: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension FirstFlowView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return minItemSpacing
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return minItemSpacing
     }
 }
 
@@ -109,7 +111,6 @@ extension FirstFlowView: UICollectionViewDelegate {
     /// paging effect
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let cellWidthIncludeSpacing = cellSize.width + minItemSpacing
-        
         var offset = targetContentOffset.pointee
         let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludeSpacing
         let roundedIndex: CGFloat = round(index)
@@ -138,24 +139,22 @@ extension FirstFlowView: UICollectionViewDelegate {
         }
     }
     
-    func animateZoomforCell(zoomCell: UICollectionViewCell) {
-       let anim = CATransform3DTranslate(CATransform3DIdentity, 0, -35, 0.5)
-       UIView.animate(
-           withDuration: 0.2,
-           delay: 0,
-           options: .curveEaseOut,
-           animations: {
-               zoomCell.transform3D = anim
-       }, completion: nil)
+    private func animateZoomforCell(zoomCell: UICollectionViewCell) {
+       let animation = CATransform3DTranslate(CATransform3DIdentity, 0, -35, 0.5)
+       UIView.animate(withDuration: 0.2,
+                      delay: 0,
+                      options: .curveEaseOut,
+                      animations: {
+                        zoomCell.transform3D = animation
+                      }, completion: nil)
     }
    
-    func animateZoomforCellremove(zoomCell: UICollectionViewCell) {
-       UIView.animate(
-           withDuration: 0.2,
-           delay: 0,
-           options: .curveEaseOut,
-           animations: {
-               zoomCell.transform3D = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1)
-       }, completion: nil)
+    private func animateZoomforCellremove(zoomCell: UICollectionViewCell) {
+       UIView.animate(withDuration: 0.2,
+                      delay: 0,
+                      options: .curveEaseOut,
+                      animations: {
+                        zoomCell.transform3D = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1)
+                      }, completion: nil)
     }
 }

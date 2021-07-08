@@ -61,8 +61,8 @@ class AddCatchuVC: UIViewController {
         }
         
         bottomButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(50)
             make.leading.trailing.equalToSuperview().inset(28)
+            make.bottom.equalToSuperview().inset(50)
         }
         
         firstFlowView.snp.makeConstraints { make in
@@ -116,6 +116,31 @@ class AddCatchuVC: UIViewController {
         bottomButton.addAction(nextAction, for: .touchUpInside)
     }
     
+    // MARK: - @objc
+    @objc
+    override func dismissKeyboard() {
+        view.endEditing(true)
+        
+        if currentFlow == Flow.naming.rawValue {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.secondFlowView.characterImageView.transform = .identity
+                self.secondFlowView.textField.transform = .identity
+                self.secondFlowView.countLabel.transform = .identity
+            })
+            
+            if secondFlowView.textField.hasText {
+                bottomButton.isEnabled = true
+                bottomButton.changeBottomButton(isEnable: true)
+            } else {
+                bottomButton.isEnabled = false
+                bottomButton.changeBottomButton(isEnable: false)
+            }
+        }
+    }
+}
+
+// MARK: - Helper
+extension AddCatchuVC {
     private func changeBackButtonState() {
         switch currentFlow {
         case Flow.select.rawValue:
@@ -136,24 +161,25 @@ class AddCatchuVC: UIViewController {
     private func changeFlowViewState() {
         switch currentFlow {
         case Flow.select.rawValue:
-            /// 뷰 hidden
+            /// FlowView hidden
             firstFlowView.isHidden = false
             secondFlowView.isHidden = true
             thirdFlowView.isHidden = true
             
-            /// bottombutton Change
+            /// BottomButton Change
             bottomButton.isEnabled = true
             bottomButton.changeBottomButton(isEnable: true)
             bottomButton.changeBottomButtonTitle(title: "잡았다!")
         case Flow.naming.rawValue:
-            /// 뷰 hidden
+            /// FlowView hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = false
             thirdFlowView.isHidden = true
             
+            /// View Setting
             secondFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
             
-            /// bottombutton Change
+            /// BottomButton Change
             bottomButton.changeBottomButtonTitle(title: "너로 정했다!")
             if secondFlowView.textField.hasText {
                 bottomButton.isEnabled = true
@@ -163,39 +189,19 @@ class AddCatchuVC: UIViewController {
                 bottomButton.changeBottomButton(isEnable: false)
             }
         case Flow.complete.rawValue:
-            /// 뷰 hidden
+            /// FlowView hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = true
             thirdFlowView.isHidden = false
             
+            /// View Setting
             thirdFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
             thirdFlowView.setCharacterName(name: secondFlowView.textField.text ?? "")
             
-            /// bottombutton Change
+            /// BottomButton Change
             bottomButton.changeBottomButtonTitle(title: "탄생!")
-        default: break
-        }
-    }
-    
-    // MARK: - @objc
-    @objc
-    override func dismissKeyboard() {
-        view.endEditing(true)
-        
-        if currentFlow == 2 {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.secondFlowView.characterImageView.transform = .identity
-                self.secondFlowView.textField.transform = .identity
-                self.secondFlowView.countLabel.transform = .identity
-            })
-            
-            if secondFlowView.textField.hasText {
-                bottomButton.isEnabled = true
-                bottomButton.changeBottomButton(isEnable: true)
-            } else {
-                bottomButton.isEnabled = false
-                bottomButton.changeBottomButton(isEnable: false)
-            }
+        default:
+            break
         }
     }
 }

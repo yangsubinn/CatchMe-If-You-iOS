@@ -11,7 +11,6 @@ import SnapKit
 
 class CustomTextField: UITextField {
 
-    // MARK: - Life Cycle
     init(placeholder: String) {
         super.init(frame: .zero)
         setupLayout()
@@ -23,7 +22,6 @@ class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Custom Method
     private func setupLayout() {
         self.snp.makeConstraints { make in
             make.height.equalTo(48)
@@ -32,24 +30,26 @@ class CustomTextField: UITextField {
     
     private func configUI(placeholder: String) {
         backgroundColor = .black200
+        textColor = .white
         
         layer.cornerRadius = 13
         layer.borderWidth = 1
         layer.borderColor = UIColor.clear.cgColor
         
         attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray400])
-        textColor = .white
         font = .systemFont(ofSize: 16, weight: .medium)
+        
         setLeftPaddingPoints(17)
     }
     
     private func removeAuto() {
-        self.autocorrectionType = .no
-        self.autocapitalizationType = .none
-        self.spellCheckingType = .no
-        self.textContentType = .none
+        autocorrectionType = .no
+        autocapitalizationType = .none
+        spellCheckingType = .no
+        textContentType = .none
     }
     
+    // MARK: - TextField Action
     func setupOriginalLine() {
         layer.borderColor = UIColor.clear.cgColor
     }

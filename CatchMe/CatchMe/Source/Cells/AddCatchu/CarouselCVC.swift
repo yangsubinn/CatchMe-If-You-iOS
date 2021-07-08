@@ -19,7 +19,7 @@ class CarouselCVC: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Custom Methods
+    // MARK: - Custom Method
     /// asset 넣기 전까지 dummy Color
     func setupCharacter(color: UIColor) {
         backgroundColor = color

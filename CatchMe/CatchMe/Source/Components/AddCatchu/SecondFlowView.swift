@@ -12,18 +12,18 @@ import SnapKit
 class SecondFlowView: UIView {
     // MARK: - Properties
     let titleView = CatchuTitleView(title: "하나뿐인 내 캐츄의 이름은?", subTitle: "나의 캐츄를 대표할 이름을 지어주세요")
-    let characterImageView = UIImageView(image: UIImage(named: ""))
+    let characterImageView = UIImageView()
     let textField = CustomTextField(placeholder: "캐츄 이름 입력")
     let recommendLabel = UILabel()
     let countLabel = UILabel()
     
     var textCount = 0
+    var randomIndex = Int.random(in: 0...5)
+    let recommends: [String] = ["‘___없이 못사는 ___러버’", "‘___랑 함께사는 ___집사’", "‘___만 먹는 ___중독자’", "‘___를 하루종일 하는 ___러버’", "‘___이 너무 재밌는 ___처돌이’", "‘당장 ___하고픈 ___중독자’"]
     
     // MARK: - Dummy Data
     /// 후에 enum으로 사용하면 편리할 듯 -> 아니면 public하게 전체적으로 사용할 수 있도록 만들기
     let colors: [UIColor] = [.systemRed, .systemBlue, .systemPink, .systemTeal, .systemGray, .systemGreen, .systemOrange, .systemYellow, .systemPurple, .systemIndigo]
-    let recommends: [String] = ["‘___없이 못사는 ___러버’", "‘___랑 함께사는 ___집사’", "‘___만 먹는 ___중독자’", "‘___를 하루종일 하는 ___러버’", "‘___이 너무 재밌는 ___처돌이’", "‘당장 ___하고픈 ___중독자’"]
-    var randomIndex = Int.random(in: 0...5)
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -83,6 +83,8 @@ class SecondFlowView: UIView {
         countLabel.text = "\(textCount)/20"
     }
     
+    // MARK: - external use function
+    /// asset 넣기 전까지 dummy Color
     func setImageViewColor(selectedIndex: Int) {
         characterImageView.backgroundColor = colors[selectedIndex]
     }
@@ -92,21 +94,21 @@ class SecondFlowView: UIView {
 extension SecondFlowView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
-        
         self.textField.setupPinkLine()
+        
+        recommendLabel.isHidden = true
+        countLabel.isHidden = false
         
         UIView.animate(withDuration: 0.2, animations: {
             self.characterImageView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -74 : -50)
             textField.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -122 : -65)
             self.countLabel.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -122 : -65)
         })
-        
-        recommendLabel.isHidden = true
-        countLabel.isHidden = false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.textField.setupOriginalLine()
+        
         if !textField.hasText {
             recommendLabel.isHidden = false
             countLabel.isHidden = true

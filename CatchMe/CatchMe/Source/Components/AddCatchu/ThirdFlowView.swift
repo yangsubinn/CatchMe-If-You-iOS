@@ -12,8 +12,8 @@ import SnapKit
 class ThirdFlowView: UIView {
     // MARK: - Properties
     let titleView = CatchuTitleView(title: "새로운 캐츄가 태어났어요!", subTitle: "내 안에 방금 생겨난 캐츄를 확인하세요")
-    let characterImageView = UIImageView(image: UIImage(named: ""))
-    let backgroundImageView = UIImageView(image: UIImage(named: ""))
+    let characterImageView = UIImageView()
+    let backgroundImageView = UIImageView()
     let nameLabel = UILabel()
     let lockLabel = UILabel()
     let lockButton = UIButton()
@@ -101,6 +101,8 @@ class ThirdFlowView: UIView {
         lockButton.addAction(lockAction, for: .touchUpInside)
     }
     
+    // MARK: - external use function
+    /// asset 넣기 전까지 dummy Color
     func setImageViewColor(selectedIndex: Int) {
         characterImageView.backgroundColor = colors[selectedIndex]
     }

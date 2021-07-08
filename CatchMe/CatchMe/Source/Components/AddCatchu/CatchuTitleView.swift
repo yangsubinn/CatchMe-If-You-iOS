@@ -43,7 +43,7 @@ class CatchuTitleView: UIView {
         }
     }
     
-    // MARK: - Custom Methods
+    // MARK: - Custom Method
     private func configUI(title: String, subTitle: String) {
         addSubviews([titleLabel, subTitleLabel])
         

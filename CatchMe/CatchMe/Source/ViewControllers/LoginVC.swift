@@ -7,23 +7,32 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+import SnapKit
 
+class LoginVC: UIViewController {
+    // MARK: - Properties
+    let logoImageView = UIImageView()
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupLayout()
+        configUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Custom Method
+    private func setupLayout() {
+        view.addSubviews([logoImageView, ])
+        
+        logoImageView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(91)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(100)
+            make.width.equalTo(282)
+        }
     }
-    */
-
+    
+    private func configUI() {
+        logoImageView.backgroundColor = .systemTeal
+    }
 }

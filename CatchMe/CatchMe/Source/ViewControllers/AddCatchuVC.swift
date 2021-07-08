@@ -120,8 +120,14 @@ class AddCatchuVC: UIViewController {
         switch currentFlow {
         case Flow.select.rawValue:
             backButton.isHidden = true
+            
             secondFlowView.textField.text = ""
             secondFlowView.countLabel.text = "0/20"
+        case Flow.naming.rawValue:
+            backButton.isHidden = false
+            
+            thirdFlowView.isLock = false
+            thirdFlowView.lockButton.backgroundColor = .systemPink
         default:
             backButton.isHidden = false
         }
@@ -136,16 +142,18 @@ class AddCatchuVC: UIViewController {
             thirdFlowView.isHidden = true
             
             /// bottombutton Change
-            bottomButton.changeBottomButtonTitle(title: "잡았다!")
+            bottomButton.isEnabled = true
             bottomButton.changeBottomButton(isEnable: true)
+            bottomButton.changeBottomButtonTitle(title: "잡았다!")
         case Flow.naming.rawValue:
             /// 뷰 hidden
             firstFlowView.isHidden = true
             secondFlowView.isHidden = false
             thirdFlowView.isHidden = true
             
-            /// bottombutton Change
             secondFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
+            
+            /// bottombutton Change
             bottomButton.changeBottomButtonTitle(title: "너로 정했다!")
             if secondFlowView.textField.hasText {
                 bottomButton.isEnabled = true
@@ -159,6 +167,9 @@ class AddCatchuVC: UIViewController {
             firstFlowView.isHidden = true
             secondFlowView.isHidden = true
             thirdFlowView.isHidden = false
+            
+            thirdFlowView.setImageViewColor(selectedIndex: firstFlowView.previousIndex)
+            thirdFlowView.setCharacterName(name: secondFlowView.textField.text ?? "")
             
             /// bottombutton Change
             bottomButton.changeBottomButtonTitle(title: "탄생!")

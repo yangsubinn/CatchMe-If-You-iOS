@@ -25,7 +25,7 @@ class TextFieldView: UIView {
     var logoImageView = UIImageView()
     var isAuto = true
     
-    // MARK: - Dummy Date
+    // MARK: - Dummy Data
     let id = "tlsdbsdk0525"
     let pw = "catchme"
 
@@ -170,6 +170,15 @@ class TextFieldView: UIView {
                     self.passwordMessageLabel.isHidden = false
                 } else {
                     /// 로그인 성공 로직
+                    self.emailMessageLabel.isHidden = true
+                    self.passwordMessageLabel.isHidden = true
+                    
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.transform = .identity
+                    })
+                    
+                    self.logoImageView.fadeIn()
+                    self.passwordTextField.resignFirstResponder()
                 }
             }
         }
@@ -177,6 +186,7 @@ class TextFieldView: UIView {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension TextFieldView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2, animations: {
@@ -227,6 +237,7 @@ extension TextFieldView: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         default:
             passwordTextField.resignFirstResponder()
+            logoImageView.fadeIn()
         }
         
         return true

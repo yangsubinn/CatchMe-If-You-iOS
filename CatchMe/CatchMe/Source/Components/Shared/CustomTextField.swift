@@ -19,10 +19,10 @@ class CustomTextField: UITextField {
         $0.backgroundColor = .gray
     }
 
-    init(placeholder: String, isAddCatchu: Bool? = false) {
+    init(placeholder: String, isAddCatchu: Bool? = false, small: Bool? = false) {
         super.init(frame: .zero)
-        setupLayout(isAddCatchu ?? false)
-        configUI(placeholder: placeholder, isAddCatchu ?? false)
+        setupLayout(small ?? false)
+        configUI(placeholder: placeholder, isAddCatchu ?? false, small ?? false)
         removeAuto()
     }
     
@@ -30,17 +30,17 @@ class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupLayout(_ isAddCatchu: Bool) {
+    private func setupLayout(_ small: Bool) {
         self.snp.makeConstraints { make in
-            make.height.equalTo(isAddCatchu ? 48 : 56)
+            make.height.equalTo(small ? 48 : 56)
         }
     }
     
-    private func configUI(placeholder: String, _ isAddCatchu: Bool = false) {
+    private func configUI(placeholder: String, _ isAddCatchu: Bool = false, _ small: Bool = false) {
         backgroundColor = .black200
         textColor = .white
         
-        layer.cornerRadius = isAddCatchu ? 13 : 20
+        layer.cornerRadius = small ? 13 : 20
         layer.borderWidth = 1
         layer.borderColor = UIColor.clear.cgColor
         

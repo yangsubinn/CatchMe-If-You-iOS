@@ -7,23 +7,40 @@
 
 import UIKit
 
-class SignupVC: UIViewController {
+import SnapKit
 
+class SignupVC: UIViewController {
+    // MARK: - Lazy Properties
+    lazy var navigationBar = SignupNaviBar(self)
+    
+    // MARK: - Properties
+    let textFieldView = SignupTextFieldView()
+    let signupButton = BottomButton(title: "가입하기")
+    let height = UIApplication.statusBarHeight
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLayout()
+        configUI()
+    }
 
-        // Do any additional setup after loading the view.
+    // MARK: - Custom Method
+    private func setupLayout() {
+        view.addSubviews([navigationBar, textFieldView])
+        
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(UIScreen.main.hasNotch ? 59 + height : 59)
+        }
+        
+        textFieldView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom).offset(51)
+            make.leading.trailing.equalToSuperview()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configUI() {
+        view.backgroundColor = .black100
     }
-    */
-
 }

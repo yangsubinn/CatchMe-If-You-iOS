@@ -13,7 +13,7 @@ class SecondFlowView: UIView {
     // MARK: - Properties
     let titleView = CatchuTitleView(title: "하나뿐인 내 캐츄의 이름은?", subTitle: "나의 캐츄를 대표할 이름을 지어주세요")
     let characterImageView = UIImageView()
-    let textField = CustomTextField(placeholder: "캐츄 이름 입력", isAddCatchu: true)
+    let textField = CustomTextField(placeholder: "캐츄 이름 입력", isAddCatchu: true, small: true)
     let recommendLabel = UILabel()
     let countLabel = UILabel()
     

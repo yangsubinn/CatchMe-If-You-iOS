@@ -26,7 +26,7 @@ class LoginVC: UIViewController {
         view.addSubviews([logoImageView, textFieldView])
         
         logoImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(135)
+            make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 135 : 90)
             make.centerX.equalToSuperview()
             make.height.equalTo(100)
             make.width.equalTo(282)

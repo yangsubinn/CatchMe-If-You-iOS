@@ -83,7 +83,7 @@ class TextFieldView: UIView {
         
         memberButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(18)
-            make.leading.equalTo(memberLabel.snp.trailing).offset(0)
+            make.leading.equalTo(memberLabel.snp.trailing)
             make.bottom.equalToSuperview()
             make.width.equalTo(76)
             make.height.equalTo(48)

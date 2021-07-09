@@ -18,11 +18,10 @@ class CharacterVC: UIViewController {
     let vc = CharacterPopupVC()
     let upperView = CharacterUpperView()
     let mainTableView = UITableView(frame: .zero, style: .plain)
-    let moreMenuView = MoreMenuView()
     let reportCell = CharacterReportTVC()
     
     let catchGuideImageView = UIImageView().then {
-        //      $0.setImage(UIImage(named: ""), for: .normal)
+//      $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .purple
     }
     
@@ -101,16 +100,45 @@ class CharacterVC: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
-    @objc func touchupEditButton(_ sender: UIButton) {
-        // 편집VC로 화면 전환 코드 작성해야 함
+    @objc func touchupMoreButton(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertViewController.view.tintColor = .white
+        
+        if let actionSheet = alertViewController.view.subviews.first,
+           let secondSheet = alertViewController.view.subviews.last {
+            for innerView in actionSheet.subviews {
+                innerView.backgroundColor = .black300
+                innerView.layer.cornerRadius = 18.0
+                innerView.clipsToBounds = true
+            }
+            for innerView in secondSheet.subviews {
+                innerView.backgroundColor = .black300
+                innerView.layer.cornerRadius = 18.0
+                innerView.clipsToBounds = true
+            }
+        }
+        
+        let editAction = UIAlertAction(title: "수정", style: .default) { result in
+            // 편집VC로 화면 전환 코드 작성해야 함
+        }
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
+            self.vc.modalPresentationStyle = .overCurrentContext
+            self.vc.modalTransitionStyle = .crossDissolve
+            self.present(self.vc, animated: true, completion: nil)
+        }
+        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alertViewController.addAction(editAction)
+        alertViewController.addAction(deleteAction)
+        alertViewController.addAction(cancelAction)
+        
+        self.present(alertViewController, animated: true, completion: nil)
     }
     
-    @objc func touchupDeleteButton(_ sender: UIButton) {
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
-    }
-    
+// 캐치지수 팝업 관련 코드입니다.
     //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     //        super.touchesBegan(touches, with: event)
     //        let touch = touches.first
@@ -146,7 +174,7 @@ extension CharacterVC: UITableViewDelegate {
             }
         }
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -221,25 +249,23 @@ extension CharacterVC: UITableViewDataSource {
             } else if indexPath.row == 1 { // 첫 번째 lineView가 안 붙여져 있는 cell
                 guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC else { return UITableViewCell() }
                 firstCell.selectionStyle = .none
-                
                 if posts.count == 0 {
                     firstCell.setupEmptyLayout()
                 } else {
                     firstCell.setupAutoLayout()
                     firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
-                    firstCell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
+                    firstCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
                 }
                 return firstCell
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
                 guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
                 restCell.selectionStyle = .none
-                
                 if posts.count == 0 {
                     restCell.setupEmptyLayout()
                 } else {
                     restCell.setupAutoLayout()
+                    restCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
                     restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
-                    restCell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
                 }
                 return restCell
             }

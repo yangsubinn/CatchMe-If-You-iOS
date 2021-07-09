@@ -13,7 +13,7 @@ import SnapKit
 class CharacterFirstTVC: UITableViewCell {
     static let identifier = "CharacterFirstTVC"
     
-    // MARK: - Properties
+    // MARK: - Properties    
     let emptyStateImageView = UIImageView().then {
         //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .gray
@@ -47,8 +47,6 @@ class CharacterFirstTVC: UITableViewCell {
         $0.backgroundColor = .green
     }
     
-    let moreMenuView = MoreMenuView(presentingController: CharacterPopupVC())
-    
     let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 16
@@ -56,7 +54,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-        //        $0.image = UIImage(named: "icComment")
+//        $0.image = UIImage(named: "icComment")
         $0.backgroundColor = .orange
     }
     
@@ -75,7 +73,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let photoImageView = UIImageView().then {
-        //        $0.image = UIImage(named: "")
+//        $0.image = UIImage(named: "")
         $0.backgroundColor = .systemPink
         $0.layer.cornerRadius = 18
     }
@@ -86,7 +84,6 @@ class CharacterFirstTVC: UITableViewCell {
         self.sendSubviewToBack(contentView)
         configUI()
         moreButton.isSelected = true
-        moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -104,7 +101,7 @@ class CharacterFirstTVC: UITableViewCell {
     
     func setupAutoLayout() {
         addSubviews([lineView, pinImageView,
-                     dateLabel, contentStackView, moreButton, moreMenuView])
+                     dateLabel, contentStackView, moreButton])
         commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
@@ -171,23 +168,6 @@ class CharacterFirstTVC: UITableViewCell {
         emptyStateLabel.snp.makeConstraints { make in
             make.top.equalTo(emptyStateImageView.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
-        }
-    }
-    
-    @objc func touchupMoreButton(_ sender: UIButton) {
-        if moreButton.isSelected {
-            moreButton.isSelected = false
-            moreMenuView.isHidden = false
-            
-            moreMenuView.snp.makeConstraints { make in
-                make.top.equalTo(moreButton.snp.top).offset(34)
-                make.leading.equalTo(contentStackView.snp.leading).inset(202)
-                make.width.equalTo(100)
-                make.height.equalTo(48)
-            }
-        } else {
-            moreButton.isSelected = true
-            moreMenuView.isHidden = true
         }
     }
     

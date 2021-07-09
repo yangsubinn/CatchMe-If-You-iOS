@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0534CB26983FEB00646974 /* UILabel+Extension.swift */; };
 		2B164B492695A988007F0F4A /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B164B482695A988007F0F4A /* SettingVC.swift */; };
 		2B164B4F2695AA77007F0F4A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B164B4E2695AA77007F0F4A /* Setting.storyboard */; };
 		2B164B542695DCC9007F0F4A /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B164B522695DCC9007F0F4A /* SettingTVC.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
+		2B0534CB26983FEB00646974 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2B164B482695A988007F0F4A /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		2B164B4E2695AA77007F0F4A /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2B164B522695DCC9007F0F4A /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				EDD12CB3268EBE6D00DF766A /* UITableView+Extension.swift */,
 				EDBBFCD3269394EE00443077 /* UIColor+Extension.swift */,
 				EDBBFCE22693996F00443077 /* UIFont+Extension.swift */,
+				2B0534CB26983FEB00646974 /* UILabel+Extension.swift */,
 				EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
@@ -730,6 +733,7 @@
 				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
+				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
 				EDBBFCD226936F4600443077 /* CalendarCVC.swift in Sources */,
 				EDB431BF2696325E0008BFB4 /* ThirdFlowView.swift in Sources */,
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,

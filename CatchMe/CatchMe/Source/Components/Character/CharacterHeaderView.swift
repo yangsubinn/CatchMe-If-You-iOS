@@ -44,11 +44,18 @@ class CharacterHeaderView: UIView {
     }
     
     let nameLabel = UILabel().then {
+        $0.text = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열"
         $0.font = .systemFont(ofSize: 20, weight: .bold)
         $0.textAlignment = .left
         $0.textColor = .white
         $0.numberOfLines = 2
         $0.lineBreakMode = .byWordWrapping
+        
+        let attributedString = NSMutableAttributedString(string: $0.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        $0.attributedText = attributedString
     }
     
     // MARK: - Lifecycle

@@ -61,6 +61,7 @@
 		EDBDC80A269585F800CDF1B2 /* CatchuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */; };
 		EDC19D9126983C7100F9E41B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */; };
 		EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D932698478100F9E41B /* TextFieldView.swift */; };
+		EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D952698A23700F9E41B /* SignupVC.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -150,6 +151,7 @@
 		EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchuTitleView.swift; sourceTree = "<group>"; };
 		EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		EDC19D932698478100F9E41B /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		EDC19D952698A23700F9E41B /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				2BDC1AAF26942973008381C3 /* MainCardVC.swift */,
 				2B164B482695A988007F0F4A /* SettingVC.swift */,
 				EDD262C8269771BD00845F7B /* LoginVC.swift */,
+				EDC19D952698A23700F9E41B /* SignupVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
 				EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */,
 				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
+				EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */,
 				EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */,
 				EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,

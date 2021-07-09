@@ -121,19 +121,19 @@ class mainReportView: UIView {
         
         titleLabel.text = "활동 리포트"
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.stringMediumSystemFont(ofSize: 13)
+        titleLabel.font = .stringMediumSystemFont(ofSize: 13)
         
         activeLabel.text = "총 활동"
         activeLabel.textColor = .white
-        activeLabel.font = UIFont.stringMediumSystemFont(ofSize: 13)
+        activeLabel.font = .stringMediumSystemFont(ofSize: 13)
         
         levelLabel.text = "레벨"
         levelLabel.textColor = .white
-        levelLabel.font = UIFont.stringMediumSystemFont(ofSize: 13)
+        levelLabel.font = .stringMediumSystemFont(ofSize: 13)
         
         percentLabel.text = "전체중"
         percentLabel.textColor = .white
-        percentLabel.font = UIFont.stringMediumSystemFont(ofSize: 13)
+        percentLabel.font = .stringMediumSystemFont(ofSize: 13)
         
         lineLeftView.backgroundColor = .white
         lineLeftView.layer.cornerRadius = 2
@@ -143,26 +143,26 @@ class mainReportView: UIView {
         
         activeUnitLabel.text = "번"
         activeUnitLabel.textColor = .white
-        activeUnitLabel.font = UIFont.stringMediumSystemFont(ofSize: 13)
+        activeUnitLabel.font = .stringMediumSystemFont(ofSize: 13)
         
         activeCountLabel.text = "10"
         activeCountLabel.textColor = .white
-        activeCountLabel.font = UIFont.numberMediumSystemFont(ofSize: 32)
+        activeCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
         levelUnitLabel.text = "Lv"
         levelUnitLabel.textColor = .white
-        levelUnitLabel.font = UIFont.numberMediumSystemFont(ofSize: 13)
+        levelUnitLabel.font = .numberMediumSystemFont(ofSize: 13)
         
         levelCountLabel.text = "18"
         levelCountLabel.textColor = .white
-        levelCountLabel.font = UIFont.numberMediumSystemFont(ofSize: 32)
+        levelCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
         percentUnitLabel.text = "%"
         percentUnitLabel.textColor = .white
-        percentUnitLabel.font = UIFont.numberMediumSystemFont(ofSize: 13)
+        percentUnitLabel.font = .numberMediumSystemFont(ofSize: 13)
         
         percentCountLabel.text = "24"
         percentCountLabel.textColor = .white
-        percentCountLabel.font = UIFont.numberMediumSystemFont(ofSize: 32)
+        percentCountLabel.font = .numberMediumSystemFont(ofSize: 32)
     }
 }

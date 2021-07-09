@@ -50,33 +50,33 @@ class MainVC: UIViewController {
         }
         
         settingButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 13 : 11)
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 13 : 11)
             make.width.height.equalTo(48)
         }
     
         calendarButton.snp.makeConstraints { make in
-            make.trailing.equalTo(settingButton.snp.leading)
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
+            make.trailing.equalTo(settingButton.snp.leading)
             make.width.height.equalTo(48)
         }
         
         lookButton.snp.makeConstraints { make in
-            make.trailing.equalTo(calendarButton.snp.leading)
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
+            make.trailing.equalTo(calendarButton.snp.leading)
             make.width.height.equalTo(48)
         }
         
         allButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.top.equalTo(settingButton.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 18)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.width.equalTo(72)
             make.height.equalTo(30)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
             make.width.equalTo(195)
             make.height.equalTo(62)
         }
@@ -89,29 +89,33 @@ class MainVC: UIViewController {
         }
         
         reportView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 26)
+            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.height.equalTo(152)
         }
         
         catchingButton.snp.makeConstraints { make in
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 20)
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
-            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 20)
         }
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 10)
-            make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
+            make.centerX.equalToSuperview()
         }
     }
     
     private func configUI() {
         view.backgroundColor = .black100
+        settingButton.backgroundColor = .cyan
+        calendarButton.backgroundColor = .yellow
+        lookButton.backgroundColor = .gray
+        allButton.backgroundColor = .purple
+        catchingButton.backgroundColor = .lightGray
         
         dateLabel.textColor = .white
         dateLabel.font = UIFont.stringMediumSystemFont(ofSize: 15)
@@ -127,12 +131,6 @@ class MainVC: UIViewController {
         paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         nameLabel.attributedText = attributedString
-        
-        settingButton.backgroundColor = .cyan
-        calendarButton.backgroundColor = .yellow
-        lookButton.backgroundColor = .gray
-        allButton.backgroundColor = .purple
-        catchingButton.backgroundColor = .lightGray
     }
     
     private func setupCollectionView() {

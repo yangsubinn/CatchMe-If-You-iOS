@@ -151,6 +151,7 @@ extension MainCardVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else {
             return UICollectionViewCell()
         }

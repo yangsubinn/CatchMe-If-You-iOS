@@ -43,12 +43,14 @@ class LoginVC: UIViewController {
         logoImageView.backgroundColor = .systemTeal
         
         hideKeyboardWhenTappedAround()
+        logoImageView.alpha = 0
     }
     
     @objc
     override func dismissKeyboard() {
         if !textFieldView.secureButton.isTouchInside && !textFieldView.loginButton.isTouchInside {
             view.endEditing(true)
+            logoImageView.fadeIn()
         }
     }
 }

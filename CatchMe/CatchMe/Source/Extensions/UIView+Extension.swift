@@ -19,7 +19,7 @@ extension UIView {
         views.forEach { self.addSubview($0) }
     }
     
-    func fadeIn(duration: TimeInterval = 1.0,
+    func fadeIn(duration: TimeInterval = 0.4,
                 delay: TimeInterval = 0.0,
                 completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration,
@@ -30,7 +30,7 @@ extension UIView {
                        }, completion: completion)
     }
 
-    func fadeOut(duration: TimeInterval = 1.0,
+    func fadeOut(duration: TimeInterval = 0.4,
                  delay: TimeInterval = 3.0,
                  completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration,

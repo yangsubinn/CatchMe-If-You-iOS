@@ -41,80 +41,96 @@ class MainVC: UIViewController {
     private func setupLayout() {
         view.addSubviews([dateLabel, settingButton, calendarButton,
                           lookButton, allButton, nameLabel,
-                          reportView, catchingButton, collectionView])
+                          reportView, catchingButton, collectionView,
+                          pageControl])
         
         dateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.top.equalToSuperview().offset(64)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 48)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         settingButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.snp.trailing).offset(-13)
-            make.top.equalTo(view.snp.top).offset(48)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 13 : 11)
             make.width.height.equalTo(48)
         }
     
         calendarButton.snp.makeConstraints { make in
-            make.width.height.equalTo(48)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
             make.trailing.equalTo(settingButton.snp.leading)
-            make.top.equalTo(view.snp.top).offset(48)
+            make.width.height.equalTo(48)
         }
         
         lookButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
             make.trailing.equalTo(calendarButton.snp.leading)
-            make.top.equalTo(view.snp.top).offset(48)
             make.width.height.equalTo(48)
         }
         
         allButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.snp.trailing).offset(-28)
-            make.top.equalTo(settingButton.snp.bottom).offset(20)
+            make.top.equalTo(settingButton.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 18)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.width.equalTo(72)
             make.height.equalTo(30)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.top.equalTo(view.snp.top).offset(172)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.width.equalTo(195)
+            make.height.equalTo(62)
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.top).offset(UIScreen.main.hasNotch ? 50 : 35)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.height.equalTo(UIScreen.main.hasNotch ? 12 : 11)
+            make.width.equalTo(UIScreen.main.hasNotch ? 90 : 88)
         }
         
         reportView.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
-            make.top.equalTo(nameLabel.snp.bottom).offset(338)
+            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 26)
+            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.height.equalTo(152)
         }
         
         catchingButton.snp.makeConstraints { make in
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 20)
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
-            make.top.equalTo(reportView.snp.bottom).offset(41)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(21)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 10)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(269)
+            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
+            make.centerX.equalToSuperview()
         }
     }
     
     private func configUI() {
-        view.backgroundColor = .black
-        
-        dateLabel.textColor = .white
-        dateLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        
-        nameLabel.text = "솝트없이 못 사는 솝트러버"
-        nameLabel.textColor = .white
-        nameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        
+        view.backgroundColor = .black100
         settingButton.backgroundColor = .cyan
         calendarButton.backgroundColor = .yellow
         lookButton.backgroundColor = .gray
         allButton.backgroundColor = .purple
         catchingButton.backgroundColor = .lightGray
+        
+        dateLabel.textColor = .white
+        dateLabel.font = UIFont.stringMediumSystemFont(ofSize: 15)
+        dateLabel.addCharacterSpacing(kernValue: -0.6)
+        
+        nameLabel.text = "솝트없이못사는솝트러버솝트러버솝트"
+        nameLabel.textColor = .white
+        nameLabel.font = UIFont.catchuRegularSystemFont(ofSize: 22)
+        nameLabel.numberOfLines = 2
+        
+        let attributedString = NSMutableAttributedString(string: nameLabel.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        nameLabel.attributedText = attributedString
     }
     
     private func setupCollectionView() {
@@ -131,15 +147,7 @@ class MainVC: UIViewController {
     
     private func setupPageControl() {
         pageControl.pages = 5
-        
-        view.addSubview(pageControl)
-        
-        pageControl.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(100)
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.height.equalTo(12)
-            make.width.equalTo(90)
-        }
+//        pageControl.backgroundColor = .white
     }
     
     private func setupReportView() {
@@ -155,7 +163,7 @@ class MainVC: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - UICollectionViewDataSource
 extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -169,6 +177,7 @@ extension MainVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
@@ -187,6 +196,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // page control selected page 바꾸는 코드

@@ -44,8 +44,10 @@ class MainVC: UIViewController {
                           reportView, catchingButton, collectionView])
         
         dateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.top.equalToSuperview().offset(64)
+            make.leading.equalTo(view.snp.leading).offset(UIScreen.main.hasNotch ? 28 : 20)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 55)
+//            make.leading.equalTo(view.snp.leading).offset(28)
+//            make.top.equalToSuperview().offset(64)
         }
         
         settingButton.snp.makeConstraints { make in
@@ -155,7 +157,7 @@ class MainVC: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - UICollectionViewDataSource
 extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -169,6 +171,7 @@ extension MainVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
@@ -187,6 +190,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // page control selected page 바꾸는 코드

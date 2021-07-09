@@ -10,9 +10,11 @@ import UIKit
 import SnapKit
 
 class LoginVC: UIViewController {
+    // MARK: - Lazy Properties
+    lazy var textFieldView = TextFieldView(logo: logoImageView)
+    
     // MARK: - Properties
     let logoImageView = UIImageView()
-    let textFieldView = TextFieldView()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -43,7 +45,6 @@ class LoginVC: UIViewController {
         logoImageView.backgroundColor = .systemTeal
         
         hideKeyboardWhenTappedAround()
-        logoImageView.alpha = 0
     }
     
     @objc

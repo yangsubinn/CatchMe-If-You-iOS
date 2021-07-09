@@ -22,6 +22,7 @@ class TextFieldView: UIView {
     let memberButton = UIButton()
     let secureButton = UIButton()
     
+    var logoImageView = UIImageView()
     var isAuto = true
     
     // MARK: - Dummy Date
@@ -29,8 +30,9 @@ class TextFieldView: UIView {
     let pw = "catchme"
 
     // MARK: - Life Cycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(logo: UIImageView) {
+        super.init(frame: .zero)
+        logoImageView = logo
         setupLayout()
         configUI()
         setupTextField()
@@ -186,6 +188,8 @@ extension TextFieldView: UITextFieldDelegate {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -160 : -140)
         })
+        
+        logoImageView.fadeOut()
         
         emailMessageLabel.isHidden = true
         passwordMessageLabel.isHidden = true

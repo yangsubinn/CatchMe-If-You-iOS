@@ -49,8 +49,7 @@ class CharacterUpperView: UIView {
         characterImageView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(158)
             make.centerX.equalToSuperview()
-            make.width.equalTo(150)
-            make.height.equalTo(150)
+            make.width.height.equalTo(150)
         }
     }
 }

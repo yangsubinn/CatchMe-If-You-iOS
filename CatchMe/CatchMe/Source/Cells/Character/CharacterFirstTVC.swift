@@ -1,8 +1,8 @@
 //
-//  CharacterTVC.swift
+//  CharacterFirstTVC.swift
 //  CatchMe
 //
-//  Created by Thisisme Hi on 2021/07/04.
+//  Created by Thisisme Hi on 2021/07/08.
 //
 
 import UIKit
@@ -10,12 +10,12 @@ import UIKit
 import Then
 import SnapKit
 
-class CharacterTVC: UITableViewCell {
-    static let identifier = "CharacterTVC"
-
+class CharacterFirstTVC: UITableViewCell {
+    static let identifier = "CharacterFirstTVC"
+    
     // MARK: - Properties
     let emptyStateImageView = UIImageView().then {
-//        $0.image = UIImage(named: "icPin")
+        //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .gray
     }
     
@@ -27,12 +27,8 @@ class CharacterTVC: UITableViewCell {
     }
     
     let pinImageView = UIImageView().then {
-//        $0.image = UIImage(named: "icPin")
+        //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .orange
-    }
-    
-    let lineTopView = UIView().then {
-        $0.backgroundColor = .white10
     }
     
     let lineView = UIView().then {
@@ -47,7 +43,7 @@ class CharacterTVC: UITableViewCell {
     }
     
     let moreButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
+        //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .green
     }
     
@@ -60,7 +56,7 @@ class CharacterTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-//        $0.image = UIImage(named: "icComment")
+        //        $0.image = UIImage(named: "icComment")
         $0.backgroundColor = .orange
     }
     
@@ -79,7 +75,7 @@ class CharacterTVC: UITableViewCell {
     }
     
     let photoImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
+        //        $0.image = UIImage(named: "")
         $0.backgroundColor = .systemPink
         $0.layer.cornerRadius = 18
     }
@@ -87,6 +83,7 @@ class CharacterTVC: UITableViewCell {
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.sendSubviewToBack(contentView)
         configUI()
         moreButton.isSelected = true
         moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
@@ -103,22 +100,14 @@ class CharacterTVC: UITableViewCell {
     // MARK: - Custom Method
     func configUI() {
         backgroundColor = .black
-        self.sendSubviewToBack(contentView)
     }
     
     func setupAutoLayout() {
-        addSubviews([lineTopView, lineView, pinImageView,
+        addSubviews([lineView, pinImageView,
                      dateLabel, contentStackView, moreButton, moreMenuView])
         commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
-        
-        lineTopView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalTo(self.snp.leading).inset(28)
-            make.bottom.equalTo(pinImageView.snp.top)
-            make.width.equalTo(1)
-        }
         
         pinImageView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(36)
@@ -168,7 +157,7 @@ class CharacterTVC: UITableViewCell {
             make.height.equalTo(228)
         }
     }
-
+    
     func setupEmptyLayout() {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
@@ -201,7 +190,7 @@ class CharacterTVC: UITableViewCell {
             moreMenuView.isHidden = true
         }
     }
-
+    
     func setData(date: String, comment: String, image: String) {
         dateLabel.text = date
         commentLabel.text = comment

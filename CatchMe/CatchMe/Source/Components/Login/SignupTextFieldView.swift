@@ -109,5 +109,6 @@ class SignupTextFieldView: UIView {
         checkButton.titleLabel?.font = .systemFont(ofSize: 14)
         checkButton.backgroundColor = .gray50
         checkButton.layer.cornerRadius = 13
+        checkButton.isEnabled = false
     }
 }

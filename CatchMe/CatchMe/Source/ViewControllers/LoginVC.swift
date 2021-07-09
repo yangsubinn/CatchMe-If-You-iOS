@@ -41,5 +41,7 @@ class LoginVC: UIViewController {
     private func configUI() {
         view.backgroundColor = .black100
         logoImageView.backgroundColor = .systemTeal
+        
+        hideKeyboardWhenTappedAround()
     }
 }

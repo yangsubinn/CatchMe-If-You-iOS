@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class AddActionVC: UIViewController {
     // MARK: - Properties
     let pinkBackgroundView = UIView().then {

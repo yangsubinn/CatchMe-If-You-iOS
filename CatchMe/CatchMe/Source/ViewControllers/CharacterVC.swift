@@ -123,11 +123,13 @@ class CharacterVC: UIViewController {
         let editAction = UIAlertAction(title: "수정", style: .default) { result in
             // 편집VC로 화면 전환 코드 작성해야 함
         }
+        
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
             self.vc.modalPresentationStyle = .overCurrentContext
             self.vc.modalTransitionStyle = .crossDissolve
             self.present(self.vc, animated: true, completion: nil)
         }
+        
         deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         

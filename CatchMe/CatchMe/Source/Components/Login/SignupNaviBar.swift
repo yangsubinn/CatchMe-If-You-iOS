@@ -11,9 +11,10 @@ import Then
 import SnapKit
 
 class SignupNaviBar: UIView {
-    // MARK: - Properties
+    // MARK: - Lazy Properties
     lazy var backButton = BackButton(vc ?? UIViewController())
     
+    // MARK: - Properties
     let titleLabel = UILabel().then {
         $0.text = "회원가입"
         $0.font = .boldSystemFont(ofSize: 20)

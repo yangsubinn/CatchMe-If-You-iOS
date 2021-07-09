@@ -18,10 +18,6 @@ class CustomTextField: UITextField {
     let passwordImageView = UIImageView().then {
         $0.backgroundColor = .gray
     }
-    
-    let secureButton = UIButton().then {
-        $0.backgroundColor = .purple
-    }
 
     init(placeholder: String, isAddCatchu: Bool? = false) {
         super.init(frame: .zero)
@@ -85,20 +81,14 @@ class CustomTextField: UITextField {
     }
     
     func setupPasswordImage() {
-        secureButton.isHidden = true
+        isSecureTextEntry = true
         
-        addSubviews([passwordImageView, secureButton])
+        addSubviews([passwordImageView])
         
         passwordImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(22)
             make.height.width.equalTo(18)
-        }
-        
-        secureButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(6)
-            make.width.height.equalTo(48)
         }
     }
 }

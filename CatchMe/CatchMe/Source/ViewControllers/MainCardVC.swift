@@ -37,12 +37,11 @@ class MainCardVC: UIViewController {
     //MARK: - Custom Method
     func setupLayout() {
         view.addSubviews([topBackView, collectionView, backButton,
-                          nameLabel, titleLabel,popupButton,
+                          nameLabel, titleLabel, popupButton,
                           addButton, alignButton])
         
         topBackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(alignButton.snp.bottom)
         }
         
@@ -82,8 +81,7 @@ class MainCardVC: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topBackView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.leading.bottom.trailing.equalToSuperview()
         }
     }
     

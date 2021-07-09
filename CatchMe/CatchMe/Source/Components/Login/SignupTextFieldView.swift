@@ -57,7 +57,7 @@ class SignupTextFieldView: UIView {
         }
         
         idLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(45)
+            make.top.equalTo(emailTextField.snp.bottom).offset(UIScreen.main.hasNotch ? 45 : 30)
             make.leading.equalTo(emailLabel.snp.leading)
         }
         
@@ -68,7 +68,7 @@ class SignupTextFieldView: UIView {
         }
         
         passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(idTextField.snp.bottom).offset(45)
+            make.top.equalTo(idTextField.snp.bottom).offset(UIScreen.main.hasNotch ? 45 : 30)
             make.leading.equalTo(emailTextField.snp.leading)
         }
         
@@ -79,7 +79,7 @@ class SignupTextFieldView: UIView {
         }
         
         checkPasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(45)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(UIScreen.main.hasNotch ? 45 : 30)
             make.leading.equalTo(emailTextField.snp.leading)
         }
         

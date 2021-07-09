@@ -27,20 +27,28 @@ class SignupVC: UIViewController {
 
     // MARK: - Custom Method
     private func setupLayout() {
-        view.addSubviews([navigationBar, textFieldView])
+        view.addSubviews([navigationBar, textFieldView, signupButton])
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(UIScreen.main.hasNotch ? 59 + height : 59)
+            make.height.equalTo(59 + height)
         }
         
         textFieldView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom).offset(51)
+            make.top.equalTo(navigationBar.snp.bottom).offset(UIScreen.main.hasNotch ? 51 : 20)
             make.leading.trailing.equalToSuperview()
+        }
+        
+        signupButton.snp.makeConstraints { make in
+            make.top.equalTo(textFieldView.snp.bottom).offset(UIScreen.main.hasNotch ? 87 : 30)
+            make.leading.trailing.equalToSuperview().inset(28)
         }
     }
     
     private func configUI() {
         view.backgroundColor = .black100
+        
+        signupButton.backgroundColor = .gray300
+        signupButton.isEnabled = false
     }
 }

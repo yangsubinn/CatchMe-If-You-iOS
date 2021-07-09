@@ -50,8 +50,4 @@ class BottomButton: UIButton {
             backgroundColor = .pink100
         }
     }
-    
-    func setBottomColor(color: UIColor) {
-        backgroundColor = color
-    }
 }

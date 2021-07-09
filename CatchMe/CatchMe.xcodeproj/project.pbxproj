@@ -30,6 +30,7 @@
 		5B447CDA269628D900F79AB7 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CD9269628D900F79AB7 /* Activity.swift */; };
 		5B447CDE2697036C00F79AB7 /* CharacterFirstTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CDD2697036C00F79AB7 /* CharacterFirstTVC.swift */; };
 		5B447CEF2697146800F79AB7 /* CharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */; };
+		5B447CF9269814BC00F79AB7 /* CharacterBottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CF8269814BB00F79AB7 /* CharacterBottomSheetVC.swift */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
@@ -112,6 +113,7 @@
 		5B447CD9269628D900F79AB7 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		5B447CDD2697036C00F79AB7 /* CharacterFirstTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFirstTVC.swift; sourceTree = "<group>"; };
 		5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFooterView.swift; sourceTree = "<group>"; };
+		5B447CF8269814BB00F79AB7 /* CharacterBottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterBottomSheetVC.swift; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87F268A14E5000F058F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			children = (
 				EDD12C9D268EB71000DF766A /* MainVC.swift */,
 				EDD12CA3268EB80300DF766A /* CharacterVC.swift */,
+				5B447CF8269814BB00F79AB7 /* CharacterBottomSheetVC.swift */,
 				5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */,
 				5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */,
 				EDD12CA7268EB84C00DF766A /* ReportVC.swift */,
@@ -702,6 +705,7 @@
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
+				5B447CF9269814BC00F79AB7 /* CharacterBottomSheetVC.swift in Sources */,
 				5B08504D26919416008F40B2 /* NavigationBar.swift in Sources */,
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,

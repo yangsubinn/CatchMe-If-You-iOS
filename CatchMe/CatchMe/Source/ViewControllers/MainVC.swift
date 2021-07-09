@@ -45,25 +45,25 @@ class MainVC: UIViewController {
                           pageControl])
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 58)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 48)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         settingButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 13 : 11)
-            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 44)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
             make.width.height.equalTo(48)
         }
     
         calendarButton.snp.makeConstraints { make in
             make.trailing.equalTo(settingButton.snp.leading)
-            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 44)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
             make.width.height.equalTo(48)
         }
         
         lookButton.snp.makeConstraints { make in
             make.trailing.equalTo(calendarButton.snp.leading)
-            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 44)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
             make.width.height.equalTo(48)
         }
         
@@ -76,7 +76,9 @@ class MainVC: UIViewController {
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 132)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
+            make.width.equalTo(195)
+            make.height.equalTo(62)
         }
         
         pageControl.snp.makeConstraints { make in
@@ -97,11 +99,11 @@ class MainVC: UIViewController {
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
-            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 41 : 28)
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 20)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(21)
+            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 10)
             make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
@@ -109,14 +111,22 @@ class MainVC: UIViewController {
     }
     
     private func configUI() {
-        view.backgroundColor = .black
+        view.backgroundColor = .black100
         
         dateLabel.textColor = .white
-        dateLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        dateLabel.font = UIFont.stringMediumSystemFont(ofSize: 15)
+        dateLabel.addCharacterSpacing(kernValue: -0.6)
         
-        nameLabel.text = "솝트없이 못 사는 솝트러버"
+        nameLabel.text = "솝트없이못사는솝트러버솝트러버솝트"
         nameLabel.textColor = .white
-        nameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        nameLabel.font = UIFont.catchuRegularSystemFont(ofSize: 22)
+        nameLabel.numberOfLines = 2
+        
+        let attributedString = NSMutableAttributedString(string: nameLabel.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        nameLabel.attributedText = attributedString
         
         settingButton.backgroundColor = .cyan
         calendarButton.backgroundColor = .yellow

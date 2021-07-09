@@ -17,6 +17,10 @@ class MainCardVC: UIViewController {
     let popupButton = UIButton()
     let addButton = UIButton()
     let alignButton = UIButton()
+    let topBackView = UIView()
+    let emptyImageView = UIImageView()
+    let emptyTitleLabel = UILabel()
+    let emptySubLabel = UILabel()
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -27,27 +31,33 @@ class MainCardVC: UIViewController {
         setupLayout()
         configUI()
         setupCollectionView()
+//        setupEmptyLayout()
     }
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([backButton, nameLabel, titleLabel,
-                          popupButton, addButton, alignButton,
-                          collectionView])
+        view.addSubviews([topBackView, collectionView, backButton,
+                          nameLabel, titleLabel, popupButton,
+                          addButton, alignButton])
+        
+        topBackView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(alignButton.snp.bottom)
+        }
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(55)
-            make.leading.equalTo(view.snp.leading).offset(14)
+            make.leading.equalToSuperview().offset(14)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(16)
-            make.leading.equalTo(view.snp.leading).offset(28)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(6)
-            make.leading.equalTo(view.snp.leading).offset(28)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         popupButton.snp.makeConstraints { make in
@@ -57,40 +67,47 @@ class MainCardVC: UIViewController {
         }
         
         addButton.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom).offset(14)
+            make.trailing.equalToSuperview().inset(27)
             make.width.equalTo(72)
             make.height.equalTo(48)
-            make.trailing.equalTo(view.snp.trailing).inset(27)
-            make.top.equalTo(backButton.snp.bottom).offset(14)
         }
         
         alignButton.snp.makeConstraints { make in
-            make.width.height.equalTo(48)
-            make.trailing.equalTo(view.snp.trailing).inset(13)
             make.top.equalTo(addButton.snp.bottom).offset(27)
+            make.trailing.equalToSuperview().inset(13)
+            make.width.height.equalTo(48)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(260)
-            make.leading.equalTo(view.snp.leading).offset(29)
-            make.bottom.equalTo(view.snp.bottom)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
+            make.top.equalTo(topBackView.snp.bottom)
+            make.leading.bottom.trailing.equalToSuperview()
         }
     }
     
     func configUI() {
         view.backgroundColor = .black100
-        
-        nameLabel.text = "최고의대장피엠김해리 님"
-        nameLabel.textColor = .white
-        nameLabel.font = UIFont.stringBoldSystemFont(ofSize: 14)
-        
-        titleLabel.text = "캐츄 모아보기"
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.stringBoldSystemFont(ofSize: 22)
-        
         popupButton.backgroundColor = .blue
         addButton.backgroundColor = .yellow
         alignButton.backgroundColor = .gray300
+        topBackView.backgroundColor = .brown
+        emptyImageView.backgroundColor = .pink000
+        
+        nameLabel.text = "최고의대장피엠김해리 님"
+        nameLabel.textColor = .white
+        nameLabel.font = .stringBoldSystemFont(ofSize: 14)
+        
+        titleLabel.text = "캐츄 모아보기"
+        titleLabel.textColor = .white
+        titleLabel.font = .stringBoldSystemFont(ofSize: 22)
+        
+        emptyTitleLabel.text = "캐츄를 추가해보세요!"
+        emptyTitleLabel.textColor = .gray300
+        emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
+        
+        emptySubLabel.text = "캐츄와 함께 다양한 내 모습을 기록해요"
+        emptySubLabel.textColor = .gray300
+        emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     func setupCollectionView() {
@@ -102,6 +119,27 @@ class MainCardVC: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
     }
+    
+    func setupEmptyLayout() {
+        view.addSubviews([emptyImageView, emptyTitleLabel, emptySubLabel])
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.top.equalTo(topBackView.snp.bottom).offset(UIScreen.main.hasNotch ? 150 : 102)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(115)
+            make.height.equalTo(116)
+        }
+        
+        emptyTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyImageView.snp.bottom).offset(24)
+            make.centerX.equalToSuperview()
+        }
+        
+        emptySubLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
+            make.centerX.equalToSuperview()
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -111,6 +149,7 @@ extension MainCardVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else {
             return UICollectionViewCell()
         }
@@ -137,6 +176,6 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 11, left: 29, bottom: 0, right: 28)
     }
 }

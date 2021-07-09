@@ -49,6 +49,7 @@ class CharacterVC: UIViewController {
     func setupTableView() {
         mainTableView.backgroundColor = .black
         mainTableView.separatorStyle = .none
+        mainTableView.contentInsetAdjustmentBehavior = .never
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -56,9 +57,6 @@ class CharacterVC: UIViewController {
         mainTableView.register(CharacterReportTVC.self, forCellReuseIdentifier: "CharacterReportTVC")
         mainTableView.register(CharacterFirstTVC.self, forCellReuseIdentifier: "CharacterFirstTVC")
         mainTableView.register(CharacterTVC.self, forCellReuseIdentifier: "CharacterTVC")
-        
-        mainTableView.tableFooterView = UIView(frame: .zero)
-        mainTableView.sectionFooterHeight = 0
     }
     
     func setupAutoLayout() {
@@ -125,17 +123,32 @@ class CharacterVC: UIViewController {
 // MARK: - UITableViewDelegate
 extension CharacterVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = CharacterHeaderView()
-        headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
-        return headerView
+        switch section {
+        case 0:
+            let headerView = CharacterHeaderView()
+            headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
+            return headerView
+        default:
+            let footerView = CharacterFooterView()
+            return footerView
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 127
+        switch section {
+        case 0:
+            return 127
+        default:
+            if posts.isEmpty {
+                return 0
+            } else {
+                return 112
+            }
+        }
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

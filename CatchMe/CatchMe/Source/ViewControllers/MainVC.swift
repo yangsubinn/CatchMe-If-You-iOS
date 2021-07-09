@@ -41,49 +41,55 @@ class MainVC: UIViewController {
     private func setupLayout() {
         view.addSubviews([dateLabel, settingButton, calendarButton,
                           lookButton, allButton, nameLabel,
-                          reportView, catchingButton, collectionView])
+                          reportView, catchingButton, collectionView,
+                          pageControl])
         
         dateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(UIScreen.main.hasNotch ? 28 : 20)
-            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 55)
-//            make.leading.equalTo(view.snp.leading).offset(28)
-//            make.top.equalToSuperview().offset(64)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 58)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         settingButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.snp.trailing).offset(-13)
-            make.top.equalTo(view.snp.top).offset(48)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 13 : 11)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 44)
             make.width.height.equalTo(48)
         }
     
         calendarButton.snp.makeConstraints { make in
-            make.width.height.equalTo(48)
             make.trailing.equalTo(settingButton.snp.leading)
-            make.top.equalTo(view.snp.top).offset(48)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 44)
+            make.width.height.equalTo(48)
         }
         
         lookButton.snp.makeConstraints { make in
             make.trailing.equalTo(calendarButton.snp.leading)
-            make.top.equalTo(view.snp.top).offset(48)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 44)
             make.width.height.equalTo(48)
         }
         
         allButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.snp.trailing).offset(-28)
-            make.top.equalTo(settingButton.snp.bottom).offset(20)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
+            make.top.equalTo(settingButton.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 18)
             make.width.equalTo(72)
             make.height.equalTo(30)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.top.equalTo(view.snp.top).offset(172)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 132)
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.top).offset(UIScreen.main.hasNotch ? 50 : 35)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.height.equalTo(UIScreen.main.hasNotch ? 12 : 11)
+            make.width.equalTo(UIScreen.main.hasNotch ? 90 : 88)
         }
         
         reportView.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
-            make.top.equalTo(nameLabel.snp.bottom).offset(338)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
+            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 26)
             make.height.equalTo(152)
         }
         
@@ -91,14 +97,14 @@ class MainVC: UIViewController {
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
-            make.top.equalTo(reportView.snp.bottom).offset(41)
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 41 : 28)
         }
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(21)
             make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(269)
+            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
         }
     }
     
@@ -133,15 +139,7 @@ class MainVC: UIViewController {
     
     private func setupPageControl() {
         pageControl.pages = 5
-        
-        view.addSubview(pageControl)
-        
-        pageControl.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(100)
-            make.leading.equalTo(view.snp.leading).offset(28)
-            make.height.equalTo(12)
-            make.width.equalTo(90)
-        }
+//        pageControl.backgroundColor = .white
     }
     
     private func setupReportView() {

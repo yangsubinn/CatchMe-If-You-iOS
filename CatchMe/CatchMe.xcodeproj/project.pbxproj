@@ -59,6 +59,7 @@
 		EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC8072695816100CDF1B2 /* AddCatchuPageControl.swift */; };
 		EDBDC80A269585F800CDF1B2 /* CatchuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */; };
 		EDC19D9126983C7100F9E41B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */; };
+		EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D932698478100F9E41B /* TextFieldView.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
 		EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C93268EAD1F00DF766A /* BackButton.swift */; };
 		EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD12C95268EB16800DF766A /* XmarkButton.swift */; };
@@ -146,6 +147,7 @@
 		EDBDC8072695816100CDF1B2 /* AddCatchuPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatchuPageControl.swift; sourceTree = "<group>"; };
 		EDBDC809269585F800CDF1B2 /* CatchuTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchuTitleView.swift; sourceTree = "<group>"; };
 		EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		EDC19D932698478100F9E41B /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		EDD12C93268EAD1F00DF766A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		EDD12C95268EB16800DF766A /* XmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmarkButton.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 		ED63E89D268A1CB9000F058F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EDC19D922698474700F9E41B /* Login */,
 				EDBDC8062695814100CDF1B2 /* AddCatchu */,
 				2B164B4D2695AA31007F0F4A /* Setting */,
 				EDC3780A2691D393007C53F2 /* Report */,
@@ -502,6 +505,14 @@
 				EDB431BE2696325E0008BFB4 /* ThirdFlowView.swift */,
 			);
 			path = AddCatchu;
+			sourceTree = "<group>";
+		};
+		EDC19D922698474700F9E41B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EDC19D932698478100F9E41B /* TextFieldView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		EDC3780A2691D393007C53F2 /* Report */ = {
@@ -701,6 +712,7 @@
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
 				EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */,
 				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
+				EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */,
 				EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
 				2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */,

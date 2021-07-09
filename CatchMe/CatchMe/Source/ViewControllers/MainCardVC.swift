@@ -18,6 +18,9 @@ class MainCardVC: UIViewController {
     let addButton = UIButton()
     let alignButton = UIButton()
     let topBackView = UIView()
+    let emptyImageView = UIImageView()
+    let emptyTitleLabel = UILabel()
+    let emptySubLabel = UILabel()
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -28,18 +31,18 @@ class MainCardVC: UIViewController {
         setupLayout()
         configUI()
         setupCollectionView()
+//        setupEmptyLayout()
     }
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([topBackView, backButton, nameLabel,
-                          titleLabel,popupButton, addButton,
-                          alignButton,collectionView])
+        view.addSubviews([topBackView, collectionView, backButton,
+                          nameLabel, titleLabel,popupButton,
+                          addButton, alignButton])
         
         topBackView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-//            make.height.equalTo(UIScreen.main.hasNotch ? 230 : 190)
             make.bottom.equalTo(alignButton.snp.bottom)
         }
         
@@ -78,11 +81,9 @@ class MainCardVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(260)
             make.top.equalTo(topBackView.snp.bottom)
-            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
         }
     }
     
@@ -92,6 +93,7 @@ class MainCardVC: UIViewController {
         addButton.backgroundColor = .yellow
         alignButton.backgroundColor = .gray300
         topBackView.backgroundColor = .brown
+        emptyImageView.backgroundColor = .pink000
         
         nameLabel.text = "최고의대장피엠김해리 님"
         nameLabel.textColor = .white
@@ -100,6 +102,14 @@ class MainCardVC: UIViewController {
         titleLabel.text = "캐츄 모아보기"
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
+        
+        emptyTitleLabel.text = "캐츄를 추가해보세요!"
+        emptyTitleLabel.textColor = .gray300
+        emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
+        
+        emptySubLabel.text = "캐츄와 함께 다양한 내 모습을 기록해요"
+        emptySubLabel.textColor = .gray300
+        emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     func setupCollectionView() {
@@ -110,6 +120,27 @@ class MainCardVC: UIViewController {
         collectionView.setupCollectionViewNib(nib: MainCardCVC.identifier)
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
+    }
+    
+    func setupEmptyLayout() {
+        view.addSubviews([emptyImageView, emptyTitleLabel, emptySubLabel])
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.top.equalTo(topBackView.snp.bottom).offset(UIScreen.main.hasNotch ? 150 : 102)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(115)
+            make.height.equalTo(116)
+        }
+        
+        emptyTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyImageView.snp.bottom).offset(24)
+            make.centerX.equalToSuperview()
+        }
+        
+        emptySubLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
+            make.centerX.equalToSuperview()
+        }
     }
 }
 
@@ -146,6 +177,6 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 11, left: 29, bottom: 0, right: 28)
     }
 }

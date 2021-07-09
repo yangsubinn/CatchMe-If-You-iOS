@@ -37,17 +37,17 @@ class MainCardVC: UIViewController {
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(55)
-            make.leading.equalTo(view.snp.leading).offset(14)
+            make.leading.equalToSuperview().offset(14)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(16)
-            make.leading.equalTo(view.snp.leading).offset(28)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(6)
-            make.leading.equalTo(view.snp.leading).offset(28)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
         popupButton.snp.makeConstraints { make in
@@ -57,23 +57,23 @@ class MainCardVC: UIViewController {
         }
         
         addButton.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom).offset(14)
+            make.trailing.equalToSuperview().inset(27)
             make.width.equalTo(72)
             make.height.equalTo(48)
-            make.trailing.equalTo(view.snp.trailing).inset(27)
-            make.top.equalTo(backButton.snp.bottom).offset(14)
         }
         
         alignButton.snp.makeConstraints { make in
-            make.width.height.equalTo(48)
-            make.trailing.equalTo(view.snp.trailing).inset(13)
             make.top.equalTo(addButton.snp.bottom).offset(27)
+            make.trailing.equalToSuperview().inset(13)
+            make.width.height.equalTo(48)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(260)
-            make.leading.equalTo(view.snp.leading).offset(29)
-            make.bottom.equalTo(view.snp.bottom)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
+            make.top.equalToSuperview().offset(260)
+            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.bottom.equalToSuperview()
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
         }
     }
     
@@ -82,11 +82,11 @@ class MainCardVC: UIViewController {
         
         nameLabel.text = "최고의대장피엠김해리 님"
         nameLabel.textColor = .white
-        nameLabel.font = UIFont.stringBoldSystemFont(ofSize: 14)
+        nameLabel.font = .stringBoldSystemFont(ofSize: 14)
         
         titleLabel.text = "캐츄 모아보기"
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.stringBoldSystemFont(ofSize: 22)
+        titleLabel.font = .stringBoldSystemFont(ofSize: 22)
         
         popupButton.backgroundColor = .blue
         addButton.backgroundColor = .yellow

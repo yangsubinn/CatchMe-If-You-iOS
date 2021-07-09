@@ -49,6 +49,7 @@ class CharacterVC: UIViewController {
     func setupTableView() {
         mainTableView.backgroundColor = .black
         mainTableView.separatorStyle = .none
+        mainTableView.contentInsetAdjustmentBehavior = .never
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -56,9 +57,6 @@ class CharacterVC: UIViewController {
         mainTableView.register(CharacterReportTVC.self, forCellReuseIdentifier: "CharacterReportTVC")
         mainTableView.register(CharacterFirstTVC.self, forCellReuseIdentifier: "CharacterFirstTVC")
         mainTableView.register(CharacterTVC.self, forCellReuseIdentifier: "CharacterTVC")
-        
-        mainTableView.separatorStyle = .none
-        mainTableView.contentInsetAdjustmentBehavior = .never
     }
     
     func setupAutoLayout() {

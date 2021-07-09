@@ -169,13 +169,7 @@ class TextFieldView: UIView {
                 } else if pwText != self.pw {
                     self.passwordMessageLabel.isHidden = false
                 } else {
-                    self.emailMessageLabel.isHidden = true
-                    self.passwordMessageLabel.isHidden = true
-                    
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.transform = .identity
-                    })
-                    self.passwordTextField.resignFirstResponder()
+                    /// 로그인 성공 로직
                 }
             }
         }

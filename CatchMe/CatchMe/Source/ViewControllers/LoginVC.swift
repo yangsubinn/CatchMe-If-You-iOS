@@ -44,4 +44,11 @@ class LoginVC: UIViewController {
         
         hideKeyboardWhenTappedAround()
     }
+    
+    @objc
+    override func dismissKeyboard() {
+        if !textFieldView.secureButton.isTouchInside && !textFieldView.loginButton.isTouchInside {
+            view.endEditing(true)
+        }
+    }
 }

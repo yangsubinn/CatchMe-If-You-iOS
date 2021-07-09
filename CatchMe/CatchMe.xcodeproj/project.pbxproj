@@ -29,6 +29,7 @@
 		5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */; };
 		5B447CDA269628D900F79AB7 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CD9269628D900F79AB7 /* Activity.swift */; };
 		5B447CDE2697036C00F79AB7 /* CharacterFirstTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CDD2697036C00F79AB7 /* CharacterFirstTVC.swift */; };
+		5B447CEF2697146800F79AB7 /* CharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
@@ -113,6 +114,7 @@
 		5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionVC.swift; sourceTree = "<group>"; };
 		5B447CD9269628D900F79AB7 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		5B447CDD2697036C00F79AB7 /* CharacterFirstTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFirstTVC.swift; sourceTree = "<group>"; };
+		5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFooterView.swift; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED63E87F268A14E5000F058F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				5B08504C26919416008F40B2 /* NavigationBar.swift */,
 				5B08505B26919C0B008F40B2 /* CharacterUpperView.swift */,
 				5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */,
+				5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */,
 				5B447CB6269426AB00F79AB7 /* MoreMenuView.swift */,
 				5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */,
 			);
@@ -722,6 +725,7 @@
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
+				5B447CEF2697146800F79AB7 /* CharacterFooterView.swift in Sources */,
 				EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */,
 				EDBDC80A269585F800CDF1B2 /* CatchuTitleView.swift in Sources */,
 				EDBDC803269456A800CDF1B2 /* CatchuCVC.swift in Sources */,

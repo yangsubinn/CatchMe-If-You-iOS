@@ -13,7 +13,7 @@ import SnapKit
 class CharacterVC: UIViewController {
     // MARK: - Lazy Properties
     lazy var naviBar = NavigationBar(vc: self)
-
+    
     // MARK: - Properties
     let vc = CharacterPopupVC()
     let upperView = CharacterUpperView()
@@ -22,7 +22,7 @@ class CharacterVC: UIViewController {
     let reportCell = CharacterReportTVC()
     
     let catchGuideImageView = UIImageView().then {
-//      $0.setImage(UIImage(named: ""), for: .normal)
+        //      $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .purple
     }
     
@@ -35,15 +35,20 @@ class CharacterVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configUI()
         setupAutoLayout()
-        setTableView()
+        setupTableView()
     }
     
     // MARK: - Custom Method
-    func setTableView() {
-        catchGuideImageView.isHidden = true
-        mainTableView.backgroundColor = .black
+    func configUI() {
         upperView.backgroundColor = .white
+        catchGuideImageView.isHidden = true
+    }
+    
+    func setupTableView() {
+        mainTableView.backgroundColor = .black
+        mainTableView.separatorStyle = .none
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -51,8 +56,6 @@ class CharacterVC: UIViewController {
         mainTableView.register(CharacterReportTVC.self, forCellReuseIdentifier: "CharacterReportTVC")
         mainTableView.register(CharacterFirstTVC.self, forCellReuseIdentifier: "CharacterFirstTVC")
         mainTableView.register(CharacterTVC.self, forCellReuseIdentifier: "CharacterTVC")
-        
-        mainTableView.separatorStyle = .none
         
         mainTableView.tableFooterView = UIView(frame: .zero)
         mainTableView.sectionFooterHeight = 0
@@ -85,18 +88,17 @@ class CharacterVC: UIViewController {
     }
     
     @objc func touchupCatchGuidebutton(_ sender: UIButton) {
-        if reportCell.catchGuideButton.isSelected == true {
+        if reportCell.catchGuideButton.isSelected {
             reportCell.catchGuideButton.isSelected = false
             catchGuideImageView.isHidden = true
-        } else if reportCell.catchGuideButton.isSelected == false {
+        } else {
             reportCell.catchGuideButton.isSelected = true
             catchGuideImageView.isHidden = false
         }
     }
-
+    
     @objc func touchupWriteButton(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Character", bundle: nil)
-        guard let nextVC = storyboard.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
+        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
         nextVC.modalPresentationStyle = .fullScreen
         present(nextVC, animated: true, completion: nil)
     }
@@ -110,14 +112,14 @@ class CharacterVC: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
-
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        let touch = touches.first
-//        if touch?.view != self.catchGuideImageView {
-//            catchGuideImageView.isHidden = true
-//        }
-//    }
+    
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        super.touchesBegan(touches, with: event)
+    //        let touch = touches.first
+    //        if touch?.view != self.catchGuideImageView {
+    //            catchGuideImageView.isHidden = true
+    //        }
+    //    }
 }
 
 // MARK: - UITableViewDelegate
@@ -146,15 +148,14 @@ extension CharacterVC: UITableViewDelegate {
             UIView.animate(withDuration: 0.03) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
                 self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 203)
-
+                
                 // 헤더 부분 높이
                 self.upperView.snp.updateConstraints { make in
                     make.height.equalTo(171)
                 }
                 // 핑크색 배경
                 self.upperView.backgroundView.snp.updateConstraints { make in
-                    make.width.equalTo(self.upperView.backgroundView.bounds.height)
-                    make.height.equalTo(self.upperView.backgroundView.bounds.height)
+                    make.width.height.equalTo(self.upperView.backgroundView.bounds.height)
                 }
                 // 핑크색 둥글기
                 self.upperView.backgroundView.layer.cornerRadius = backgroundWidth / 2
@@ -164,10 +165,10 @@ extension CharacterVC: UITableViewDelegate {
                 self.upperView.characterImageView.transform = .identity
                 self.upperView.backgroundView.transform = .identity
                 self.upperView.transform = .identity
-
+                
                 // 헤더 부분 높이
                 self.upperView.snp.updateConstraints { make in
-                    make.height.equalTo(width-offset)
+                    make.height.equalTo(width - offset)
                 }
                 // 캐릭터 상단 constraint
                 self.upperView.characterImageView.snp.updateConstraints { make in
@@ -185,13 +186,13 @@ extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if posts.isEmpty == true {
+            if posts.isEmpty {
                 return 1 + 1 // reportCell + emptySetupLayout인 경우 emptyState 때문에 무조건 줘야 하는 것
             } else {
                 return 1 + posts.count // reportCell + empty가 아닌 경우
             }
         default:
-            return Int()
+            return 0
         }
     }
     
@@ -204,26 +205,24 @@ extension CharacterVC: UITableViewDataSource {
                 reportCell.setupAutoLayout()
                 reportCell.catchGuideButton.addTarget(self, action: #selector(touchupCatchGuidebutton(_:)), for: .touchUpInside)
                 return reportCell
-        
             } else if indexPath.row == 1 { // 첫 번째 lineView가 안 붙여져 있는 cell
                 guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC else { return UITableViewCell() }
                 firstCell.selectionStyle = .none
-
+                
                 if posts.count == 0 {
-                    firstCell.emptySetupLayout()
+                    firstCell.setupEmptyLayout()
                 } else {
                     firstCell.setupAutoLayout()
                     firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
                     firstCell.moreMenuView.deleteButton.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
                 }
                 return firstCell
-                
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
                 guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
                 restCell.selectionStyle = .none
-
+                
                 if posts.count == 0 {
-                    restCell.emptySetupLayout()
+                    restCell.setupEmptyLayout()
                 } else {
                     restCell.setupAutoLayout()
                     restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)

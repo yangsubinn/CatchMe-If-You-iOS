@@ -24,14 +24,14 @@ class MainCardCVC: UICollectionViewCell {
     
     // MARK: - Custom Method
     func configUI() {
-        self.backgroundColor = .white
         self.layer.cornerRadius = 14
+        self.backgroundColor = .white
         characterBackView.backgroundColor = .systemIndigo
         characterImageView.backgroundColor = .cyan
         
         nameLabel.text = "캐치미캐치유캐치미를정말정말좋아하는캐츄"
         nameLabel.textColor = .black
-        nameLabel.font = UIFont.catchuRegularSystemFont(ofSize: 14)
+        nameLabel.font = .catchuRegularSystemFont(ofSize: 14)
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.numberOfLines = 2
     }
@@ -51,9 +51,10 @@ class MainCardCVC: UICollectionViewCell {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(14)
-            make.trailing.equalToSuperview().inset(14)
             make.top.equalTo(characterBackView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().inset(14)
+            make.width.equalTo(127)
+            make.height.equalTo(36)
         }
     }
 }

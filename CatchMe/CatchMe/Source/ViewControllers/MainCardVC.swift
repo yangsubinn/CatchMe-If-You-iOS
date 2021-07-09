@@ -17,6 +17,7 @@ class MainCardVC: UIViewController {
     let popupButton = UIButton()
     let addButton = UIButton()
     let alignButton = UIButton()
+    let topBackView = UIView()
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -31,9 +32,16 @@ class MainCardVC: UIViewController {
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([backButton, nameLabel, titleLabel,
-                          popupButton, addButton, alignButton,
-                          collectionView])
+        view.addSubviews([topBackView, backButton, nameLabel,
+                          titleLabel,popupButton, addButton,
+                          alignButton,collectionView])
+        
+        topBackView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+//            make.height.equalTo(UIScreen.main.hasNotch ? 230 : 190)
+            make.bottom.equalTo(alignButton.snp.bottom)
+        }
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(55)
@@ -70,7 +78,8 @@ class MainCardVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(260)
+//            make.top.equalToSuperview().offset(260)
+            make.top.equalTo(topBackView.snp.bottom)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
             make.bottom.equalToSuperview()
             make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
@@ -79,6 +88,10 @@ class MainCardVC: UIViewController {
     
     func configUI() {
         view.backgroundColor = .black100
+        popupButton.backgroundColor = .blue
+        addButton.backgroundColor = .yellow
+        alignButton.backgroundColor = .gray300
+        topBackView.backgroundColor = .brown
         
         nameLabel.text = "최고의대장피엠김해리 님"
         nameLabel.textColor = .white
@@ -87,10 +100,6 @@ class MainCardVC: UIViewController {
         titleLabel.text = "캐츄 모아보기"
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
-        
-        popupButton.backgroundColor = .blue
-        addButton.backgroundColor = .yellow
-        alignButton.backgroundColor = .gray300
     }
     
     func setupCollectionView() {
@@ -137,6 +146,6 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
     }
 }

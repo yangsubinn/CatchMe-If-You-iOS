@@ -10,9 +10,11 @@ import UIKit
 import SnapKit
 
 class LoginVC: UIViewController {
+    // MARK: - Lazy Properties
+    lazy var textFieldView = TextFieldView(logo: logoImageView)
+    
     // MARK: - Properties
     let logoImageView = UIImageView()
-    let textFieldView = TextFieldView()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -43,5 +45,13 @@ class LoginVC: UIViewController {
         logoImageView.backgroundColor = .systemTeal
         
         hideKeyboardWhenTappedAround()
+    }
+    
+    @objc
+    override func dismissKeyboard() {
+        if !textFieldView.secureButton.isTouchInside && !textFieldView.loginButton.isTouchInside {
+            view.endEditing(true)
+            logoImageView.fadeIn()
+        }
     }
 }

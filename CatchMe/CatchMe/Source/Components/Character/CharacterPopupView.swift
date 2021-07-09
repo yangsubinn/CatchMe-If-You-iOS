@@ -33,6 +33,7 @@ class CharacterPopupView: UIView {
         $0.layer.cornerRadius = 15
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray300.cgColor
+        $0.addTarget(self, action: #selector(touchupCancelButton(_:)), for: .touchUpInside)
     }
     
     let deleteButton = UIButton().then {
@@ -41,6 +42,7 @@ class CharacterPopupView: UIView {
         $0.setTitle("지울래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 15
+        $0.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
     }
     
     var viewController = UIViewController()
@@ -58,7 +60,7 @@ class CharacterPopupView: UIView {
     }
     
     // MARK: - Custom Method
-    func configUI() {
+    private func configUI() {
         backgroundColor = .black200
         layer.cornerRadius = 18
     }
@@ -87,6 +89,15 @@ class CharacterPopupView: UIView {
             make.top.equalTo(popupLabel.snp.bottom).offset(33)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    // MARK: - @objc
+    @objc func touchupCancelButton(_ sender: UIButton) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func touchupDeleteButton(_ sender: UIButton) {
+    // 삭제를 시키는 코드를 작성해야 합니다.
     }
 }
 

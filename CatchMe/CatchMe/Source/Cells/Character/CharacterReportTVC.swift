@@ -100,7 +100,6 @@ class CharacterReportTVC: UITableViewCell {
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.sendSubviewToBack(contentView)
         setupAutoLayout()
     }
     
@@ -114,13 +113,13 @@ class CharacterReportTVC: UITableViewCell {
     
     // MARK: - Custom Method
     func setupAutoLayout() {
+        self.sendSubviewToBack(contentView)
         backgroundColor = .black
         
         addSubviews([lineTopView, levelStackView, separateLineLeftView,
                      activityStackView, separateLineRightView,
                      catchNumberLabel, catchLabel, exclamationMarkImageView,
                      catchGuideButton, lineBottomView])
-        
         levelStackView.addArrangedSubview(levelNumberLabel)
         levelStackView.addArrangedSubview(levelLabel)
         activityStackView.addArrangedSubview(activityNumberLabel)

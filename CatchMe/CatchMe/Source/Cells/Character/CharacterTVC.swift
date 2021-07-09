@@ -74,9 +74,7 @@ class CharacterTVC: UITableViewCell {
         let attributedString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 0.08
-
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-                
         $0.attributedText = attributedString
     }
     
@@ -89,7 +87,7 @@ class CharacterTVC: UITableViewCell {
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.sendSubviewToBack(contentView)
+        configUI()
         moreButton.isSelected = true
         moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
     }
@@ -103,9 +101,12 @@ class CharacterTVC: UITableViewCell {
     }
     
     // MARK: - Custom Method
-    func setupAutoLayout() {
+    func configUI() {
         backgroundColor = .black
-      
+        self.sendSubviewToBack(contentView)
+    }
+    
+    func setupAutoLayout() {
         addSubviews([lineTopView, lineView, pinImageView,
                      dateLabel, contentStackView, moreButton, moreMenuView])
         commentView.addSubview(commentLabel)
@@ -168,9 +169,7 @@ class CharacterTVC: UITableViewCell {
         }
     }
 
-    func emptySetupLayout() {
-        backgroundColor = .black
-        
+    func setupEmptyLayout() {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
         emptyStateImageView.snp.makeConstraints { make in
@@ -187,19 +186,19 @@ class CharacterTVC: UITableViewCell {
     }
     
     @objc func touchupMoreButton(_ sender: UIButton) {
-        if moreButton.isSelected == false {
-            moreButton.isSelected = true
-            moreMenuView.isHidden = true
-        } else if moreButton.isSelected == true {
+        if moreButton.isSelected {
             moreButton.isSelected = false
             moreMenuView.isHidden = false
-        
+            
             moreMenuView.snp.makeConstraints { make in
                 make.top.equalTo(moreButton.snp.top).offset(34)
                 make.leading.equalTo(contentStackView.snp.leading).inset(202)
                 make.width.equalTo(100)
                 make.height.equalTo(48)
             }
+        } else {
+            moreButton.isSelected = true
+            moreMenuView.isHidden = true
         }
     }
 
@@ -207,8 +206,8 @@ class CharacterTVC: UITableViewCell {
         dateLabel.text = date
         commentLabel.text = comment
         
-        if image == image {
-            photoImageView.image = UIImage(named: image)
+        if let image = UIImage(named: image) {
+            photoImageView.image = image
         }
     }
 }

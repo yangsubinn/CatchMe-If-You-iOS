@@ -12,10 +12,10 @@ import SnapKit
 
 class CharacterFirstTVC: UITableViewCell {
     static let identifier = "CharacterFirstTVC"
-
+    
     // MARK: - Properties
     let emptyStateImageView = UIImageView().then {
-//        $0.image = UIImage(named: "icPin")
+        //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .gray
     }
     
@@ -27,7 +27,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let pinImageView = UIImageView().then {
-//        $0.image = UIImage(named: "icPin")
+        //        $0.image = UIImage(named: "icPin")
         $0.backgroundColor = .orange
     }
     
@@ -43,7 +43,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let moreButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
+        //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .green
     }
     
@@ -56,7 +56,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-//        $0.image = UIImage(named: "icComment")
+        //        $0.image = UIImage(named: "icComment")
         $0.backgroundColor = .orange
     }
     
@@ -70,14 +70,12 @@ class CharacterFirstTVC: UITableViewCell {
         let attributedString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 0.08
-
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-                
         $0.attributedText = attributedString
     }
     
     let photoImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
+        //        $0.image = UIImage(named: "")
         $0.backgroundColor = .systemPink
         $0.layer.cornerRadius = 18
     }
@@ -86,6 +84,7 @@ class CharacterFirstTVC: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.sendSubviewToBack(contentView)
+        configUI()
         moreButton.isSelected = true
         moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
     }
@@ -99,9 +98,11 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     // MARK: - Custom Method
-    func setupAutoLayout() {
+    func configUI() {
         backgroundColor = .black
-      
+    }
+    
+    func setupAutoLayout() {
         addSubviews([lineView, pinImageView,
                      dateLabel, contentStackView, moreButton, moreMenuView])
         commentView.addSubview(commentLabel)
@@ -157,9 +158,7 @@ class CharacterFirstTVC: UITableViewCell {
         }
     }
     
-    func emptySetupLayout() {
-        backgroundColor = .black
-        
+    func setupEmptyLayout() {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
         emptyStateImageView.snp.makeConstraints { make in
@@ -176,28 +175,28 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     @objc func touchupMoreButton(_ sender: UIButton) {
-        if moreButton.isSelected == false {
-            moreButton.isSelected = true
-            moreMenuView.isHidden = true
-        } else if moreButton.isSelected == true {
+        if moreButton.isSelected {
             moreButton.isSelected = false
             moreMenuView.isHidden = false
-        
+            
             moreMenuView.snp.makeConstraints { make in
                 make.top.equalTo(moreButton.snp.top).offset(34)
                 make.leading.equalTo(contentStackView.snp.leading).inset(202)
                 make.width.equalTo(100)
                 make.height.equalTo(48)
             }
+        } else {
+            moreButton.isSelected = true
+            moreMenuView.isHidden = true
         }
     }
-
+    
     func setData(date: String, comment: String, image: String) {
         dateLabel.text = date
         commentLabel.text = comment
         
-        if image == image {
-            photoImageView.image = UIImage(named: image)
+        if let image = UIImage(named: image) {
+            photoImageView.image = image
         }
     }
 }

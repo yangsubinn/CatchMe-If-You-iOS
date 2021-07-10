@@ -539,8 +539,8 @@ extension SignupTextFieldView {
     
     private func moveTextFieldView() {
         UIView.animate(withDuration: 0.2, animations: {
-            self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -268 : -140)
-            self.registerButton.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -256 : -140)
+            self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -268 : -220)
+            self.registerButton.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -256 : -180)
         })
     }
     

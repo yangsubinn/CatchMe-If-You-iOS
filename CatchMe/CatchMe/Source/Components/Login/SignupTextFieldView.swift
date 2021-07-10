@@ -390,6 +390,17 @@ extension SignupTextFieldView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailTextField:
+            idTextField.becomeFirstResponder()
+        case idTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            checkPasswordTextField.becomeFirstResponder()
+        default:
+            checkPasswordTextField.resignFirstResponder()
+        }
+        
         return true
     }
 }

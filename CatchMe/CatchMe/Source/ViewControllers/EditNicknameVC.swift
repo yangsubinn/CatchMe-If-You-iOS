@@ -121,7 +121,7 @@ extension EditNicknameVC: UITextFieldDelegate {
             editButton.changeBottomButton(isEnable: false)
         } else {
             editButton.changeBottomButton(isEnable: true)
-            // textfield에 글자가 있으면 bottombutton 사용가능하게
+            // textfield에 글자가 있으면 bottombutton 사용가능하게 해야되는데 아직 해결 못함
         }
     }
     

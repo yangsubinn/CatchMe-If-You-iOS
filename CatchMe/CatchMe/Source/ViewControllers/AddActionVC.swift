@@ -28,7 +28,11 @@ class AddActionVC: UIViewController {
         $0.backgroundColor = . white
     }
     
-    lazy var closeButton = XmarkButton(self)
+    let closeButton = UIButton().then {
+//        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.backgroundColor = .blue
+        $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
+    }
 
     let nameLabel = UILabel().then {
         $0.text = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열"
@@ -138,6 +142,7 @@ class AddActionVC: UIViewController {
         closeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 55 : 41)
             make.trailing.equalTo(view.snp.trailing).inset(UIScreen.main.hasNotch ? 14 : 4)
+            make.width.height.equalTo(48)
         }
         
         dateLabel.snp.makeConstraints { make in
@@ -211,5 +216,9 @@ class AddActionVC: UIViewController {
             make.top.equalTo(photoButton.snp.bottom).offset(UIScreen.main.hasNotch ? 58 : 19)
             make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
         }
+    }
+    
+    @objc func touchupCloseButton(_ sender: UIButton) {
+        
     }
 }

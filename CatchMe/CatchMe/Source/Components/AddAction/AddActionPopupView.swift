@@ -12,7 +12,7 @@ import SnapKit
 
 class AddActionPopupView: UIView {
     // MARK: - Properties
-    let vc = AddActionVC()
+    let addActionVC = AddActionVC()
     let popupLabel = UILabel().then {
         $0.text = "정말로 화면을 나갈까요?"
         $0.font = .stringMediumSystemFont(ofSize: 16)
@@ -43,7 +43,6 @@ class AddActionPopupView: UIView {
         $0.setTitle("나갈래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 15
-        $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
     
     var viewController = UIViewController()
@@ -95,9 +94,5 @@ class AddActionPopupView: UIView {
     // MARK: - @objc
     @objc func touchupCancelButton(_ sender: UIButton) {
         viewController.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func touchupCloseButton(_ sender: UIButton) {
-    // 화면 끄고 CharacterVC로 가는 코드를 짜야 합니다.
     }
 }

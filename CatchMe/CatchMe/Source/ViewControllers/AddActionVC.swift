@@ -209,7 +209,7 @@ class AddActionVC: UIViewController {
         
         uploadButton.snp.makeConstraints { make in
             make.top.equalTo(photoButton.snp.bottom).offset(UIScreen.main.hasNotch ? 58 : 19)
-            make.leading.trailing.equalToSuperview().inset(28)
+            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
         }
     }
 }

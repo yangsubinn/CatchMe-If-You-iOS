@@ -12,9 +12,9 @@ import SnapKit
 class SignupVC: UIViewController {
     // MARK: - Lazy Properties
     lazy var navigationBar = SignupNaviBar(self)
+    lazy var textFieldView = SignupTextFieldView(signupButton)
     
     // MARK: - Properties
-    let textFieldView = SignupTextFieldView()
     let signupButton = BottomButton(title: "가입하기")
     let height = UIApplication.statusBarHeight
     
@@ -23,11 +23,13 @@ class SignupVC: UIViewController {
         super.viewDidLoad()
         setupLayout()
         configUI()
+        setupButtonAction()
     }
 
     // MARK: - Custom Method
     private func setupLayout() {
         view.addSubviews([navigationBar, textFieldView, signupButton])
+        view.bringSubviewToFront(navigationBar)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -40,7 +42,7 @@ class SignupVC: UIViewController {
         }
         
         signupButton.snp.makeConstraints { make in
-            make.top.equalTo(textFieldView.snp.bottom).offset(UIScreen.main.hasNotch ? 87 : 30)
+            make.top.equalTo(textFieldView.snp.bottom).offset(UIScreen.main.hasNotch ? 70 : 30)
             make.leading.trailing.equalToSuperview().inset(28)
         }
     }
@@ -50,5 +52,25 @@ class SignupVC: UIViewController {
         
         signupButton.backgroundColor = .gray300
         signupButton.isEnabled = false
+        
+        hideKeyboardWhenTappedAround()
+    }
+    
+    private func setupButtonAction() {
+        let registerAction = UIAction { _ in
+            /// connect server
+            print("register")
+        }
+        signupButton.addAction(registerAction, for: .touchUpInside)
+    }
+    
+    @objc
+    override func dismissKeyboard() {
+        if !textFieldView.doubleCheckButton.isTouchInside &&
+            !textFieldView.emailButton.isTouchInside &&
+            !textFieldView.idButton.isTouchInside &&
+            !signupButton.isTouchInside {
+            view.endEditing(true)
+        }
     }
 }

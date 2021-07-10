@@ -20,13 +20,15 @@ class MainVC: UIViewController {
     let catchingButton = UIButton()
     let pageControl = PageControl()
     let reportView = mainReportView()
-    
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubTitle = UILabel()
     let catchMeButton = UIButton()
     
     var formatterDate = DateFormatter()
+    var levels: [String] = ["10", "8", "6", "4", "2"]
+    var activitys: [String] = ["10", "5", "6", "8", "1"]
+    var totals: [String] = ["12", "13", "4", "2", "1"]
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -207,6 +209,16 @@ class MainVC: UIViewController {
         let currentFormatterDate = formatterDate.string(from: Date())
         dateLabel.text = currentFormatterDate
     }
+    
+    private func setLabels() {
+        changeLabelText(page: 0)
+    }
+    
+    private func changeLabelText(page: Int) {
+        reportView.levelCountLabel.text = levels[page]
+        reportView.activeCountLabel.text = activitys[page]
+        reportView.percentCountLabel.text = totals[page]
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -250,6 +262,6 @@ extension MainVC: UICollectionViewDelegate {
         pageControl.selectedPage = Int(page)
         
         // Label 내용 변경하는 코드
-//        changeLabelText(page: Int(page))
+        changeLabelText(page: Int(page))
     }
 }

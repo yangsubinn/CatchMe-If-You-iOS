@@ -139,6 +139,7 @@ class TextFieldView: UIView {
         emailTextField.setupEmailImage()
         emailTextField.font = .systemFont(ofSize: 17)
         emailTextField.textColor = .black100
+        emailTextField.tintColor = .black100
         
         passwordTextField.delegate = self
         passwordTextField.changePaddingPoints(point: 50)
@@ -146,6 +147,7 @@ class TextFieldView: UIView {
         passwordTextField.setupPasswordImage()
         passwordTextField.font = .systemFont(ofSize: 17)
         passwordTextField.textColor = .black100
+        passwordTextField.tintColor = .black100
     }
     
     private func setupButtonAction() {

@@ -26,6 +26,8 @@ class SignupTextFieldView: UIView {
     let emailButton = UIButton()
     let idCountLabel = UILabel()
     let idButton = UIButton()
+    let pwMessageLabel = UILabel()
+    let pwButton = UIButton()
 
     var registerButton = UIButton()
     var doubleCheck = false
@@ -111,7 +113,7 @@ class SignupTextFieldView: UIView {
     
     private func setupAdditionalLayout() {
         addSubviews([emailMessageLabel, emailButton, idCountLabel,
-                     idButton])
+                     idButton, pwMessageLabel, pwButton])
         
         emailMessageLabel.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(8)
@@ -134,17 +136,37 @@ class SignupTextFieldView: UIView {
             make.trailing.equalTo(idTextField.snp.trailing)
             make.width.height.equalTo(48)
         }
+        
+        pwMessageLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(8)
+            make.leading.equalToSuperview().inset(40)
+        }
+        
+        pwButton.snp.makeConstraints { make in
+            make.centerY.equalTo(passwordTextField.snp.centerY)
+            make.trailing.equalTo(passwordTextField.snp.trailing)
+            make.width.height.equalTo(48)
+        }
     }
     
     private func configUI() {
         emailTextField.delegate = self
         emailTextField.setRightPaddingPoints(48)
+        emailTextField.tintColor = .pink100
         
         idTextField.delegate = self
         idTextField.setRightPaddingPoints(48)
+        idTextField.tintColor = .pink100
         
         passwordTextField.delegate = self
+        passwordTextField.setRightPaddingPoints(48)
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.tintColor = .pink100
+        
         checkPasswordTextField.delegate = self
+        checkPasswordTextField.setRightPaddingPoints(48)
+        checkPasswordTextField.isSecureTextEntry = true
+        checkPasswordTextField.tintColor = .pink100
         
         emailLabel.text = "이메일 주소"
         emailLabel.font = .systemFont(ofSize: 18, weight: .medium)
@@ -181,6 +203,15 @@ class SignupTextFieldView: UIView {
         
         idButton.backgroundColor = .gray
         idButton.isHidden = true
+        
+        pwMessageLabel.text = "영문, 숫자, 특수문자 포함 8~16자"
+        pwMessageLabel.font = .systemFont(ofSize: 12)
+        pwMessageLabel.textColor = .pink210
+        pwMessageLabel.isHidden = true
+        
+        pwButton.backgroundColor = .clear
+        pwButton.isHidden = true
+        pwButton.isEnabled = false
     }
     
     private func setupButtonAction() {
@@ -237,9 +268,14 @@ extension SignupTextFieldView: UITextFieldDelegate {
             idCountLabel.isHidden = false
             
             idButton.isHidden = false
+            idButton.isEnabled = true
             
             idTextField.setupPinkLine()
         case passwordTextField:
+            pwMessageLabel.isHidden = false
+            
+            pwButton.isHidden = false
+            
             passwordTextField.setupPinkLine()
             
             moveTextFieldView()
@@ -270,6 +306,10 @@ extension SignupTextFieldView: UITextFieldDelegate {
             
             idTextField.setupOriginalLine()
         case passwordTextField:
+            pwMessageLabel.isHidden = true
+            
+            pwButton.isHidden = true
+            
             passwordTextField.setupOriginalLine()
             
             backToOriginalView()
@@ -318,22 +358,20 @@ extension SignupTextFieldView: UITextFieldDelegate {
 extension SignupTextFieldView {
     @objc
     func changePWTextFieldUI(){
-//        if !(pwTextField.text!.validatePassword()) {
-//            validatePWLabel.text = "영어와 숫자 조합으로 6자리 이상 입력해 주세요!"
-//        }
-//        else{
-//            if !(pwTextField.text == checkpwTextField.text) {
-//                checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
-//                pwCheckLabel.textColor = .mainGray
-//            }
-//            else{
-//                checkPWLabel.text = ""
-//                pwCheckLabel.textColor = .mainOrange
-//            }
-//
-//            validatePWLabel.text = ""
-//            pwLabel.textColor = .mainOrange
-//        }
+        if !(passwordTextField.text!.validatePassword()) && passwordTextField.hasText {
+            pwMessageLabel.text = "비밀번호 조합조건이 틀렸습니다."
+            pwMessageLabel.textColor = .red100
+            
+            pwButton.backgroundColor = .red100
+        } else if passwordTextField.hasText {
+            pwMessageLabel.text = ""
+            pwButton.backgroundColor = .blue100
+        } else {
+            pwMessageLabel.text = "영문, 숫자, 특수문자 포함 8~16자"
+            pwMessageLabel.textColor = .pink210
+            pwButton.backgroundColor = .clear
+        }
+        
         checkValidateUI()
     }
     

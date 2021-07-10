@@ -42,7 +42,7 @@ class SignupVC: UIViewController {
         }
         
         signupButton.snp.makeConstraints { make in
-            make.top.equalTo(textFieldView.snp.bottom).offset(UIScreen.main.hasNotch ? 87 : 30)
+            make.top.equalTo(textFieldView.snp.bottom).offset(UIScreen.main.hasNotch ? 70 : 30)
             make.leading.trailing.equalToSuperview().inset(28)
         }
     }

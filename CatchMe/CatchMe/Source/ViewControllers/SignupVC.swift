@@ -12,9 +12,9 @@ import SnapKit
 class SignupVC: UIViewController {
     // MARK: - Lazy Properties
     lazy var navigationBar = SignupNaviBar(self)
+    lazy var textFieldView = SignupTextFieldView(signupButton)
     
     // MARK: - Properties
-    let textFieldView = SignupTextFieldView()
     let signupButton = BottomButton(title: "가입하기")
     let height = UIApplication.statusBarHeight
     
@@ -28,6 +28,7 @@ class SignupVC: UIViewController {
     // MARK: - Custom Method
     private func setupLayout() {
         view.addSubviews([navigationBar, textFieldView, signupButton])
+        view.bringSubviewToFront(navigationBar)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -50,5 +51,14 @@ class SignupVC: UIViewController {
         
         signupButton.backgroundColor = .gray300
         signupButton.isEnabled = false
+        
+        hideKeyboardWhenTappedAround()
+    }
+    
+    @objc
+    override func dismissKeyboard() {
+        if !textFieldView.doubleCheckButton.isTouchInside && !textFieldView.emailButton.isTouchInside {
+            view.endEditing(true)
+        }
     }
 }

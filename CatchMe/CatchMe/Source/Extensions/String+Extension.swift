@@ -9,8 +9,8 @@ import UIKit
 
 extension String {
     func removeCharacters(from forbiddenChars: CharacterSet) -> String {
-           let passed = self.unicodeScalars.filter { !forbiddenChars.contains($0) }
-           return String(String.UnicodeScalarView(passed))
+        let passed = self.unicodeScalars.filter { !forbiddenChars.contains($0) }
+        return String(String.UnicodeScalarView(passed))
     }
     
     func validateEmail() -> Bool {

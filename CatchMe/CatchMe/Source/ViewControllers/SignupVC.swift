@@ -58,6 +58,7 @@ class SignupVC: UIViewController {
     
     private func setupButtonAction() {
         let registerAction = UIAction { _ in
+            /// connect server
             print("register")
         }
         signupButton.addAction(registerAction, for: .touchUpInside)

@@ -28,6 +28,8 @@ class SignupTextFieldView: UIView {
     let idButton = UIButton()
     let pwMessageLabel = UILabel()
     let pwButton = UIButton()
+    let checkMessageLabel = UILabel()
+    let checkButton = UIButton()
 
     var registerButton = UIButton()
     var doubleCheck = false
@@ -113,7 +115,8 @@ class SignupTextFieldView: UIView {
     
     private func setupAdditionalLayout() {
         addSubviews([emailMessageLabel, emailButton, idCountLabel,
-                     idButton, pwMessageLabel, pwButton])
+                     idButton, pwMessageLabel, pwButton,
+                     checkMessageLabel, checkButton])
         
         emailMessageLabel.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(8)
@@ -145,6 +148,17 @@ class SignupTextFieldView: UIView {
         pwButton.snp.makeConstraints { make in
             make.centerY.equalTo(passwordTextField.snp.centerY)
             make.trailing.equalTo(passwordTextField.snp.trailing)
+            make.width.height.equalTo(48)
+        }
+        
+        checkMessageLabel.snp.makeConstraints { make in
+            make.top.equalTo(checkPasswordTextField.snp.bottom).offset(8)
+            make.leading.equalToSuperview().inset(40)
+        }
+        
+        checkButton.snp.makeConstraints { make in
+            make.centerY.equalTo(checkPasswordTextField.snp.centerY)
+            make.trailing.equalTo(checkPasswordTextField.snp.trailing)
             make.width.height.equalTo(48)
         }
     }
@@ -216,6 +230,15 @@ class SignupTextFieldView: UIView {
         pwButton.backgroundColor = .clear
         pwButton.isHidden = true
         pwButton.isEnabled = false
+        
+        checkMessageLabel.text = "비밀번호를 다시 입력해주세요."
+        checkMessageLabel.font = .systemFont(ofSize: 12)
+        checkMessageLabel.textColor = .pink210
+        checkMessageLabel.isHidden = true
+        
+        checkButton.backgroundColor = .clear
+        checkButton.isHidden = true
+        checkButton.isEnabled = false
     }
     
     private func setupButtonAction() {
@@ -284,6 +307,10 @@ extension SignupTextFieldView: UITextFieldDelegate {
             
             moveTextFieldView()
         case checkPasswordTextField:
+            checkMessageLabel.isHidden = false
+            
+            checkButton.isHidden = false
+            
             checkPasswordTextField.setupPinkLine()
             
             moveTextFieldView()
@@ -318,6 +345,10 @@ extension SignupTextFieldView: UITextFieldDelegate {
             
             backToOriginalView()
         case checkPasswordTextField:
+            checkMessageLabel.isHidden = true
+            
+            checkButton.isHidden = true
+            
             checkPasswordTextField.setupOriginalLine()
             
             backToOriginalView()
@@ -385,14 +416,19 @@ extension SignupTextFieldView {
     
     @objc
     func checkPWTextfieldUI(){
-//        if !(passwordTextField.text == checkPasswordTextField.text) {
-//            checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
-//            pwCheckLabel.textColor = .mainGray
-//        }
-//        else{
-//            checkPWLabel.text = ""
-//            pwCheckLabel.textColor = .mainOrange
-//        }
+        if !(passwordTextField.text == checkPasswordTextField.text) && checkPasswordTextField.hasText {
+            checkMessageLabel.text = "비밀번호가 일치하지 않습니다."
+            checkMessageLabel.textColor = .red100
+            checkButton.backgroundColor = .red100
+        } else if checkPasswordTextField.hasText {
+            checkMessageLabel.text = ""
+            checkButton.backgroundColor = .blue100
+        } else {
+            checkMessageLabel.text = "비밀번호를 다시 입력해주세요."
+            checkMessageLabel.textColor = .pink210
+            checkButton.backgroundColor = .clear
+        }
+        
         checkValidateUI()
     }
     

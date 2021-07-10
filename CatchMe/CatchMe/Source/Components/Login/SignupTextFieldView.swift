@@ -25,6 +25,7 @@ class SignupTextFieldView: UIView {
     let emailMessageLabel = UILabel()
     let emailButton = UIButton()
     let idCountLabel = UILabel()
+    let idButton = UIButton()
 
     var registerButton = UIButton()
     var doubleCheck = false
@@ -109,7 +110,8 @@ class SignupTextFieldView: UIView {
     }
     
     private func setupAdditionalLayout() {
-        addSubviews([emailMessageLabel, emailButton, idCountLabel])
+        addSubviews([emailMessageLabel, emailButton, idCountLabel,
+                     idButton])
         
         emailMessageLabel.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(8)
@@ -126,6 +128,12 @@ class SignupTextFieldView: UIView {
             make.top.equalTo(idTextField.snp.bottom).offset(8)
             make.trailing.equalToSuperview().inset(29)
         }
+        
+        idButton.snp.makeConstraints { make in
+            make.centerY.equalTo(idTextField.snp.centerY)
+            make.trailing.equalTo(idTextField.snp.trailing)
+            make.width.height.equalTo(48)
+        }
     }
     
     private func configUI() {
@@ -133,6 +141,8 @@ class SignupTextFieldView: UIView {
         emailTextField.setRightPaddingPoints(48)
         
         idTextField.delegate = self
+        idTextField.setRightPaddingPoints(48)
+        
         passwordTextField.delegate = self
         checkPasswordTextField.delegate = self
         
@@ -168,6 +178,9 @@ class SignupTextFieldView: UIView {
         idCountLabel.textAlignment = .right
         idCountLabel.textColor = .gray50
         idCountLabel.isHidden = true
+        
+        idButton.backgroundColor = .gray
+        idButton.isHidden = true
     }
     
     private func setupButtonAction() {
@@ -180,6 +193,14 @@ class SignupTextFieldView: UIView {
             self.emailTextField.text = ""
         }
         emailButton.addAction(emailAction, for: .touchUpInside)
+        
+        let idAction = UIAction { _ in
+            self.idTextField.text = ""
+            self.textCount = 0
+            self.idCountLabel.text = "0/10"
+            self.idCountLabel.textColor = .gray200
+        }
+        idButton.addAction(idAction, for: .touchUpInside)
     }
     
     private func changeTextFields() {
@@ -215,6 +236,8 @@ extension SignupTextFieldView: UITextFieldDelegate {
         case idTextField:
             idCountLabel.isHidden = false
             
+            idButton.isHidden = false
+            
             idTextField.setupPinkLine()
         case passwordTextField:
             passwordTextField.setupPinkLine()
@@ -243,6 +266,8 @@ extension SignupTextFieldView: UITextFieldDelegate {
         case idTextField:
             idCountLabel.isHidden = true
             
+            idButton.isHidden = true
+            
             idTextField.setupOriginalLine()
         case passwordTextField:
             passwordTextField.setupOriginalLine()
@@ -270,6 +295,8 @@ extension SignupTextFieldView: UITextFieldDelegate {
             emailButton.isEnabled = true
             emailButton.backgroundColor = .gray
             
+            checkValidateUI()
+            
             return true
         case idTextField:
             /// 이모지 입력 금지
@@ -277,6 +304,7 @@ extension SignupTextFieldView: UITextFieldDelegate {
             let isBackSpace = strcmp(utf8Char, "\\b")
             
             if string.hasCharacters() || isBackSpace == -92 {
+                checkValidateUI()
                 return true
             }
             return false
@@ -306,7 +334,7 @@ extension SignupTextFieldView {
 //            validatePWLabel.text = ""
 //            pwLabel.textColor = .mainOrange
 //        }
-//        checkValidateUI()
+        checkValidateUI()
     }
     
     @objc
@@ -330,14 +358,23 @@ extension SignupTextFieldView {
         case 0:
             idCountLabel.text = "0/10"
             idCountLabel.textColor = .gray200
+            
+            idButton.backgroundColor = .gray
+            idButton.isEnabled = true
         case 10:
             let attributedStr = NSMutableAttributedString(string: "10/10")
             attributedStr.addAttribute(.foregroundColor, value: UIColor.red100, range: ("10/10" as NSString).range(of: "10/10"))
             idCountLabel.attributedText = attributedStr
+            
+            idButton.backgroundColor = .red100
+            idButton.isEnabled = false
         default:
             let attributedStr = NSMutableAttributedString(string: "\(textCount)/10")
             attributedStr.addAttribute(.foregroundColor, value: UIColor.systemPink, range: ("\(textCount)/10" as NSString).range(of: "\(textCount)"))
             idCountLabel.attributedText = attributedStr
+            
+            idButton.backgroundColor = .gray
+            idButton.isEnabled = true
         }
         
         checkMaxLength(textField: sender, maxLength: 10)
@@ -353,6 +390,11 @@ extension SignupTextFieldView {
         } else {
             checkValidate = false
         }
+        
+        print("1.\(passwordTextField.text == checkPasswordTextField.text)")
+        print("2.\(emailTextField.text!.validateEmail())")
+        print("3.\(passwordTextField.text!.validatePassword())")
+        print("4.\(doubleCheck)")
         
         /// Button isEnable
         if !(idTextField.text!.isEmpty) && !(emailTextField.text!.isEmpty) && !(passwordTextField.text!.isEmpty) && !(passwordTextField.text!.isEmpty) && checkValidate {
@@ -392,9 +434,9 @@ extension SignupTextFieldView {
             emailButton.isEnabled = false
             
             doubleCheck = true
-            
-            checkValidateUI()
         }
+        
+        checkValidateUI()
     }
     
     func checkMaxLength(textField: UITextField!, maxLength: Int) {

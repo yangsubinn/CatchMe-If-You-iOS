@@ -21,7 +21,7 @@ extension String {
     }
     
     func validatePassword() -> Bool {
-        let passwordRegEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        let passwordRegEx = "^(?=.*[A-Za-z])(?=.*[\\d])(?=.*[~!@#\\$%\\^&\\*])[\\w~!@#\\$%\\^&\\*]{8,16}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         
         return predicate.evaluate(with: self)

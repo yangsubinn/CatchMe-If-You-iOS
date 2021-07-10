@@ -23,6 +23,7 @@ class SignupVC: UIViewController {
         super.viewDidLoad()
         setupLayout()
         configUI()
+        setupButtonAction()
     }
 
     // MARK: - Custom Method
@@ -55,9 +56,19 @@ class SignupVC: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
+    private func setupButtonAction() {
+        let registerAction = UIAction { _ in
+            print("register")
+        }
+        signupButton.addAction(registerAction, for: .touchUpInside)
+    }
+    
     @objc
     override func dismissKeyboard() {
-        if !textFieldView.doubleCheckButton.isTouchInside && !textFieldView.emailButton.isTouchInside {
+        if !textFieldView.doubleCheckButton.isTouchInside &&
+            !textFieldView.emailButton.isTouchInside &&
+            !textFieldView.idButton.isTouchInside &&
+            !signupButton.isTouchInside {
             view.endEditing(true)
         }
     }

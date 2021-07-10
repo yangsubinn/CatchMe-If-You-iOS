@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "colorGreenPhase1Size131.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "colorGreenPhase1Size131@2x.png",
+      "idiom" : "universal"
+    },
+    {
+      "scale" : "3x",
+      "idiom" : "universal",
+      "filename" : "colorGreenPhase1Size131@3x.png"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

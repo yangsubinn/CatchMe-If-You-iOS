@@ -153,20 +153,24 @@ class SignupTextFieldView: UIView {
         emailTextField.delegate = self
         emailTextField.setRightPaddingPoints(48)
         emailTextField.tintColor = .pink100
+        emailTextField.font = .systemFont(ofSize: 18)
         
         idTextField.delegate = self
         idTextField.setRightPaddingPoints(48)
         idTextField.tintColor = .pink100
+        idTextField.font = .systemFont(ofSize: 18)
         
         passwordTextField.delegate = self
         passwordTextField.setRightPaddingPoints(48)
         passwordTextField.isSecureTextEntry = true
         passwordTextField.tintColor = .pink100
+        passwordTextField.font = .systemFont(ofSize: 18)
         
         checkPasswordTextField.delegate = self
         checkPasswordTextField.setRightPaddingPoints(48)
         checkPasswordTextField.isSecureTextEntry = true
         checkPasswordTextField.tintColor = .pink100
+        checkPasswordTextField.font = .systemFont(ofSize: 18)
         
         emailLabel.text = "이메일 주소"
         emailLabel.font = .systemFont(ofSize: 18, weight: .medium)
@@ -351,6 +355,10 @@ extension SignupTextFieldView: UITextFieldDelegate {
         default:
             return true
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
 }
 

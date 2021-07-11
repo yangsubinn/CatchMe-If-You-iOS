@@ -13,23 +13,23 @@ import SnapKit
 class CalendarTitleView: UIView {
     // MARK: - Properties
     let yearLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .medium)
+        $0.font = .numberMediumSystemFont(ofSize: 20)
         $0.textColor = .white
     }
     
     let yearTitleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 17, weight: .medium)
+        $0.font = .stringMediumSystemFont(ofSize: 17)
         $0.textColor = .white
         $0.text = "년"
     }
     
     let monthLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .medium)
+        $0.font = .numberMediumSystemFont(ofSize: 20)
         $0.textColor = .white
     }
     
     let monthTitleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 17, weight: .medium)
+        $0.font = .stringMediumSystemFont(ofSize: 17)
         $0.textColor = .white
         $0.text = "월"
     }
@@ -50,8 +50,8 @@ class CalendarTitleView: UIView {
         }
         
         yearTitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(yearLabel.snp.trailing).offset(1)
-            make.bottom.equalTo(yearLabel.snp.bottom).offset(-2)
+            make.leading.equalTo(yearLabel.snp.trailing)
+            make.bottom.equalTo(yearLabel.snp.bottom).offset(-1)
         }
         
         monthLabel.snp.makeConstraints { make in
@@ -60,8 +60,8 @@ class CalendarTitleView: UIView {
         }
         
         monthTitleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(monthLabel.snp.trailing).offset(1)
-            make.bottom.equalTo(yearLabel.snp.bottom).offset(-2)
+            make.leading.equalTo(monthLabel.snp.trailing)
+            make.bottom.equalTo(yearLabel.snp.bottom).offset(-1)
             make.trailing.equalToSuperview()
         }
     }

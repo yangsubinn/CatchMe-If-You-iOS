@@ -26,9 +26,8 @@ class BackButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Asset들어오면 Asset으로 변경할 예정
     private func configUI() {
-        backgroundColor = .systemTeal
+        setImage(UIImage(named: "btnBack"), for: .normal)
     }
     
     private func setupLayout() {

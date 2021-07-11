@@ -80,7 +80,8 @@ class ReportVC: UIViewController {
                           dateCollectionView])
         
         reportView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 0 : -10)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.hasNotch ? UIScreen.main.bounds.size.height * 0.41 : 290)
         }
         

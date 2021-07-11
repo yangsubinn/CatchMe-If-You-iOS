@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>앨범에서 사진을 불러와 활동 기록에 추가할 수 있습니다</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
 	<key>UIAppFonts</key>
@@ -45,7 +47,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>Character</string>
 				</dict>
 			</array>
 		</dict>

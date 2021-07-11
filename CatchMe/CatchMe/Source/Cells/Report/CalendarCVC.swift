@@ -18,7 +18,7 @@ class CalendarCVC: UICollectionViewCell {
     var countLabel = UILabel()
     var characterImage = UIImageView().then {
         $0.isHidden = true
-        $0.backgroundColor = .systemBlue
+        $0.image = Character.orange.getCharacterImage(phase: 3, size: 43)
     }
     
     // MARK: - Life Cycle

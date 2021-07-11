@@ -5,7 +5,7 @@
 //  Created by SHIN YOON AH on 2021/07/11.
 //
 
-import Foundation
+import UIKit
 
 enum Character {
     case blue
@@ -16,18 +16,18 @@ enum Character {
 }
 
 extension Character {
-    func getCharacterImage(phase: Int, size: Int) -> String {
+    func getCharacterImage(phase: Int, size: Int) -> UIImage? {
         switch self {
         case .blue:
-            return "colorBluePhase\(phase)Size\(size)"
+            return UIImage(named: "colorBluePhase\(phase)Size\(size)")
         case .green:
-            return "colorGreenPhase\(phase)Size\(size)"
+            return UIImage(named: "colorGreenPhase\(phase)Size\(size)")
         case .orange:
-            return "colorOrangePhase\(phase)Size\(size)"
+            return UIImage(named: "colorOrangePhase\(phase)Size\(size)")
         case .purple:
-            return "colorPurplePhase\(phase)Size\(size)"
+            return UIImage(named: "colorPurplePhase\(phase)Size\(size)")
         case .yellowGreen:
-            return "colorYellowgreeenPhase\(phase)Size\(size)"
+            return UIImage(named: "colorYellowgreeenPhase\(phase)Size\(size)")
         }
     }
 }

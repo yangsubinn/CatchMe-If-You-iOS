@@ -11,22 +11,28 @@ import SnapKit
 
 class LookVC: UIViewController {
     //MARK: - Properties
-    lazy var backButton = BackButton(self)
     let titleLabel = UILabel()
     let subLabel = UILabel()
     let topImageView = UIImageView()
     let topBackView  = UIView()
+    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    //MARK: - Lazy Properties
+    lazy var backButton = BackButton(self)
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         configUI()
+        setupCollectionView()
     }
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([topBackView, backButton, titleLabel, subLabel, topImageView])
+        view.addSubviews([topBackView, backButton, titleLabel,
+                          subLabel, topImageView, collectionView])
         
         topBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -54,12 +60,18 @@ class LookVC: UIViewController {
             make.width.equalTo(82)
             make.height.equalTo(64)
         }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(topBackView.snp.bottom)
+            make.leading.bottom.trailing.equalToSuperview()
+        }
     }
     
     func configUI() {
         view.backgroundColor = .black100
         topBackView.backgroundColor = .brown
         topImageView.backgroundColor = .yellow
+        collectionView.backgroundColor = .gray
         
         titleLabel.text = "다른 유저들의 캐츄"
         titleLabel.textColor = .white
@@ -68,5 +80,53 @@ class LookVC: UIViewController {
         subLabel.text = "블라너ㅓ미허ㅣ머ㅏ미"
         subLabel.textColor = .white
         subLabel.font = .stringMediumSystemFont(ofSize: 14)
+    }
+    
+    func setupCollectionView() {
+        collectionViewFlowLayout.scrollDirection = .vertical
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.setupCollectionViewNib(nib: LookCVC.identifier)
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension LookVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCVC.identifier, for: indexPath) as? LookCVC else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension LookVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width
+        let cellWidth = width * (319/375)
+        let cellHeight = cellWidth * (112/319)
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 11, left: 28, bottom: 0, right: 28)
     }
 }

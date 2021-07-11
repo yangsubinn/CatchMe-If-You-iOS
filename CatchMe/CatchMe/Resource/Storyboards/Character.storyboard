@@ -23,6 +23,21 @@
             </objects>
             <point key="canvasLocation" x="114" y="116"/>
         </scene>
+        <!--Character PopupVC-->
+        <scene sceneID="wJA-Kg-JtG">
+            <objects>
+                <viewController storyboardIdentifier="CharacterPopupVC" id="bTw-y9-YW6" customClass="CharacterPopupVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aOk-1s-Kex">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wFA-uH-7WX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xag-N7-pLs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028" y="116"/>
+        </scene>
         <!--Add CatchuVC-->
         <scene sceneID="uIW-d6-UGY">
             <objects>
@@ -52,6 +67,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bxH-fh-eJJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1028" y="903"/>
+        </scene>
+        <!--Add Action PopupVC-->
+        <scene sceneID="SIe-NC-LDF">
+            <objects>
+                <viewController storyboardIdentifier="AddActionPopupVC" id="5m2-fK-BuA" customClass="AddActionPopupVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dgN-pj-A49">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vDf-Lq-k6l"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aVB-sB-NoS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="903"/>
         </scene>
     </scenes>
     <resources>

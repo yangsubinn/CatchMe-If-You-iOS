@@ -28,7 +28,11 @@ class AddActionVC: UIViewController {
         $0.backgroundColor = . white
     }
     
-    lazy var closeButton = XmarkButton(self)
+    let closeButton = UIButton().then {
+//        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.backgroundColor = .blue
+        $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
+    }
 
     let nameLabel = UILabel().then {
         $0.text = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열"
@@ -132,40 +136,41 @@ class AddActionVC: UIViewController {
         
         pinkBackgroundView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(228)
+            make.height.equalTo(UIScreen.main.hasNotch ? 244 : 210)
         }
         
         closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).inset(UIScreen.main.hasNotch ? 55 : 41)
+            make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 55 : 41)
             make.trailing.equalTo(view.snp.trailing).inset(UIScreen.main.hasNotch ? 14 : 4)
+            make.width.height.equalTo(48)
         }
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).inset(UIScreen.main.hasNotch ? 86 : 75)
+            make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 86 : 75)
             make.leading.equalTo(view.snp.leading).inset(UIScreen.main.hasNotch ? 28 : 19)
         }
         
         dateButton.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).inset(73)
+            make.top.equalToSuperview().inset(UIScreen.main.hasNotch ? 73 : 62)
             make.leading.equalTo(dateLabel.snp.trailing).offset(-10)
             make.width.height.equalTo(48)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(17)
-            make.leading.equalTo(view.snp.leading).inset(28)
+            make.top.equalTo(dateLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 17 : 13)
+            make.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
         }
         
         catchuImageView.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(6)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
-            make.width.height.equalTo(130)
+            make.top.equalTo(closeButton.snp.bottom).offset(UIScreen.main.hasNotch ? 6 : -9)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
+            make.width.height.equalTo(131)
         }
         
         radiusImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.centerY.equalTo(pinkBackgroundView.snp.bottom)
-            make.height.equalTo(36)
+            make.height.equalTo(UIScreen.main.hasNotch ? 36 : 25)
         }
         
         blackBackgroundView.snp.makeConstraints { make in
@@ -175,30 +180,30 @@ class AddActionVC: UIViewController {
         
         activityLabel.snp.makeConstraints { make in
             make.top.equalTo(radiusImageView.snp.bottom)
-            make.leading.equalTo(view.snp.leading).inset(28)
+            make.leading.equalToSuperview().inset(28)
         }
         
         activityTextView.snp.makeConstraints { make in
-            make.top.equalTo(activityLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(28)
-            make.height.equalTo(190)
+            make.top.equalTo(activityLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 12)
+            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
+            make.height.equalTo(UIScreen.main.hasNotch ? 190 : 176)
         }
         
         letterNumLabel.snp.makeConstraints { make in
             make.top.equalTo(activityTextView.snp.bottom).offset(4)
-            make.trailing.equalTo(view.snp.trailing).inset(28)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 19)
         }
         
         addPhotoLabel.snp.makeConstraints { make in
-            make.top.equalTo(activityTextView.snp.bottom).offset(38)
-            make.leading.equalTo(view.snp.leading).inset(28)
+            make.top.equalTo(activityTextView.snp.bottom).offset(UIScreen.main.hasNotch ? 38 : 24)
+            make.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
         }
         
         photoButton.snp.makeConstraints { make in
-            make.top.equalTo(addPhotoLabel.snp.bottom).offset(20)
-            make.leading.equalTo(view.snp.leading).inset(28)
-            make.width.equalTo(124)
-            make.height.equalTo(92)
+            make.top.equalTo(addPhotoLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 12)
+            make.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
+            make.width.equalTo(UIScreen.main.hasNotch ? 124 : 109)
+            make.height.equalTo(UIScreen.main.hasNotch ? 92 : 81)
         }
         
         removeButton.snp.makeConstraints { make in
@@ -208,8 +213,16 @@ class AddActionVC: UIViewController {
         }
         
         uploadButton.snp.makeConstraints { make in
-            make.top.equalTo(photoButton.snp.bottom).offset(58)
-            make.leading.trailing.equalToSuperview().inset(28)
+            make.top.equalTo(photoButton.snp.bottom).offset(UIScreen.main.hasNotch ? 58 : 19)
+            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
         }
+    }
+    
+    @objc func touchupCloseButton(_ sender: UIButton) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
+
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
     }
 }

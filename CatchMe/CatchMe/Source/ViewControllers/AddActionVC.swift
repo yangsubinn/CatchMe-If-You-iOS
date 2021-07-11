@@ -126,8 +126,7 @@ class AddActionVC: UIViewController {
         super.viewDidLoad()
         configUI()
         setupAutoLayout()
-        
-        imagePicker.delegate = self
+        setupImagePicker()
     }
     
     // MARK: - Custom Method
@@ -227,6 +226,10 @@ class AddActionVC: UIViewController {
         }
     }
     
+    func setupImagePicker() {
+        imagePicker.delegate = self
+    }
+    
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
 
@@ -242,7 +245,7 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupDeletePhotoButton(_ sender: UIButton) {
-        // 나중에 버튼 이미지 이름 부분에 디자이너가 넘겨준 에셋을 넘겨줄 예정입니다
+        /// 나중에 버튼 이미지 이름 부분에 디자이너가 넘겨준 에셋을 넘겨줄 예정입니다
         photoButton.setImage(UIImage(named: ""), for: .normal)
         if photoButton.currentImage == UIImage(named: "") {
             deletePhotoButton.isHidden = true

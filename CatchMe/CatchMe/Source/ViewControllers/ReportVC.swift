@@ -50,13 +50,11 @@ class ReportVC: UIViewController {
 
     // MARK: - Custom Methods
     fileprivate func configUI() {
-        /// 색상 들어오면 변경할 것
-        view.backgroundColor = .black
-        setupStatusBar(.systemPink)
+        view.backgroundColor = .black100
+        setupStatusBar(.pink100)
         
-        /// asset 들어오면 asset으로 변경할 것
-        previousButton.backgroundColor = .systemGray
-        nextButton.backgroundColor = .systemGray
+        previousButton.setImage(UIImage(named: "directionLeftColorWhite"), for: .normal)
+        nextButton.setImage(UIImage(named: "directionRightColorWhite"), for: .normal)
     }
     
     fileprivate func setupCollectionView() {
@@ -66,13 +64,13 @@ class ReportVC: UIViewController {
         weekdayCollectionView.delegate = self
         weekdayCollectionView.dataSource = self
         weekdayCollectionView.register(CalendarCVC.self, forCellWithReuseIdentifier: CalendarCVC.identifier)
-        weekdayCollectionView.backgroundColor = .black
+        weekdayCollectionView.backgroundColor = .black100
         weekdayCollectionView.isScrollEnabled = false
         
         dateCollectionView.delegate = self
         dateCollectionView.dataSource = self
         dateCollectionView.register(CalendarCVC.self, forCellWithReuseIdentifier: CalendarCVC.identifier)
-        dateCollectionView.backgroundColor = .black
+        dateCollectionView.backgroundColor = .black100
         dateCollectionView.isScrollEnabled = false
     }
     
@@ -221,8 +219,8 @@ extension ReportVC: UICollectionViewDataSource {
             }
             
             cell.dateLabel.text = weeks[indexPath.row]
-            cell.dateLabel.font = UIFont.systemFont(ofSize: 15)
-            cell.dateLabel.textColor = .darkGray
+            cell.dateLabel.font = .stringRegularSystemFont(ofSize: 15)
+            cell.dateLabel.textColor = .gray200
             
             return cell
             
@@ -232,15 +230,15 @@ extension ReportVC: UICollectionViewDataSource {
             }
             
             cell.dateLabel.text = days[indexPath.row]
-            cell.dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-            cell.dateLabel.textColor = .white
+            cell.dateLabel.font = .numberMediumSystemFont(ofSize: 18)
+            cell.dateLabel.textColor = .gray500
             
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
                     cell.characterImage.isHidden = false
                     cell.countLabel.text = days[indexPath.row]
-                    cell.countLabel.textColor = .systemGray
-                    cell.countLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+                    cell.countLabel.textColor = .gray400
+                    cell.countLabel.font = .numberRegularSystemFont(ofSize: 13)
                     cell.dateLabel.isHidden = true
                     monthDate.removeFirst()
                 } else {

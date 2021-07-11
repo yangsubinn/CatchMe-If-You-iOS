@@ -51,7 +51,7 @@ class MainCardVC: UIViewController {
         }
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(55)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(UIScreen.main.hasNotch ? 11 : 20)
             make.leading.equalToSuperview().offset(14)
         }
         

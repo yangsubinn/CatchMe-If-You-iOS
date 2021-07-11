@@ -154,7 +154,7 @@ class MainCardVC: UIViewController {
             self.isFirstButtonChecked = true
             self.isSecondButtonChecked = false
             self.isThirdButtonChecked = false
-            print("recordButton tapped")
+            print("recordButton tapped") // 해당 버튼 클릭시 변화 넣어줄 부분
         })
 
         let createButton = UIAlertAction(title: "최근 생성 순", style: .default, handler: { [unowned self] _ in
@@ -176,7 +176,6 @@ class MainCardVC: UIViewController {
         recordButton.setValue(isFirstButtonChecked, forKey: "checked")
         createButton.setValue(isSecondButtonChecked, forKey: "checked")
         activeButton.setValue(isThirdButtonChecked, forKey: "checked")
-//        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
 
         alert.view.tintColor = .white
         alert.addAction(recordButton)

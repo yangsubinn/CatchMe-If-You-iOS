@@ -1,5 +1,5 @@
 //
-//  Character+Enum.swift
+//  Character+Extension.swift
 //  CatchMe
 //
 //  Created by SHIN YOON AH on 2021/07/11.

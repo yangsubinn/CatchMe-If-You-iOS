@@ -21,9 +21,14 @@ class MainCardVC: UIViewController {
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubLabel = UILabel()
-    
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    //MARK: - Lazy Properties
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    
+    var isFirstButtonChecked = true
+    var isSecondButtonChecked = false
+    var isThirdButtonChecked = false
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -108,6 +113,8 @@ class MainCardVC: UIViewController {
         emptySubLabel.text = "캐츄와 함께 다양한 내 모습을 기록해요"
         emptySubLabel.textColor = .gray300
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
+        
+        alignButton.addTarget(self, action: #selector(alignButtonAction), for: .touchUpInside)
     }
     
     func setupCollectionView() {
@@ -139,6 +146,45 @@ class MainCardVC: UIViewController {
             make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    @objc func alignButtonAction(sender: UIButton!) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let recordButton = UIAlertAction(title: "최근 기록 순", style: .default, handler: { [unowned self] _ in
+            self.isFirstButtonChecked = true
+            self.isSecondButtonChecked = false
+            self.isThirdButtonChecked = false
+            print("recordButton tapped") // 해당 버튼 클릭시 변화 넣어줄 부분
+        })
+
+        let createButton = UIAlertAction(title: "최근 생성 순", style: .default, handler: { [unowned self] _ in
+            self.isFirstButtonChecked = false
+            self.isSecondButtonChecked = true
+            self.isThirdButtonChecked = false
+            print("createButton tapped")
+        })
+        
+        let activeButton = UIAlertAction(title: "활동 많은 순", style: .default, handler: { [unowned self] _ in
+            self.isFirstButtonChecked = false
+            self.isSecondButtonChecked = false
+            self.isThirdButtonChecked = true
+            print("activeButton tapped")
+        })
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        recordButton.setValue(isFirstButtonChecked, forKey: "checked")
+        createButton.setValue(isSecondButtonChecked, forKey: "checked")
+        activeButton.setValue(isThirdButtonChecked, forKey: "checked")
+
+        alert.view.tintColor = .white
+        alert.addAction(recordButton)
+        alert.addAction(createButton)
+        alert.addAction(activeButton)
+        alert.addAction(cancel)
+
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

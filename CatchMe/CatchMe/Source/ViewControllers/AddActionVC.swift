@@ -108,6 +108,7 @@ class AddActionVC: UIViewController {
 //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.layer.cornerRadius = 13
         $0.clipsToBounds = true
+        $0.imageView?.contentMode = .scaleAspectFill
         $0.backgroundColor = .orange
         $0.addTarget(self, action: #selector(touchupPhotoButton(_:)), for: .touchUpInside)
     }

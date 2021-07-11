@@ -43,7 +43,8 @@
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
 		EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BC269603210008BFB4 /* CustomTextField.swift */; };
 		EDB431BF2696325E0008BFB4 /* ThirdFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BE2696325E0008BFB4 /* ThirdFlowView.swift */; };
-		EDB72D49269AB82F003EE228 /* Character+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D48269AB82F003EE228 /* Character+Enum.swift */; };
+		EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D48269AB82F003EE228 /* Character+Extension.swift */; };
+		EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D4A269AE4DA003EE228 /* Encodable+Extension.swift */; };
 		EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCA26930C4600443077 /* TitleView.swift */; };
 		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
 		EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */; };
@@ -139,7 +140,8 @@
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
 		EDB431BC269603210008BFB4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EDB431BE2696325E0008BFB4 /* ThirdFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdFlowView.swift; sourceTree = "<group>"; };
-		EDB72D48269AB82F003EE228 /* Character+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Enum.swift"; sourceTree = "<group>"; };
+		EDB72D48269AB82F003EE228 /* Character+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extension.swift"; sourceTree = "<group>"; };
+		EDB72D4A269AE4DA003EE228 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		EDBBFCCA26930C4600443077 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitleView.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 		ED63E89B268A1C56000F058F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EDB72D48269AB82F003EE228 /* Character+Extension.swift */,
 				EDD12CA9268EBCA000DF766A /* UIView+Extension.swift */,
 				EDD12CAB268EBD2200DF766A /* UIViewController+Extension.swift */,
 				EDD12CAD268EBDE400DF766A /* UIScreen+Extension.swift */,
@@ -459,6 +462,7 @@
 				EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */,
 				EDC19D9B2698AEEC00F9E41B /* UIApplication+Extension.swift */,
 				ED3D6C3F2699A36800BB84C8 /* String+Extension.swift */,
+				EDB72D4A269AE4DA003EE228 /* Encodable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -565,7 +569,6 @@
 				EDD12C95268EB16800DF766A /* XmarkButton.swift */,
 				EDD12C97268EB27500DF766A /* BottomButton.swift */,
 				EDB431BC269603210008BFB4 /* CustomTextField.swift */,
-				EDB72D48269AB82F003EE228 /* Character+Enum.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -764,7 +767,7 @@
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
-				EDB72D49269AB82F003EE228 /* Character+Enum.swift in Sources */,
+				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
 				EDC19D9E2698B06D00F9E41B /* SignupTextFieldView.swift in Sources */,
@@ -795,6 +798,7 @@
 				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
+				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,
 				EDC19D9C2698AEEC00F9E41B /* UIApplication+Extension.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,

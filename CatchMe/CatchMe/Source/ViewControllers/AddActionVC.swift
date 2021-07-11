@@ -164,7 +164,7 @@ class AddActionVC: UIViewController {
         catchuImageView.snp.makeConstraints { make in
             make.top.equalTo(closeButton.snp.bottom).offset(UIScreen.main.hasNotch ? 6 : -9)
             make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
-            make.width.height.equalTo(130)
+            make.width.height.equalTo(131)
         }
         
         radiusImageView.snp.makeConstraints { make in

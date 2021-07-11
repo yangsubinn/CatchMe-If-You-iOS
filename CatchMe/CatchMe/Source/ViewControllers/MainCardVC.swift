@@ -25,6 +25,8 @@ class MainCardVC: UIViewController {
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
+    var isFirstButtonChecked = true
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +110,8 @@ class MainCardVC: UIViewController {
         emptySubLabel.text = "캐츄와 함께 다양한 내 모습을 기록해요"
         emptySubLabel.textColor = .gray300
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
+        
+        alignButton.addTarget(self, action: #selector(alignButtonAction), for: .touchUpInside)
     }
     
     func setupCollectionView() {
@@ -139,6 +143,31 @@ class MainCardVC: UIViewController {
             make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    @objc func alignButtonAction(sender: UIButton!) {
+        print("alignButton")
+        let firstButton = UIAlertAction(title: "First Button", style: .default, handler: { [unowned self] _ in
+            self.isFirstButtonChecked = true
+            print("First Button tapped")
+        })
+        
+        firstButton.setValue(isFirstButtonChecked, forKey: "checked")
+
+        let secondButton = UIAlertAction(title: "Second Button", style: .default, handler: { [unowned self] _ in
+            self.isFirstButtonChecked = false
+            print("Second Button tapped")
+        })
+        secondButton.setValue(!isFirstButtonChecked, forKey: "checked")
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        alert.addAction(firstButton)
+        alert.addAction(secondButton)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

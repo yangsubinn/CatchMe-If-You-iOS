@@ -21,8 +21,9 @@ class MainCardVC: UIViewController {
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubLabel = UILabel()
-    
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    //MARK: - Lazy Properties
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var isFirstButtonChecked = true

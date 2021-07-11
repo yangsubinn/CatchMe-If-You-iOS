@@ -26,6 +26,8 @@ class MainVC: UIViewController {
     let catchMeButton = UIButton()
     
     var formatterDate = DateFormatter()
+    
+    //MARK: - Dummy Data
     var levels: [String] = ["10", "8", "6", "4", "2"]
     var activitys: [String] = ["10", "5", "6", "8", "1"]
     var totals: [String] = ["12", "13", "4", "2", "1"]
@@ -257,11 +259,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        // page control selected page 바꾸는 코드
+        /// page control selected page 바꾸는 코드
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.selectedPage = Int(page)
         
-        // Label 내용 변경하는 코드
+        /// Label 내용 변경하는 코드
         changeLabelText(page: Int(page))
     }
 }

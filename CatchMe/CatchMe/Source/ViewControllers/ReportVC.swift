@@ -81,7 +81,7 @@ class ReportVC: UIViewController {
         
         reportView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.size.height * 0.41)
+            make.height.equalTo(UIScreen.main.hasNotch ? UIScreen.main.bounds.size.height * 0.41 : 290)
         }
         
         backButton.snp.makeConstraints { make in
@@ -235,6 +235,7 @@ extension ReportVC: UICollectionViewDataSource {
             
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
+                    cell.characterImage.image = Character.green.getCharacterImage(phase: 1, size: 43)
                     cell.characterImage.isHidden = false
                     cell.countLabel.text = days[indexPath.row]
                     cell.countLabel.textColor = .gray400

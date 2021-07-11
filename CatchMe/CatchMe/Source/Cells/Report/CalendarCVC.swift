@@ -18,7 +18,6 @@ class CalendarCVC: UICollectionViewCell {
     var countLabel = UILabel()
     var characterImage = UIImageView().then {
         $0.isHidden = true
-        $0.image = Character.orange.getCharacterImage(phase: 3, size: 43)
         $0.contentMode = .scaleAspectFill
     }
     

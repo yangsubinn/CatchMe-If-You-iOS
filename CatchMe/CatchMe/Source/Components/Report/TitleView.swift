@@ -13,18 +13,18 @@ import SnapKit
 class TitleView: UIView {
     // MARK: - Properties
     let nicknameLabel = UILabel().then {
-        $0.font = .boldSystemFont(ofSize: 22)
+        $0.font = .stringBoldSystemFont(ofSize: 22)
         $0.textColor = .white
     }
     
     let postpositionLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 18, weight: .medium)
+        $0.font = .stringMediumSystemFont(ofSize: 18)
         $0.textColor = .white
         $0.text = "의"
     }
     
     let monthLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 17, weight: .medium)
+        $0.font = .stringMediumSystemFont(ofSize: 17)
         $0.textColor = .white
     }
     

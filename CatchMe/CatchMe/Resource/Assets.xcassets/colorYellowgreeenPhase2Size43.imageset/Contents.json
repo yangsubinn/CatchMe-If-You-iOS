@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "scale" : "1x",
-      "filename" : "colorYellowgreeenPhase2Size43.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "colorYellowgreenPhase2Size43.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "colorYellowgreeenPhase2Size43@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "colorYellowgreenPhase2Size43@2x.png"
     },
     {
       "scale" : "3x",
       "idiom" : "universal",
-      "filename" : "colorYellowgreeenPhase2Size43@3x.png"
+      "filename" : "colorYellowgreenPhase2Size43@3x.png"
     }
   ],
   "info" : {

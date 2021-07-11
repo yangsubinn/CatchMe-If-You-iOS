@@ -236,7 +236,7 @@ extension ReportVC: UICollectionViewDataSource {
             
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
-                    cell.characterImage.image = Character.green.getCharacterImage(phase: 1, size: 43)
+                    cell.characterImage.image = Character.orange.getCharacterImage(phase: 3, size: 43)
                     cell.characterImage.isHidden = false
                     cell.countLabel.text = days[indexPath.row]
                     cell.countLabel.textColor = .gray400

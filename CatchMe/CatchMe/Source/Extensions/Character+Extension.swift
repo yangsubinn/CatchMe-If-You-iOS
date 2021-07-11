@@ -13,6 +13,8 @@ enum Character {
     case orange
     case purple
     case yellowGreen
+    case skyblue
+    case yellow
 }
 
 extension Character {
@@ -28,6 +30,10 @@ extension Character {
             return UIImage(named: "colorPurplePhase\(phase)Size\(size)")
         case .yellowGreen:
             return UIImage(named: "colorYellowgreeenPhase\(phase)Size\(size)")
+        case .skyblue:
+            return UIImage(named: "colorSkybluePhase\(phase)Size\(size)")
+        case .yellow:
+            return UIImage(named: "colorYellowPhase\(phase)Size\(size)")
         }
     }
 }

@@ -112,9 +112,10 @@ class AddActionVC: UIViewController {
         $0.addTarget(self, action: #selector(touchupPhotoButton(_:)), for: .touchUpInside)
     }
     
-    let removeButton = UIButton().then {
+    let deletePhotoButton = UIButton().then {
 //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .yellow
+        $0.addTarget(self, action: #selector(touchupDeletePhotoButton(_:)), for: .touchUpInside)
     }
     
     let uploadButton = BottomButton(title: "기록하기")
@@ -131,6 +132,7 @@ class AddActionVC: UIViewController {
     // MARK: - Custom Method
     func configUI() {
         view.backgroundColor = .black100
+        deletePhotoButton.isHidden = true
     }
     
     func setupAutoLayout() {
@@ -138,7 +140,7 @@ class AddActionVC: UIViewController {
                           catchuImageView, dateLabel, dateButton,
                           closeButton, nameLabel])
         blackBackgroundView.addSubviews([activityLabel, activityTextView, letterNumLabel,
-                                         addPhotoLabel, photoButton, removeButton, uploadButton])
+                                         addPhotoLabel, photoButton, deletePhotoButton, uploadButton])
         
         pinkBackgroundView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -212,7 +214,7 @@ class AddActionVC: UIViewController {
             make.height.equalTo(UIScreen.main.hasNotch ? 92 : 81)
         }
         
-        removeButton.snp.makeConstraints { make in
+        deletePhotoButton.snp.makeConstraints { make in
             make.top.equalTo(photoButton.snp.top).offset(-21)
             make.trailing.equalTo(photoButton.snp.trailing).offset(21)
             make.width.height.equalTo(48)
@@ -237,6 +239,16 @@ class AddActionVC: UIViewController {
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    @objc func touchupDeletePhotoButton(_ sender: UIButton) {
+        // 나중에 버튼 이미지 이름 부분에 디자이너가 넘겨준 에셋을 넘겨줄 예정입니다
+        photoButton.setImage(UIImage(named: ""), for: .normal)
+        if photoButton.currentImage == UIImage(named: "") {
+            deletePhotoButton.isHidden = true
+        } else {
+            deletePhotoButton.isHidden = false
+        }
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -247,6 +259,7 @@ extension AddActionVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             photoButton.setImage(image, for: .normal)
         }
+        deletePhotoButton.isHidden = false
         dismiss(animated: true, completion: nil)
     }
 }

@@ -12,6 +12,8 @@ import SnapKit
 
 class AddActionVC: UIViewController {
     // MARK: - Properties
+    let imagePicker = UIImagePickerController()
+    
     let pinkBackgroundView = UIView().then {
         $0.backgroundColor = .pink100
     }
@@ -105,7 +107,9 @@ class AddActionVC: UIViewController {
     let photoButton = UIButton().then {
 //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.layer.cornerRadius = 13
+        $0.clipsToBounds = true
         $0.backgroundColor = .orange
+        $0.addTarget(self, action: #selector(touchupPhotoButton(_:)), for: .touchUpInside)
     }
     
     let removeButton = UIButton().then {
@@ -120,6 +124,8 @@ class AddActionVC: UIViewController {
         super.viewDidLoad()
         configUI()
         setupAutoLayout()
+        
+        imagePicker.delegate = self
     }
     
     // MARK: - Custom Method
@@ -224,5 +230,23 @@ class AddActionVC: UIViewController {
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func touchupPhotoButton(_ sender: UIButton) {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension AddActionVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            photoButton.setImage(image, for: .normal)
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            photoButton.setImage(image, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

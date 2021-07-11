@@ -43,6 +43,7 @@
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
 		EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BC269603210008BFB4 /* CustomTextField.swift */; };
 		EDB431BF2696325E0008BFB4 /* ThirdFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BE2696325E0008BFB4 /* ThirdFlowView.swift */; };
+		EDB72D49269AB82F003EE228 /* Character+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D48269AB82F003EE228 /* Character+Enum.swift */; };
 		EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCA26930C4600443077 /* TitleView.swift */; };
 		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
 		EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */; };
@@ -138,6 +139,7 @@
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
 		EDB431BC269603210008BFB4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EDB431BE2696325E0008BFB4 /* ThirdFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdFlowView.swift; sourceTree = "<group>"; };
+		EDB72D48269AB82F003EE228 /* Character+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Enum.swift"; sourceTree = "<group>"; };
 		EDBBFCCA26930C4600443077 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitleView.swift; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 				EDD12C95268EB16800DF766A /* XmarkButton.swift */,
 				EDD12C97268EB27500DF766A /* BottomButton.swift */,
 				EDB431BC269603210008BFB4 /* CustomTextField.swift */,
+				EDB72D48269AB82F003EE228 /* Character+Enum.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
+				EDB72D49269AB82F003EE228 /* Character+Enum.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
 				EDC19D9E2698B06D00F9E41B /* SignupTextFieldView.swift in Sources */,

@@ -240,6 +240,10 @@ class AddActionVC: UIViewController {
         imagePicker.delegate = self
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true)
+    }
+    
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
 
@@ -268,23 +272,25 @@ class AddActionVC: UIViewController {
 // MARK: - UITextViewDelegate
 extension AddActionVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        activityTextView.layer.borderWidth = 1
-        activityTextView.layer.borderColor = UIColor.pink100.cgColor
-        
         if textView.text == "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)" {
-            textView.text = ""
+            textView.text = nil
             textView.textColor = .white
         } else if textView.text == "" {
             textView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
             textView.textColor = .gray200
         }
+        
+        activityTextView.layer.borderWidth = 1
+        activityTextView.layer.borderColor = UIColor.pink100.cgColor
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
+        if textView.text.isEmpty {
             textView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
             textView.textColor = .gray200
         }
+        
+        activityTextView.layer.borderWidth = 0
     }
 }
 

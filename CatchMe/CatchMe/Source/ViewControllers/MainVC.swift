@@ -20,8 +20,17 @@ class MainVC: UIViewController {
     let catchingButton = UIButton()
     let pageControl = PageControl()
     let reportView = mainReportView()
+    let emptyImageView = UIImageView()
+    let emptyTitleLabel = UILabel()
+    let emptySubTitle = UILabel()
+    let catchMeButton = UIButton()
     
     var formatterDate = DateFormatter()
+    
+    //MARK: - Dummy Data
+    var levels: [String] = ["10", "8", "6", "4", "2"]
+    var activitys: [String] = ["10", "5", "6", "8", "1"]
+    var totals: [String] = ["12", "13", "4", "2", "1"]
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -31,18 +40,18 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setupDate()
         setupReportView()
+        setupTopLayout()
         setupLayout()
+//        setupEmptyLayout()
         configUI()
         setupCollectionView()
         setupPageControl()
     }
     
     // MARK: - Custome Method
-    private func setupLayout() {
+    private func setupTopLayout() {
         view.addSubviews([dateLabel, settingButton, calendarButton,
-                          lookButton, allButton, nameLabel,
-                          reportView, catchingButton, collectionView,
-                          pageControl])
+                          lookButton, allButton])
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 48)
@@ -73,6 +82,11 @@ class MainVC: UIViewController {
             make.width.equalTo(72)
             make.height.equalTo(30)
         }
+    }
+    
+    private func setupLayout() {
+        view.addSubviews([nameLabel, reportView, catchingButton,
+                          collectionView, pageControl])
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
@@ -109,6 +123,33 @@ class MainVC: UIViewController {
         }
     }
     
+    private func setupEmptyLayout() {
+        view.addSubviews([emptyImageView, emptyTitleLabel, emptySubTitle, catchMeButton])
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 173 : 120)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(115)
+        }
+        
+        emptyTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyImageView.snp.bottom).offset(25)
+            make.centerX.equalToSuperview()
+        }
+        
+        emptySubTitle.snp.makeConstraints { make in
+            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
+            make.centerX.equalToSuperview()
+        }
+        
+        catchMeButton.snp.makeConstraints { make in
+            make.top.equalTo(emptySubTitle.snp.bottom).offset(40)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(173)
+            make.height.equalTo(50)
+        }
+    }
+    
     private func configUI() {
         view.backgroundColor = .black100
         settingButton.backgroundColor = .cyan
@@ -116,14 +157,16 @@ class MainVC: UIViewController {
         lookButton.backgroundColor = .gray
         allButton.backgroundColor = .purple
         catchingButton.backgroundColor = .lightGray
+        emptyImageView.backgroundColor = .yellow
+        catchMeButton.backgroundColor = .brown
         
         dateLabel.textColor = .white
-        dateLabel.font = UIFont.stringMediumSystemFont(ofSize: 15)
+        dateLabel.font = .stringMediumSystemFont(ofSize: 15)
         dateLabel.addCharacterSpacing(kernValue: -0.6)
         
         nameLabel.text = "솝트없이못사는솝트러버솝트러버솝트"
         nameLabel.textColor = .white
-        nameLabel.font = UIFont.catchuRegularSystemFont(ofSize: 22)
+        nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         nameLabel.numberOfLines = 2
         
         let attributedString = NSMutableAttributedString(string: nameLabel.text!)
@@ -131,6 +174,14 @@ class MainVC: UIViewController {
         paragraphStyle.lineSpacing = 10
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         nameLabel.attributedText = attributedString
+        
+        emptyTitleLabel.text = "캐츄를 추가해보세요!"
+        emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
+        emptyTitleLabel.textColor = .white
+        
+        emptySubTitle.text = "캐츄와 함께 다양한 내 모습을 기록해요"
+        emptySubTitle.font = .stringMediumSystemFont(ofSize: 14)
+        emptySubTitle.textColor = .white
     }
     
     private func setupCollectionView() {
@@ -147,7 +198,6 @@ class MainVC: UIViewController {
     
     private func setupPageControl() {
         pageControl.pages = 5
-//        pageControl.backgroundColor = .white
     }
     
     private func setupReportView() {
@@ -160,6 +210,16 @@ class MainVC: UIViewController {
         formatterDate.dateFormat = "M월 d일 EEEE"
         let currentFormatterDate = formatterDate.string(from: Date())
         dateLabel.text = currentFormatterDate
+    }
+    
+    private func setLabels() {
+        changeLabelText(page: 0)
+    }
+    
+    private func changeLabelText(page: Int) {
+        reportView.levelCountLabel.text = levels[page]
+        reportView.activeCountLabel.text = activitys[page]
+        reportView.percentCountLabel.text = totals[page]
     }
 }
 
@@ -199,11 +259,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        // page control selected page 바꾸는 코드
+        /// page control selected page 바꾸는 코드
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.selectedPage = Int(page)
         
-        // Label 내용 변경하는 코드
-//        changeLabelText(page: Int(page))
+        /// Label 내용 변경하는 코드
+        changeLabelText(page: Int(page))
     }
 }

@@ -25,11 +25,15 @@ class mainReportView: UIView {
     let lineLeftView = UIView()
     let lineRightView = UIView()
     
+    let emptyTitleLabel = UILabel()
+    let emptySubLabel = UILabel()
+    
     // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
         setupLayout()
+//        setupEmptyLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -57,12 +61,12 @@ class mainReportView: UIView {
         
         activeLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-27)
+            make.bottom.equalToSuperview().inset(27)
         }
         
         percentLabel.snp.makeConstraints { make in
             make.leading.equalTo(activeLabel.snp.trailing).offset(62)
-            make.bottom.equalToSuperview().offset(-27)
+            make.bottom.equalToSuperview().inset(27)
         }
         
         lineLeftView.snp.makeConstraints { make in
@@ -81,7 +85,7 @@ class mainReportView: UIView {
         
         activeUnitLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-            make.trailing.equalTo(lineRightView.snp.leading).offset(-22)
+            make.trailing.equalTo(lineRightView.snp.leading).offset(-24)
         }
         
         activeCountLabel.snp.makeConstraints { make in
@@ -96,7 +100,7 @@ class mainReportView: UIView {
         
         levelUnitLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-            make.trailing.equalTo(lineLeftView.snp.leading).offset(-22)
+            make.trailing.equalTo(lineLeftView.snp.leading).offset(-24)
         }
         
         levelCountLabel.snp.makeConstraints { make in
@@ -112,6 +116,20 @@ class mainReportView: UIView {
         percentCountLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-6)
             make.trailing.equalTo(percentUnitLabel.snp.leading).offset(-4)
+        }
+    }
+    
+    private func setupEmptyLayout() {
+        addSubviews([emptyTitleLabel, emptySubLabel])
+        
+        emptyTitleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(51)
+            make.centerX.equalToSuperview()
+        }
+        
+        emptySubLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -164,5 +182,13 @@ class mainReportView: UIView {
         percentCountLabel.text = "24"
         percentCountLabel.textColor = .white
         percentCountLabel.font = .numberMediumSystemFont(ofSize: 32)
+        
+        emptyTitleLabel.text = "아직 캐츄의 활동이 없어요"
+        emptyTitleLabel.textColor = .white
+        emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
+        
+        emptySubLabel.text = "캐칭을 기록하고 리포트로 확인해볼까요?"
+        emptySubLabel.textColor = .white
+        emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
     }
 }

@@ -26,6 +26,8 @@ class MainCardVC: UIViewController {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var isFirstButtonChecked = true
+    var isSecondButtonChecked = false
+    var isThirdButtonChecked = false
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -146,27 +148,42 @@ class MainCardVC: UIViewController {
     }
     
     @objc func alignButtonAction(sender: UIButton!) {
-        print("alignButton")
-        let firstButton = UIAlertAction(title: "First Button", style: .default, handler: { [unowned self] _ in
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let recordButton = UIAlertAction(title: "최근 기록 순", style: .default, handler: { [unowned self] _ in
             self.isFirstButtonChecked = true
-            print("First Button tapped")
+            self.isSecondButtonChecked = false
+            self.isThirdButtonChecked = false
+            print("recordButton tapped")
+        })
+
+        let createButton = UIAlertAction(title: "최근 생성 순", style: .default, handler: { [unowned self] _ in
+            self.isFirstButtonChecked = false
+            self.isSecondButtonChecked = true
+            self.isThirdButtonChecked = false
+            print("createButton tapped")
         })
         
-        firstButton.setValue(isFirstButtonChecked, forKey: "checked")
-
-        let secondButton = UIAlertAction(title: "Second Button", style: .default, handler: { [unowned self] _ in
+        let activeButton = UIAlertAction(title: "활동 많은 순", style: .default, handler: { [unowned self] _ in
             self.isFirstButtonChecked = false
-            print("Second Button tapped")
+            self.isSecondButtonChecked = false
+            self.isThirdButtonChecked = true
+            print("activeButton tapped")
         })
-        secondButton.setValue(!isFirstButtonChecked, forKey: "checked")
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        recordButton.setValue(isFirstButtonChecked, forKey: "checked")
+        createButton.setValue(isSecondButtonChecked, forKey: "checked")
+        activeButton.setValue(isThirdButtonChecked, forKey: "checked")
+//        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
 
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-        alert.addAction(firstButton)
-        alert.addAction(secondButton)
+        alert.view.tintColor = .white
+        alert.addAction(recordButton)
+        alert.addAction(createButton)
+        alert.addAction(activeButton)
         alert.addAction(cancel)
+
         self.present(alert, animated: true, completion: nil)
     }
 }

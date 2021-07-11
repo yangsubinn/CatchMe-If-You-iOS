@@ -15,7 +15,6 @@ class CharacterVC: UIViewController {
     lazy var naviBar = NavigationBar(vc: self)
     
     // MARK: - Properties
-    let vc = CharacterPopupVC()
     let upperView = CharacterUpperView()
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let reportCell = CharacterReportTVC()
@@ -125,9 +124,11 @@ class CharacterVC: UIViewController {
         }
         
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
-            self.vc.modalPresentationStyle = .overCurrentContext
-            self.vc.modalTransitionStyle = .crossDissolve
-            self.present(self.vc, animated: true, completion: nil)
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterPopupVC") as? CharacterPopupVC else { return }
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
         }
         
         deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")

@@ -79,9 +79,9 @@ class AddActionVC: UIViewController {
     let activityTextView = UITextView().then {
         $0.backgroundColor = .black200
         $0.layer.cornerRadius = 13
-        $0.font = .stringRegularSystemFont(ofSize: 14)
-        $0.textColor = .white
         $0.textAlignment = .left
+        $0.tintColor = .pink100
+        $0.textContainerInset = UIEdgeInsets(top: UIScreen.main.hasNotch ? 18 : 11, left: UIScreen.main.hasNotch ? 18 : 14, bottom: UIScreen.main.hasNotch ? 13 : 6, right: UIScreen.main.hasNotch ? 19 : 8)
         
         let attributedString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
@@ -126,13 +126,19 @@ class AddActionVC: UIViewController {
         super.viewDidLoad()
         configUI()
         setupAutoLayout()
+        setupTextView()
         setupImagePicker()
     }
     
     // MARK: - Custom Method
     func configUI() {
         view.backgroundColor = .black100
+        
         deletePhotoButton.isHidden = true
+        
+        activityTextView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+        activityTextView.textColor = .gray200
+        activityTextView.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     func setupAutoLayout() {
@@ -226,6 +232,10 @@ class AddActionVC: UIViewController {
         }
     }
     
+    func setupTextView() {
+        activityTextView.delegate = self
+    }
+    
     func setupImagePicker() {
         imagePicker.delegate = self
     }
@@ -251,6 +261,29 @@ class AddActionVC: UIViewController {
             deletePhotoButton.isHidden = true
         } else {
             deletePhotoButton.isHidden = false
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension AddActionVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        activityTextView.layer.borderWidth = 1
+        activityTextView.layer.borderColor = UIColor.pink100.cgColor
+        
+        if textView.text == "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)" {
+            textView.text = ""
+            textView.textColor = .white
+        } else if textView.text == "" {
+            textView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+            textView.textColor = .gray200
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+            textView.textColor = .gray200
         }
     }
 }

@@ -12,8 +12,6 @@ import SnapKit
 
 class AddActionVC: UIViewController {
     // MARK: - Properties
-    let vc = AddActionPopupVC()
-    
     let pinkBackgroundView = UIView().then {
         $0.backgroundColor = .pink100
     }
@@ -221,8 +219,10 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupCloseButton(_ sender: UIButton) {
-        self.vc.modalPresentationStyle = .overCurrentContext
-        self.vc.modalTransitionStyle = .crossDissolve
-        self.present(self.vc, animated: true, completion: nil)
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
+
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
     }
 }

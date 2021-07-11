@@ -12,7 +12,6 @@ import SnapKit
 
 class AddActionPopupView: UIView {
     // MARK: - Properties
-    let addActionVC = AddActionVC()
     let popupLabel = UILabel().then {
         $0.text = "정말로 화면을 나갈까요?"
         $0.font = .stringMediumSystemFont(ofSize: 16)

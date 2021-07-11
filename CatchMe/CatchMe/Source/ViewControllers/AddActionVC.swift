@@ -292,6 +292,13 @@ extension AddActionVC: UITextViewDelegate {
         
         activityTextView.layer.borderWidth = 0
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let str = activityTextView.text else { return true }
+        /// textLength = 기존 텍스트뷰의 텍스트 + 새로 입력할 텍스트 - 지워질 글자 개수
+        let textLength = str.count + text.count - range.length
+        return textLength <= 150
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate

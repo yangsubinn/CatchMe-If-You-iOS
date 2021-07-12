@@ -14,7 +14,14 @@ class CharacterPopupView: UIView {
     // MARK: - Properties
     let popupLabel = UILabel().then {
         $0.text = "이 활동을 지울까요?"
-        $0.font = .systemFont(ofSize: 16, weight: .medium)
+        $0.font = .stringBoldSystemFont(ofSize: 18)
+        $0.textColor = .white
+        $0.textAlignment = .center
+    }
+    
+    let popupSubLabel = UILabel().then {
+        $0.text = "지우면 되돌릴 수 없어요."
+        $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.textColor = .white
         $0.textAlignment = .center
     }
@@ -27,10 +34,10 @@ class CharacterPopupView: UIView {
     
     let cancelButton = UIButton().then {
         $0.backgroundColor = .clear
-        $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.titleLabel?.font = .stringMediumSystemFont(ofSize: 14)
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 15
+        $0.layer.cornerRadius = 21
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray300.cgColor
         $0.addTarget(self, action: #selector(touchupCancelButton(_:)), for: .touchUpInside)
@@ -38,10 +45,10 @@ class CharacterPopupView: UIView {
     
     let deleteButton = UIButton().then {
         $0.backgroundColor = .pink100
-        $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.titleLabel?.font = .stringMediumSystemFont(ofSize: 14)
         $0.setTitle("지울래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 15
+        $0.layer.cornerRadius = 21
         $0.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
     }
     
@@ -66,27 +73,32 @@ class CharacterPopupView: UIView {
     }
     
     private func setupAutoLayout() {
-        addSubviews([popupLabel, popupButtonStackView])
+        addSubviews([popupLabel, popupSubLabel, popupButtonStackView])
         popupButtonStackView.addArrangedSubview(cancelButton)
         popupButtonStackView.addArrangedSubview(deleteButton)
         
         popupLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.snp.top).inset(44)
+            make.top.equalTo(self.snp.top).inset(38)
+        }
+        
+        popupSubLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(popupLabel.snp.bottom).offset(12)
         }
         
         cancelButton.snp.makeConstraints { make in
             make.width.equalTo(108)
-            make.height.equalTo(35)
+            make.height.equalTo(42)
         }
         
         deleteButton.snp.makeConstraints { make in
             make.width.equalTo(108)
-            make.height.equalTo(35)
+            make.height.equalTo(42)
         }
         
         popupButtonStackView.snp.makeConstraints { make in
-            make.top.equalTo(popupLabel.snp.bottom).offset(33)
+            make.top.equalTo(popupSubLabel.snp.bottom).offset(29)
             make.centerX.equalToSuperview()
         }
     }

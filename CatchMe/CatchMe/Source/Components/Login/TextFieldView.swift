@@ -192,7 +192,7 @@ class TextFieldView: UIView {
 // MARK: - UITextFieldDelegate
 extension TextFieldView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.27, animations: {
             self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -160 : -140)
         })
         
@@ -216,7 +216,7 @@ extension TextFieldView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.27, animations: {
             self.transform = .identity
         })
         

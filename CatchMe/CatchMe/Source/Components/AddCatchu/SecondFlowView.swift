@@ -134,11 +134,11 @@ extension SecondFlowView: UITextFieldDelegate {
             countLabel.textColor = .gray200
         case 20:
             let attributedStr = NSMutableAttributedString(string: "20/20")
-            attributedStr.addAttribute(.foregroundColor, value: UIColor.systemPink, range: ("20/20" as NSString).range(of: "20/20"))
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("20/20" as NSString).range(of: "20/20"))
             countLabel.attributedText = attributedStr
         default:
             let attributedStr = NSMutableAttributedString(string: "\(textCount)/20")
-            attributedStr.addAttribute(.foregroundColor, value: UIColor.systemPink, range: ("\(textCount)/20" as NSString).range(of: "\(textCount)"))
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("\(textCount)/20" as NSString).range(of: "\(textCount)"))
             countLabel.attributedText = attributedStr
         }
         

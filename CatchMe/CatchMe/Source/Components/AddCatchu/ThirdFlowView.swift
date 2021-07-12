@@ -20,10 +20,7 @@ class ThirdFlowView: UIView {
     
     var textCount = 0
     var isLock = false
-    
-    // MARK: - Dummy Data
-    /// 후에 enum으로 사용하면 편리할 듯 -> 아니면 public하게 전체적으로 사용할 수 있도록 만들기
-    let colors: [UIColor] = [.systemRed, .systemBlue, .systemPink, .systemTeal, .systemGray, .systemGreen, .systemOrange, .systemYellow, .systemPurple, .systemIndigo]
+    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151), Character.green.getCharacterImage(phase: 1, size: 151), Character.orange.getCharacterImage(phase: 1, size: 151), Character.purple.getCharacterImage(phase: 1, size: 151), Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -50,7 +47,7 @@ class ThirdFlowView: UIView {
         characterImageView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 175 : 115)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(150)
+            make.height.width.equalTo(151)
         }
         
         backgroundImageView.snp.makeConstraints { make in
@@ -62,7 +59,7 @@ class ThirdFlowView: UIView {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(characterImageView.snp.bottom).offset(39)
             make.centerX.equalToSuperview()
-            make.width.equalTo(190)
+            make.width.equalTo(169)
         }
         
         lockButton.snp.makeConstraints { make in
@@ -81,33 +78,34 @@ class ThirdFlowView: UIView {
         backgroundImageView.backgroundColor = .white
         
         nameLabel.numberOfLines = 2
-        nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.textColor = .white
-        nameLabel.textAlignment = .center
-        nameLabel.font = .systemFont(ofSize: 22, weight: .black)
+        nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         
-        lockButton.backgroundColor = .systemPink
+        lockButton.setImage(UIImage(named: "checkboxActive"), for: .normal)
         
         lockLabel.text = "다른 사용자에게 공개할래요"
-        lockLabel.font = .systemFont(ofSize: 14)
+        lockLabel.font = .stringRegularSystemFont(ofSize: 14)
+        lockLabel.addCharacterSpacing()
         lockLabel.textColor = .white
     }
     
     private func setupButtonAction() {
         let lockAction = UIAction { _ in
-            self.lockButton.backgroundColor = self.isLock ? .systemPink : .gray
+            self.lockButton.setImage(self.isLock ? UIImage(named: "checkboxActive") : UIImage(named: "checkboxInactive"), for: .normal)
+            self.lockLabel.textColor = self.isLock ? .white : .gray400
             self.isLock.toggle()
         }
         lockButton.addAction(lockAction, for: .touchUpInside)
     }
     
     // MARK: - external use function
-    /// asset 넣기 전까지 dummy Color
     func setImageViewColor(selectedIndex: Int) {
-        characterImageView.backgroundColor = colors[selectedIndex]
+        characterImageView.image = babyCatchus[selectedIndex]
     }
     
     func setCharacterName(name: String) {
         nameLabel.text = name
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 6)
+        nameLabel.textAlignment = .center
     }
 }

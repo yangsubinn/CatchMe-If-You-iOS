@@ -13,6 +13,7 @@ class MainCardCVC: UICollectionViewCell {
     // MARK: - Properties
     let characterBackView = UIView()
     let characterImageView = UIImageView()
+    let levelStarImageView = UIImageView()
     let nameLabel = UILabel()
     
     // MARK: - Life Cycle
@@ -25,22 +26,23 @@ class MainCardCVC: UICollectionViewCell {
     // MARK: - Custom Method
     func configUI() {
         self.layer.cornerRadius = 14
-        self.backgroundColor = .white
-        characterBackView.backgroundColor = .systemIndigo
-        characterImageView.backgroundColor = .cyan
+        self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        characterBackView.backgroundColor = .gray100
+        characterImageView.image = Character.blue.getCharacterImage(phase: 2, size: 101)
+        levelStarImageView.image = UIImage(named: "level2")
         
         nameLabel.text = "캐치미캐치유캐치미를정말정말좋아하는캐츄"
-        nameLabel.textColor = .black
+        nameLabel.textColor = .black200
         nameLabel.font = .catchuRegularSystemFont(ofSize: 14)
-        nameLabel.lineBreakMode = .byWordWrapping
+        nameLabel.addCharacterSpacing()
         nameLabel.numberOfLines = 2
     }
     
     func setupLayout() {
-        addSubviews([characterBackView, characterImageView, nameLabel])
+        addSubviews([characterBackView, characterImageView, levelStarImageView, nameLabel])
         
         characterImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(24)
+            make.top.equalTo(levelStarImageView.snp.bottom).offset(9)
             make.centerX.equalToSuperview()
             make.height.width.equalTo(101)
         }
@@ -48,6 +50,13 @@ class MainCardCVC: UICollectionViewCell {
         characterBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(144)
+        }
+        
+        levelStarImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(14)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(48)
+            make.height.equalTo(14)
         }
         
         nameLabel.snp.makeConstraints { make in

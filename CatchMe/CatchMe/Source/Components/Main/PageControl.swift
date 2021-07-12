@@ -26,7 +26,7 @@ class PageControl: UIView {
         }
     }
     
-    var selectedColor = UIColor.init(red: 234/255, green: 69/255, blue: 121/255, alpha: 1.0) {
+    var selectedColor = UIColor.pink100 {
         didSet {
             setNeedsDisplay()
         }

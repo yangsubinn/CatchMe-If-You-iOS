@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "btnAlign.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "scale" : "2x",
+      "idiom" : "universal",
+      "filename" : "btnAlign@2x.png"
+    },
+    {
+      "filename" : "btnAlign@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

@@ -47,21 +47,36 @@ class mainReportView: UIView {
                      activeUnitLabel, percentUnitLabel, levelLabel,
                      activeLabel, percentLabel, lineLeftView, lineRightView])
         
+//        top -> leading -> bottom -> trailing
         topLineView.snp.makeConstraints { make in
-            make.height.equalTo(3)
-            make.width.equalTo(36)
-            make.leading.equalToSuperview().offset(24)
             make.top.equalToSuperview().offset(18)
+            make.leading.equalToSuperview().offset(24)
+            make.width.equalTo(36)
+            make.height.equalTo(3)
+        }
+        
+        lineLeftView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(45)
+            make.trailing.equalTo(activeLabel.snp.leading).offset(-29.5)
+            make.width.equalTo(2)
+            make.height.equalTo(23)
+        }
+        
+        lineRightView.snp.makeConstraints { make in
+            make.leading.equalTo(activeLabel.snp.trailing).offset(29.5)
+            make.bottom.equalToSuperview().inset(45)
+            make.width.equalTo(2)
+            make.height.equalTo(23)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(22)
             make.top.equalTo(topLineView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(22)
         }
         
         activeLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().inset(27)
+            make.centerX.equalToSuperview()
         }
         
         percentLabel.snp.makeConstraints { make in
@@ -69,43 +84,19 @@ class mainReportView: UIView {
             make.bottom.equalToSuperview().inset(27)
         }
         
-        lineLeftView.snp.makeConstraints { make in
-            make.height.equalTo(23)
-            make.width.equalTo(2)
-            make.trailing.equalTo(activeLabel.snp.leading).offset(-29.5)
-            make.bottom.equalToSuperview().offset(-45)
-        }
-        
-        lineRightView.snp.makeConstraints { make in
-            make.height.equalTo(23)
-            make.width.equalTo(2)
-            make.leading.equalTo(activeLabel.snp.trailing).offset(29.5)
-            make.bottom.equalToSuperview().offset(-45)
+        levelLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(27)
+            make.trailing.equalTo(activeLabel.snp.leading).offset(-67.5)
         }
         
         activeUnitLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-            make.trailing.equalTo(lineRightView.snp.leading).offset(-24)
-        }
-        
-        activeCountLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(activeLabel.snp.top).offset(-6)
-            make.trailing.equalTo(activeUnitLabel.snp.leading).offset(-4)
-        }
-        
-        levelLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(activeLabel.snp.leading).offset(-67.5)
-            make.bottom.equalToSuperview().offset(-27)
+            make.trailing.equalTo(lineRightView.snp.leading).offset(-28) //-28
         }
         
         levelUnitLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-            make.trailing.equalTo(lineLeftView.snp.leading).offset(-24)
-        }
-        
-        levelCountLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(activeLabel.snp.top).offset(-6)
-            make.trailing.equalTo(levelUnitLabel.snp.leading).offset(-4)
+            make.trailing.equalTo(lineLeftView.snp.leading).offset(-30) //-24
         }
         
         percentUnitLabel.snp.makeConstraints { make in
@@ -113,8 +104,20 @@ class mainReportView: UIView {
             make.leading.equalTo(lineRightView.snp.trailing).offset(60)
         }
         
+        activeCountLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(activeLabel.snp.top).offset(-6)
+            make.trailing.equalTo(activeUnitLabel.snp.leading).offset(-4)
+        }
+        
+        levelCountLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(activeLabel.snp.top).offset(-6)
+            make.trailing.equalTo(levelUnitLabel.snp.leading).offset(-4)
+        }
+        
+        // 분기처리해서 레이아웃 잡기
         percentCountLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-6)
+//            make.centerX.equalTo(lineRightView.snp.trailing).offset(40)
             make.trailing.equalTo(percentUnitLabel.snp.leading).offset(-4)
         }
     }
@@ -134,8 +137,14 @@ class mainReportView: UIView {
     }
     
     private func configUI() {
-        topLineView.backgroundColor = .systemPink
+        topLineView.backgroundColor = .pink100
         topLineView.layer.cornerRadius = 2
+
+        lineLeftView.backgroundColor = .white
+        lineLeftView.layer.cornerRadius = 2
+        
+        lineRightView.backgroundColor = .white
+        lineRightView.layer.cornerRadius = 2
         
         titleLabel.text = "활동 리포트"
         titleLabel.textColor = .white
@@ -153,12 +162,6 @@ class mainReportView: UIView {
         percentLabel.textColor = .white
         percentLabel.font = .stringMediumSystemFont(ofSize: 13)
         
-        lineLeftView.backgroundColor = .white
-        lineLeftView.layer.cornerRadius = 2
-        
-        lineRightView.backgroundColor = .white
-        lineRightView.layer.cornerRadius = 2
-        
         activeUnitLabel.text = "번"
         activeUnitLabel.textColor = .white
         activeUnitLabel.font = .stringMediumSystemFont(ofSize: 13)
@@ -171,7 +174,7 @@ class mainReportView: UIView {
         levelUnitLabel.textColor = .white
         levelUnitLabel.font = .numberMediumSystemFont(ofSize: 13)
         
-        levelCountLabel.text = "18"
+        levelCountLabel.text = "3"
         levelCountLabel.textColor = .white
         levelCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
@@ -190,5 +193,10 @@ class mainReportView: UIView {
         emptySubLabel.text = "캐칭을 기록하고 리포트로 확인해볼까요?"
         emptySubLabel.textColor = .white
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
+    }
+    
+    // int값 계산해서 레이아웃 분기처리하는 함수
+    func labelCount() {
+        
     }
 }

@@ -260,13 +260,25 @@ class AddActionVC: UIViewController {
     }
     
     func changeLetterNumLabelColor() {
+        let textLength = activityTextView.text.count
+        
         if activityTextView.text == placholder {
             letterNumLabel.textColor = .gray200
         } else {
-            letterNumLabel.textColor = .pink100
-            let attributedString = NSMutableAttributedString(string: letterNumLabel.text!)
-            attributedString.addAttribute(.foregroundColor, value: UIColor.gray200, range: (letterNumLabel.text! as NSString).range(of:"/150"))
-            letterNumLabel.attributedText = attributedString
+            switch textLength {
+            case 0:
+                let attributedString = NSMutableAttributedString(string: "0/150")
+                attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("0/150" as NSString).range(of:"0"))
+                letterNumLabel.attributedText = attributedString
+            case 150:
+                let attributedString = NSMutableAttributedString(string: "150/150")
+                attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("150/150" as NSString).range(of:"150"))
+                letterNumLabel.attributedText = attributedString
+            default:
+                let attributedString = NSMutableAttributedString(string: "\(textLength)/150")
+                attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("\(textLength)/150" as NSString).range(of:"\(textLength)"))
+                letterNumLabel.attributedText = attributedString
+            }
         }
     }
     
@@ -295,7 +307,7 @@ class AddActionVC: UIViewController {
     }
     
     @objc func keyboardWillShow(_ sender: Notification) {
-        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 227 : 195
+        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 262 : 195
     }
     
     @objc func keyboardWillHide(_ sender: Notification) {
@@ -334,6 +346,7 @@ extension AddActionVC: UITextViewDelegate {
         /// textLength = 기존 텍스트뷰의 텍스트 + 새로 입력할 텍스트 - 지워질 글자 개수
         let textLength = str.count + text.count - range.length
         letterNumLabel.text = "\(textLength)/150"
+        changeLetterNumLabelColor()
         return textLength <= 150
     }
 }

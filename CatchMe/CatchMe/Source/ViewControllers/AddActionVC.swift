@@ -12,6 +12,8 @@ import SnapKit
 
 class AddActionVC: UIViewController {
     // MARK: - Properties
+    let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+    
     let imagePicker = UIImagePickerController()
     
     let pinkBackgroundView = UIView().then {
@@ -136,9 +138,18 @@ class AddActionVC: UIViewController {
         
         deletePhotoButton.isHidden = true
         
-        activityTextView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+        activityTextView.text = placholder
         activityTextView.textColor = .gray200
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
+        uploadButton.backgroundColor = .gray200
+        
+//        if activityTextView.textColor == UIColor.white {
+//            uploadButton.isEnabled = true
+//            uploadButton.changeBottomButton(isEnable: true)
+//        } else if activityTextView.textColor == UIColor.gray200 {
+//            uploadButton.isEnabled = false
+//            uploadButton.changeBottomButton(isEnable: false)
+//        }
     }
     
     func setupAutoLayout() {
@@ -146,7 +157,8 @@ class AddActionVC: UIViewController {
                           catchuImageView, dateLabel, dateButton,
                           closeButton, nameLabel])
         blackBackgroundView.addSubviews([activityLabel, activityTextView, letterNumLabel,
-                                         addPhotoLabel, photoButton, deletePhotoButton, uploadButton])
+                                         addPhotoLabel, photoButton, deletePhotoButton,
+                                         uploadButton])
         
         pinkBackgroundView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -246,7 +258,6 @@ class AddActionVC: UIViewController {
     
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
-
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
@@ -267,36 +278,50 @@ class AddActionVC: UIViewController {
             deletePhotoButton.isHidden = false
         }
     }
+    
+    func changeLetterNumLabelColor() {
+        if activityTextView.text == placholder {
+            letterNumLabel.textColor = .gray200
+        } else {
+            letterNumLabel.textColor = .pink100
+            let attributedString = NSMutableAttributedString(string: letterNumLabel.text!)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.gray200, range: (letterNumLabel.text! as NSString).range(of:"/150"))
+            letterNumLabel.attributedText = attributedString
+        }
+    }
 }
 
 // MARK: - UITextViewDelegate
 extension AddActionVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)" {
+        if textView.text == placholder {
             textView.text = nil
             textView.textColor = .white
         } else if textView.text == "" {
-            textView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+            textView.text = placholder
             textView.textColor = .gray200
         }
         
         activityTextView.layer.borderWidth = 1
         activityTextView.layer.borderColor = UIColor.pink100.cgColor
+        changeLetterNumLabelColor()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+            textView.text = placholder
             textView.textColor = .gray200
         }
         
         activityTextView.layer.borderWidth = 0
+        changeLetterNumLabelColor()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard let str = activityTextView.text else { return true }
         /// textLength = 기존 텍스트뷰의 텍스트 + 새로 입력할 텍스트 - 지워질 글자 개수
         let textLength = str.count + text.count - range.length
+        letterNumLabel.text = "\(textLength)/150"
         return textLength <= 150
     }
 }

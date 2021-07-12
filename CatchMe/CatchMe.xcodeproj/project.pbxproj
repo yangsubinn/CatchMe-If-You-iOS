@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0534CB26983FEB00646974 /* UILabel+Extension.swift */; };
+		2B12C6D8269B52BB00BCB7B3 /* LookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12C6D7269B52BB00BCB7B3 /* LookVC.swift */; };
+		2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12C6DC269B52FB00BCB7B3 /* LookCVC.swift */; };
+		2B12C6DF269B52FB00BCB7B3 /* LookCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B12C6DD269B52FB00BCB7B3 /* LookCVC.xib */; };
 		2B164B492695A988007F0F4A /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B164B482695A988007F0F4A /* SettingVC.swift */; };
 		2B164B4F2695AA77007F0F4A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B164B4E2695AA77007F0F4A /* Setting.storyboard */; };
 		2B164B542695DCC9007F0F4A /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B164B522695DCC9007F0F4A /* SettingTVC.swift */; };
@@ -107,6 +110,9 @@
 /* Begin PBXFileReference section */
 		25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatchMe.release.xcconfig"; path = "Target Support Files/Pods-CatchMe/Pods-CatchMe.release.xcconfig"; sourceTree = "<group>"; };
 		2B0534CB26983FEB00646974 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		2B12C6D7269B52BB00BCB7B3 /* LookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookVC.swift; sourceTree = "<group>"; };
+		2B12C6DC269B52FB00BCB7B3 /* LookCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookCVC.swift; sourceTree = "<group>"; };
+		2B12C6DD269B52FB00BCB7B3 /* LookCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookCVC.xib; sourceTree = "<group>"; };
 		2B164B482695A988007F0F4A /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		2B164B4E2695AA77007F0F4A /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2B164B522695DCC9007F0F4A /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -224,6 +230,22 @@
 				25682843B06F2C59630B0964 /* Pods-CatchMe.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		2B12C6DB269B52DB00BCB7B3 /* Look */ = {
+			isa = PBXGroup;
+			children = (
+				2B12C6DC269B52FB00BCB7B3 /* LookCVC.swift */,
+			);
+			path = Look;
+			sourceTree = "<group>";
+		};
+		2B12C6E2269B530200BCB7B3 /* Look */ = {
+			isa = PBXGroup;
+			children = (
+				2B12C6DD269B52FB00BCB7B3 /* LookCVC.xib */,
+			);
+			path = Look;
 			sourceTree = "<group>";
 		};
 		2B164B4C2695A99F007F0F4A /* Setting */ = {
@@ -406,6 +428,7 @@
 				2B164B482695A988007F0F4A /* SettingVC.swift */,
 				EDD262C8269771BD00845F7B /* LoginVC.swift */,
 				EDC19D952698A23700F9E41B /* SignupVC.swift */,
+				2B12C6D7269B52BB00BCB7B3 /* LookVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -426,6 +449,7 @@
 		ED63E897268A1BC3000F058F /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				2B12C6E2269B530200BCB7B3 /* Look */,
 				2B164B582695DCD6007F0F4A /* Setting */,
 				2BDC1AB8269467E9008381C3 /* MainCard */,
 				2B3654E72691ACCD002C2C5C /* Main */,
@@ -436,6 +460,7 @@
 		ED63E899268A1C4A000F058F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2B12C6DB269B52DB00BCB7B3 /* Look */,
 				2B164B4C2695A99F007F0F4A /* Setting */,
 				EDB431B52695BA800008BFB4 /* AddCatchu */,
 				2BDC1AB7269466AA008381C3 /* MainCard */,
@@ -687,6 +712,7 @@
 				2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */,
 				ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */,
 				2B164B552695DCC9007F0F4A /* SettingTVC.xib in Resources */,
+				2B12C6DF269B52FB00BCB7B3 /* LookCVC.xib in Resources */,
 				2B164B4F2695AA77007F0F4A /* Setting.storyboard in Resources */,
 				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
@@ -752,6 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDC19D982698A90400F9E41B /* SignupNaviBar.swift in Sources */,
+				2B12C6D8269B52BB00BCB7B3 /* LookVC.swift in Sources */,
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
 				2B164B492695A988007F0F4A /* SettingVC.swift in Sources */,
 				EDB72D4D269AE607003EE228 /* GeneralAPI.swift in Sources */,
@@ -782,6 +809,7 @@
 				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
+				2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
 				EDC19D9E2698B06D00F9E41B /* SignupTextFieldView.swift in Sources */,

@@ -21,13 +21,13 @@ class AddCatchuPageControl: UIView {
         }
     }
     
-    var dotColor = UIColor.lightGray {
+    var dotColor = UIColor.white {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    var selectedColor = UIColor.init(red: 234/255, green: 69/255, blue: 121/255, alpha: 1.0) {
+    var selectedColor = UIColor.pink100 {
         didSet {
             setNeedsDisplay()
         }

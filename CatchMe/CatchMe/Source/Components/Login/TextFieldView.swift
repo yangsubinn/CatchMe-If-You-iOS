@@ -107,29 +107,30 @@ class TextFieldView: UIView {
     }
     
     private func configUI() {
-        autoButton.backgroundColor = .systemPink
+        autoButton.setImage(UIImage(named: "checkboxActive"), for: .normal)
         
-        autoLabel.font = .systemFont(ofSize: 15, weight: .light)
+        autoLabel.font = .stringRegularSystemFont(ofSize: 15)
+        autoLabel.textColor = .white
         autoLabel.text = "자동 로그인"
         
-        memberLabel.font = .systemFont(ofSize: 14)
+        memberLabel.font = .stringRegularSystemFont(ofSize: 14)
         memberLabel.text = "아직회원이 아니신가요?"
         
-        emailMessageLabel.font = .systemFont(ofSize: 12)
+        emailMessageLabel.font = .stringRegularSystemFont(ofSize: 12)
         emailMessageLabel.textColor = .pink210
         emailMessageLabel.text = "존재하지 않는 사용자입니다."
         emailMessageLabel.isHidden = true
         
-        passwordMessageLabel.font = .systemFont(ofSize: 12)
+        passwordMessageLabel.font = .stringRegularSystemFont(ofSize: 12)
         passwordMessageLabel.textColor = .pink210
         passwordMessageLabel.text = "비밀번호가 틀렸습니다."
         passwordMessageLabel.isHidden = true
         
-        memberButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        memberButton.titleLabel?.font = .stringMediumSystemFont(ofSize: 14)
         memberButton.setTitle("회원가입", for: .normal)
         memberButton.drawUnderline()
         
-        secureButton.backgroundColor = .purple
+        secureButton.setImage(UIImage(named: "icEyeOff"), for: .normal)
         secureButton.isHidden = true
     }
     
@@ -137,7 +138,7 @@ class TextFieldView: UIView {
         emailTextField.delegate = self
         emailTextField.changePaddingPoints(point: 50)
         emailTextField.setupEmailImage()
-        emailTextField.font = .systemFont(ofSize: 17)
+        emailTextField.font = .stringRegularSystemFont(ofSize: 17)
         emailTextField.textColor = .black100
         emailTextField.tintColor = .pink100
         
@@ -145,20 +146,20 @@ class TextFieldView: UIView {
         passwordTextField.changePaddingPoints(point: 50)
         passwordTextField.setRightPaddingPoints(54)
         passwordTextField.setupPasswordImage()
-        passwordTextField.font = .systemFont(ofSize: 17)
+        passwordTextField.font = .stringRegularSystemFont(ofSize: 17)
         passwordTextField.textColor = .black100
         passwordTextField.tintColor = .pink100
     }
     
     private func setupButtonAction() {
         let autoAction = UIAction { _ in
-            self.autoButton.backgroundColor = self.isAuto ? .gray : .systemPink
+            self.autoButton.setImage(self.isAuto ? UIImage(named: "checkboxInactive") : UIImage(named: "checkboxActive"), for: .normal)
             self.isAuto.toggle()
         }
         autoButton.addAction(autoAction, for: .touchUpInside)
         
         let secureAction = UIAction { _ in
-            self.secureButton.backgroundColor = self.passwordTextField.isSecureTextEntry ? .gray : .purple
+            self.secureButton.setImage(UIImage(named: self.passwordTextField.isSecureTextEntry ? "icEyeOn" : "icEyeOff"), for: .normal)
             self.passwordTextField.isSecureTextEntry.toggle()
         }
         secureButton.addAction(secureAction, for: .touchUpInside)
@@ -191,7 +192,7 @@ class TextFieldView: UIView {
 // MARK: - UITextFieldDelegate
 extension TextFieldView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.287, animations: {
             self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -160 : -140)
         })
         
@@ -215,7 +216,7 @@ extension TextFieldView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.287, animations: {
             self.transform = .identity
         })
         

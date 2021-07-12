@@ -12,20 +12,21 @@ import SnapKit
 class FirstFlowView: UIView {
     // MARK: - Lazy Properties
     lazy var catchuCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-    lazy var cellCount = colors.count
+    lazy var cellCount = babyCatchus.count
     
     // MARK: - Properties
     let titleView = CatchuTitleView(title: "새로운 캐츄를 잡아볼까요?", subTitle: "내 모습을 가장 잘 보여주는 캐츄를 골라주세요")
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
-    let cellSize = CGSize(width: 150, height: 150)
+    let cellSize = CGSize(width: 175, height: 175)
     
-    var minItemSpacing: CGFloat = 25
+    var minItemSpacing: CGFloat = -30
     var previousIndex = 0
+    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151),
+                                   Character.green.getCharacterImage(phase: 1, size: 151),
+                                   Character.orange.getCharacterImage(phase: 1, size: 151),
+                                   Character.purple.getCharacterImage(phase: 1, size: 151),
+                                   Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
     
-    // MARK: - Dummy Data
-    /// 후에 enum으로 사용하면 편리할 듯 -> 아니면 public하게 전체적으로 사용할 수 있도록 만들기
-    let colors: [UIColor] = [.systemRed, .systemBlue, .systemPink, .systemTeal, .systemGray, .systemGreen, .systemOrange, .systemYellow, .systemPurple, .systemIndigo]
-
     // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,14 +83,14 @@ class FirstFlowView: UIView {
 // MARK: - UICollectionViewDataSource
 extension FirstFlowView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return babyCatchus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarouselCVC.identifier, for: indexPath) as? CarouselCVC else {
             return UICollectionViewCell()
         }
-        cell.setupCharacter(color: colors[indexPath.item])
+        cell.setupCharacter(image: babyCatchus[indexPath.item] ?? UIImage())
         animateZoomforCellremove(zoomCell: cell)
         return cell
     }

@@ -13,12 +13,12 @@ import SnapKit
 class CatchuTitleView: UIView {
     // MARK: - Properties
     let titleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 22, weight: .medium)
+        $0.font = .stringMediumSystemFont(ofSize: 22)
         $0.textColor = .white
     }
     
     let subTitleLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.font = .stringMediumSystemFont(ofSize: 14)
         $0.textColor = .white
     }
     
@@ -47,10 +47,10 @@ class CatchuTitleView: UIView {
     private func configUI(title: String, subTitle: String) {
         addSubviews([titleLabel, subTitleLabel])
         
-        let attributedStr = NSMutableAttributedString(string: title)
-        attributedStr.addAttribute(.foregroundColor, value: UIColor.systemPink, range: (title as NSString).range(of: "캐츄"))
-        titleLabel.attributedText = attributedStr
+        titleLabel.text = title
+        titleLabel.addAddCatchuCharacterSpacing()
         
         subTitleLabel.text = subTitle
+        subTitleLabel.addCharacterSpacing()
     }
 }

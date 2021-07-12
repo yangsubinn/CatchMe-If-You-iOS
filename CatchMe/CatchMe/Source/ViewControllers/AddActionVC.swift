@@ -123,7 +123,11 @@ class AddActionVC: UIViewController {
         $0.addTarget(self, action: #selector(touchupDeletePhotoButton(_:)), for: .touchUpInside)
     }
     
-    let uploadButton = BottomButton(title: "기록하기")
+    let uploadButton = BottomButton(title: "기록하기").then {
+//        $0.isEnabled = true
+        $0.backgroundColor = .gray300
+        $0.addTarget(self, action: #selector(touchupUploadButton(_:)), for: .touchUpInside)
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -146,12 +150,6 @@ class AddActionVC: UIViewController {
         activityTextView.text = placholder
         activityTextView.textColor = .gray200
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
-        
-        if activityTextView.textColor == UIColor.white {
-            uploadButton.backgroundColor = .pink100
-        } else if activityTextView.textColor == UIColor.gray200 {
-            uploadButton.backgroundColor = .gray200
-        }
     }
     
     func setupAutoLayout() {
@@ -306,8 +304,17 @@ class AddActionVC: UIViewController {
         }
     }
     
+    @objc func touchupUploadButton(_ sender: UIButton) {
+        if activityTextView.text == placholder || activityTextView.text == "" {
+            uploadButton.isEnabled = true
+        } else {
+            uploadButton.isEnabled = false
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     @objc func keyboardWillShow(_ sender: Notification) {
-        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 262 : 195
+        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 240 : 195
     }
     
     @objc func keyboardWillHide(_ sender: Notification) {
@@ -318,13 +325,15 @@ class AddActionVC: UIViewController {
 // MARK: - UITextViewDelegate
 extension AddActionVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        /// 플레이스 홀더
         if textView.text == placholder {
             textView.text = nil
             textView.textColor = .white
-        } else if textView.text == "" {
+        } else if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
             textView.text = placholder
             textView.textColor = .gray200
         }
+        
         
         activityTextView.layer.borderWidth = 1
         activityTextView.layer.borderColor = UIColor.pink100.cgColor
@@ -332,9 +341,16 @@ extension AddActionVC: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
+        if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
             textView.text = placholder
             textView.textColor = .gray200
+        }
+        
+        /// 기록하기 버튼 변경
+        if activityTextView.text == placholder || activityTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+            uploadButton.backgroundColor = .gray300
+        } else {
+            uploadButton.backgroundColor = .pink100
         }
         
         activityTextView.layer.borderWidth = 0

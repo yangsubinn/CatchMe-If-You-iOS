@@ -20,7 +20,11 @@ class ThirdFlowView: UIView {
     
     var textCount = 0
     var isLock = false
-    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151), Character.green.getCharacterImage(phase: 1, size: 151), Character.orange.getCharacterImage(phase: 1, size: 151), Character.purple.getCharacterImage(phase: 1, size: 151), Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
+    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151),
+                                   Character.green.getCharacterImage(phase: 1, size: 151),
+                                   Character.orange.getCharacterImage(phase: 1, size: 151),
+                                   Character.purple.getCharacterImage(phase: 1, size: 151),
+                                   Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {

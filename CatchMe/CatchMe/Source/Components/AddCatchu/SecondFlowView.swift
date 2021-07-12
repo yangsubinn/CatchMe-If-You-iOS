@@ -20,7 +20,11 @@ class SecondFlowView: UIView {
     var textCount = 0
     var randomIndex = Int.random(in: 0...5)
     let recommends: [String] = ["‘___없이 못사는 ___러버’", "‘___랑 함께사는 ___집사’", "‘___만 먹는 ___중독자’", "‘___를 하루종일 하는 ___러버’", "‘___이 너무 재밌는 ___처돌이’", "‘당장 ___하고픈 ___중독자’"]
-    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151), Character.green.getCharacterImage(phase: 1, size: 151), Character.orange.getCharacterImage(phase: 1, size: 151), Character.purple.getCharacterImage(phase: 1, size: 151), Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
+    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151),
+                                   Character.green.getCharacterImage(phase: 1, size: 151),
+                                   Character.orange.getCharacterImage(phase: 1, size: 151),
+                                   Character.purple.getCharacterImage(phase: 1, size: 151),
+                                   Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {

@@ -16,7 +16,7 @@ class MainCardVC: UIViewController {
     let popupButton = UIButton()
     let addButton = UIButton()
     let alignButton = UIButton()
-    let topBackView = UIView()
+    let topBackView = UIImageView()
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubLabel = UILabel()
@@ -41,13 +41,13 @@ class MainCardVC: UIViewController {
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([topBackView, collectionView, backButton,
+        view.addSubviews([collectionView, topBackView, backButton,
                           nameLabel, titleLabel, popupButton,
                           addButton, alignButton])
         
         topBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(alignButton.snp.bottom)
+            make.bottom.equalTo(alignButton.snp.bottom).offset(10)
         }
         
         backButton.snp.makeConstraints { make in
@@ -79,25 +79,26 @@ class MainCardVC: UIViewController {
         }
         
         alignButton.snp.makeConstraints { make in
-            make.top.equalTo(addButton.snp.bottom).offset(27)
+            make.top.equalTo(addButton.snp.bottom).offset(37)
             make.trailing.equalToSuperview().inset(13)
             make.width.height.equalTo(48)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(topBackView.snp.bottom)
+            make.top.equalTo(topBackView.snp.bottom).offset(-10)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
     
     func configUI() {
         view.backgroundColor = .black100
-        popupButton.backgroundColor = .blue
-        addButton.backgroundColor = .yellow
-        alignButton.backgroundColor = .gray300
-        topBackView.backgroundColor = .brown
-        emptyImageView.backgroundColor = .pink000
         
+        popupButton.setImage(UIImage(named: "btnGuide"), for: .normal)
+        addButton.setImage(UIImage(named: "actionDefault"), for: .normal)
+        alignButton.setImage(UIImage(named: "btnAlign"), for: .normal)
+        topBackView.image = UIImage(named: "scrollRectangle")
+        emptyImageView.image = UIImage(named: "catchu")
+                
         nameLabel.text = "최고의대장피엠김해리 님"
         nameLabel.textColor = .white
         nameLabel.font = .stringBoldSystemFont(ofSize: 14)
@@ -133,8 +134,7 @@ class MainCardVC: UIViewController {
         emptyImageView.snp.makeConstraints { make in
             make.top.equalTo(topBackView.snp.bottom).offset(UIScreen.main.hasNotch ? 150 : 102)
             make.centerX.equalToSuperview()
-            make.width.equalTo(115)
-            make.height.equalTo(116)
+            make.width.height.equalTo(115)
         }
         
         emptyTitleLabel.snp.makeConstraints { make in

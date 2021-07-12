@@ -12,11 +12,11 @@ import SnapKit
 
 class CustomTextField: UITextField {
     let emailImageView = UIImageView().then {
-        $0.backgroundColor = .gray
+        $0.image = UIImage(named: "usersUser3Fill")
     }
     
     let passwordImageView = UIImageView().then {
-        $0.backgroundColor = .gray
+        $0.image = UIImage(named: "systemsLock2Fill")
     }
 
     init(placeholder: String, isAddCatchu: Bool? = false, small: Bool? = false) {

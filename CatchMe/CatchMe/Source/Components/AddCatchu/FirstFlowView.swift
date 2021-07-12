@@ -19,7 +19,7 @@ class FirstFlowView: UIView {
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     let cellSize = CGSize(width: 175, height: 175)
     
-    var minItemSpacing: CGFloat = 25
+    var minItemSpacing: CGFloat = 0
     var previousIndex = 0
     let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151), Character.green.getCharacterImage(phase: 1, size: 151), Character.orange.getCharacterImage(phase: 1, size: 151), Character.purple.getCharacterImage(phase: 1, size: 151), Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
     

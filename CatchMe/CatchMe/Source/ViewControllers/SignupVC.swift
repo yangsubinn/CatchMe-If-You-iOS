@@ -11,7 +11,7 @@ import SnapKit
 
 class SignupVC: UIViewController {
     // MARK: - Lazy Properties
-    lazy var navigationBar = SignupNaviBar(self)
+    lazy var navigationBar = CustomNavigationBar(self, title: "회원가입")
     lazy var textFieldView = SignupTextFieldView(signupButton)
     
     // MARK: - Properties

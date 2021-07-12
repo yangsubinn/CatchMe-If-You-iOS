@@ -7,23 +7,22 @@
 
 import UIKit
 
-class EditCatchuVC: UIViewController {
+import SnapKit
 
+class EditCatchuVC: UIViewController {
+    // MARK: - Lazy Properties
+    lazy var navigationBar = CustomNavigationBar(self, title: "회원가입")
+    
+    // MARK: - Properties
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Custom Method
+    private func configUI() {
+        view.backgroundColor = .black100
     }
-    */
-
 }

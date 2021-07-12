@@ -74,7 +74,7 @@
 		EDC19D9126983C7100F9E41B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */; };
 		EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D932698478100F9E41B /* TextFieldView.swift */; };
 		EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D952698A23700F9E41B /* SignupVC.swift */; };
-		EDC19D982698A90400F9E41B /* SignupNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D972698A90400F9E41B /* SignupNaviBar.swift */; };
+		EDC19D982698A90400F9E41B /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D972698A90400F9E41B /* CustomNavigationBar.swift */; };
 		EDC19D9C2698AEEC00F9E41B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9B2698AEEC00F9E41B /* UIApplication+Extension.swift */; };
 		EDC19D9E2698B06D00F9E41B /* SignupTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9D2698B06D00F9E41B /* SignupTextFieldView.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
@@ -179,7 +179,7 @@
 		EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		EDC19D932698478100F9E41B /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		EDC19D952698A23700F9E41B /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
-		EDC19D972698A90400F9E41B /* SignupNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNaviBar.swift; sourceTree = "<group>"; };
+		EDC19D972698A90400F9E41B /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		EDC19D9B2698AEEC00F9E41B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		EDC19D9D2698B06D00F9E41B /* SignupTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTextFieldView.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
@@ -584,7 +584,6 @@
 			isa = PBXGroup;
 			children = (
 				EDC19D932698478100F9E41B /* TextFieldView.swift */,
-				EDC19D972698A90400F9E41B /* SignupNaviBar.swift */,
 				EDC19D9D2698B06D00F9E41B /* SignupTextFieldView.swift */,
 			);
 			path = Login;
@@ -609,6 +608,7 @@
 				EDD12C95268EB16800DF766A /* XmarkButton.swift */,
 				EDD12C97268EB27500DF766A /* BottomButton.swift */,
 				EDB431BC269603210008BFB4 /* CustomTextField.swift */,
+				EDC19D972698A90400F9E41B /* CustomNavigationBar.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -780,7 +780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDC19D982698A90400F9E41B /* SignupNaviBar.swift in Sources */,
+				EDC19D982698A90400F9E41B /* CustomNavigationBar.swift in Sources */,
 				2B12C6D8269B52BB00BCB7B3 /* LookVC.swift in Sources */,
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
 				2B164B492695A988007F0F4A /* SettingVC.swift in Sources */,

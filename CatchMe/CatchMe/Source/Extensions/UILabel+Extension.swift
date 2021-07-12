@@ -24,4 +24,14 @@ extension UILabel {
             }
         }
     }
+    
+    func addAddCatchuCharacterSpacing(kernValue: Double = -0.6) {
+        if let labelText = text, labelText.count > 0 {
+            let attributedStr = NSMutableAttributedString(string: labelText)
+            attributedStr.addAttribute(NSAttributedString.Key.kern, value: kernValue, range: NSRange(location: 0, length: attributedStr.length - 1))
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.pink210, range: (labelText as NSString).range(of: "캐츄"))
+            
+            attributedText = attributedStr
+        }
+    }
 }

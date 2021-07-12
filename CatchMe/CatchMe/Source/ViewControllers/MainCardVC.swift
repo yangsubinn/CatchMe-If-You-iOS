@@ -11,7 +11,6 @@ import SnapKit
 
 class MainCardVC: UIViewController {
     //MARK: - Properties
-    lazy var backButton = BackButton(self)
     let nameLabel = UILabel()
     let titleLabel = UILabel()
     let popupButton = UIButton()
@@ -24,6 +23,7 @@ class MainCardVC: UIViewController {
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
     //MARK: - Lazy Properties
+    lazy var backButton = BackButton(self)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     var isFirstButtonChecked = true
@@ -51,7 +51,7 @@ class MainCardVC: UIViewController {
         }
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(55)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(UIScreen.main.hasNotch ? 11 : 20)
             make.leading.equalToSuperview().offset(14)
         }
         

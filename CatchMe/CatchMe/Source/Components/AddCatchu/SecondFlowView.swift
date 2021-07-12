@@ -44,9 +44,9 @@ class SecondFlowView: UIView {
         }
         
         characterImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 175 : 115)
+            make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 162.5 : 102.5)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(151)
+            make.height.width.equalTo(175)
         }
         
         textField.snp.makeConstraints { make in
@@ -98,8 +98,8 @@ extension SecondFlowView: UITextFieldDelegate {
         
         UIView.animate(withDuration: 0.2, animations: {
             self.characterImageView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -74 : -50)
-            textField.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -122 : -65)
-            self.countLabel.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -122 : -65)
+            textField.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -122 : -75)
+            self.countLabel.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -122 : -75)
         })
     }
     

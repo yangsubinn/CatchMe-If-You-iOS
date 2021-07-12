@@ -45,9 +45,9 @@ class ThirdFlowView: UIView {
         }
         
         characterImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 175 : 115)
+            make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 162.5 : 102.5)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(151)
+            make.height.width.equalTo(175)
         }
         
         backgroundImageView.snp.makeConstraints { make in
@@ -57,7 +57,7 @@ class ThirdFlowView: UIView {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(characterImageView.snp.bottom).offset(39)
+            make.top.equalTo(characterImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 39 : 20)
             make.centerX.equalToSuperview()
             make.width.equalTo(169)
         }

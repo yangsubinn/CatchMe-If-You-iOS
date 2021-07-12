@@ -152,7 +152,8 @@ extension AddCatchuVC {
             backButton.isHidden = false
             
             thirdFlowView.isLock = false
-            thirdFlowView.lockButton.backgroundColor = .systemPink
+            thirdFlowView.lockButton.setImage(UIImage(named: "checkboxActive"), for: .normal)
+            thirdFlowView.lockLabel.textColor = .white
         default:
             backButton.isHidden = false
         }

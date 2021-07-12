@@ -28,9 +28,9 @@ class MainVC: UIViewController {
     var formatterDate = DateFormatter()
     
     //MARK: - Dummy Data
-    var levels: [String] = ["10", "8", "6", "4", "2"]
+    var levels: [String] = ["3", "2", "2", "2", "1"]
     var activitys: [String] = ["10", "5", "6", "8", "1"]
-    var totals: [String] = ["12", "13", "4", "2", "1"]
+    var totals: [String] = ["90", "70", "10", "6", "100"]
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -41,8 +41,8 @@ class MainVC: UIViewController {
         setupDate()
         setupReportView()
         setupTopLayout()
-//        setupLayout()
-        setupEmptyLayout()
+        setupLayout()
+//        setupEmptyLayout()
         configUI()
         setupCollectionView()
         setupPageControl()

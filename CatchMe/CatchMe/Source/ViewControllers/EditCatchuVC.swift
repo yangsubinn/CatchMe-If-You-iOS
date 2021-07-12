@@ -13,6 +13,7 @@ class EditCatchuVC: UIViewController {
     // MARK: - Lazy Properties
     lazy var navigationBar = CustomNavigationBar(self, title: "캐츄 수정")
     lazy var textCount = nickname.count
+    lazy var currentLock = isLock
     
     // MARK: - Properties
     let backgroundImageView = UIImageView()
@@ -92,6 +93,8 @@ class EditCatchuVC: UIViewController {
     }
     
     private func configUI() {
+        hideKeyboardWhenTappedAround()
+        
         view.backgroundColor = .black100
         
         backgroundImageView.backgroundColor = .pink100
@@ -142,6 +145,17 @@ class EditCatchuVC: UIViewController {
         let lockAction = UIAction { _ in
             self.lockButton.setImage(self.isLock ? UIImage(named: "checkboxInactive") : UIImage(named: "checkboxActive"), for: .normal)
             self.lockLabel.textColor = self.isLock ? .gray400 : .white
+            
+            if (self.nameTextField.text == self.nickname) && self.nameTextField.hasText {
+                if self.currentLock == !self.isLock {
+                    self.editButton.backgroundColor = .gray300
+                    self.editButton.isEnabled = false
+                } else {
+                    self.editButton.backgroundColor = .pink100
+                    self.editButton.isEnabled = true
+                }
+            }
+            
             self.isLock.toggle()
         }
         lockButton.addAction(lockAction, for: .touchUpInside)
@@ -184,6 +198,16 @@ extension EditCatchuVC: UITextFieldDelegate {
     
     @objc
     func textDidChanged(_ sender: Any) {
+        /// 변경하기 부분
+        if nameTextField.text != nickname && nameTextField.hasText {
+            editButton.backgroundColor = .pink100
+            editButton.isEnabled = true
+        } else {
+            editButton.backgroundColor = .gray300
+            editButton.isEnabled = false
+        }
+        
+        /// textCount count
         textCount = nameTextField.text?.count ?? 0
         
         switch textCount {

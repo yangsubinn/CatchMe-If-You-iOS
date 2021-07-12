@@ -28,8 +28,10 @@ class SignupTextFieldView: UIView {
     let checkMessageLabel = UILabel()
     let emailButton = UIButton()
     let idButton = UIButton()
-    let pwButton = UIButton()
-    let checkButton = UIButton()
+    let emailImageView = UIImageView()
+    let idImageView = UIImageView()
+    let pwImageView = UIImageView()
+    let checkImageView = UIImageView()
 
     var registerButton = UIButton()
     var doubleCheck = false
@@ -115,8 +117,9 @@ class SignupTextFieldView: UIView {
     
     private func setupAdditionalLayout() {
         addSubviews([emailMessageLabel, emailButton, idCountLabel,
-                     idButton, pwMessageLabel, pwButton,
-                     checkMessageLabel, checkButton])
+                     idButton, pwMessageLabel, checkMessageLabel,
+                     emailImageView, idImageView, pwImageView,
+                     checkImageView])
         
         emailMessageLabel.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(8)
@@ -126,6 +129,12 @@ class SignupTextFieldView: UIView {
         emailButton.snp.makeConstraints { make in
             make.centerY.equalTo(emailTextField.snp.centerY)
             make.trailing.equalTo(emailTextField.snp.trailing)
+            make.width.height.equalTo(48)
+        }
+        
+        emailImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(emailButton.snp.centerY)
+            make.trailing.equalTo(emailButton.snp.trailing)
             make.width.height.equalTo(48)
         }
         
@@ -140,12 +149,18 @@ class SignupTextFieldView: UIView {
             make.width.height.equalTo(48)
         }
         
+        idImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(idTextField.snp.centerY)
+            make.trailing.equalTo(idTextField.snp.trailing)
+            make.width.height.equalTo(48)
+        }
+        
         pwMessageLabel.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(40)
         }
         
-        pwButton.snp.makeConstraints { make in
+        pwImageView.snp.makeConstraints { make in
             make.centerY.equalTo(passwordTextField.snp.centerY)
             make.trailing.equalTo(passwordTextField.snp.trailing)
             make.width.height.equalTo(48)
@@ -156,7 +171,7 @@ class SignupTextFieldView: UIView {
             make.leading.equalToSuperview().inset(40)
         }
         
-        checkButton.snp.makeConstraints { make in
+        checkImageView.snp.makeConstraints { make in
             make.centerY.equalTo(checkPasswordTextField.snp.centerY)
             make.trailing.equalTo(checkPasswordTextField.snp.trailing)
             make.width.height.equalTo(48)
@@ -166,40 +181,41 @@ class SignupTextFieldView: UIView {
     private func configUI() {
         setupLabel()
         setupButton()
+        setupImageView()
         setupTextField()
     }
     
     private func setupLabel() {
         emailLabel.text = "이메일 주소"
-        emailLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        emailLabel.font = .stringMediumSystemFont(ofSize: 18)
         
         idLabel.text = "아이디(닉네임)"
-        idLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        idLabel.font = .stringMediumSystemFont(ofSize: 18)
         
         passwordLabel.text = "비밀번호"
-        passwordLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        passwordLabel.font = .stringMediumSystemFont(ofSize: 18)
         
         checkPasswordLabel.text = "비밀번호 확인"
-        checkPasswordLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        checkPasswordLabel.font = .stringMediumSystemFont(ofSize: 18)
         
         emailMessageLabel.text = "중복을 확인해주세요."
-        emailMessageLabel.font = .systemFont(ofSize: 12)
+        emailMessageLabel.font = .stringRegularSystemFont(ofSize: 12)
         emailMessageLabel.textColor = .pink210
         emailMessageLabel.isHidden = true
         
         idCountLabel.text = "0/10"
-        idCountLabel.font = .systemFont(ofSize: 14)
+        idCountLabel.font = .numberRegularSystemFont(ofSize: 14)
         idCountLabel.textAlignment = .right
         idCountLabel.textColor = .gray50
         idCountLabel.isHidden = true
         
         pwMessageLabel.text = "영문, 숫자, 특수문자 포함 8~16자"
-        pwMessageLabel.font = .systemFont(ofSize: 12)
+        pwMessageLabel.font = .stringRegularSystemFont(ofSize: 12)
         pwMessageLabel.textColor = .pink210
         pwMessageLabel.isHidden = true
         
         checkMessageLabel.text = "비밀번호를 다시 입력해주세요."
-        checkMessageLabel.font = .systemFont(ofSize: 12)
+        checkMessageLabel.font = .stringRegularSystemFont(ofSize: 12)
         checkMessageLabel.textColor = .pink210
         checkMessageLabel.isHidden = true
     }
@@ -207,47 +223,49 @@ class SignupTextFieldView: UIView {
     private func setupButton() {
         doubleCheckButton.setTitle("확인", for: .normal)
         doubleCheckButton.setTitleColor(.white, for: .normal)
-        doubleCheckButton.titleLabel?.font = .systemFont(ofSize: 14)
+        doubleCheckButton.titleLabel?.font = .stringRegularSystemFont(ofSize: 14)
         doubleCheckButton.backgroundColor = .gray50
         doubleCheckButton.layer.cornerRadius = 13
         doubleCheckButton.isEnabled = false
         
-        emailButton.backgroundColor = .gray
+        emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
         emailButton.isHidden = true
         
-        idButton.backgroundColor = .gray
+        idButton.setImage(UIImage(named: "btnRemove"), for: .normal)
         idButton.isHidden = true
+    }
+    
+    private func setupImageView() {
+        emailImageView.isHidden = true
         
-        pwButton.backgroundColor = .clear
-        pwButton.isHidden = true
-        pwButton.isEnabled = false
+        idImageView.isHidden = true
         
-        checkButton.backgroundColor = .clear
-        checkButton.isHidden = true
-        checkButton.isEnabled = false
+        pwImageView.isHidden = true
+        
+        checkImageView.isHidden = true
     }
     
     private func setupTextField() {
         emailTextField.delegate = self
         emailTextField.setRightPaddingPoints(48)
         emailTextField.tintColor = .pink100
-        emailTextField.font = .systemFont(ofSize: 18)
+        emailTextField.font = .stringRegularSystemFont(ofSize: 18)
         
         idTextField.delegate = self
         idTextField.setRightPaddingPoints(48)
         idTextField.tintColor = .pink100
-        idTextField.font = .systemFont(ofSize: 18)
+        idTextField.font = .stringRegularSystemFont(ofSize: 18)
         
         passwordTextField.delegate = self
         passwordTextField.setRightPaddingPoints(48)
         passwordTextField.tintColor = .pink100
-        passwordTextField.font = .systemFont(ofSize: 18)
+        passwordTextField.font = .stringRegularSystemFont(ofSize: 18)
         passwordTextField.isSecureTextEntry = true
         
         checkPasswordTextField.delegate = self
         checkPasswordTextField.setRightPaddingPoints(48)
         checkPasswordTextField.tintColor = .pink100
-        checkPasswordTextField.font = .systemFont(ofSize: 18)
+        checkPasswordTextField.font = .stringRegularSystemFont(ofSize: 18)
         checkPasswordTextField.isSecureTextEntry = true
     }
     
@@ -289,36 +307,38 @@ extension SignupTextFieldView: UITextFieldDelegate {
             doubleCheckButton.backgroundColor = .pink100
             
             if doubleCheck {
-                emailButton.isHidden = false
-                emailButton.isEnabled = false
-                emailButton.backgroundColor = .blue100
+                emailImageView.isHidden = false
+                emailImageView.image = UIImage(named: "icCheck")
+                
+                emailButton.isHidden = true
             } else {
                 emailMessageLabel.isHidden = false
                 emailMessageLabel.text = "중복을 확인해주세요."
                 emailMessageLabel.textColor = .pink210
                 
                 emailButton.isHidden = false
-                emailButton.isEnabled = true
-                emailButton.backgroundColor = .gray
+                emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+                
+                emailImageView.isHidden = true
             }
         case idTextField:
             idTextField.setupPinkLine()
             
             idCountLabel.isHidden = false
             idButton.isHidden = false
-            idButton.isEnabled = true
+            idImageView.isHidden = true
         case passwordTextField:
             passwordTextField.setupPinkLine()
             moveTextFieldView()
             
             pwMessageLabel.isHidden = false
-            pwButton.isHidden = false
+            pwImageView.isHidden = false
         case checkPasswordTextField:
             checkPasswordTextField.setupPinkLine()
             moveTextFieldView()
             
             checkMessageLabel.isHidden = false
-            checkButton.isHidden = false
+            checkImageView.isHidden = false
         default:
             break
         }
@@ -331,7 +351,7 @@ extension SignupTextFieldView: UITextFieldDelegate {
             
             emailMessageLabel.isHidden = true
             emailButton.isHidden = true
-            emailButton.isEnabled = false
+            emailImageView.isHidden = true
             doubleCheckButton.isEnabled = false
             doubleCheckButton.backgroundColor = .gray50
         case idTextField:
@@ -339,18 +359,19 @@ extension SignupTextFieldView: UITextFieldDelegate {
             
             idCountLabel.isHidden = true
             idButton.isHidden = true
+            idImageView.isHidden = true
         case passwordTextField:
             passwordTextField.setupOriginalLine()
             backToOriginalView()
             
             pwMessageLabel.isHidden = true
-            pwButton.isHidden = true
+            pwImageView.isHidden = true
         case checkPasswordTextField:
             checkPasswordTextField.setupOriginalLine()
             backToOriginalView()
             
             checkMessageLabel.isHidden = true
-            checkButton.isHidden = true
+            checkImageView.isHidden = true
         default:
             break
         }
@@ -367,8 +388,9 @@ extension SignupTextFieldView: UITextFieldDelegate {
             emailMessageLabel.textColor = .pink210
             
             emailButton.isHidden = false
-            emailButton.isEnabled = true
-            emailButton.backgroundColor = .gray
+            emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+            
+            emailImageView.isHidden = true
             
             checkValidateUI()
             
@@ -412,14 +434,14 @@ extension SignupTextFieldView {
         if !(passwordTextField.text!.validatePassword()) && passwordTextField.hasText {
             pwMessageLabel.text = "비밀번호 조합조건이 틀렸습니다."
             pwMessageLabel.textColor = .red100
-            pwButton.backgroundColor = .red100
+            pwImageView.image = UIImage(named: "icWarning")
         } else if passwordTextField.hasText {
             pwMessageLabel.text = ""
-            pwButton.backgroundColor = .blue100
+            pwImageView.image = UIImage(named: "icCheck")
         } else {
             pwMessageLabel.text = "영문, 숫자, 특수문자 포함 8~16자"
             pwMessageLabel.textColor = .pink210
-            pwButton.backgroundColor = .clear
+            pwImageView.image = UIImage(named: "")
         }
         
         checkValidateUI()
@@ -430,14 +452,14 @@ extension SignupTextFieldView {
         if !(passwordTextField.text == checkPasswordTextField.text) && checkPasswordTextField.hasText {
             checkMessageLabel.text = "비밀번호가 일치하지 않습니다."
             checkMessageLabel.textColor = .red100
-            checkButton.backgroundColor = .red100
+            checkImageView.image = UIImage(named: "icWarning")
         } else if checkPasswordTextField.hasText {
             checkMessageLabel.text = ""
-            checkButton.backgroundColor = .blue100
+            checkImageView.image = UIImage(named: "icCheck")
         } else {
             checkMessageLabel.text = "비밀번호를 다시 입력해주세요."
             checkMessageLabel.textColor = .pink210
-            checkButton.backgroundColor = .clear
+            checkImageView.image = UIImage(named: "")
         }
         
         checkValidateUI()
@@ -452,22 +474,29 @@ extension SignupTextFieldView {
             idCountLabel.text = "0/10"
             idCountLabel.textColor = .gray200
             
-            idButton.backgroundColor = .gray
-            idButton.isEnabled = true
+            idButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+            idButton.isHidden = false
+            
+            idImageView.isHidden = true
         case 10:
             let attributedStr = NSMutableAttributedString(string: "10/10")
             attributedStr.addAttribute(.foregroundColor, value: UIColor.red100, range: ("10/10" as NSString).range(of: "10/10"))
             idCountLabel.attributedText = attributedStr
             
-            idButton.backgroundColor = .red100
-            idButton.isEnabled = false
+            idImageView.image = UIImage(named: "icWarning")
+            idImageView.isHidden = false
+            
+            idButton.isHidden = true
         default:
             let attributedStr = NSMutableAttributedString(string: "\(textCount)/10")
             attributedStr.addAttribute(.foregroundColor, value: UIColor.systemPink, range: ("\(textCount)/10" as NSString).range(of: "\(textCount)"))
             idCountLabel.attributedText = attributedStr
             
-            idButton.backgroundColor = .gray
-            idButton.isEnabled = true
+            idButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+            idButton.isHidden = false
+            
+            idImageView.isHidden = true
+            
         }
         
         checkMaxLength(textField: sender, maxLength: 10)
@@ -506,15 +535,19 @@ extension SignupTextFieldView {
         if !(emailTextField.text!.validateEmail()) || emailTextField.text! != email {
             emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
             emailMessageLabel.textColor = .red100
-            emailButton.backgroundColor = .red100
-            emailButton.isEnabled = false
+            emailButton.isHidden = true
+            
+            emailImageView.isHidden = false
+            emailImageView.image = UIImage(named: "icWarning")
             
             doubleCheck = false
         } else {
             emailMessageLabel.text = "중복을 확인해주세요."
             emailMessageLabel.textColor = .pink210
-            emailButton.backgroundColor = .gray
-            emailButton.isEnabled = true
+            emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+            emailButton.isHidden = false
+            
+            emailImageView.isHidden = true
             
             doubleCheck = false
         }
@@ -522,8 +555,9 @@ extension SignupTextFieldView {
         if let text = emailTextField.text,
            text == email {
             emailMessageLabel.text = ""
-            emailButton.backgroundColor = .blue100
-            emailButton.isEnabled = false
+            emailButton.isHidden = true
+            emailImageView.image =  UIImage(named: "icCheck")
+            emailImageView.isHidden = false
             
             doubleCheck = true
         }

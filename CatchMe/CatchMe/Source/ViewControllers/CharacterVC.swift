@@ -40,7 +40,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Custom Method
     func configUI() {
-        upperView.backgroundColor = .white
+        upperView.backgroundColor = .black
         catchGuideImageView.isHidden = true
     }
     
@@ -189,7 +189,7 @@ extension CharacterVC: UITableViewDelegate {
         let offset = scrollView.contentOffset.y
         
         if width - offset < 171 {
-            UIView.animate(withDuration: 0.03) {
+            UIView.animate(withDuration: 0.1) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
                 self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 203)
                 

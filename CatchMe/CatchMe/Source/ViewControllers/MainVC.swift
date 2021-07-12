@@ -28,9 +28,9 @@ class MainVC: UIViewController {
     var formatterDate = DateFormatter()
     
     //MARK: - Dummy Data
-    var levels: [String] = ["10", "8", "6", "4", "2"]
+    var levels: [String] = ["3", "2", "2", "2", "1"]
     var activitys: [String] = ["10", "5", "6", "8", "1"]
-    var totals: [String] = ["12", "13", "4", "2", "1"]
+    var totals: [String] = ["90", "70", "10", "6", "100"]
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -80,7 +80,7 @@ class MainVC: UIViewController {
             make.top.equalTo(settingButton.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 18)
             make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.width.equalTo(72)
-            make.height.equalTo(30)
+            make.height.equalTo(48)
         }
     }
     
@@ -102,23 +102,23 @@ class MainVC: UIViewController {
             make.width.equalTo(UIScreen.main.hasNotch ? 90 : 88)
         }
         
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
+            make.centerX.equalToSuperview()
+        }
+        
         reportView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 26)
+            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 14)
             make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.height.equalTo(152)
         }
         
         catchingButton.snp.makeConstraints { make in
-            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 20)
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 22)
             make.height.equalTo(50)
             make.width.equalTo(173)
-            make.centerX.equalToSuperview()
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 10)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
             make.centerX.equalToSuperview()
         }
     }
@@ -127,7 +127,7 @@ class MainVC: UIViewController {
         view.addSubviews([emptyImageView, emptyTitleLabel, emptySubTitle, catchMeButton])
         
         emptyImageView.snp.makeConstraints { make in
-            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 173 : 120)
+            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 160 : 100)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(115)
         }
@@ -152,13 +152,14 @@ class MainVC: UIViewController {
     
     private func configUI() {
         view.backgroundColor = .black100
-        settingButton.backgroundColor = .cyan
-        calendarButton.backgroundColor = .yellow
-        lookButton.backgroundColor = .gray
-        allButton.backgroundColor = .purple
-        catchingButton.backgroundColor = .lightGray
-        emptyImageView.backgroundColor = .yellow
-        catchMeButton.backgroundColor = .brown
+        
+        settingButton.setImage(UIImage(named: "icSetting"), for: .normal)
+        calendarButton.setImage(UIImage(named: "icReport"), for: .normal)
+        lookButton.setImage(UIImage(named: "icLook"), for: .normal)
+        allButton.setImage(UIImage(named: "btnSeeAll"), for: .normal)
+        catchingButton.setImage(UIImage(named: "actionActive"), for: .normal)
+        catchMeButton.setImage(UIImage(named: "btnCatching"), for: .normal)
+        emptyImageView.image = UIImage(named: "catchu")
         
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
@@ -201,8 +202,10 @@ class MainVC: UIViewController {
     }
     
     private func setupReportView() {
-        reportView.backgroundColor = .darkGray
+        reportView.backgroundColor = .black200
         reportView.layer.cornerRadius = 14
+        reportView.layer.borderColor = UIColor.bordergrey.cgColor
+        reportView.layer.borderWidth = 2
     }
     
     private func setupDate() {

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class LookCVC: UICollectionViewCell {
     static let identifier = "LookCVC"
     
@@ -70,7 +72,8 @@ class LookCVC: UICollectionViewCell {
         characterLabel.text = "캐치미없이캐치미없이못살아못살아캐치미짱"
         characterLabel.textColor = .white
         characterLabel.font = .catchuRegularSystemFont(ofSize: 18)
-        characterLabel.lineBreakMode = .byWordWrapping
+//        characterLabel.lineBreakMode = .byWordWrapping
+        characterLabel.addCharacterSpacing()
         characterLabel.numberOfLines = 2
     }
 

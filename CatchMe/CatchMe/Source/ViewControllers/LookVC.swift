@@ -12,7 +12,7 @@ import SnapKit
 class LookVC: UIViewController {
     //MARK: - Properties
     let titleLabel = UILabel()
-    let subLabel = UILabel()
+    let subTitleLabel = UILabel()
     let topImageView = UIImageView()
     let topBackView  = UIView()
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -32,11 +32,11 @@ class LookVC: UIViewController {
     //MARK: - Custom Method
     func setupLayout() {
         view.addSubviews([topBackView, backButton, titleLabel,
-                          subLabel, topImageView, collectionView])
+                          subTitleLabel, topImageView, collectionView])
         
         topBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(subLabel.snp.bottom).offset(47)
+            make.bottom.equalTo(subTitleLabel.snp.bottom).offset(47)
         }
         
         backButton.snp.makeConstraints { make in
@@ -49,7 +49,7 @@ class LookVC: UIViewController {
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
-        subLabel.snp.makeConstraints { make in
+        subTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
@@ -77,9 +77,9 @@ class LookVC: UIViewController {
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
         
-        subLabel.text = "블라너ㅓ미허ㅣ머ㅏ미"
-        subLabel.textColor = .white
-        subLabel.font = .stringMediumSystemFont(ofSize: 14)
+        subTitleLabel.text = "uxwriting not yet omg"
+        subTitleLabel.textColor = .white
+        subTitleLabel.font = .stringMediumSystemFont(ofSize: 14)
     }
     
     func setupCollectionView() {

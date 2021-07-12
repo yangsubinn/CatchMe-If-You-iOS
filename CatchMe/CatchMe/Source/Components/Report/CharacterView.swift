@@ -13,29 +13,30 @@ import SnapKit
 class CharacterView: UIView {
     // MARK: - Properties
     let lineTopView = UIView().then {
-        $0.backgroundColor = .systemPink
+        $0.backgroundColor = .pink100
         $0.layer.cornerRadius = 2
     }
     
     let totalWordLabel = UILabel().then {
         $0.text = "총"
-        $0.font = .systemFont(ofSize: 13)
-        $0.textColor = .gray
+        $0.font = .stringRegularSystemFont(ofSize: 13)
+        $0.textColor = .gray100
     }
     
     let catchingLabel = UILabel().then {
         $0.text = "캐칭"
-        $0.font = .systemFont(ofSize: 13)
-        $0.textColor = .gray
+        $0.font = .stringRegularSystemFont(ofSize: 13)
+        $0.textColor = .gray100
     }
     
     let catchingCountLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 14)
-        $0.textColor = .gray
+        $0.font = .numberRegularSystemFont(ofSize: 13)
+        $0.textColor = .gray100
     }
     
     let nameLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 19, weight: .bold)
+        $0.font = .catchuRegularSystemFont(ofSize: 19)
+        $0.textColor = .black300
         $0.numberOfLines = 2
         $0.lineBreakMode = .byWordWrapping
     }
@@ -44,7 +45,7 @@ class CharacterView: UIView {
 
     // MARK: - Life Cycle
     /// 후에 character default 이미지 name으로 character 변경
-    init(catching: Int = 0, name: String = "아직 잡은\n캐츄가 없어요!", character: String = "") {
+    init(catching: Int = 0, name: String = "아직 잡은\n캐츄가 없어요 !", character: UIImage? = UIImage(named: "catchu")) {
         super.init(frame: .zero)
         configUI(catching: catching, name: name, character: character)
     }
@@ -64,7 +65,7 @@ class CharacterView: UIView {
         characterImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(5)
-            make.height.width.equalTo(120)
+            make.height.width.equalTo(121)
         }
         
         totalWordLabel.snp.makeConstraints { make in
@@ -91,7 +92,7 @@ class CharacterView: UIView {
     }
     
     // MARK: - Custom Methods
-    private func configUI(catching: Int, name: String, character: String) {
+    private func configUI(catching: Int, name: String, character: UIImage?) {
         addSubviews([lineTopView, totalWordLabel, catchingLabel,
                      catchingCountLabel, nameLabel, characterImageView])
         
@@ -100,6 +101,7 @@ class CharacterView: UIView {
         
         catchingCountLabel.text = "\(catching)"
         nameLabel.text = name
-        characterImageView.backgroundColor = .systemGreen
+        nameLabel.addCharacterSpacing()
+        characterImageView.image = character
     }
 }

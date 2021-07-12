@@ -1,9 +1,9 @@
 {
   "images" : [
     {
+      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "colorBluePhase3Size43.png",
-      "scale" : "1x"
+      "filename" : "colorBluePhase3Size43.png"
     },
     {
       "idiom" : "universal",

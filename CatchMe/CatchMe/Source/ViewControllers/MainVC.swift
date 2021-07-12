@@ -41,8 +41,8 @@ class MainVC: UIViewController {
         setupDate()
         setupReportView()
         setupTopLayout()
-        setupLayout()
-//        setupEmptyLayout()
+//        setupLayout()
+        setupEmptyLayout()
         configUI()
         setupCollectionView()
         setupPageControl()
@@ -80,7 +80,7 @@ class MainVC: UIViewController {
             make.top.equalTo(settingButton.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 18)
             make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.width.equalTo(72)
-            make.height.equalTo(30)
+            make.height.equalTo(48)
         }
     }
     
@@ -102,23 +102,23 @@ class MainVC: UIViewController {
             make.width.equalTo(UIScreen.main.hasNotch ? 90 : 88)
         }
         
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
+            make.centerX.equalToSuperview()
+        }
+        
         reportView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 26)
+            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 14)
             make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
             make.height.equalTo(152)
         }
         
         catchingButton.snp.makeConstraints { make in
-            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 20)
+            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 22)
             make.height.equalTo(50)
             make.width.equalTo(173)
-            make.centerX.equalToSuperview()
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 10)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
             make.centerX.equalToSuperview()
         }
     }
@@ -127,7 +127,7 @@ class MainVC: UIViewController {
         view.addSubviews([emptyImageView, emptyTitleLabel, emptySubTitle, catchMeButton])
         
         emptyImageView.snp.makeConstraints { make in
-            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 173 : 120)
+            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 160 : 100)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(115)
         }
@@ -155,10 +155,11 @@ class MainVC: UIViewController {
         settingButton.backgroundColor = .cyan
         calendarButton.backgroundColor = .yellow
         lookButton.backgroundColor = .gray
-        allButton.backgroundColor = .purple
-        catchingButton.backgroundColor = .lightGray
-        emptyImageView.backgroundColor = .yellow
-        catchMeButton.backgroundColor = .brown
+        
+        allButton.setImage(UIImage(named: "btnSeeAll"), for: .normal)
+        catchingButton.setImage(UIImage(named: "actionActive"), for: .normal)
+        emptyImageView.image = UIImage(named: "catchu")
+        catchMeButton.setImage(UIImage(named: "btnCatching"), for: .normal)
         
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
@@ -203,6 +204,8 @@ class MainVC: UIViewController {
     private func setupReportView() {
         reportView.backgroundColor = .darkGray
         reportView.layer.cornerRadius = 14
+        reportView.layer.borderColor = UIColor.init(red: 96/255, green: 96/255, blue: 96/255, alpha: 0.7).cgColor
+        reportView.layer.borderWidth = 2
     }
     
     private func setupDate() {

@@ -47,7 +47,7 @@ class CatchuTitleView: UIView {
     private func configUI(title: String, subTitle: String) {
         addSubviews([titleLabel, subTitleLabel])
         
-        titleLabel.text = "새로운 캐츄를 잡아볼까요?"
+        titleLabel.text = title
         titleLabel.addAddCatchuCharacterSpacing()
         
         subTitleLabel.text = subTitle

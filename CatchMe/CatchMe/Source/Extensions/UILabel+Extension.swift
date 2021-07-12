@@ -30,6 +30,7 @@ extension UILabel {
             let attributedStr = NSMutableAttributedString(string: labelText)
             attributedStr.addAttribute(NSAttributedString.Key.kern, value: kernValue, range: NSRange(location: 0, length: attributedStr.length - 1))
             attributedStr.addAttribute(.foregroundColor, value: UIColor.pink210, range: (labelText as NSString).range(of: "캐츄"))
+            attributedStr.addAttribute(.font, value: UIFont.stringBoldSystemFont(ofSize: 22), range: (labelText as NSString).range(of: "캐츄"))
             
             attributedText = attributedStr
         }

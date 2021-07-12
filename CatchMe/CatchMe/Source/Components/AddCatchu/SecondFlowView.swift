@@ -20,10 +20,7 @@ class SecondFlowView: UIView {
     var textCount = 0
     var randomIndex = Int.random(in: 0...5)
     let recommends: [String] = ["‘___없이 못사는 ___러버’", "‘___랑 함께사는 ___집사’", "‘___만 먹는 ___중독자’", "‘___를 하루종일 하는 ___러버’", "‘___이 너무 재밌는 ___처돌이’", "‘당장 ___하고픈 ___중독자’"]
-    
-    // MARK: - Dummy Data
-    /// 후에 enum으로 사용하면 편리할 듯 -> 아니면 public하게 전체적으로 사용할 수 있도록 만들기
-    let colors: [UIColor] = [.systemRed, .systemBlue, .systemPink, .systemTeal, .systemGray, .systemGreen, .systemOrange, .systemYellow, .systemPurple, .systemIndigo]
+    let babyCatchus: [UIImage?] = [Character.blue.getCharacterImage(phase: 1, size: 151), Character.green.getCharacterImage(phase: 1, size: 151), Character.orange.getCharacterImage(phase: 1, size: 151), Character.purple.getCharacterImage(phase: 1, size: 151), Character.yellowGreen.getCharacterImage(phase: 1, size: 151)]
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -49,7 +46,7 @@ class SecondFlowView: UIView {
         characterImageView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(UIScreen.main.hasNotch ? 175 : 115)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(150)
+            make.height.width.equalTo(151)
         }
         
         textField.snp.makeConstraints { make in
@@ -72,21 +69,21 @@ class SecondFlowView: UIView {
         textField.delegate = self
         textField.addTarget(self, action: #selector(textDidChanged(_:)), for: .editingChanged)
         
-        recommendLabel.font = .systemFont(ofSize: 12)
+        recommendLabel.font = .stringRegularSystemFont(ofSize: 12)
         recommendLabel.textColor = .gray400
         recommendLabel.text = "캐치미 추천: " + recommends[randomIndex]
+        recommendLabel.addCharacterSpacing()
         
         countLabel.textAlignment = .right
         countLabel.isHidden = true
         countLabel.textColor = .gray200
-        countLabel.font = .systemFont(ofSize: 14)
+        countLabel.font = .numberRegularSystemFont(ofSize: 14)
         countLabel.text = "\(textCount)/20"
     }
     
     // MARK: - external use function
-    /// asset 넣기 전까지 dummy Color
     func setImageViewColor(selectedIndex: Int) {
-        characterImageView.backgroundColor = colors[selectedIndex]
+        characterImageView.image = babyCatchus[selectedIndex]
     }
 }
 
@@ -113,6 +110,18 @@ extension SecondFlowView: UITextFieldDelegate {
             recommendLabel.isHidden = false
             countLabel.isHidden = true
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        /// 이모지 입력 금지
+        let utf8Char = string.cString(using: .utf8)
+        let isBackSpace = strcmp(utf8Char, "\\b")
+        
+        if string.hasCharacters() || isBackSpace == -92 {
+            return true
+        }
+        
+        return false
     }
     
     @objc

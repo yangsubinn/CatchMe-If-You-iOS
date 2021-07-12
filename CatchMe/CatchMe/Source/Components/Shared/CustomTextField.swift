@@ -45,7 +45,7 @@ class CustomTextField: UITextField {
         layer.borderColor = UIColor.clear.cgColor
         
         attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : isAddCatchu ? UIColor.gray400 : UIColor.gray100])
-        font = .systemFont(ofSize: 16, weight: .medium)
+        font = .stringMediumSystemFont(ofSize: 16)
         
         setLeftPaddingPoints(17)
     }

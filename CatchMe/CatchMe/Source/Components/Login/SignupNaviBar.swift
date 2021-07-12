@@ -17,7 +17,7 @@ class SignupNaviBar: UIView {
     // MARK: - Properties
     let titleLabel = UILabel().then {
         $0.text = "회원가입"
-        $0.font = .boldSystemFont(ofSize: 20)
+        $0.font = .stringBoldSystemFont(ofSize: 20)
     }
     
     var vc: UIViewController?

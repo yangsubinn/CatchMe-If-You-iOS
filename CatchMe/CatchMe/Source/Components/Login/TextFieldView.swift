@@ -216,7 +216,7 @@ extension TextFieldView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.27, animations: {
+        UIView.animate(withDuration: 0.287, animations: {
             self.transform = .identity
         })
         

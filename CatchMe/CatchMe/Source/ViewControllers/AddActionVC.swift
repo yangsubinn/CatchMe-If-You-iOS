@@ -12,6 +12,8 @@ import SnapKit
 
 class AddActionVC: UIViewController {
     // MARK: - Properties
+    var keyHeight = CGFloat()
+    
     let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
     
     let imagePicker = UIImagePickerController()
@@ -28,16 +30,16 @@ class AddActionVC: UIViewController {
     }
     
     let dateButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
+        //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = . white
     }
     
     let closeButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
+        //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .blue
         $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
-
+    
     let nameLabel = UILabel().then {
         $0.text = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
@@ -54,12 +56,12 @@ class AddActionVC: UIViewController {
     }
     
     let catchuImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
+        //        $0.image = UIImage(named: "")
         $0.backgroundColor = .orange
     }
     
     let radiusImageView = UIImageView().then {
-//        $0.setImage(UIImage(named: "imgScroll"), for: .normal)
+        //        $0.setImage(UIImage(named: "imgScroll"), for: .normal)
         $0.backgroundColor = .yellow
     }
     
@@ -107,7 +109,7 @@ class AddActionVC: UIViewController {
     }
     
     let photoButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
+        //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.layer.cornerRadius = 13
         $0.clipsToBounds = true
         $0.imageView?.contentMode = .scaleAspectFill
@@ -116,13 +118,13 @@ class AddActionVC: UIViewController {
     }
     
     let deletePhotoButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
+        //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .yellow
         $0.addTarget(self, action: #selector(touchupDeletePhotoButton(_:)), for: .touchUpInside)
     }
     
     let uploadButton = BottomButton(title: "기록하기")
-        
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +132,9 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - Custom Method
@@ -141,15 +146,12 @@ class AddActionVC: UIViewController {
         activityTextView.text = placholder
         activityTextView.textColor = .gray200
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
-        uploadButton.backgroundColor = .gray200
         
-//        if activityTextView.textColor == UIColor.white {
-//            uploadButton.isEnabled = true
-//            uploadButton.changeBottomButton(isEnable: true)
-//        } else if activityTextView.textColor == UIColor.gray200 {
-//            uploadButton.isEnabled = false
-//            uploadButton.changeBottomButton(isEnable: false)
-//        }
+        if activityTextView.textColor == UIColor.white {
+            uploadButton.backgroundColor = .pink100
+        } else if activityTextView.textColor == UIColor.gray200 {
+            uploadButton.backgroundColor = .gray200
+        }
     }
     
     func setupAutoLayout() {
@@ -253,9 +255,22 @@ class AddActionVC: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.view.endEditing(true)
+        self.view.endEditing(true)
+        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 262 : 225.5
     }
     
+    func changeLetterNumLabelColor() {
+        if activityTextView.text == placholder {
+            letterNumLabel.textColor = .gray200
+        } else {
+            letterNumLabel.textColor = .pink100
+            let attributedString = NSMutableAttributedString(string: letterNumLabel.text!)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.gray200, range: (letterNumLabel.text! as NSString).range(of:"/150"))
+            letterNumLabel.attributedText = attributedString
+        }
+    }
+    
+    // MARK: - @objc
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
         vc.modalPresentationStyle = .overCurrentContext
@@ -279,15 +294,12 @@ class AddActionVC: UIViewController {
         }
     }
     
-    func changeLetterNumLabelColor() {
-        if activityTextView.text == placholder {
-            letterNumLabel.textColor = .gray200
-        } else {
-            letterNumLabel.textColor = .pink100
-            let attributedString = NSMutableAttributedString(string: letterNumLabel.text!)
-            attributedString.addAttribute(.foregroundColor, value: UIColor.gray200, range: (letterNumLabel.text! as NSString).range(of:"/150"))
-            letterNumLabel.attributedText = attributedString
-        }
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 227 : 195
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 262 : 225.5
     }
 }
 

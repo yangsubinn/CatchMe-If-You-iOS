@@ -31,8 +31,8 @@ class LookVC: UIViewController {
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([topBackView, backButton, titleLabel,
-                          subTitleLabel, topImageView, collectionView])
+        view.addSubviews([collectionView, topBackView, backButton,
+                          titleLabel, subTitleLabel, topImageView])
         
         topBackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -62,7 +62,7 @@ class LookVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(topBackView.snp.bottom)
+            make.top.equalTo(topBackView.snp.bottom) // .offset(-10)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
@@ -77,7 +77,7 @@ class LookVC: UIViewController {
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
         
-        subTitleLabel.text = "uxwriting not yet omg"
+        subTitleLabel.text = "다른 사용자의 캐츄를 둘러보세요!"
         subTitleLabel.textColor = .white
         subTitleLabel.font = .stringMediumSystemFont(ofSize: 14)
     }

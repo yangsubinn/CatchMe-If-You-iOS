@@ -14,6 +14,7 @@ class LookCVC: UICollectionViewCell {
     
     //MARK: - Properties
     let characterImageView = UIImageView()
+    let characterBackgroungView  = UIView()
     let nicknameLabel = UILabel()
     let characterLabel = UILabel()
     let arrowButton = UIButton()
@@ -27,24 +28,31 @@ class LookCVC: UICollectionViewCell {
     
     //MARK: - Custom Method
     func setupLayout() {
-        addSubviews([characterImageView, nicknameLabel, characterLabel,
-                     arrowButton])
+        addSubviews([characterBackgroungView, characterImageView, nicknameLabel,
+                     characterLabel, arrowButton])
         
         characterImageView.snp.makeConstraints { make in
+            make.center.equalTo(characterBackgroungView.snp.center)
+            make.width.height.equalTo(65)
+        }
+        
+        characterBackgroungView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(11)
-            make.width.height.equalTo(85)
+            make.leading.equalToSuperview().offset(20)
+            make.width.height.equalTo(70)
         }
         
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.equalTo(characterImageView.snp.trailing).offset(11)
+            make.leading.equalTo(characterBackgroungView.snp.trailing).offset(17)
+            make.width.equalTo(157)
+            make.height.equalTo(18)
         }
         
         characterLabel.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
-            make.leading.equalTo(characterImageView.snp.trailing).offset(11)
-            make.width.equalTo(170)
+            make.leading.equalTo(characterBackgroungView.snp.trailing).offset(17)
+            make.width.equalTo(157)
             make.height.equalTo(46)
         }
         
@@ -58,21 +66,21 @@ class LookCVC: UICollectionViewCell {
     
     func configUI() {
         self.layer.cornerRadius = 14
-        self.backgroundColor = .black100
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.green.cgColor
+        self.backgroundColor = .black200
             
         characterImageView.backgroundColor = .pink000
+        characterBackgroungView.backgroundColor = .yellow
+        characterBackgroungView.layer.cornerRadius = 36 //UIScreen.main.bound
         arrowButton.backgroundColor = .yellow
         
         nicknameLabel.text = "캐치미피엠대장김해리 님의"
         nicknameLabel.textColor = .gray400
-        nicknameLabel.font = .stringMediumSystemFont(ofSize: 14)
+        nicknameLabel.font = .stringRegularSystemFont(ofSize: 14)
+        nicknameLabel.addCharacterSpacing()
         
-        characterLabel.text = "캐치미없이캐치미없이못살아못살아캐치미짱"
+        characterLabel.text = "유유자적 동네나들이 걷기 좋아하는 캐츄"
         characterLabel.textColor = .white
         characterLabel.font = .catchuRegularSystemFont(ofSize: 18)
-//        characterLabel.lineBreakMode = .byWordWrapping
         characterLabel.addCharacterSpacing()
         characterLabel.numberOfLines = 2
     }

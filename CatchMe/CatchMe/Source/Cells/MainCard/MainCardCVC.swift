@@ -26,7 +26,7 @@ class MainCardCVC: UICollectionViewCell {
     // MARK: - Custom Method
     func configUI() {
         self.layer.cornerRadius = 14
-        self.backgroundColor = .init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
+        self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         characterBackView.backgroundColor = .gray100
         characterImageView.image = Character.blue.getCharacterImage(phase: 2, size: 101)
         levelStarImageView.image = UIImage(named: "level2")

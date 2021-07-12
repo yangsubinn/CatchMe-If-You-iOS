@@ -202,9 +202,9 @@ class MainVC: UIViewController {
     }
     
     private func setupReportView() {
-        reportView.backgroundColor = .darkGray
+        reportView.backgroundColor = .black200
         reportView.layer.cornerRadius = 14
-        reportView.layer.borderColor = UIColor.init(red: 96/255, green: 96/255, blue: 96/255, alpha: 0.7).cgColor
+        reportView.layer.borderColor = UIColor.bordergrey.cgColor
         reportView.layer.borderWidth = 2
     }
     

@@ -47,35 +47,36 @@ class mainReportView: UIView {
                      activeUnitLabel, percentUnitLabel, levelLabel,
                      activeLabel, percentLabel, lineLeftView, lineRightView])
         
+//        top -> leading -> bottom -> trailing
         topLineView.snp.makeConstraints { make in
-            make.height.equalTo(3)
-            make.width.equalTo(36)
-            make.leading.equalToSuperview().offset(24)
             make.top.equalToSuperview().offset(18)
+            make.leading.equalToSuperview().offset(24)
+            make.width.equalTo(36)
+            make.height.equalTo(3)
         }
         
         lineLeftView.snp.makeConstraints { make in
-            make.height.equalTo(23)
-            make.width.equalTo(2)
-            make.trailing.equalTo(activeLabel.snp.leading).offset(-29.5)
             make.bottom.equalToSuperview().inset(45)
+            make.trailing.equalTo(activeLabel.snp.leading).offset(-29.5)
+            make.width.equalTo(2)
+            make.height.equalTo(23)
         }
         
         lineRightView.snp.makeConstraints { make in
-            make.height.equalTo(23)
-            make.width.equalTo(2)
             make.leading.equalTo(activeLabel.snp.trailing).offset(29.5)
             make.bottom.equalToSuperview().inset(45)
+            make.width.equalTo(2)
+            make.height.equalTo(23)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(22)
             make.top.equalTo(topLineView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(22)
         }
         
         activeLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().inset(27)
+            make.centerX.equalToSuperview()
         }
         
         percentLabel.snp.makeConstraints { make in
@@ -84,11 +85,10 @@ class mainReportView: UIView {
         }
         
         levelLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(activeLabel.snp.leading).offset(-67.5)
             make.bottom.equalToSuperview().inset(27)
+            make.trailing.equalTo(activeLabel.snp.leading).offset(-67.5)
         }
         
-        /// unit
         activeUnitLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-10)
             make.trailing.equalTo(lineRightView.snp.leading).offset(-28) //-28
@@ -102,10 +102,8 @@ class mainReportView: UIView {
         percentUnitLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-10)
             make.leading.equalTo(lineRightView.snp.trailing).offset(60)
-//            make.trailing.equalToSuperview().inset(36)
         }
         
-        /// int
         activeCountLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-6)
             make.trailing.equalTo(activeUnitLabel.snp.leading).offset(-4)

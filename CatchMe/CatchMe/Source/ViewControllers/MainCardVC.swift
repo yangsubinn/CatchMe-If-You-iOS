@@ -98,8 +98,7 @@ class MainCardVC: UIViewController {
         alignButton.setImage(UIImage(named: "btnAlign"), for: .normal)
         topBackView.image = UIImage(named: "scrollRectangle")
         emptyImageView.image = UIImage(named: "catchu")
-        
-        
+                
         nameLabel.text = "최고의대장피엠김해리 님"
         nameLabel.textColor = .white
         nameLabel.font = .stringBoldSystemFont(ofSize: 14)
@@ -135,8 +134,7 @@ class MainCardVC: UIViewController {
         emptyImageView.snp.makeConstraints { make in
             make.top.equalTo(topBackView.snp.bottom).offset(UIScreen.main.hasNotch ? 150 : 102)
             make.centerX.equalToSuperview()
-            make.width.equalTo(115)
-            make.height.equalTo(115)
+            make.width.height.equalTo(115)
         }
         
         emptyTitleLabel.snp.makeConstraints { make in

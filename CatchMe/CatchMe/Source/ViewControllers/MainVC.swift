@@ -152,10 +152,13 @@ class MainVC: UIViewController {
     
     private func configUI() {
         view.backgroundColor = .black100
-        settingButton.backgroundColor = .cyan
-        calendarButton.backgroundColor = .yellow
-        lookButton.backgroundColor = .gray
-        
+//        settingButton.backgroundColor = .cyan
+//        calendarButton.backgroundColor = .yellow
+//        lookButton.backgroundColor = .gray
+//
+        settingButton.setImage(UIImage(named: "icSetting"), for: .normal)
+        calendarButton.setImage(UIImage(named: "icReport"), for: .normal)
+        lookButton.setImage(UIImage(named: "icLook"), for: .normal)
         allButton.setImage(UIImage(named: "btnSeeAll"), for: .normal)
         catchingButton.setImage(UIImage(named: "actionActive"), for: .normal)
         emptyImageView.image = UIImage(named: "catchu")

@@ -237,11 +237,8 @@ class SignupTextFieldView: UIView {
     
     private func setupImageView() {
         emailImageView.isHidden = true
-        
         idImageView.isHidden = true
-        
         pwImageView.isHidden = true
-        
         checkImageView.isHidden = true
     }
     
@@ -309,24 +306,22 @@ extension SignupTextFieldView: UITextFieldDelegate {
             if doubleCheck {
                 emailImageView.isHidden = false
                 emailImageView.image = UIImage(named: "icCheck")
-                
                 emailButton.isHidden = true
             } else {
                 emailMessageLabel.isHidden = false
                 emailMessageLabel.text = "중복을 확인해주세요."
                 emailMessageLabel.textColor = .pink210
                 
+                emailImageView.isHidden = true
                 emailButton.isHidden = false
                 emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
-                
-                emailImageView.isHidden = true
             }
         case idTextField:
             idTextField.setupPinkLine()
             
             idCountLabel.isHidden = false
-            idButton.isHidden = false
             idImageView.isHidden = true
+            idButton.isHidden = false
         case passwordTextField:
             passwordTextField.setupPinkLine()
             moveTextFieldView()
@@ -350,16 +345,17 @@ extension SignupTextFieldView: UITextFieldDelegate {
             emailTextField.setupOriginalLine()
             
             emailMessageLabel.isHidden = true
-            emailButton.isHidden = true
             emailImageView.isHidden = true
+            emailButton.isHidden = true
+            
             doubleCheckButton.isEnabled = false
             doubleCheckButton.backgroundColor = .gray50
         case idTextField:
             idTextField.setupOriginalLine()
             
             idCountLabel.isHidden = true
-            idButton.isHidden = true
             idImageView.isHidden = true
+            idButton.isHidden = true
         case passwordTextField:
             passwordTextField.setupOriginalLine()
             backToOriginalView()
@@ -387,10 +383,9 @@ extension SignupTextFieldView: UITextFieldDelegate {
             emailMessageLabel.text = "중복을 확인해주세요."
             emailMessageLabel.textColor = .pink210
             
+            emailImageView.isHidden = true
             emailButton.isHidden = false
             emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
-            
-            emailImageView.isHidden = true
             
             checkValidateUI()
             
@@ -474,10 +469,9 @@ extension SignupTextFieldView {
             idCountLabel.text = "0/10"
             idCountLabel.textColor = .gray200
             
+            idImageView.isHidden = true
             idButton.setImage(UIImage(named: "btnRemove"), for: .normal)
             idButton.isHidden = false
-            
-            idImageView.isHidden = true
         case 10:
             let attributedStr = NSMutableAttributedString(string: "10/10")
             attributedStr.addAttribute(.foregroundColor, value: UIColor.red100, range: ("10/10" as NSString).range(of: "10/10"))
@@ -485,18 +479,15 @@ extension SignupTextFieldView {
             
             idImageView.image = UIImage(named: "icWarning")
             idImageView.isHidden = false
-            
             idButton.isHidden = true
         default:
             let attributedStr = NSMutableAttributedString(string: "\(textCount)/10")
             attributedStr.addAttribute(.foregroundColor, value: UIColor.systemPink, range: ("\(textCount)/10" as NSString).range(of: "\(textCount)"))
             idCountLabel.attributedText = attributedStr
             
+            idImageView.isHidden = true
             idButton.setImage(UIImage(named: "btnRemove"), for: .normal)
             idButton.isHidden = false
-            
-            idImageView.isHidden = true
-            
         }
         
         checkMaxLength(textField: sender, maxLength: 10)
@@ -535,19 +526,19 @@ extension SignupTextFieldView {
         if !(emailTextField.text!.validateEmail()) || emailTextField.text! != email {
             emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
             emailMessageLabel.textColor = .red100
-            emailButton.isHidden = true
             
             emailImageView.isHidden = false
             emailImageView.image = UIImage(named: "icWarning")
+            emailButton.isHidden = true
             
             doubleCheck = false
         } else {
             emailMessageLabel.text = "중복을 확인해주세요."
             emailMessageLabel.textColor = .pink210
-            emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
-            emailButton.isHidden = false
             
             emailImageView.isHidden = true
+            emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+            emailButton.isHidden = false
             
             doubleCheck = false
         }
@@ -555,9 +546,10 @@ extension SignupTextFieldView {
         if let text = emailTextField.text,
            text == email {
             emailMessageLabel.text = ""
-            emailButton.isHidden = true
+            
             emailImageView.image =  UIImage(named: "icCheck")
             emailImageView.isHidden = false
+            emailButton.isHidden = true
             
             doubleCheck = true
         }

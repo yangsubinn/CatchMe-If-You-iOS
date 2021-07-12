@@ -98,6 +98,7 @@ class EditCatchuVC: UIViewController {
         view.backgroundColor = .black100
         
         backgroundImageView.backgroundColor = .pink100
+        
         characterImageView.image = Character.green.getCharacterImage(phase: 1, size: 101)
         
         nameLabel.text = "이름 변경"
@@ -203,8 +204,13 @@ extension EditCatchuVC: UITextFieldDelegate {
             editButton.backgroundColor = .pink100
             editButton.isEnabled = true
         } else {
-            editButton.backgroundColor = .gray300
-            editButton.isEnabled = false
+            if nameTextField.text == nickname && currentLock != isLock {
+                editButton.backgroundColor = .pink100
+                editButton.isEnabled = true
+            } else {
+                editButton.backgroundColor = .gray300
+                editButton.isEnabled = false
+            }
         }
         
         /// textCount count
@@ -230,6 +236,13 @@ extension EditCatchuVC: UITextFieldDelegate {
     func checkMaxLength(textField: UITextField!, maxLength: Int) {
         if (textField.text?.count ?? 0 > maxLength) {
             textField.deleteBackward()
+        }
+    }
+    
+    @objc
+    override func dismissKeyboard() {
+        if !lockButton.isTouchInside {
+            view.endEditing(true)
         }
     }
 }

@@ -11,9 +11,10 @@ import SnapKit
 
 class ReportView: UIView {
     // MARK: - Properties
-    let titleView = TitleView(nickname: "이지님")
+    /// ReportVC에서 서버 연결 후에 nickname 설정해주기(코드 수정 필요)
+    let titleView = TitleView(nickname: "집인데 집가고 싶다")
     /// character는 후에 KingFisher로 해야 할 듯
-    let characterView = CharacterView()
+    let characterView = CharacterView(catching: 13, name: "땅보다 시스템에 잔디 심는 정원사", character: Character.purple.getCharacterImage(phase: 2, size: 121))
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -44,7 +45,7 @@ class ReportView: UIView {
     }
     
     private func configUI() {
-        backgroundColor = .systemPink
+        backgroundColor = .pink100
         layer.cornerRadius = 28
     }
 }

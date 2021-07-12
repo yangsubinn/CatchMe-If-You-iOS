@@ -18,7 +18,7 @@ class CalendarCVC: UICollectionViewCell {
     var countLabel = UILabel()
     var characterImage = UIImageView().then {
         $0.isHidden = true
-        $0.image = Character.orange.getCharacterImage(phase: 3, size: 43)
+        $0.contentMode = .scaleAspectFit
     }
     
     // MARK: - Life Cycle
@@ -41,14 +41,14 @@ class CalendarCVC: UICollectionViewCell {
         
         characterImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().inset(7)
-            make.height.equalTo(27)
-            make.width.equalTo(32)
+            make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 0 : 2)
+            make.height.equalTo(UIScreen.main.hasNotch ? 40 : 31)
+            make.width.equalTo(43)
         }
         
         countLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(characterImage.snp.bottom).offset(1)
+            make.bottom.equalToSuperview()
         }
     }
 }

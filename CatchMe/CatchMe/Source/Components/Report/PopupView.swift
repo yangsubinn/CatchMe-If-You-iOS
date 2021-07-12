@@ -17,29 +17,29 @@ class PopupView: UIView {
     
     // MARK: - Properties
     let dateLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 19)
+        $0.font = .numberRegularSystemFont(ofSize: 19)
         $0.textColor = .white
     }
     
     let nameLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .catchuRegularSystemFont(ofSize: 20)
         $0.textColor = .white
         $0.numberOfLines = 2
-        $0.lineBreakMode = .byWordWrapping
+        $0.addCharacterSpacing()
         $0.textAlignment = .center
     }
     
     let leftButton = UIButton().then {
-        $0.backgroundColor = .systemTeal
+        $0.setImage(UIImage(named: "directionLeftColorGray"), for: .normal)
     }
     
     let rightButton = UIButton().then {
-        $0.backgroundColor = .systemBlue
+        $0.setImage(UIImage(named: "directionRightColorGray"), for: .normal)
     }
     
     let checkButton = UIButton().then {
-        $0.backgroundColor = .systemPink
-        $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        $0.backgroundColor = .pink100
+        $0.titleLabel?.font = .stringMediumSystemFont(ofSize: 16)
         $0.setTitle("확인하기", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 27
@@ -50,7 +50,8 @@ class PopupView: UIView {
     var currentIndex: CGFloat = 0
     
     // MARK: - Dummy Data
-    var catchus: [String] = ["자유로이 세상을 떠도는 탐험가", "눈만 뜨는 암벽등반하는 날다람쥐", "감바스가 먹고 싶은 아요"]
+    var catchus: [String] = ["자유로이 세상을 떠도는 탐험가", "눈만 뜨는 암벽등반하는 나", "감바스가 먹고 싶은 아요"]
+    var catchuImages: [UIImage?] = [Character.purple.getCharacterImage(phase: 1, size: 121), Character.blue.getCharacterImage(phase: 2, size: 121), Character.green.getCharacterImage(phase: 3, size: 121)]
 
     // MARK: - Life Cycle
     init(date: String, vc: UIViewController) {
@@ -95,7 +96,8 @@ class PopupView: UIView {
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(characterCollectionView.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(56)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(168)
         }
         
         checkButton.snp.makeConstraints { make in
@@ -111,7 +113,7 @@ class PopupView: UIView {
         addSubviews([dateLabel, xmarkButton, characterCollectionView,
                     leftButton, rightButton, nameLabel, checkButton])
                     
-        backgroundColor = .black
+        backgroundColor = .black200
         layer.cornerRadius = 18
         
         nameLabel.text = catchus[0]
@@ -163,6 +165,9 @@ extension PopupView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatchuCVC.identifier, for: indexPath) as? CatchuCVC else {
             return UICollectionViewCell()
         }
+        
+        cell.characterImage.image = catchuImages[indexPath.item]
+        
         return cell
     }
 }

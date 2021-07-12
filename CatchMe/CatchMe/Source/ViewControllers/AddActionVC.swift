@@ -14,7 +14,7 @@ class AddActionVC: UIViewController {
     // MARK: - Properties
     var keyHeight = CGFloat()
     
-    let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
+    let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2km 뛰었음)"
     
     let imagePicker = UIImagePickerController()
     
@@ -81,16 +81,17 @@ class AddActionVC: UIViewController {
     }
     
     let activityTextView = UITextView().then {
+        $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.backgroundColor = .black200
         $0.layer.cornerRadius = 13
         $0.textAlignment = .left
         $0.tintColor = .pink100
-        $0.textContainerInset = UIEdgeInsets(top: UIScreen.main.hasNotch ? 18 : 11, left: UIScreen.main.hasNotch ? 18 : 14, bottom: UIScreen.main.hasNotch ? 13 : 6, right: UIScreen.main.hasNotch ? 19 : 8)
+        $0.textContainerInset = UIEdgeInsets(top: UIScreen.main.hasNotch ? 18 : 11, left: UIScreen.main.hasNotch ? 18 : 14, bottom: UIScreen.main.hasNotch ? 13 : 6, right: UIScreen.main.hasNotch ? 18 : 8)
         
         let attributedString = NSMutableAttributedString(string: $0.text!)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         $0.attributedText = attributedString
     }
     
@@ -124,7 +125,7 @@ class AddActionVC: UIViewController {
     }
     
     let uploadButton = BottomButton(title: "기록하기").then {
-//        $0.isEnabled = true
+        //        $0.isEnabled = true
         $0.backgroundColor = .gray300
         $0.addTarget(self, action: #selector(touchupUploadButton(_:)), for: .touchUpInside)
     }
@@ -136,9 +137,6 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - Custom Method
@@ -254,7 +252,9 @@ class AddActionVC: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 262 : 225.5
+        UIView.animate(withDuration: 0.2, animations: {
+            self.blackBackgroundView.transform = .identity
+        })
     }
     
     func changeLetterNumLabelColor() {
@@ -309,16 +309,9 @@ class AddActionVC: UIViewController {
             uploadButton.isEnabled = true
         } else {
             uploadButton.isEnabled = false
+            /// 여기에 기록하기 버튼을 누르면 글이 업로드 되는 코드를 작성해야 함
             self.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    @objc func keyboardWillShow(_ sender: Notification) {
-        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 240 : 195
-    }
-    
-    @objc func keyboardWillHide(_ sender: Notification) {
-        self.blackBackgroundView.frame.origin.y = UIScreen.main.hasNotch ? 262 : 225.5
     }
 }
 
@@ -334,6 +327,9 @@ extension AddActionVC: UITextViewDelegate {
             textView.textColor = .gray200
         }
         
+        UIView.animate(withDuration: 0.2, animations: {
+            self.blackBackgroundView.transform = CGAffineTransform(translationX: 0, y: -30)
+        })
         
         activityTextView.layer.borderWidth = 1
         activityTextView.layer.borderColor = UIColor.pink100.cgColor
@@ -352,6 +348,10 @@ extension AddActionVC: UITextViewDelegate {
         } else {
             uploadButton.backgroundColor = .pink100
         }
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.blackBackgroundView.transform = .identity
+        })
         
         activityTextView.layer.borderWidth = 0
         changeLetterNumLabelColor()

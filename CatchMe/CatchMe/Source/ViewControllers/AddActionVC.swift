@@ -14,7 +14,10 @@ class AddActionVC: UIViewController {
     // MARK: - Properties
     var keyHeight = CGFloat()
     
+    var enteredText: String?
     let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2km 뛰었음)"
+    let maxWordCount: Int = 150
+    var wordCount: Int = 0
     
     let imagePicker = UIImagePickerController()
     
@@ -32,6 +35,7 @@ class AddActionVC: UIViewController {
     let dateButton = UIButton().then {
         //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = . white
+        $0.addTarget(self, action: #selector(touchupDateButton(_:)), for: .touchUpInside)
     }
     
     let closeButton = UIButton().then {
@@ -40,8 +44,10 @@ class AddActionVC: UIViewController {
         $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
     
+    let nameView = UIView()
+    
     let nameLabel = UILabel().then {
-        $0.text = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열"
+        $0.text = "캐치미를정캐츄캐치미를정캐츄캐치미"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
@@ -153,7 +159,7 @@ class AddActionVC: UIViewController {
     func setupAutoLayout() {
         view.addSubviews([blackBackgroundView, pinkBackgroundView, radiusImageView,
                           catchuImageView, dateLabel, dateButton,
-                          closeButton, nameLabel])
+                          closeButton, nameView, nameLabel])
         blackBackgroundView.addSubviews([activityLabel, activityTextView, letterNumLabel,
                                          addPhotoLabel, photoButton, deletePhotoButton,
                                          uploadButton])
@@ -180,9 +186,18 @@ class AddActionVC: UIViewController {
             make.width.height.equalTo(48)
         }
         
-        nameLabel.snp.makeConstraints { make in
+        nameView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 17 : 13)
             make.leading.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
+            make.width.equalTo(186)
+            make.height.lessThanOrEqualTo(58)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(nameView.snp.centerY)
+            make.leading.equalTo(nameView.snp.leading)
+            make.width.equalTo(186)
+            make.height.lessThanOrEqualTo(58)
         }
         
         catchuImageView.snp.makeConstraints { make in
@@ -257,32 +272,29 @@ class AddActionVC: UIViewController {
         })
     }
     
-    func changeLetterNumLabelColor() {
+    func textExists() {
+        letterNumLabel.textColor = .pink100
         let textLength = activityTextView.text.count
-        
-        if activityTextView.text == placholder {
-            letterNumLabel.textColor = .gray200
-        } else {
-            switch textLength {
-            case 0:
-                let attributedString = NSMutableAttributedString(string: "0/150")
-                attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("0/150" as NSString).range(of:"0"))
-                letterNumLabel.attributedText = attributedString
-            case 150:
-                let attributedString = NSMutableAttributedString(string: "150/150")
-                attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("150/150" as NSString).range(of:"150"))
-                letterNumLabel.attributedText = attributedString
-            default:
-                let attributedString = NSMutableAttributedString(string: "\(textLength)/150")
-                attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("\(textLength)/150" as NSString).range(of:"\(textLength)"))
-                letterNumLabel.attributedText = attributedString
-            }
-        }
+        let attributedString = NSMutableAttributedString(string: "\(textLength)/150")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.gray200, range: ("\(textLength)/150" as NSString).range(of:"/150"))
+        letterNumLabel.attributedText = attributedString
+    }
+    
+    func textNotExists() {
+        letterNumLabel.text = "0"
+        letterNumLabel.textColor = .gray200
     }
     
     // MARK: - @objc
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func touchupDateButton(_ sender: UIButton) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionDatePickerPopupVC") as? AddActionDatePickerPopupVC else { return }
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
@@ -333,7 +345,22 @@ extension AddActionVC: UITextViewDelegate {
         
         activityTextView.layer.borderWidth = 1
         activityTextView.layer.borderColor = UIColor.pink100.cgColor
-        changeLetterNumLabelColor()
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if (textView.text.count > maxWordCount) {
+            textView.deleteBackward()
+        }
+        
+        self.enteredText = textView.text
+        self.wordCount = Int(textView.text.count)
+        letterNumLabel.text = "\(wordCount)/150"
+        
+        if textView.text.count == 0 {
+            self.textNotExists()
+        } else {
+            self.textExists()
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -354,16 +381,6 @@ extension AddActionVC: UITextViewDelegate {
         })
         
         activityTextView.layer.borderWidth = 0
-        changeLetterNumLabelColor()
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard let str = activityTextView.text else { return true }
-        /// textLength = 기존 텍스트뷰의 텍스트 + 새로 입력할 텍스트 - 지워질 글자 개수
-        let textLength = str.count + text.count - range.length
-        letterNumLabel.text = "\(textLength)/150"
-        changeLetterNumLabelColor()
-        return textLength <= 150
     }
 }
 

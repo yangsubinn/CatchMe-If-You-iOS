@@ -25,9 +25,8 @@ class TextFieldView: UIView {
     var logoImageView = UIImageView()
     var isAuto = true
     
-    // MARK: - Dummy Data
-    let id = "tlsdbsdk0525"
-    let pw = "catchme"
+    // MARK: - Connect Server
+    let viewModel = LoginViewModel.shared
 
     // MARK: - Life Cycle
     init(logo: UIImageView) {
@@ -167,21 +166,24 @@ class TextFieldView: UIView {
         let loginAction = UIAction { _ in
             if let emailText = self.emailTextField.text,
                let pwText = self.passwordTextField.text {
-                if emailText != self.id {
-                    self.emailMessageLabel.isHidden = false
-                } else if pwText != self.pw {
-                    self.passwordMessageLabel.isHidden = false
-                } else {
-                    /// 로그인 성공 로직
-                    self.emailMessageLabel.isHidden = true
-                    self.passwordMessageLabel.isHidden = true
-                    
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.transform = .identity
-                    })
-                    
-                    self.logoImageView.fadeIn()
-                    self.passwordTextField.resignFirstResponder()
+                self.viewModel.dispatchLogin(email: emailText, password: pwText) { result in
+                    print(result)
+                    switch result {
+                    case 200:
+                        self.emailMessageLabel.isHidden = true
+                        self.passwordMessageLabel.isHidden = true
+                        
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.transform = .identity
+                        })
+                        
+                        self.logoImageView.fadeIn()
+                        self.passwordTextField.resignFirstResponder()
+                    case 412:
+                        self.passwordMessageLabel.isHidden = false
+                    default:
+                        self.emailMessageLabel.isHidden = false
+                    }
                 }
             }
         }

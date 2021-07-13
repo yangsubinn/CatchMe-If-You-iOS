@@ -11,7 +11,7 @@ import SnapKit
 
 class LoginVC: UIViewController {
     // MARK: - Lazy Properties
-    lazy var textFieldView = TextFieldView(logo: logoImageView)
+    lazy var textFieldView = TextFieldView(logo: logoImageView, vc: self)
     
     // MARK: - Properties
     let logoImageView = UIImageView()
@@ -41,6 +41,8 @@ class LoginVC: UIViewController {
     }
     
     private func configUI() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         view.backgroundColor = .black100
         logoImageView.image = UIImage(named: "logoImage")
         logoImageView.contentMode = .scaleAspectFit

@@ -67,11 +67,12 @@ class LookCVC: UICollectionViewCell {
     func configUI() {
         self.layer.cornerRadius = 14
         self.backgroundColor = .black200
-            
-        characterImageView.backgroundColor = .pink000
-        characterBackgroungView.backgroundColor = .yellow
+        characterBackgroungView.backgroundColor = .white
         characterBackgroungView.layer.cornerRadius = 36 //UIScreen.main.bound
         arrowButton.backgroundColor = .yellow
+        
+//        arrowButton.setImage(UIImage(named: ""), for: .normal)
+        characterImageView.image = Character.purple.getCharacterImage(phase: 1, size: 65)
         
         nicknameLabel.text = "캐치미피엠대장김해리 님의"
         nicknameLabel.textColor = .gray400

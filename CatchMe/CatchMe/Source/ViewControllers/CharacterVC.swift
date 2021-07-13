@@ -191,7 +191,7 @@ extension CharacterVC: UITableViewDelegate {
         if width - offset < 171 {
             UIView.animate(withDuration: 0.1) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
-                self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 82/backgroundWidth, y: 82/backgroundHeight).translatedBy(x: 0, y: 203)
+                self.upperView.backgroundView.transform = CGAffineTransform(scaleX: 81/backgroundWidth, y: 81/backgroundHeight).translatedBy(x: 0, y: 203)
                 
                 // 헤더 부분 높이
                 self.upperView.snp.updateConstraints { make in

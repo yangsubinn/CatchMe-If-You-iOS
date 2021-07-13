@@ -14,7 +14,7 @@ class LookCVC: UICollectionViewCell {
     
     //MARK: - Properties
     let characterImageView = UIImageView()
-    let characterBackgroungView  = UIView()
+    let characterBackgroundView  = UIView()
     let nicknameLabel = UILabel()
     let characterLabel = UILabel()
     let arrowButton = UIButton()
@@ -28,15 +28,15 @@ class LookCVC: UICollectionViewCell {
     
     //MARK: - Custom Method
     func setupLayout() {
-        addSubviews([characterBackgroungView, characterImageView, nicknameLabel,
+        addSubviews([characterBackgroundView, characterImageView, nicknameLabel,
                      characterLabel, arrowButton])
         
         characterImageView.snp.makeConstraints { make in
-            make.center.equalTo(characterBackgroungView.snp.center)
+            make.center.equalTo(characterBackgroundView.snp.center)
             make.width.height.equalTo(65)
         }
         
-        characterBackgroungView.snp.makeConstraints { make in
+        characterBackgroundView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(20)
             make.width.height.equalTo(70)
@@ -44,21 +44,22 @@ class LookCVC: UICollectionViewCell {
         
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.equalTo(characterBackgroungView.snp.trailing).offset(17)
+            make.leading.equalTo(characterBackgroundView.snp.trailing).offset(17)
             make.width.equalTo(157)
             make.height.equalTo(18)
         }
         
         characterLabel.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
-            make.leading.equalTo(characterBackgroungView.snp.trailing).offset(17)
+            make.leading.equalTo(characterBackgroundView.snp.trailing).offset(17)
             make.width.equalTo(157)
             make.height.equalTo(46)
         }
         
         arrowButton.snp.makeConstraints { make in
             make.centerY.equalTo(nicknameLabel).offset(-1)
-            make.trailing.equalToSuperview().inset(60)
+//            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 60 : 46)
+            make.leading.equalTo(nicknameLabel.snp.trailing).offset(2)
             make.width.equalTo(5)
             make.height.equalTo(10)
         }
@@ -67,8 +68,8 @@ class LookCVC: UICollectionViewCell {
     func configUI() {
         self.layer.cornerRadius = 14
         self.backgroundColor = .black200
-        characterBackgroungView.backgroundColor = .white
-        characterBackgroungView.layer.cornerRadius = 36
+        characterBackgroundView.backgroundColor = .white
+        characterBackgroundView.layer.cornerRadius = 36
         
         characterImageView.image = Character.purple.getCharacterImage(phase: 1, size: 65)
         arrowButton.setImage(UIImage(named: "icLookMore"), for: .normal)

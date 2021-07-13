@@ -14,7 +14,7 @@ class LookVC: UIViewController {
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let topImageView = UIImageView()
-    let topBackView  = UIImageView()
+    let topBackImageView  = UIImageView()
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
     //MARK: - Lazy Properties
@@ -31,13 +31,12 @@ class LookVC: UIViewController {
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([collectionView, topBackView, backButton,
+        view.addSubviews([collectionView, topBackImageView, backButton,
                           titleLabel, subTitleLabel, topImageView])
         
-        topBackView.snp.makeConstraints { make in
+        topBackImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(subTitleLabel.snp.bottom).offset(57)
-//            make.bottom.equalTo(subTitleLabel.snp.bottom).offset(47)
         }
         
         backButton.snp.makeConstraints { make in
@@ -63,7 +62,7 @@ class LookVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(topBackView.snp.bottom).offset(-10)
+            make.top.equalTo(topBackImageView.snp.bottom).offset(-10)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
@@ -71,7 +70,7 @@ class LookVC: UIViewController {
     func configUI() {
         view.backgroundColor = .black100
         
-        topBackView.image = UIImage(named: "scrollRectangle")
+        topBackImageView.image = UIImage(named: "scrollRectangle")
         topImageView.image = UIImage(named: "imgGroupCatchu")
         
         titleLabel.text = "다른 유저들의 캐츄"

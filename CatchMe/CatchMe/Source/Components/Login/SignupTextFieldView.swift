@@ -522,38 +522,48 @@ extension SignupTextFieldView {
     }
     
     func checkEmailTextFieldUI(){
-        
-        
-        
-        if !(emailTextField.text!.validateEmail()) || emailTextField.text! != email {
-            emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
-            emailMessageLabel.textColor = .red100
+        if let emailText = self.emailTextField.text {
+            if !(emailText.validateEmail()) {
+                emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
+                emailMessageLabel.textColor = .red100
+                
+                emailImageView.isHidden = false
+                emailImageView.image = UIImage(named: "icWarning")
+                emailButton.isHidden = true
+                
+                doubleCheck = false
+            } else {
+                emailMessageLabel.text = "중복을 확인해주세요."
+                emailMessageLabel.textColor = .pink210
+                
+                emailImageView.isHidden = true
+                emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
+                emailButton.isHidden = false
+                
+                doubleCheck = false
+            }
             
-            emailImageView.isHidden = false
-            emailImageView.image = UIImage(named: "icWarning")
-            emailButton.isHidden = true
-            
-            doubleCheck = false
-        } else {
-            emailMessageLabel.text = "중복을 확인해주세요."
-            emailMessageLabel.textColor = .pink210
-            
-            emailImageView.isHidden = true
-            emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
-            emailButton.isHidden = false
-            
-            doubleCheck = false
-        }
-        
-        if let text = emailTextField.text,
-           text == email {
-            emailMessageLabel.text = ""
-            
-            emailImageView.image =  UIImage(named: "icCheck")
-            emailImageView.isHidden = false
-            emailButton.isHidden = true
-            
-            doubleCheck = true
+            viewModel.dispatchEmailCheck(email: emailText) { result in
+                switch result {
+                case 1:
+                    self.emailMessageLabel.text = ""
+                    
+                    self.emailImageView.image =  UIImage(named: "icCheck")
+                    self.emailImageView.isHidden = false
+                    self.emailButton.isHidden = true
+                    
+                    self.doubleCheck = true
+                default:
+                    self.emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
+                    self.emailMessageLabel.textColor = .red100
+                    
+                    self.emailImageView.isHidden = false
+                    self.emailImageView.image = UIImage(named: "icWarning")
+                    self.emailButton.isHidden = true
+                    
+                    self.doubleCheck = false
+                }
+            }
         }
         
         checkValidateUI()

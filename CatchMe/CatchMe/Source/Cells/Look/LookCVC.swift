@@ -57,8 +57,8 @@ class LookCVC: UICollectionViewCell {
         }
         
         arrowButton.snp.makeConstraints { make in
-            make.centerY.equalTo(nicknameLabel)
-            make.trailing.equalToSuperview().inset(40)
+            make.centerY.equalTo(nicknameLabel).offset(-1)
+            make.trailing.equalToSuperview().inset(60)
             make.width.equalTo(5)
             make.height.equalTo(10)
         }
@@ -68,11 +68,10 @@ class LookCVC: UICollectionViewCell {
         self.layer.cornerRadius = 14
         self.backgroundColor = .black200
         characterBackgroungView.backgroundColor = .white
-        characterBackgroungView.layer.cornerRadius = 36 //UIScreen.main.bound
-        arrowButton.backgroundColor = .yellow
+        characterBackgroungView.layer.cornerRadius = 36
         
-//        arrowButton.setImage(UIImage(named: ""), for: .normal)
         characterImageView.image = Character.purple.getCharacterImage(phase: 1, size: 65)
+        arrowButton.setImage(UIImage(named: "icLookMore"), for: .normal)
         
         nicknameLabel.text = "캐치미피엠대장김해리 님의"
         nicknameLabel.textColor = .gray400

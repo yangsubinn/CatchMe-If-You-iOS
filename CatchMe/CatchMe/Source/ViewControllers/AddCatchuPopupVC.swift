@@ -8,22 +8,29 @@
 import UIKit
 
 class AddCatchuPopupVC: UIViewController {
+    // MARK: - lazy Properties
+    lazy var popupView = AddCatchuPopupView(vc: self)
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configUI()
+        setupLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Custom Method
+    private func configUI() {
+        view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.8)
     }
-    */
-
+    
+    private func setupLayout() {
+        view.addSubview(popupView)
+        
+        popupView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).inset(UIScreen.main.bounds.size.height * 0.4)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(301)
+            make.height.equalTo(182)
+        }
+    }
 }

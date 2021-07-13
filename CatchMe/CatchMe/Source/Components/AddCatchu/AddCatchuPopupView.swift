@@ -116,6 +116,10 @@ class AddCatchuPopupView: UIView {
     
     @objc
     func touchupCloseButton(_ sender: UIButton) {
-        viewController.dismiss(animated: true, completion: nil)
+        guard let pvc = viewController.presentingViewController else { return }
+        
+        viewController.dismiss(animated: true) {
+            pvc.dismiss(animated: true, completion: nil)
+        }
     }
 }

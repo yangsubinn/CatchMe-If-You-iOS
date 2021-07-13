@@ -14,7 +14,7 @@ class LookVC: UIViewController {
     let titleLabel = UILabel()
     let subTitleLabel = UILabel()
     let topImageView = UIImageView()
-    let topBackView  = UIView()
+    let topBackImageView  = UIImageView()
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
     //MARK: - Lazy Properties
@@ -31,12 +31,12 @@ class LookVC: UIViewController {
     
     //MARK: - Custom Method
     func setupLayout() {
-        view.addSubviews([topBackView, backButton, titleLabel,
-                          subTitleLabel, topImageView, collectionView])
+        view.addSubviews([collectionView, topBackImageView, backButton,
+                          titleLabel, subTitleLabel, topImageView])
         
-        topBackView.snp.makeConstraints { make in
+        topBackImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(subTitleLabel.snp.bottom).offset(47)
+            make.bottom.equalTo(subTitleLabel.snp.bottom).offset(57)
         }
         
         backButton.snp.makeConstraints { make in
@@ -62,24 +62,24 @@ class LookVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(topBackView.snp.bottom)
+            make.top.equalTo(topBackImageView.snp.bottom).offset(-10)
             make.leading.bottom.trailing.equalToSuperview()
         }
     }
     
     func configUI() {
         view.backgroundColor = .black100
-        topBackView.backgroundColor = .brown
-        topImageView.backgroundColor = .yellow
-        collectionView.backgroundColor = .gray
+        
+        topBackImageView.image = UIImage(named: "scrollRectangle")
+        topImageView.image = UIImage(named: "imgGroupCatchu")
         
         titleLabel.text = "다른 유저들의 캐츄"
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
         
-        subTitleLabel.text = "uxwriting not yet omg"
-        subTitleLabel.textColor = .white
-        subTitleLabel.font = .stringMediumSystemFont(ofSize: 14)
+        subTitleLabel.text = "다른 사용자의 캐츄를 둘러보세요!"
+        subTitleLabel.textColor = .gray310
+        subTitleLabel.font = .stringMediumSystemFont(ofSize: 16)
     }
     
     func setupCollectionView() {

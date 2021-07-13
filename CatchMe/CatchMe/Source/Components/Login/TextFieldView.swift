@@ -23,15 +23,16 @@ class TextFieldView: UIView {
     let secureButton = UIButton()
     
     var logoImageView = UIImageView()
+    var rootVC = UIViewController()
     var isAuto = true
     
-    // MARK: - Dummy Data
-    let id = "tlsdbsdk0525"
-    let pw = "catchme"
+    // MARK: - Connect Server
+    let viewModel = LoginViewModel.shared
 
     // MARK: - Life Cycle
-    init(logo: UIImageView) {
+    init(logo: UIImageView, vc: UIViewController) {
         super.init(frame: .zero)
+        rootVC = vc
         logoImageView = logo
         setupLayout()
         configUI()
@@ -149,6 +150,8 @@ class TextFieldView: UIView {
         passwordTextField.font = .stringRegularSystemFont(ofSize: 17)
         passwordTextField.textColor = .black100
         passwordTextField.tintColor = .pink100
+        
+        addObserver()
     }
     
     private func setupButtonAction() {
@@ -167,25 +170,56 @@ class TextFieldView: UIView {
         let loginAction = UIAction { _ in
             if let emailText = self.emailTextField.text,
                let pwText = self.passwordTextField.text {
-                if emailText != self.id {
-                    self.emailMessageLabel.isHidden = false
-                } else if pwText != self.pw {
-                    self.passwordMessageLabel.isHidden = false
-                } else {
-                    /// 로그인 성공 로직
-                    self.emailMessageLabel.isHidden = true
-                    self.passwordMessageLabel.isHidden = true
-                    
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.transform = .identity
-                    })
-                    
-                    self.logoImageView.fadeIn()
-                    self.passwordTextField.resignFirstResponder()
+                self.viewModel.dispatchLogin(email: emailText, password: pwText) { result in
+                    switch result {
+                    case 200:
+                        self.emailMessageLabel.isHidden = true
+                        self.passwordMessageLabel.isHidden = true
+                        
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.transform = .identity
+                        })
+                        
+                        self.logoImageView.fadeIn()
+                        self.passwordTextField.resignFirstResponder()
+                    case 412:
+                        self.passwordMessageLabel.isHidden = false
+                    default:
+                        self.emailMessageLabel.isHidden = false
+                    }
                 }
             }
         }
         loginButton.addAction(loginAction, for: .touchUpInside)
+        
+        let signupAction = UIAction { _ in
+            guard let vc = self.rootVC.storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignupVC else { return }
+            self.rootVC.navigationController?.pushViewController(vc, animated: true)
+        }
+        memberButton.addAction(signupAction, for: .touchUpInside)
+    }
+    
+    // MARK: - Notification
+    func addObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUI), name: .signupVC, object: nil)
+    }
+    
+    @objc
+    func reloadUI(_ notification: NSNotification) {
+        guard let userEmail = notification.userInfo?["username"] as? String else { return }
+        guard let userPW = notification.userInfo?["userpw"] as? String else { return }
+        
+        emailTextField.text = userEmail
+        emailTextField.emailImageView.isHidden = true
+        emailTextField.changePaddingPoints(point: 21)
+        emailTextField.backgroundColor = .white
+        
+        passwordTextField.text = userPW
+        passwordTextField.passwordImageView.isHidden = true
+        passwordTextField.changePaddingPoints(point: 21)
+        passwordTextField.backgroundColor = .white
+            
+        secureButton.isHidden = false
     }
 }
 

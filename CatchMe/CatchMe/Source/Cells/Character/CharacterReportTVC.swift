@@ -32,12 +32,12 @@ class CharacterReportTVC: UITableViewCell {
     
     let levelLabel = UILabel().then {
         $0.text = "레벨"
-        $0.textColor = .gray
+        $0.textColor = .gray300
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     
     let separateLineLeftView = UIView().then {
-        $0.backgroundColor = .gray
+        $0.backgroundColor = .black300
     }
     
     let activityStackView = UIStackView().then {
@@ -54,12 +54,12 @@ class CharacterReportTVC: UITableViewCell {
     
     let activityLabel = UILabel().then {
         $0.text = "활동 수"
-        $0.textColor = .gray
+        $0.textColor = .gray300
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     
     let separateLineRightView = UIView().then {
-        $0.backgroundColor = .gray
+        $0.backgroundColor = .black300
     }
     
     let catchNumberLabel = UILabel().then {
@@ -80,7 +80,7 @@ class CharacterReportTVC: UITableViewCell {
     
     let catchLabel = UILabel().then {
         $0.text = "캐치지수"
-        $0.textColor = .gray
+        $0.textColor = .gray300
         $0.font = .systemFont(ofSize: 14, weight: .regular)
     }
     

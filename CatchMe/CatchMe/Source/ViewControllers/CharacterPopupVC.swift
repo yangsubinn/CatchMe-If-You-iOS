@@ -34,7 +34,7 @@ class CharacterPopupVC: UIViewController {
             make.top.equalTo(view.snp.top).inset(UIScreen.main.bounds.size.height * 0.4)
             make.centerX.equalToSuperview()
             make.width.equalTo(301 * (UIScreen.main.bounds.size.width / 375))
-            make.height.equalTo(height == 1 ? 152 : (152 * height) * 0.85)
+            make.height.equalTo(height == 1 ? 182 : (182 * height) * 0.85)
         }
     }
 }

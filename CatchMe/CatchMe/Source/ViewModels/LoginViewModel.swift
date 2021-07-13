@@ -14,6 +14,7 @@ class LoginViewModel {
     
     private let authProvider = MoyaProvider<LoginService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     private var signinModel: SigninModel?
+    private var signupModel: SignupModel?
     private var emailcheckModel: EmailCheckModel?
     
     // MARK: - POST /user/login
@@ -49,6 +50,24 @@ class LoginViewModel {
             case .failure(let err):
                 print(err.localizedDescription)
                 success = 500
+            }
+        }
+    }
+    
+    // MARK: - POST /user/signup
+    func dispatchSignup(email: String, nickname: String, password: String, vc: UIViewController) {
+        let param = SignupRequest.init(email, nickname, password)
+        
+        authProvider.request(.signUp(param: param)) { response in
+            switch response {
+            case .success(_):
+                do {
+                    vc.navigationController?.popViewController(animated: true)
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }

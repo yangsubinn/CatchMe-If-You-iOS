@@ -48,6 +48,7 @@
 		ED728408269D079E00D19FD5 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728407269D079E00D19FD5 /* SigninModel.swift */; };
 		ED72840B269D090C00D19FD5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72840A269D090C00D19FD5 /* LoginViewModel.swift */; };
 		ED72840D269D460D00D19FD5 /* EmailCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72840C269D460D00D19FD5 /* EmailCheckRequest.swift */; };
+		ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72840E269D46AB00D19FD5 /* EmailCheckModel.swift */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -159,6 +160,7 @@
 		ED728407269D079E00D19FD5 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
 		ED72840A269D090C00D19FD5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		ED72840C269D460D00D19FD5 /* EmailCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckRequest.swift; sourceTree = "<group>"; };
+		ED72840E269D46AB00D19FD5 /* EmailCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckModel.swift; sourceTree = "<group>"; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 				ED728405269D073E00D19FD5 /* SignupRequest.swift */,
 				ED72840C269D460D00D19FD5 /* EmailCheckRequest.swift */,
 				ED728407269D079E00D19FD5 /* SigninModel.swift */,
+				ED72840E269D46AB00D19FD5 /* EmailCheckModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				EDB72D51269AEE60003EE228 /* UserData.swift in Sources */,
+				ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */,
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
 				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,

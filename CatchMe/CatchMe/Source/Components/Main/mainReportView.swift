@@ -16,15 +16,11 @@ class mainReportView: UIView {
     let levelCountLabel = UILabel()
     let activeCountLabel = UILabel()
     let percentCountLabel = UILabel()
-//    let levelUnitLabel = UILabel()
-//    let activeUnitLabel = UILabel()
-//    let percentUnitLabel = UILabel()
     let levelLabel = UILabel()
     let activeLabel = UILabel()
     let percentLabel = UILabel()
     let lineLeftView = UIView()
     let lineRightView = UIView()
-    
     let emptyTitleLabel = UILabel()
     let emptySubLabel = UILabel()
     
@@ -45,9 +41,7 @@ class mainReportView: UIView {
         addSubviews([topLineView, titleLabel, levelCountLabel,
                      activeCountLabel, percentCountLabel, levelLabel,
                      activeLabel, percentLabel, lineLeftView, lineRightView])
-//        levelUnitLabel, activeUnitLabel, percentUnitLabel,
-        
-//        top -> leading -> bottom -> trailing
+
         topLineView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(18)
             make.leading.equalToSuperview().offset(24)
@@ -55,72 +49,56 @@ class mainReportView: UIView {
             make.height.equalTo(3)
         }
         
-        lineLeftView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(45)
-            make.trailing.equalTo(activeLabel.snp.leading).offset(-33.5)
-            make.width.equalTo(2)
-            make.height.equalTo(23)
-        }
-         
-        lineRightView.snp.makeConstraints { make in
-            make.leading.equalTo(activeLabel.snp.trailing).offset(33.5)
-            make.bottom.equalToSuperview().inset(45)
-            make.width.equalTo(2)
-            make.height.equalTo(23)
-        }
-        
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(topLineView.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(22)
         }
         
+        lineLeftView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(45)
+            make.trailing.equalTo(activeLabel.snp.leading).offset(-35) //-33.5
+            make.width.equalTo(2)
+            make.height.equalTo(23)
+        }
+         
+        lineRightView.snp.makeConstraints { make in
+            make.leading.equalTo(activeLabel.snp.trailing).offset(35) //33.5
+            make.bottom.equalToSuperview().inset(45)
+            make.width.equalTo(2)
+            make.height.equalTo(23)
+        }
+        
+        // 캐칭
         activeLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(27)
             make.centerX.equalToSuperview()
         }
         
+        // 캐치지수
         percentLabel.snp.makeConstraints { make in
-            make.leading.equalTo(lineRightView.snp.trailing).offset(22)
+            make.leading.equalTo(lineRightView.snp.trailing).offset(25)
             make.bottom.equalToSuperview().inset(27)
         }
         
+        // 레벨
         levelLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(27)
-            make.trailing.equalTo(lineLeftView.snp.leading).offset(-33.5)
+            make.trailing.equalTo(lineLeftView.snp.leading).offset(-38) //-33.5
         }
-        
-//        activeUnitLabel.snp.makeConstraints { make in
-//            make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-//            make.trailing.equalTo(lineRightView.snp.leading).offset(-28) //-28
-//        }
-//
-//        levelUnitLabel.snp.makeConstraints { make in
-//            make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-//            make.trailing.equalTo(lineLeftView.snp.leading).offset(-30) //-24
-//        }
-//
-//        percentUnitLabel.snp.makeConstraints { make in
-//            make.bottom.equalTo(activeLabel.snp.top).offset(-10)
-//            make.leading.equalTo(lineRightView.snp.trailing).offset(60)
-//        }
         
         activeCountLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-6)
             make.centerX.equalToSuperview()
-//            make.trailing.equalTo(activeUnitLabel.snp.leading).offset(-4)
         }
         
         levelCountLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-6)
             make.centerX.equalTo(levelLabel.snp.centerX)
-//            make.trailing.equalTo(levelUnitLabel.snp.leading).offset(-4)
         }
         
-        // 분기처리해서 레이아웃 잡기
         percentCountLabel.snp.makeConstraints { make in
             make.bottom.equalTo(activeLabel.snp.top).offset(-6)
             make.centerX.equalTo(percentLabel.snp.centerX)
-//            make.trailing.equalTo(percentUnitLabel.snp.leading).offset(-4)
         }
     }
     
@@ -164,25 +142,13 @@ class mainReportView: UIView {
         percentLabel.textColor = .white
         percentLabel.font = .stringMediumSystemFont(ofSize: 13)
         
-//        activeUnitLabel.text = "번"
-//        activeUnitLabel.textColor = .white
-//        activeUnitLabel.font = .stringMediumSystemFont(ofSize: 13)
-        
         activeCountLabel.text = "10"
         activeCountLabel.textColor = .white
         activeCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
-//        levelUnitLabel.text = "Lv"
-//        levelUnitLabel.textColor = .white
-//        levelUnitLabel.font = .numberMediumSystemFont(ofSize: 13)
-        
         levelCountLabel.text = "1"
         levelCountLabel.textColor = .white
         levelCountLabel.font = .numberMediumSystemFont(ofSize: 32)
-        
-//        percentUnitLabel.text = "%"
-//        percentUnitLabel.textColor = .white
-//        percentUnitLabel.font = .numberMediumSystemFont(ofSize: 13)
         
         percentCountLabel.text = "100"
         percentCountLabel.textColor = .white
@@ -195,10 +161,5 @@ class mainReportView: UIView {
         emptySubLabel.text = "캐칭을 기록하고 리포트로 확인해볼까요?"
         emptySubLabel.textColor = .white
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
-    }
-    
-    // int값 계산해서 레이아웃 분기처리하는 함수
-    func labelCount() {
-        
     }
 }

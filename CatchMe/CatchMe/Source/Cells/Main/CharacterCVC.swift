@@ -14,11 +14,6 @@ class CharacterCVC: UICollectionViewCell {
     let characterImage = UIImageView()
     let reportView = mainReportView()
     
-    //MARK: - Dummy Data
-    var levels: [String] = ["3", "2", "2", "2", "1"]
-    var activitys: [String] = ["10", "5", "6", "8", "1"]
-    var totals: [String] = ["90", "70", "10", "6", "100"]
-    
     //MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,20 +45,10 @@ class CharacterCVC: UICollectionViewCell {
         }
     }
     
-    private func setupReportView() {
+    func setupReportView() {
         reportView.backgroundColor = .black200
         reportView.layer.cornerRadius = 14
         reportView.layer.borderColor = UIColor.bordergrey.cgColor
         reportView.layer.borderWidth = 2
     }
-    
-    func changeLabelText() {
-//        reportView.levelCountLabel.text = levels[indexPath.row]
-//        reportView.activeCountLabel.text = activitys[page]
-//        reportView.percentCountLabel.text = totals[page]
-    }
-    
-//    func indexPath (for cell: UICollectionViewCell) -> IndexPath? {
-//
-//    }
 }

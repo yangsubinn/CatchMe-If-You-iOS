@@ -20,7 +20,6 @@ class MainVC: UIViewController {
     let nameLabel = UILabel()
     let catchingButton = UIButton()
     let pageControl = PageControl()
-//    let reportView = mainReportView()
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubTitle = UILabel()
@@ -35,7 +34,6 @@ class MainVC: UIViewController {
     var names: [String] = ["솝트없이못사는솝트러버솝트러버솝트아어끝", "암벽등반을 매우 좋아하는 날다람쥐어끝", "솝트없이못사는솝트러버솝트러버솝트아끝끝",
                            "끝트없이못사는솝트러버솝트러버솝트아끝끝", "끝끝없이못사는솝트러버솝트러버솝트아어끝"]
     
-//    let collectionViewFlowLayout = UICollectionViewFlowLayout()
     let collectionViewFlowLayout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
         let cellWidth = UIScreen.main.bounds.width * (319/375)
@@ -55,7 +53,6 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDate()
-//        setupReportView()
         setupTopLayout()
         setupLayout()
 //        setupEmptyLayout()
@@ -121,20 +118,12 @@ class MainVC: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 20)
             make.leading.trailing.equalToSuperview()
-//            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
             make.height.equalTo(UIScreen.main.hasNotch ? 450 : 380)
             make.centerX.equalToSuperview()
         }
         
-//        reportView.snp.makeConstraints { make in
-//            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 14)
-//            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
-//            make.height.equalTo(152)
-//        }
-        
         catchingButton.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 28 : 22)
-//            make.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 52 : 14)
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
@@ -218,13 +207,6 @@ class MainVC: UIViewController {
     private func setupPageControl() {
         pageControl.pages = 5
     }
-    // 활동리포트
-//    private func setupReportView() {
-//        reportView.backgroundColor = .black200
-//        reportView.layer.cornerRadius = 14
-//        reportView.layer.borderColor = UIColor.bordergrey.cgColor
-//        reportView.layer.borderWidth = 2
-//    }
     
     private func setupDate() {
         formatterDate.locale = Locale(identifier: "ko_KR")
@@ -238,9 +220,6 @@ class MainVC: UIViewController {
     }
     
     private func changeLabelText(page: Int) {
-//        CharacterCVC().reportView.levelCountLabel.text = levels[page]
-//        CharacterCVC().reportView.activeCountLabel.text = activitys[page]
-//        CharacterCVC().reportView.percentCountLabel.text = totals[page]
         nameLabel.text = names[page]
     }
 }
@@ -262,35 +241,12 @@ extension MainVC: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-extension MainVC: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.size.width - 56 , height: collectionView.frame.size.height)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        // 분기처리
-//        return 16
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        // left, right 는 주고
-//        return UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 28) // 0.06 전체 height * 0.06
-//    }
-}
-
 // MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        /// page control selected page 바꾸는 코드
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.selectedPage = Int(page)
         
-        /// Label 내용 변경하는 코드
         changeLabelText(page: Int(page))
     }
     

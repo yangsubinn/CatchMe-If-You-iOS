@@ -21,47 +21,42 @@ class CharacterHeaderView: UIView {
     }
     
     let lockImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "icLock")
     }
     
     let dateLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 15, weight: .regular)
+        $0.font = .numberRegularSystemFont(ofSize: 15)
         $0.textAlignment = .left
         $0.textColor = .gray310
+        $0.addCharacterSpacing(kernValue: -0.09, paragraphValue: 0)
     }
     
     let fromLabel = UILabel().then {
         $0.text = "부터"
-        $0.font = .systemFont(ofSize: 12, weight: .regular)
+        $0.font = .stringRegularSystemFont(ofSize: 12)
         $0.textAlignment = .left
         $0.textColor = .gray310
+        $0.addCharacterSpacing(kernValue: -0.07, paragraphValue: 0)
     }
     
     let writeButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .orange
+        $0.setImage(UIImage(named: "btnWrite"), for: .normal)
     }
     
     let nameView = UIView()
     
     let nameLabel = UILabel().then {
         $0.text = "한둘셋넷다여일여아열한둘셋넷다여일여아열"
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
         $0.numberOfLines = 2
         $0.lineBreakMode = .byWordWrapping
-        
-        let attributedString = NSMutableAttributedString(string: $0.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        $0.attributedText = attributedString
+        $0.addCharacterSpacing(kernValue: -0.6, paragraphValue: 4)
     }
     
     // MARK: - Lifecycle
-    init(date: String = "2021.05.01 ", name: String = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열") {
+    init(date: String = "2021.05.01", name: String = "한둘셋넷다여일여아열한둘셋넷다여일여아열") {
         super.init(frame: .zero)
         configUI(date: date, name: name)
         setupAutoLayout()
@@ -73,7 +68,7 @@ class CharacterHeaderView: UIView {
     
     // MARK: - Custom Method
     func configUI(date: String, name: String) {
-        backgroundColor = .black
+        backgroundColor = .black100
         
         dateLabel.text = date
         nameLabel.text = name

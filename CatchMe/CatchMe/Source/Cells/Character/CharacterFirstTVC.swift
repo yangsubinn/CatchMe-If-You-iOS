@@ -15,8 +15,8 @@ class CharacterFirstTVC: UITableViewCell {
     
     // MARK: - Properties    
     let emptyStateImageView = UIImageView().then {
-        //        $0.image = UIImage(named: "icPin")
-        $0.backgroundColor = .gray
+        $0.image = UIImage(named: "ic")
+        $0.backgroundColor = .orange
     }
     
     let emptyStateLabel = UILabel().then {
@@ -27,8 +27,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let pinImageView = UIImageView().then {
-        //        $0.image = UIImage(named: "icPin")
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "ic")
     }
     
     let lineView = UIView().then {
@@ -38,13 +37,12 @@ class CharacterFirstTVC: UITableViewCell {
     let dateLabel = UILabel().then {
         $0.text = "2021.08.01"
         $0.textColor = .gray310
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .numberRegularSystemFont(ofSize: 14)
         $0.textAlignment = .left
     }
     
     let moreButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .green
+        $0.setImage(UIImage(named: "btnMore"), for: .normal)
     }
     
     let contentStackView = UIStackView().then {
@@ -54,28 +52,23 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-//        $0.image = UIImage(named: "icComment")
+        $0.image = UIImage(named: "icComment")
         $0.backgroundColor = .orange
     }
     
     let commentLabel = UILabel().then {
         $0.text = "암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-"
         $0.textColor = .white
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.textAlignment = .left
         $0.numberOfLines = 0
-        
-        let attributedString = NSMutableAttributedString(string: $0.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 0.08
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        $0.attributedText = attributedString
+        $0.addCharacterSpacing(kernValue: -0.08, paragraphValue: 4)
     }
     
     let photoImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
-        $0.backgroundColor = .systemPink
+        $0.image = UIImage(named: "imgContent")
         $0.layer.cornerRadius = 18
+        $0.contentMode = .scaleAspectFill
     }
     
     // MARK: - Lifecycle
@@ -96,7 +89,7 @@ class CharacterFirstTVC: UITableViewCell {
     
     // MARK: - Custom Method
     func configUI() {
-        backgroundColor = .black
+        backgroundColor = .black100
     }
     
     func setupAutoLayout() {

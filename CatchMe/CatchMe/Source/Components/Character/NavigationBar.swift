@@ -16,9 +16,8 @@ class NavigationBar: UIView {
     lazy var backButton = BackButton(viewController)
     
     let editButton = UIButton().then {
-//        $0.setImage(UIImage(named: "btnWrite"), for: .normal)
+        $0.setImage(UIImage(named: "btnProfileEdit"), for: .normal)
         $0.addTarget(self, action: #selector(touchupEditButton), for: .touchUpInside)
-        $0.backgroundColor = .orange
     }
     
     // MARK: - Lifecycle

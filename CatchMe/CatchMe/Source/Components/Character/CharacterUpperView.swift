@@ -13,12 +13,11 @@ import SnapKit
 class CharacterUpperView: UIView {
     // MARK: - Properties
     let backgroundView = UIView().then {
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .pink100
     }
 
     let characterImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
-        $0.backgroundColor = .orange
+        $0.image = Character.blue.getCharacterImage(phase: 1, size: 151)
     }
     
     // MARK: - Lifecycle
@@ -35,7 +34,7 @@ class CharacterUpperView: UIView {
     // MARK: - Custom Method
     func configUI() {
         clipsToBounds = true
-        backgroundColor = .black
+        backgroundColor = .black100
     }
     
     private func setupAutoLayout() {

@@ -15,7 +15,7 @@ class CharacterReportTVC: UITableViewCell {
     
     // MARK: - Properties
     let lineTopView = UIView().then {
-        $0.backgroundColor = .gray
+        $0.backgroundColor = .black300
     }
     
     let levelStackView = UIStackView().then {
@@ -27,13 +27,13 @@ class CharacterReportTVC: UITableViewCell {
     let levelNumberLabel = UILabel().then {
         $0.text = "1"
         $0.textColor = .white
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .numberBoldSystemFont(ofSize: 20)
     }
     
     let levelLabel = UILabel().then {
         $0.text = "레벨"
         $0.textColor = .gray300
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     let separateLineLeftView = UIView().then {
@@ -49,13 +49,13 @@ class CharacterReportTVC: UITableViewCell {
     let activityNumberLabel = UILabel().then {
         $0.text = "23"
         $0.textColor = .white
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .numberBoldSystemFont(ofSize: 20)
     }
     
     let activityLabel = UILabel().then {
         $0.text = "활동 수"
         $0.textColor = .gray300
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     let separateLineRightView = UIView().then {
@@ -65,36 +65,29 @@ class CharacterReportTVC: UITableViewCell {
     let catchNumberLabel = UILabel().then {
         $0.text = "50%"
         $0.textColor = .white
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .numberBoldSystemFont(ofSize: 20)
         
         let attributtedString = NSMutableAttributedString(string: $0.text!)
-        attributtedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .bold), range: ($0.text! as NSString).range(of:"%"))
-        
+        attributtedString.addAttribute(.font, value: UIFont.numberBoldSystemFont(ofSize: 15), range: ($0.text! as NSString).range(of:"%"))
         $0.attributedText = attributtedString
     }
-    
-    let catchGuideImageView = UIImageView().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .purple
-    }
-    
+
     let catchLabel = UILabel().then {
         $0.text = "캐치지수"
         $0.textColor = .gray300
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     let exclamationMarkImageView = UIImageView().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "btnGuide")
     }
     
     let catchGuideButton = UIButton().then {
-        $0.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        $0.backgroundColor = .clear
     }
     
     let lineBottomView = UIView().then {
-        $0.backgroundColor = .gray
+        $0.backgroundColor = .black300
     }
     
     // MARK: - Lifecycle
@@ -114,11 +107,11 @@ class CharacterReportTVC: UITableViewCell {
     // MARK: - Custom Method
     func setupAutoLayout() {
         self.sendSubviewToBack(contentView)
-        backgroundColor = .black
+        backgroundColor = .black100
         
         addSubviews([lineTopView, levelStackView, separateLineLeftView,
                      activityStackView, separateLineRightView,
-                     catchNumberLabel, catchLabel, exclamationMarkImageView,
+                     catchNumberLabel, exclamationMarkImageView, catchLabel,
                      catchGuideButton, lineBottomView])
         levelStackView.addArrangedSubview(levelNumberLabel)
         levelStackView.addArrangedSubview(levelLabel)
@@ -164,11 +157,11 @@ class CharacterReportTVC: UITableViewCell {
         
         catchLabel.snp.makeConstraints { make in
             make.top.equalTo(catchNumberLabel.snp.bottom).offset(3)
-            make.leading.equalTo(separateLineRightView.snp.trailing).offset(27)
+            make.leading.equalTo(separateLineRightView.snp.trailing).offset(25)
         }
         
         exclamationMarkImageView.snp.makeConstraints { make in
-            make.top.equalTo(lineTopView.snp.bottom).offset(31)
+            make.top.equalTo(lineTopView.snp.bottom).offset(33)
             make.leading.equalTo(catchLabel.snp.trailing).offset(-5)
             make.trailing.equalTo(self.snp.trailing).inset(20)
             make.width.height.equalTo(30)

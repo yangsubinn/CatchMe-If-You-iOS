@@ -20,8 +20,7 @@ class CharacterVC: UIViewController {
     let reportCell = CharacterReportTVC()
     
     let catchGuideImageView = UIImageView().then {
-//      $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .purple
+        $0.image = UIImage(named: "imgCatchGuide")
     }
     
     var posts = [Activity(date: "2021.05.01", comment: "캐치미사랑해?", image: "왕"),
@@ -40,12 +39,12 @@ class CharacterVC: UIViewController {
     
     // MARK: - Custom Method
     func configUI() {
-        upperView.backgroundColor = .black
+        upperView.backgroundColor = .black100
         catchGuideImageView.isHidden = true
     }
     
     func setupTableView() {
-        mainTableView.backgroundColor = .black
+        mainTableView.backgroundColor = .black100
         mainTableView.separatorStyle = .none
         mainTableView.contentInsetAdjustmentBehavior = .never
         

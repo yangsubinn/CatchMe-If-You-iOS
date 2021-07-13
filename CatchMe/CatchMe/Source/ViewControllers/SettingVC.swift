@@ -30,14 +30,14 @@ class SettingVC: UIViewController {
         view.addSubviews([backButton, titleLabel, settingTableView])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(55)
-            make.leading.equalTo(view.snp.leading).offset(14)
+            make.top.equalToSuperview().offset(55)
+            make.leading.equalToSuperview().offset(14)
             make.width.height.equalTo(48)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(66)
-            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalToSuperview().offset(66)
+            make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton.snp.centerY)
         }
         
@@ -50,11 +50,10 @@ class SettingVC: UIViewController {
     
     func configUI() {
         view.backgroundColor = .black100
-        backButton.backgroundColor = .blue100
         
         titleLabel.text = "설정"
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.stringBoldSystemFont(ofSize: 20)
+        titleLabel.font = .stringBoldSystemFont(ofSize: 20)
     }
     
     func setupTableView() {
@@ -67,6 +66,7 @@ class SettingVC: UIViewController {
         settingTableView.separatorStyle = .none
         settingTableView.tableFooterView = UIView(frame: .zero)
         settingTableView.sectionFooterHeight = 0
+        settingTableView.isScrollEnabled = false
     }
 }
 

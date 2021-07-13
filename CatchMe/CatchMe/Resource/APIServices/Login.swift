@@ -19,10 +19,9 @@ class Login: NSObject {
         return flag
     }
     
-    func setLogin(name:String, token: String) {
+    func setLogin(token: String) {
         let def = UserDefaults.standard
         UserData.set(token, forKey: .accessToken)
-        UserData.set(name, forKey: .userName)
         
         def.set(true, forKey: login)
         def.synchronize()

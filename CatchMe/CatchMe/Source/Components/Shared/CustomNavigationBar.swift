@@ -1,5 +1,5 @@
 //
-//  SignupNaviBar.swift
+//  CustomNavigationBar.swift
 //  CatchMe
 //
 //  Created by SHIN YOON AH on 2021/07/10.
@@ -10,23 +10,22 @@ import UIKit
 import Then
 import SnapKit
 
-class SignupNaviBar: UIView {
+class CustomNavigationBar: UIView {
     // MARK: - Lazy Properties
     lazy var backButton = BackButton(vc ?? UIViewController())
     
     // MARK: - Properties
     let titleLabel = UILabel().then {
-        $0.text = "회원가입"
         $0.font = .stringBoldSystemFont(ofSize: 20)
     }
     
     var vc: UIViewController?
 
     // MARK: - Life Cycle
-    init(_ vc: UIViewController) {
+    init(_ vc: UIViewController, title: String) {
         super.init(frame: .zero)
         self.vc = vc
-        configUI()
+        configUI(title: title)
     }
     
     required init?(coder: NSCoder) {
@@ -46,9 +45,11 @@ class SignupNaviBar: UIView {
     }
     
     // MARK: - Custom Method
-    private func configUI() {
+    private func configUI(title: String) {
         addSubviews([backButton, titleLabel])
         
         backgroundColor = .black100
+        
+        titleLabel.text = title
     }
 }

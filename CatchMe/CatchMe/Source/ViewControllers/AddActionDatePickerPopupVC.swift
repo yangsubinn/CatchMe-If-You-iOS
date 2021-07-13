@@ -14,6 +14,9 @@ class AddActionDatePickerPopupVC: UIViewController {
     lazy var popupView = AddActionDatePickerPopupView(vc: self)
 
 //    // MARK: - Properties
+    var sendData: ((String?) -> ())?
+    var selectedDate: String = String()
+
     let vc = AddActionVC()
     
     // MARK: - Life Cycle
@@ -28,8 +31,8 @@ class AddActionDatePickerPopupVC: UIViewController {
         view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.8)
         
         popupView.closeButton.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
-        popupView.closeButton.addTarget(self, action: #selector(touchupCheckButton(_:)), for: .touchUpInside)
-//        popupView.datePicker.addTarget(self, action: #selector(changed), for: .valueChanged)
+        popupView.checkButton.addTarget(self, action: #selector(touchupCheckButton(_:)), for: .touchUpInside)
+        popupView.datePicker.addTarget(self, action: #selector(changed), for: .valueChanged)
     }
     
     private func setupLayout() {
@@ -46,20 +49,33 @@ class AddActionDatePickerPopupVC: UIViewController {
     }
     
     // MARK: - @objc
+    @objc func changed() {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .long
+        dateformatter.timeStyle = .none
+        dateformatter.locale = Locale(identifier: "ko_KR")
+        dateformatter.dateFormat = "yyyy.MM.dd"
+        
+        var components = DateComponents()
+        components.year = -20
+        let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
+        popupView.datePicker.minimumDate = minDate
+        
+        let date = dateformatter.string(from: popupView.datePicker.date)
+        selectedDate = date
+        print(selectedDate)
+    }
+    
     @objc func touchupCloseButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func touchupCheckButton(_ sender: UIButton) {
-//        popupView.
-    }
-    
-    @objc func changed() {
+        let now = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .none
-        dateFormatter.dateStyle = .long
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-//        let date = dateFormatter.string(from: popupView.datePicker.date)
-//        vc.dateLabel.text = date
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        let dateString = dateFormatter.string(from: now)
+        sendData?(selectedDate ?? dateString)
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -13,7 +13,6 @@ import SnapKit
 class AddActionVC: UIViewController {
     // MARK: - Properties
     var keyHeight = CGFloat()
-    
     var enteredText: String?
     let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2km 뛰었음)"
     let maxWordCount: Int = 150
@@ -23,13 +22,6 @@ class AddActionVC: UIViewController {
     
     let pinkBackgroundView = UIView().then {
         $0.backgroundColor = .pink100
-    }
-    
-    let dateLabel = UILabel().then {
-        $0.text = "2021.05.01"
-        $0.font = .numberRegularSystemFont(ofSize: 17)
-        $0.textColor = .white
-        $0.textAlignment = .center
     }
     
     let dateButton = UIButton().then {
@@ -59,6 +51,12 @@ class AddActionVC: UIViewController {
         paragraphStyle.lineSpacing = 5
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         $0.attributedText = attributedString
+    }
+    
+    let dateLabel = UILabel().then {
+        $0.font = .numberRegularSystemFont(ofSize: 17)
+        $0.textColor = .white
+        $0.textAlignment = .center
     }
     
     let catchuImageView = UIImageView().then {
@@ -285,6 +283,11 @@ class AddActionVC: UIViewController {
         letterNumLabel.textColor = .gray200
     }
     
+    func setLabel(text: String) {
+        print("텍스트:\(text)")
+        dateLabel.text = text
+    }
+    
     // MARK: - @objc
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
@@ -297,6 +300,11 @@ class AddActionVC: UIViewController {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionDatePickerPopupVC") as? AddActionDatePickerPopupVC else { return }
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
+        
+        vc.sendData = { text in
+            self.dateLabel.text = text
+        }
+        
         self.present(vc, animated: true, completion: nil)
     }
     

@@ -30,11 +30,15 @@ class LoginViewModel {
                        let dataSuccess = self.signinModel?.success {
                         if text == "비밀번호가 일치하지 않습니다." && !dataSuccess {
                             success = 412
-                       } else if !dataSuccess {
+                        } else if !dataSuccess {
                             success = 400
-                       } else {
+                        } else {
                             success = 200
-                       }
+                            
+                            if let token = self.signinModel?.data?.token {
+                                Login.shared.setLogin(token: token)
+                            }
+                        }
                     }
                     
                     completion(success)

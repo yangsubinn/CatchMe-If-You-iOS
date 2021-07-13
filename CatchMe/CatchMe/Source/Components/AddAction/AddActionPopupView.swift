@@ -13,8 +13,19 @@ import SnapKit
 class AddActionPopupView: UIView {
     // MARK: - Properties
     let popupLabel = UILabel().then {
-        $0.text = "정말로 화면을 나갈까요?"
-        $0.font = .stringMediumSystemFont(ofSize: 16)
+        $0.text = "캐칭을 멈추고 나갈까요?"
+        $0.font = .stringBoldSystemFont(ofSize: 18)
+        $0.textColor = .white
+        $0.textAlignment = .center
+        
+        let attributedString = NSMutableAttributedString(string: $0.text!)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.pink210, range: ($0.text! as NSString).range(of:"캐칭"))
+        $0.attributedText = attributedString
+    }
+    
+    let popupSubLabel = UILabel().then {
+        $0.text = "나가면 되돌릴 수 없어요."
+        $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.textColor = .white
         $0.textAlignment = .center
     }
@@ -30,7 +41,7 @@ class AddActionPopupView: UIView {
         $0.titleLabel?.font = .stringMediumSystemFont(ofSize: 14)
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 15
+        $0.layer.cornerRadius = 21
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray300.cgColor
         $0.addTarget(self, action: #selector(touchupCancelButton(_:)), for: .touchUpInside)
@@ -38,10 +49,10 @@ class AddActionPopupView: UIView {
     
     let closeButton = UIButton().then {
         $0.backgroundColor = .pink100
-        $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.titleLabel?.font = .stringMediumSystemFont(ofSize: 14)
         $0.setTitle("나갈래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.layer.cornerRadius = 15
+        $0.layer.cornerRadius = 21
     }
     
     var viewController = UIViewController()
@@ -65,27 +76,32 @@ class AddActionPopupView: UIView {
     }
     
     private func setupAutoLayout() {
-        addSubviews([popupLabel, popupButtonStackView])
+        addSubviews([popupLabel, popupSubLabel, popupButtonStackView])
         popupButtonStackView.addArrangedSubview(cancelButton)
         popupButtonStackView.addArrangedSubview(closeButton)
         
         popupLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.snp.top).inset(44)
+            make.top.equalTo(self.snp.top).inset(38)
+        }
+        
+        popupSubLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(popupLabel.snp.bottom).offset(12)
         }
         
         cancelButton.snp.makeConstraints { make in
             make.width.equalTo(108)
-            make.height.equalTo(35)
+            make.height.equalTo(42)
         }
         
         closeButton.snp.makeConstraints { make in
             make.width.equalTo(108)
-            make.height.equalTo(35)
+            make.height.equalTo(42)
         }
         
         popupButtonStackView.snp.makeConstraints { make in
-            make.top.equalTo(popupLabel.snp.bottom).offset(33)
+            make.top.equalTo(popupSubLabel.snp.bottom).offset(29)
             make.centerX.equalToSuperview()
         }
     }

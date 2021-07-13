@@ -13,9 +13,7 @@ import SnapKit
 class AddActionVC: UIViewController {
     // MARK: - Properties
     var keyHeight = CGFloat()
-    
     let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2.5km 뛰었음)"
-    
     let imagePicker = UIImagePickerController()
     
     let pinkBackgroundView = UIView().then {

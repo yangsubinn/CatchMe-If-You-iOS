@@ -32,12 +32,12 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let lineView = UIView().then {
-        $0.backgroundColor = .white10
+        $0.backgroundColor = .black200
     }
     
     let dateLabel = UILabel().then {
         $0.text = "2021.08.01"
-        $0.textColor = .gray
+        $0.textColor = .gray310
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textAlignment = .left
     }
@@ -159,14 +159,14 @@ class CharacterFirstTVC: UITableViewCell {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
         emptyStateImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(40)
+            make.top.equalTo(self.snp.top).inset(30)
             make.centerX.equalToSuperview()
-            make.width.equalTo(175)
-            make.height.equalTo(102)
+            make.width.equalTo(251)
+            make.height.equalTo(145)
         }
         
         emptyStateLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyStateImageView.snp.bottom).offset(16)
+            make.top.equalTo(emptyStateImageView.snp.bottom)
             make.centerX.equalToSuperview()
         }
     }

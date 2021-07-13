@@ -23,14 +23,16 @@ class TextFieldView: UIView {
     let secureButton = UIButton()
     
     var logoImageView = UIImageView()
+    var rootVC = UIViewController()
     var isAuto = true
     
     // MARK: - Connect Server
     let viewModel = LoginViewModel.shared
 
     // MARK: - Life Cycle
-    init(logo: UIImageView) {
+    init(logo: UIImageView, vc: UIViewController) {
         super.init(frame: .zero)
+        rootVC = vc
         logoImageView = logo
         setupLayout()
         configUI()
@@ -188,6 +190,12 @@ class TextFieldView: UIView {
             }
         }
         loginButton.addAction(loginAction, for: .touchUpInside)
+        
+        let signupAction = UIAction { _ in
+            guard let vc = self.rootVC.storyboard?.instantiateViewController(withIdentifier: "SignupVC") as? SignupVC else { return }
+            self.rootVC.navigationController?.pushViewController(vc, animated: true)
+        }
+        memberButton.addAction(signupAction, for: .touchUpInside)
     }
 }
 

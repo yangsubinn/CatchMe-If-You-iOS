@@ -9,6 +9,10 @@ import UIKit
 
 import Moya
 
+extension Notification.Name {
+    static let signupVC = Notification.Name("signupVC")
+}
+
 class LoginViewModel {
     static var shared: LoginViewModel = LoginViewModel()
     
@@ -62,6 +66,8 @@ class LoginViewModel {
             switch response {
             case .success(_):
                 do {
+                    NotificationCenter.default.post(name: .signupVC, object: nil, userInfo: ["username": email, "userpw": password])
+                    
                     vc.navigationController?.popViewController(animated: true)
                 } catch(let err) {
                     print(err.localizedDescription)

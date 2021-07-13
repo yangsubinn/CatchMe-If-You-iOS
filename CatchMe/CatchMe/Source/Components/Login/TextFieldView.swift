@@ -150,6 +150,8 @@ class TextFieldView: UIView {
         passwordTextField.font = .stringRegularSystemFont(ofSize: 17)
         passwordTextField.textColor = .black100
         passwordTextField.tintColor = .pink100
+        
+        addObserver()
     }
     
     private func setupButtonAction() {
@@ -195,6 +197,29 @@ class TextFieldView: UIView {
             self.rootVC.navigationController?.pushViewController(vc, animated: true)
         }
         memberButton.addAction(signupAction, for: .touchUpInside)
+    }
+    
+    // MARK: - Notification
+    func addObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUI), name: .signupVC, object: nil)
+    }
+    
+    @objc
+    func reloadUI(_ notification: NSNotification) {
+        guard let userEmail = notification.userInfo?["username"] as? String else { return }
+        guard let userPW = notification.userInfo?["userpw"] as? String else { return }
+        
+        emailTextField.text = userEmail
+        emailTextField.emailImageView.isHidden = true
+        emailTextField.changePaddingPoints(point: 21)
+        emailTextField.backgroundColor = .white
+        
+        passwordTextField.text = userPW
+        passwordTextField.passwordImageView.isHidden = true
+        passwordTextField.changePaddingPoints(point: 21)
+        passwordTextField.backgroundColor = .white
+            
+        secureButton.isHidden = false
     }
 }
 

@@ -169,7 +169,6 @@ class TextFieldView: UIView {
             if let emailText = self.emailTextField.text,
                let pwText = self.passwordTextField.text {
                 self.viewModel.dispatchLogin(email: emailText, password: pwText) { result in
-                    print(result)
                     switch result {
                     case 200:
                         self.emailMessageLabel.isHidden = true

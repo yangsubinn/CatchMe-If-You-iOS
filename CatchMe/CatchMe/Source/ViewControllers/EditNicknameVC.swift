@@ -104,6 +104,13 @@ class EditNicknameVC: UIViewController {
     @objc
     func removeButtonClicked() {
         nicknameTextField.text = ""
+        countLabel.text = "0/10"
+        // count 고쳐라
+        
+        if !nicknameTextField.isEditing {
+            countLabel.isHidden = true
+            removeButton.isHidden = true
+        }
     }
     
     @objc
@@ -127,8 +134,9 @@ extension EditNicknameVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.nicknameTextField.setupOriginalLine()
         
+        countLabel.isHidden = true
+        
         if !nicknameTextField.hasText {
-            countLabel.isHidden = true
             removeButton.isHidden = true
             editButton.isEnabled = false
             editButton.backgroundColor = .gray200

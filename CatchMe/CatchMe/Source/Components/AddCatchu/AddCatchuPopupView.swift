@@ -12,14 +12,14 @@ import SnapKit
 
 class AddCatchuPopupView: UIView {
     // MARK: - Properties
-    let popupLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.text = "캐츄 잡기를 멈추고 나갈까요?"
         $0.font = .stringBoldSystemFont(ofSize: 16)
         $0.textColor = .white
         $0.textAlignment = .center
     }
     
-    let popupSubLabel = UILabel().then {
+    let subTitleLabel = UILabel().then {
         $0.text = "나가면 되돌릴 수 없어요."
         $0.addCharacterSpacing(kernValue: -0.08, paragraphValue: 0)
         $0.font = .stringRegularSystemFont(ofSize: 14)
@@ -74,22 +74,22 @@ class AddCatchuPopupView: UIView {
         backgroundColor = .black200
         layer.cornerRadius = 18
         
-        popupLabel.addPopupCharacterSpacing()
+        titleLabel.addPopupCharacterSpacing()
     }
     
     private func setupAutoLayout() {
-        addSubviews([popupLabel, popupSubLabel, popupButtonStackView])
+        addSubviews([titleLabel, subTitleLabel, popupButtonStackView])
         popupButtonStackView.addArrangedSubview(cancelButton)
         popupButtonStackView.addArrangedSubview(deleteButton)
         
-        popupLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(self.snp.top).inset(38)
         }
         
-        popupSubLabel.snp.makeConstraints { make in
+        subTitleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(popupLabel.snp.bottom).offset(12)
+            make.top.equalTo(titleLabel.snp.bottom).offset(12)
         }
         
         cancelButton.snp.makeConstraints { make in
@@ -103,7 +103,7 @@ class AddCatchuPopupView: UIView {
         }
         
         popupButtonStackView.snp.makeConstraints { make in
-            make.top.equalTo(popupSubLabel.snp.bottom).offset(29)
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(29)
             make.centerX.equalToSuperview()
         }
     }

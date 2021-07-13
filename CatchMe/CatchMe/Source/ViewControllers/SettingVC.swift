@@ -49,6 +49,8 @@ class SettingVC: UIViewController {
     }
     
     func configUI() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         view.backgroundColor = .black100
         
         titleLabel.text = "설정"
@@ -77,7 +79,26 @@ extension SettingVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        switch indexPath.row {
+        case 0:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
         
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -107,6 +128,8 @@ extension SettingVC: UITableViewDataSource {
         cell.backgroundColor = .black200
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = .stringRegularSystemFont(ofSize: 16)
+        
+        cell.selectionStyle = .none
 
         return cell
     }

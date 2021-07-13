@@ -11,7 +11,7 @@ class CharacterCVC: UICollectionViewCell {
     static let identifier = "CharacterCVC"
     
     //MARK: - Properties
-    let characterImage = UIImageView()
+    let characterImageView = UIImageView()
     let reportView = mainReportView()
     
     //MARK: - Life Cycle
@@ -24,21 +24,21 @@ class CharacterCVC: UICollectionViewCell {
     
     //MARK: - Custom Method
     func configUI() {
-        characterImage.image = Character.purple.getCharacterImage(phase: 3, size: 181)
+        characterImageView.image = Character.purple.getCharacterImage(phase: 3, size: 181)
         self.backgroundColor = .clear
     }
     
     func setupLayout() {
-        addSubviews([reportView, characterImage])
+        addSubviews([reportView, characterImageView])
         
-        characterImage.snp.makeConstraints { make in
+        characterImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 44 : 18)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(181)
         }
         
         reportView.snp.makeConstraints { make in
-            make.top.equalTo(characterImage.snp.bottom).offset(UIScreen.main.hasNotch ? 54 : 24)
+            make.top.equalTo(characterImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 54 : 24)
             make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(152)

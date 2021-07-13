@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 class MainVC: UIViewController {
-    
     //MARK: - Properties
     let dateLabel = UILabel()
     let settingButton = UIButton()
@@ -39,7 +38,7 @@ class MainVC: UIViewController {
         let cellWidth = UIScreen.main.bounds.width * (319/375)
         var cellHeight : CGFloat = UIScreen.main.hasNotch ? 450 : 400
         
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight )
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         
         let spacing = (UIScreen.main.bounds.width - cellWidth) / 2
         layout.minimumLineSpacing = 16
@@ -99,7 +98,7 @@ class MainVC: UIViewController {
     
     private func setupLayout() {
         view.addSubviews([nameLabel, catchingButton,
-                          collectionView, pageControl]) //reportView
+                          collectionView, pageControl])
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
@@ -236,7 +235,6 @@ extension MainVC: UICollectionViewDataSource {
         cell.reportView.activeCountLabel.text = activitys[indexPath.row]
         cell.reportView.levelCountLabel.text = levels[indexPath.row]
         cell.reportView.percentCountLabel.text = totals[indexPath.row]
-        
         return cell
     }
 }
@@ -245,8 +243,8 @@ extension MainVC: UICollectionViewDataSource {
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
-        pageControl.selectedPage = Int(page)
         
+        pageControl.selectedPage = Int(page)
         changeLabelText(page: Int(page))
     }
     

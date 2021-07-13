@@ -11,11 +11,6 @@ import Then
 import SnapKit
 
 class AddActionDatePickerPopupView: UIView {
-    // MARK: - Data
-    var yearList: [String] = ["2021년"]
-    var monthList: [String] = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
-    var dayList: [String] = ["2일"]
-    
     // MARK: - Properties
     let closeButton = UIButton().then {
         //        $0.setImage(UIImage(named: ""), for: .normal)
@@ -25,7 +20,6 @@ class AddActionDatePickerPopupView: UIView {
     let checkButton = UIButton().then {
         //        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .blue
-//        $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
     
     let selectLineView = UIView().then {
@@ -40,14 +34,13 @@ class AddActionDatePickerPopupView: UIView {
         $0.subviews.first?.subviews.last?.backgroundColor = .none
     }
     
-    
-//    let datePicker = UIDatePicker().then {
-//        $0.preferredDatePickerStyle = .wheels
-////        $0.maximumDate =
-//
-//        $0.datePickerMode = .date
-//        $0.locale = Locale(identifier: "ko_KR")
-//    }
+    let datePicker = UIDatePicker().then {
+        $0.datePickerMode = .date
+        $0.preferredDatePickerStyle = .wheels
+        $0.locale = Locale(identifier: "ko_KR")
+        $0.addTarget(self, action: #selector(changed), for: .valueChanged)
+        $0.setValue(UIColor.white, forKeyPath: "textColor")
+    }
     
     var viewController = UIViewController()
     
@@ -57,7 +50,10 @@ class AddActionDatePickerPopupView: UIView {
         viewController = vc
         configUI()
         setupAutoLayout()
-        setupPickerView()
+    }
+    
+    override func layoutSubviews() {
+        datePicker.subviews[0].subviews[1].isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +67,8 @@ class AddActionDatePickerPopupView: UIView {
     }
     
     func setupAutoLayout() {
-        addSubviews([closeButton, checkButton, selectLineView, datePickerView])
+        addSubviews([closeButton, checkButton, datePicker])
+        datePicker.addSubview(selectLineView)
         
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(8)
@@ -87,100 +84,32 @@ class AddActionDatePickerPopupView: UIView {
         
         selectLineView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top).inset(126)
-            make.centerX.equalTo(datePickerView.snp.centerX)
+            make.centerX.equalTo(datePicker.snp.centerX)
             make.width.equalTo(275)
             make.height.equalTo(38)
         }
         
-        datePickerView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(60)
-            make.leading.equalToSuperview().inset(36)
+        datePicker.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 53 : 60)
             make.bottom.equalTo(self.snp.bottom).inset(24)
-            make.trailing.equalTo(self.snp.trailing).inset(35)
             make.centerX.equalToSuperview()
-            make.width.equalTo(230)
             make.height.equalTo(169)
-        }
-    }
+            
+            var components = DateComponents()
+            components.day = 10
+            let maxDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
+            components.day = -10
+            let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
 
-    func setupPickerView() {
-        datePickerView.delegate = self
-        datePickerView.dataSource = self
+            datePicker.maximumDate = maxDate
+            datePicker.minimumDate = minDate
+        }
     }
     
     // MARK: - @objc
-    
-}
-
-// MARK: - UIPickerViewDelegate
-extension AddActionDatePickerPopupView: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 38
+    @objc func changed() {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .long
+        dateformatter.timeStyle = .none
     }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-        
-        var textView = view as? UITextView
-        if textView == nil {
-            textView = UITextView()
-            textView?.font = UIFont.numberMediumSystemFont(ofSize: 22)
-            textView?.textAlignment = .left
-        }
-//
-//        var unitView = view as? UITextView
-//        if unitView == nil {
-//            unitView = UITextView()
-//            unitView?.font = UIFont.numberMediumSystemFont(ofSize: 22)
-//            unitView?.textAlignment = .left
-//        }
-        
-        textView?.text = "\(self.yearList[row])"
-        
-        return textView!
-    }
-}
-
-// MARK: - UIPickerViewDataSource
-extension AddActionDatePickerPopupView: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 6
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component {
-        case 0: return yearList.count
-        case 1: return 1
-        case 2: return monthList.count
-        case 3: return 1
-        case 4: return dayList.count
-        default: return 1
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component {
-        case 0: return yearList[row]
-        case 1: return "년"
-        case 2: return monthList[row]
-        case 3: return "월"
-        case 4: return dayList[row]
-        default: return "일"
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch component {
-        case 0: return print("select=\(yearList[row])")
-        case 1: return print("select=\(monthList[row])")
-        case 2: return print("select=\(dayList[row])")
-        default: break
-        }
-//        pickerView.subviews.first?.subviews.last?.backgroundColor = .none
-        
-    }
-    
-    
 }

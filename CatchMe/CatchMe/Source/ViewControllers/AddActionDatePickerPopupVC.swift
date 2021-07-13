@@ -38,7 +38,7 @@ class AddActionDatePickerPopupVC: UIViewController {
         let height = UIScreen.main.bounds.size.height / 667
         
         popupView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).inset(UIScreen.main.bounds.size.height * 0.4)
+            make.top.equalTo(view.snp.top).inset(UIScreen.main.bounds.size.height * 0.32)
             make.centerX.equalToSuperview()
             make.width.equalTo(301 * (UIScreen.main.bounds.size.width / 375))
             make.height.equalTo(height == 1 ? 253 : (253 * height) * 0.85)

@@ -31,6 +31,8 @@ class MainVC: UIViewController {
     var levels: [String] = ["3", "2", "2", "2", "1"]
     var activitys: [String] = ["10", "5", "6", "8", "1"]
     var totals: [String] = ["90", "70", "10", "6", "100"]
+    var names: [String] = ["솝트없이못사는솝트러버솝트러버솝트아어끝", "암벽등반을 매우 좋아하는 날다람쥐어끝", "솝트없이못사는솝트러버솝트러버솝트아끝끝",
+                           "끝트없이못사는솝트러버솝트러버솝트아끝끝", "끝끝없이못사는솝트러버솝트러버솝트아어끝"]
     
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -91,8 +93,8 @@ class MainVC: UIViewController {
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-            make.width.equalTo(195)
-            make.height.equalTo(62)
+            make.width.equalTo(220) //195
+            make.height.equalTo(58)
         }
         
         pageControl.snp.makeConstraints { make in
@@ -165,14 +167,15 @@ class MainVC: UIViewController {
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
         dateLabel.addCharacterSpacing(kernValue: -0.6)
         
-        nameLabel.text = "솝트없이못사는솝트러버솝트러버솝트"
+        nameLabel.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄" // 띄어쓰기 포함 18 글자최대
         nameLabel.textColor = .white
         nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         nameLabel.numberOfLines = 2
+        nameLabel.addCharacterSpacing(kernValue: -0.6)
         
         let attributedString = NSMutableAttributedString(string: nameLabel.text!)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
+        paragraphStyle.lineSpacing = 9
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
         nameLabel.attributedText = attributedString
         
@@ -223,6 +226,7 @@ class MainVC: UIViewController {
         reportView.levelCountLabel.text = levels[page]
         reportView.activeCountLabel.text = activitys[page]
         reportView.percentCountLabel.text = totals[page]
+        nameLabel.text = names[page]
     }
 }
 

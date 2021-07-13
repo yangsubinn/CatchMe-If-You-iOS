@@ -20,7 +20,7 @@ class CharacterCVC: UICollectionViewCell {
     }
     
     func configUI() {
-        characterImage.image = Character.green.getCharacterImage(phase: 3, size: 181)
+        characterImage.image = Character.purple.getCharacterImage(phase: 3, size: 181)
         self.backgroundColor = .clear
     }
 }

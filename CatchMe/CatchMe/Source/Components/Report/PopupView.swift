@@ -97,7 +97,7 @@ class PopupView: UIView {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(characterCollectionView.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
-            make.width.equalTo(168)
+            make.width.equalTo(195)
         }
         
         checkButton.snp.makeConstraints { make in

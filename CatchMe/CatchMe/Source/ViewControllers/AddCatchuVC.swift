@@ -29,6 +29,9 @@ class AddCatchuVC: UIViewController {
     
     var currentFlow = 1
     
+    // MARK: - Connect Server
+    let viewModel = MainCardViewModel.shared
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +114,11 @@ class AddCatchuVC: UIViewController {
                 self.pageControl.selectedPage += 1
                 self.changeBackButtonState()
                 self.changeFlowViewState()
+            } else if self.currentFlow == Flow.complete.rawValue {
+                if let name = self.secondFlowView.textField.text {
+                    self.viewModel.dispatchCreateCharacter(name: name, index: self.firstFlowView.previousIndex+1, privacy: self.thirdFlowView.isLock, vc: self)
+                }
+                
             }
         }
         bottomButton.addAction(nextAction, for: .touchUpInside)

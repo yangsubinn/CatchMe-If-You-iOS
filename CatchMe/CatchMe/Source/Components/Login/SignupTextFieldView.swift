@@ -38,8 +38,8 @@ class SignupTextFieldView: UIView {
     var checkValidate = false
     var textCount = 0
     
-    // MARK: - Dummy Data
-    let email = "catchme0717@gmail.com"
+    // MARK: - Connect Server
+    let viewModel = LoginViewModel.shared
 
     // MARK: - Life Cycle
     init(_ button: UIButton) {
@@ -522,7 +522,9 @@ extension SignupTextFieldView {
     }
     
     func checkEmailTextFieldUI(){
-        /// 서버 연결 전이라서 Dummy로 넣어둠
+        
+        
+        
         if !(emailTextField.text!.validateEmail()) || emailTextField.text! != email {
             emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
             emailMessageLabel.textColor = .red100

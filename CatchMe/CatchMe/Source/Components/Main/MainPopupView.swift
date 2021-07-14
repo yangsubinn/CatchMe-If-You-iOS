@@ -59,14 +59,14 @@ class MainPopupView: UIView {
     
     // MARK: - Custom Method
     private func configUI() {
-        addSubviews([levelImageView, noticeLabel, characterImageView,
-                     nameLabel, okButton])
-        
         backgroundColor = .black200
         layer.cornerRadius = 18
     }
     
     private func setupLayout() {
+        addSubviews([levelImageView, noticeLabel, characterImageView,
+                     nameLabel, okButton])
+        
         levelImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(43)

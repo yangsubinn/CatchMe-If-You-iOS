@@ -16,10 +16,8 @@ enum Flow: Int {
 }
 
 class AddCatchuVC: UIViewController {
-    // MARK: - lazy Properties
-    lazy var xmarkButton = XmarkButton(self)
-    
     // MARK: - Properties
+    let xmarkButton = XmarkButton()
     let backButton = BackButton()
     let pageControl = AddCatchuPageControl()
     let firstFlowView = FirstFlowView()
@@ -122,6 +120,14 @@ class AddCatchuVC: UIViewController {
             }
         }
         bottomButton.addAction(nextAction, for: .touchUpInside)
+        
+        let xmarkAction = UIAction { _ in
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "AddCatchuPopupVC") as? AddCatchuPopupVC else { return }
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+        }
+        xmarkButton.addAction(xmarkAction, for: .touchUpInside)
     }
     
     // MARK: - @objc

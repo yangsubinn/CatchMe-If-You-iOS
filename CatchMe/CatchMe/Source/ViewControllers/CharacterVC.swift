@@ -95,6 +95,7 @@ class CharacterVC: UIViewController {
     
     @objc func touchupWriteButton(_ sender: UIButton) {
         guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
+        nextVC.setLabel(text: "2021.07.14")
         nextVC.modalPresentationStyle = .fullScreen
         present(nextVC, animated: true, completion: nil)
     }

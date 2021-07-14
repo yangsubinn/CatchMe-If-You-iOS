@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Moya
 
 class MainVC: UIViewController {
     //MARK: - Properties
@@ -16,7 +17,7 @@ class MainVC: UIViewController {
     let calendarButton = UIButton()
     let lookButton = UIButton()
     let allButton = UIButton()
-    let nameLabel = UILabel()
+    lazy var nameLabel = UILabel()
     let catchingButton = UIButton()
     let pageControl = PageControl()
     let emptyImageView = UIImageView()
@@ -25,13 +26,17 @@ class MainVC: UIViewController {
     let catchMeButton = UIButton()
     
     var formatterDate = DateFormatter()
+    
+    //MARK: - Network
+    private let authProvider = MoyaProvider<MainService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var characterData: MainModel?
 
-    //MARK: - Dummy Data
-    var levels: [String] = ["3", "2", "2", "2", "1"]
-    var activitys: [String] = ["10", "5", "6", "8", "1"]
-    var totals: [String] = ["90", "70", "10", "6", "100"]
-    var names: [String] = ["솝트없이못사는솝트러버솝트러버솝트아어끝", "암벽등반을 매우 좋아하는 날다람쥐어끝", "솝트없이못사는솝트러버솝트러버솝트아끝끝",
-                           "끝트없이못사는솝트러버솝트러버솝트아끝끝", "끝끝없이못사는솝트러버솝트러버솝트아어끝"]
+    //MARK: - Server Data
+    var levels: [Int] = []
+    var activitys: [Int] = []
+    var totals: [Int] = []
+    var names: [String] = []
+    var characters: [Int] = []
     
     let collectionViewFlowLayout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -44,12 +49,16 @@ class MainVC: UIViewController {
         layout.scrollDirection = .horizontal
         return layout
     }()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+    var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
 
     // MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        setupDate()
+        fetchCharacter()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDate()
         setupTopLayout()
         setupLayout()
 //        setupEmptyLayout()
@@ -169,12 +178,10 @@ class MainVC: UIViewController {
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
         dateLabel.addCharacterSpacing(kernValue: -0.6)
-        
-        nameLabel.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
+
         nameLabel.textColor = .white
         nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         nameLabel.numberOfLines = 2
-        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         
         emptyTitleLabel.text = "캐츄를 추가해보세요!"
         emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
@@ -186,6 +193,8 @@ class MainVC: UIViewController {
     }
     
     private func setupCollectionView() {
+        collectionView.collectionViewLayout = collectionViewFlowLayout
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -197,7 +206,7 @@ class MainVC: UIViewController {
     }
     
     private func setupPageControl() {
-        pageControl.pages = 5
+        pageControl.pages = names.count
     }
     
     private func setupDate() {
@@ -208,11 +217,11 @@ class MainVC: UIViewController {
     }
     
     private func setLabels() {
-        changeLabelText(page: 0)
+        changeLabelText(index: 0)
     }
     
-    private func changeLabelText(page: Int) {
-        nameLabel.text = names[page]
+    private func changeLabelText(index: Int) {
+        nameLabel.text = names[index]
     }
     
     // MARK: - @objc
@@ -228,15 +237,14 @@ class MainVC: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return names.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCVC.identifier, for: indexPath) as? CharacterCVC else { return UICollectionViewCell() }
         
-        cell.reportView.activeCountLabel.text = activitys[indexPath.row]
-        cell.reportView.levelCountLabel.text = levels[indexPath.row]
-        cell.reportView.percentCountLabel.text = totals[indexPath.row]
+        cell.reportView.setLabel(level: levels[indexPath.item], activity: activitys[indexPath.item], percent: totals[indexPath.item])
+        cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
         
         return cell
     }
@@ -244,13 +252,6 @@ extension MainVC: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let page = round(scrollView.contentOffset.x / scrollView.frame.width)
-        
-        pageControl.selectedPage = Int(page)
-        changeLabelText(page: Int(page))
-    }
-    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
 
@@ -266,8 +267,109 @@ extension MainVC: UICollectionViewDelegate {
             roundedIndex = ceil(index)
         }
         
+        changeLabelText(index: Int(roundedIndex))
+        pageControl.selectedPage = Int(roundedIndex)
+        
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
                          y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
+    }
+}
+
+// MARK: - Network
+extension MainVC {
+    func fetchCharacter() {
+        var data: [MainCharacter] = []
+        authProvider.request(.main) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.characterData = try result.map(MainModel.self)
+                    
+                    data.append(contentsOf: characterData?.data ?? [])
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    activitys.removeAll()
+                    totals.removeAll()
+                    characters.removeAll()
+                    
+                    for i in 0..<data.count {
+                        names.append(data[i].characterName)
+                        levels.append(data[i].characterLevel)
+                        activitys.append(data[i].activityCount)
+                        totals.append(data[i].countPercentage ?? 0)
+                        characters.append(data[i].characterIndex)
+                    }
+
+                    collectionView.reloadData()
+                    pageControl.pages = names.count
+                    if !names.isEmpty {
+                        nameLabel.text = names[0]
+                        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+                    }
+                    
+                    UIView.animate(withDuration: 0.5, animations: {
+                        pageControl.alpha = 0
+                        collectionView.alpha = 0
+                        nameLabel.alpha = 0
+                        pageControl.alpha = 1.0
+                        collectionView.alpha = 1.0
+                        nameLabel.alpha = 1.0
+                    })
+                     
+//                    if data.isEmpty {
+//                        emptyImageView.isHidden = false
+//                        emptyTitleLabel.isHidden = false
+//                        emptySubTitle.isHidden = false
+//                        nameLabel.isHidden = true
+//                        catchingButton.isHidden = true
+//                        collectionView = true
+//                        pageControl = true
+//                    } else {
+//                        emptyImageView.isHidden = true
+//                        emptyTitleLabel.isHidden = true
+//                        emptySubTitle.isHidden = true
+//
+//                        data.append(contentsOf: characterData?.data ?? [])
+//
+//                        names.removeAll()
+//                        levels.removeAll()
+//                        activitys.removeAll()
+//                        totals.removeAll()
+//                        characters.removeAll()
+//
+//                        for i in 0..<data.count {
+//                            names.append(data[i].characterName)
+//                            levels.append(data[i].characterLevel)
+//                            activitys.append(data[i].activityCount)
+//                            totals.append(data[i].countPercentage ?? 0)
+//                            characters.append(data[i].characterIndex)
+//                        }
+//
+//                        collectionView.reloadData()
+//                        pageControl.pages = names.count
+//                        if !names.isEmpty {
+//                            nameLabel.text = names[0]
+//                            nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+//                        }
+//
+//                        UIView.animate(withDuration: 0.5, animations: {
+//                            pageControl.alpha = 0
+//                            collectionView.alpha = 0
+//                            nameLabel.alpha = 0
+//                            pageControl.alpha = 1.0
+//                            collectionView.alpha = 1.0
+//                            nameLabel.alpha = 1.0
+//                        })
+//                    }
+                    
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }

@@ -9,6 +9,12 @@ import UIKit
 
 class XmarkButton: UIButton {
     
+    init() {
+        super.init(frame: .zero)
+        configUI()
+        setupLayout()
+    }
+    
     init(_ vc: UIViewController) {
         super.init(frame: .zero)
         configUI()

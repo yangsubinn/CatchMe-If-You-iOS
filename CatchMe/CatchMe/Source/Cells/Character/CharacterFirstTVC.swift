@@ -13,7 +13,9 @@ import SnapKit
 class CharacterFirstTVC: UITableViewCell {
     static let identifier = "CharacterFirstTVC"
     
-    // MARK: - Properties    
+    // MARK: - Properties
+    var rootVC: UIViewController?
+
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
     }
@@ -160,6 +162,52 @@ class CharacterFirstTVC: UITableViewCell {
             make.top.equalTo(emptyStateImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 0 : 10)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    @objc func touchupMoreButton(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertViewController.view.tintColor = .white
+        
+        if let actionSheet = alertViewController.view.subviews.first,
+           let secondSheet = alertViewController.view.subviews.last {
+            for innerView in actionSheet.subviews {
+                innerView.backgroundColor = .black300
+                innerView.layer.cornerRadius = 18.0
+                innerView.clipsToBounds = true
+            }
+            for innerView in secondSheet.subviews {
+                innerView.backgroundColor = .black300
+                innerView.layer.cornerRadius = 18.0
+                innerView.clipsToBounds = true
+            }
+        }
+        
+        let editAction = UIAlertAction(title: "수정", style: .default) { result in
+            print("수정")
+            // 편집VC로 화면 전환 코드 작성해야 함
+            let vc = AddActionVC()
+            vc.modalPresentationStyle = .overFullScreen
+            vc.text = self.commentLabel.text
+            self.rootVC?.present(vc, animated: true, completion: nil)
+        }
+        
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
+            let vc = CharacterPopupVC()
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.rootVC?.present(vc, animated: true, completion: nil)
+        }
+        
+        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alertViewController.addAction(editAction)
+        alertViewController.addAction(deleteAction)
+        alertViewController.addAction(cancelAction)
+        
+        self.rootVC?.present(alertViewController, animated: true, completion: nil)
     }
     
     func setData(date: String, comment: String, image: String) {

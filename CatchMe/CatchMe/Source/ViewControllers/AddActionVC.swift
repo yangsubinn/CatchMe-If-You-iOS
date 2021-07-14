@@ -17,6 +17,7 @@ class AddActionVC: UIViewController {
     let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2km 뛰었음)"
     let maxWordCount: Int = 150
     var wordCount: Int = 0
+    var text: String?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -140,6 +141,12 @@ class AddActionVC: UIViewController {
         activityTextView.text = placholder
         activityTextView.textColor = .gray200
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
+        
+        print(text ?? placholder)
+        
+        activityTextView.text = text ?? placholder
+    
+        
     }
     
     func setupAutoLayout() {

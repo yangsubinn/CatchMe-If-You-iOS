@@ -19,7 +19,6 @@ class MainVC: UIViewController {
     let nameLabel = UILabel()
     let catchingButton = UIButton()
     let pageControl = PageControl()
-    let reportView = mainReportView()
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubTitle = UILabel()
@@ -31,15 +30,26 @@ class MainVC: UIViewController {
     var levels: [String] = ["3", "2", "2", "2", "1"]
     var activitys: [String] = ["10", "5", "6", "8", "1"]
     var totals: [String] = ["90", "70", "10", "6", "100"]
+    var names: [String] = ["솝트없이못사는솝트러버솝트러버솝트아어끝", "암벽등반을 매우 좋아하는 날다람쥐어끝", "솝트없이못사는솝트러버솝트러버솝트아끝끝",
+                           "끝트없이못사는솝트러버솝트러버솝트아끝끝", "끝끝없이못사는솝트러버솝트러버솝트아어끝"]
     
-    let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    let collectionViewFlowLayout: UICollectionViewLayout = {
+        let layout = UICollectionViewFlowLayout()
+        let cellWidth = UIScreen.main.bounds.width * (319/375)
+        var cellHeight : CGFloat = UIScreen.main.hasNotch ? 450 : 400
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        let spacing = (UIScreen.main.bounds.width - cellWidth) / 2
+        layout.minimumLineSpacing = 16
+        layout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
+        layout.scrollDirection = .horizontal
+        return layout
+    }()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDate()
-        setupReportView()
         setupTopLayout()
         setupLayout()
 //        setupEmptyLayout()
@@ -66,13 +76,13 @@ class MainVC: UIViewController {
     
         calendarButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
-            make.trailing.equalTo(settingButton.snp.leading)
+            make.trailing.equalTo(settingButton.snp.leading).offset(5)
             make.width.height.equalTo(48)
         }
         
         lookButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 48 : 34)
-            make.trailing.equalTo(calendarButton.snp.leading)
+            make.trailing.equalTo(calendarButton.snp.leading).offset(5)
             make.width.height.equalTo(48)
         }
         
@@ -85,14 +95,13 @@ class MainVC: UIViewController {
     }
     
     private func setupLayout() {
-        view.addSubviews([nameLabel, reportView, catchingButton,
-                          collectionView, pageControl])
+        view.addSubviews([nameLabel, catchingButton, collectionView, pageControl])
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-            make.width.equalTo(195)
-            make.height.equalTo(62)
+            make.width.equalTo(220)
+            make.height.equalTo(58)
         }
         
         pageControl.snp.makeConstraints { make in
@@ -105,18 +114,12 @@ class MainVC: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 20)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(UIScreen.main.hasNotch ? 269 : 210)
+            make.height.equalTo(UIScreen.main.hasNotch ? 450 : 380)
             make.centerX.equalToSuperview()
         }
         
-        reportView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 14)
-            make.leading.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 24)
-            make.height.equalTo(152)
-        }
-        
         catchingButton.snp.makeConstraints { make in
-            make.top.equalTo(reportView.snp.bottom).offset(UIScreen.main.hasNotch ? 30 : 22)
+            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 28 : 22)
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()
@@ -165,16 +168,11 @@ class MainVC: UIViewController {
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
         dateLabel.addCharacterSpacing(kernValue: -0.6)
         
-        nameLabel.text = "솝트없이못사는솝트러버솝트러버솝트"
+        nameLabel.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         nameLabel.textColor = .white
         nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         nameLabel.numberOfLines = 2
-        
-        let attributedString = NSMutableAttributedString(string: nameLabel.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        nameLabel.attributedText = attributedString
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         
         emptyTitleLabel.text = "캐츄를 추가해보세요!"
         emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
@@ -186,26 +184,18 @@ class MainVC: UIViewController {
     }
     
     private func setupCollectionView() {
-        collectionViewFlowLayout.scrollDirection = .horizontal
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.setupCollectionViewNib(nib: CharacterCVC.identifier)
         collectionView.backgroundColor = .clear
-        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.decelerationRate = .fast
+        collectionView.isPagingEnabled = false
     }
     
     private func setupPageControl() {
         pageControl.pages = 5
-    }
-    
-    private func setupReportView() {
-        reportView.backgroundColor = .black200
-        reportView.layer.cornerRadius = 14
-        reportView.layer.borderColor = UIColor.bordergrey.cgColor
-        reportView.layer.borderWidth = 2
     }
     
     private func setupDate() {
@@ -220,9 +210,7 @@ class MainVC: UIViewController {
     }
     
     private func changeLabelText(page: Int) {
-        reportView.levelCountLabel.text = levels[page]
-        reportView.activeCountLabel.text = activitys[page]
-        reportView.percentCountLabel.text = totals[page]
+        nameLabel.text = names[page]
     }
 }
 
@@ -233,40 +221,42 @@ extension MainVC: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCVC.identifier, for: indexPath) as? CharacterCVC else {
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCVC.identifier, for: indexPath) as? CharacterCVC else { return UICollectionViewCell() }
+        
+        cell.reportView.activeCountLabel.text = activitys[indexPath.row]
+        cell.reportView.levelCountLabel.text = levels[indexPath.row]
+        cell.reportView.percentCountLabel.text = totals[indexPath.row]
+        
         return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension MainVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension MainVC: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        /// page control selected page 바꾸는 코드
         let page = round(scrollView.contentOffset.x / scrollView.frame.width)
-        pageControl.selectedPage = Int(page)
         
-        /// Label 내용 변경하는 코드
+        pageControl.selectedPage = Int(page)
         changeLabelText(page: Int(page))
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+
+        var offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left ) /  cellWidthIncludingSpacing
+        var roundedIndex = round(index)
+        
+        if scrollView.contentOffset.x > targetContentOffset.pointee.x{
+            roundedIndex = floor(index)
+        } else {
+            roundedIndex = ceil(index)
+        }
+        
+        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
+                         y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
     }
 }

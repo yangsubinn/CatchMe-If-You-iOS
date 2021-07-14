@@ -15,25 +15,9 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="342" height="269"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3R6-Vh-53y">
-                        <rect key="frame" x="84" y="47.5" width="174" height="174"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="174" id="6VK-WM-pgC"/>
-                            <constraint firstAttribute="height" constant="174" id="FxE-Bw-1n4"/>
-                        </constraints>
-                    </imageView>
-                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <constraints>
-                <constraint firstItem="3R6-Vh-53y" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="EUc-aB-FMK"/>
-                <constraint firstItem="3R6-Vh-53y" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="MgG-aG-Z9h"/>
-            </constraints>
             <size key="customSize" width="237" height="170"/>
-            <connections>
-                <outlet property="characterImage" destination="3R6-Vh-53y" id="zy0-s8-QQT"/>
-            </connections>
             <point key="canvasLocation" x="112.31884057971016" y="122.54464285714285"/>
         </collectionViewCell>
     </objects>

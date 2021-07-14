@@ -60,7 +60,7 @@ class MainCardCVC: UICollectionViewCell {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(characterBackView.snp.bottom).offset(10)
+            make.top.equalTo(characterBackView.snp.bottom).offset(11)
             make.leading.equalToSuperview().inset(14)
             make.width.equalTo(127)
             make.height.equalTo(36)

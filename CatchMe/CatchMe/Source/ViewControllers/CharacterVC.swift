@@ -7,10 +7,14 @@
 
 import UIKit
 
+import Moya
 import Then
 import SnapKit
 
 class CharacterVC: UIViewController {
+    private let authProvider = MoyaProvider<CharacterService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    private var characterModel: CharacterModel?
+    
     // MARK: - Lazy Properties
     lazy var naviBar = NavigationBar(vc: self)
     
@@ -31,6 +35,7 @@ class CharacterVC: UIViewController {
         configUI()
         setupAutoLayout()
         setupTableView()
+        fetchCharacterDetail()
     }
     
     // MARK: - Custom Method
@@ -182,7 +187,7 @@ extension CharacterVC: UITableViewDelegate {
         let backgroundWidth = self.upperView.backgroundView.bounds.width
         let backgroundHeight = self.upperView.backgroundView.bounds.height
         let offset = scrollView.contentOffset.y
-
+        
         if width - offset < 171 {
             UIView.animate(withDuration: 0.1) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)
@@ -251,7 +256,7 @@ extension CharacterVC: UITableViewDataSource {
                     firstCell.setupEmptyLayout()
                 } else {
                     firstCell.setupAutoLayout()
-//                    firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
+                    //                    firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
                     firstCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
                 }
                 return firstCell
@@ -263,12 +268,32 @@ extension CharacterVC: UITableViewDataSource {
                 } else {
                     restCell.setupAutoLayout()
                     restCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
-//                    restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
+                    //                    restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
                 }
                 return restCell
             }
         default:
             return UITableViewCell()
+        }
+    }
+}
+
+extension CharacterVC {
+    // MARK: - Network
+    func fetchCharacterDetail() {
+        let param = CharacterRequest.init(2)
+        authProvider.request(.characterDetail(param: param)) { response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.characterModel = try result.map(CharacterModel.self)
+                    
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
         }
     }
 }

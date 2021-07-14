@@ -52,7 +52,11 @@ class ReportView: UIView {
     
     func setCharacterView(data: ReportData?) {
         if let data = data {
-////            characterView = CharacterView(catching: data.catching, name: data.characterName, character: )
+            let character = setCharacterImage(level: data.characterLevel, index: data.characterIndex, size: 121)
+            characterView.setupCharacterView(catching: data.catching, name: data.characterName, character: character)
+            
+        } else {
+            characterView.setupEmptyView()
         }
     }
 }

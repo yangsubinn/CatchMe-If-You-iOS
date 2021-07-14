@@ -16,13 +16,14 @@ class ReportViewModel {
     private var reportModel: ReportModel?
     
     // MARK: - POST /maincard/create
-    func fetchReport(year: Int, month: Int) {
+    func fetchReport(year: Int, month: Int, completion: @escaping ((ReportData?) -> ())) {
         authProvider.request(.report(year, month)) { response in
             switch response {
             case .success(let result):
                 do {
                     self.reportModel = try result.map(ReportModel.self)
                     
+                    completion(self.reportModel?.data)
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

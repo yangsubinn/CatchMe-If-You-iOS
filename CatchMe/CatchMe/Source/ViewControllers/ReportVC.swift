@@ -33,6 +33,9 @@ class ReportVC: UIViewController {
     
     // MARK: - Dummy Data
     let viewModel = ReportViewModel.shared
+    var activites: [ActivitiesOfMonth] = []
+    var indexs: [Int] = []
+    var levels: [Int] = []
     var monthDate: [String] = []
     var dayAndYear = ""
     
@@ -195,7 +198,22 @@ class ReportVC: UIViewController {
     }
     
     func fetchData(year: Int, month: Int) {
-        viewModel.fetchReport(year: year, month: month)
+        viewModel.fetchReport(year: year, month: month) { data in
+            self.reportView.setCharacterView(data: data)
+            
+            if let months = data?.activitiesOfMonth {
+                self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
+                self.levels.append(contentsOf: data?.characterLevelArr ?? [])
+                self.activites.append(contentsOf: months)
+                
+                for i in months {
+                    self.monthDate += [i.activityMonth]
+                }
+                
+                let removedDuplicate: Set = Set(self.monthDate)
+                self.monthDate = removedDuplicate.sorted()
+            }
+        }
     }
 }
 

@@ -45,7 +45,7 @@ extension MainService: TargetType {
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": GeneralAPI.token] // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDMzMWJkN2Y5ZjAzNWE5ODg1YmIxIn0sImlhdCI6MTYyNjI4MTA2MCwiZXhwIjoxNjI3NDkwNjYwfQ.cpSUdERjBij7OXnsR5d1DPizfm257iyPREmOKppW_fg"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDMzMWJkN2Y5ZjAzNWE5ODg1YmIxIn0sImlhdCI6MTYyNjI4MTA2MCwiZXhwIjoxNjI3NDkwNjYwfQ.cpSUdERjBij7OXnsR5d1DPizfm257iyPREmOKppW_fg"] // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZDMzMWJkN2Y5ZjAzNWE5ODg1YmIxIn0sImlhdCI6MTYyNjI4MTA2MCwiZXhwIjoxNjI3NDkwNjYwfQ.cpSUdERjBij7OXnsR5d1DPizfm257iyPREmOKppW_fg" GeneralAPI.token
         }
     }
 }

@@ -20,7 +20,7 @@ class CharacterFirstTVC: UITableViewCell {
     
     let emptyStateLabel = UILabel().then {
         $0.text = "아직 캐츄의 활동이 없어요"
-        $0.font = (UIScreen.main.hasNotch ? .stringRegularSystemFont(ofSize: 18) : .stringRegularSystemFont(ofSize: 10))
+        $0.font = .stringRegularSystemFont(ofSize: 18)
         $0.textColor = .gray200
         $0.textAlignment = .center
     }
@@ -150,14 +150,14 @@ class CharacterFirstTVC: UITableViewCell {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
         emptyStateImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 25 : 10)
+            make.top.equalTo(self.snp.top).inset(25)
             make.centerX.equalToSuperview()
-            make.width.equalTo(UIScreen.main.hasNotch ? 251 : 120)
-            make.height.equalTo(UIScreen.main.hasNotch ? 145 : 66)
+            make.width.equalTo(UIScreen.main.hasNotch ? 251 : 0)
+            make.height.equalTo(UIScreen.main.hasNotch ? 145 : 0)
         }
         
         emptyStateLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyStateImageView.snp.bottom)
+            make.top.equalTo(emptyStateImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 0 : 10)
             make.centerX.equalToSuperview()
         }
     }

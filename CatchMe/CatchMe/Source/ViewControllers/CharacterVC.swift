@@ -23,11 +23,7 @@ class CharacterVC: UIViewController {
         $0.image = UIImage(named: "imgCatchGuide")
     }
     
-    var posts = [Activity(date: "2021.05.01", comment: "캐치미사랑해? 말해모해? 당연하지", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "위얼 훈지킴 마이지 조치미 훈븨킴 쇼틀마이쇼틀 갸야야야아앙 줌보걸즈 위얼 줌보걸즈 위얼 줌보걸즈", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 너무 더웡 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 맥주 배불렁 오늘은 배가 부르당 마트 다녀오셨어요? 네..?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "캐치미 채키라웃 붐붑 캐치미 해리포터, 기능띵세륀 누누 조리나 흑마법사 훈세 영자이 밥오", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "캐치미 너무 너무 조아욜~! 뷰가 킹받는데.. 오카징. 재사용 나가!", image: "왕")]
+    var posts = [String]()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -152,8 +148,12 @@ extension CharacterVC: UITableViewDelegate {
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             return headerView
         default:
-            let footerView = CharacterFooterView()
-            return footerView
+            if posts.isEmpty {
+                return nil
+            } else {
+                let footerView = CharacterFooterView()
+                return footerView
+            }
         }
     }
     
@@ -251,7 +251,7 @@ extension CharacterVC: UITableViewDataSource {
                     firstCell.setupEmptyLayout()
                 } else {
                     firstCell.setupAutoLayout()
-                    firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
+//                    firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
                     firstCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
                 }
                 return firstCell
@@ -263,7 +263,7 @@ extension CharacterVC: UITableViewDataSource {
                 } else {
                     restCell.setupAutoLayout()
                     restCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
-                    restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
+//                    restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
                 }
                 return restCell
             }

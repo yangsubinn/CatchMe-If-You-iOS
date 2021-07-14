@@ -13,7 +13,7 @@ import SnapKit
 class MainPopupView: UIView {
     // MARK: - Properties
     let levelImageView = UIImageView().then {
-        $0.image = UIImage(named: "level1")
+        $0.image = UIImage(named: "level3")
     }
     
     let noticeLabel = UILabel().then {
@@ -23,13 +23,16 @@ class MainPopupView: UIView {
     }
     
     let characterImageView = UIImageView().then {
-        $0.image = Character.purple.getCharacterImage(phase: 1, size: 131)
+        $0.image = Character.purple.getCharacterImage(phase: 3, size: 131)
     }
     
     let nameLabel = UILabel().then {
         $0.font = .catchuRegularSystemFont(ofSize: 20)
         $0.textColor = .white
-        $0.text = "자유로이 세상을 떠도는 탐험가"
+        $0.text = "자유로이 \n세상을 떠도는 탐험가"
+        $0.numberOfLines = 2
+        $0.addCharacterSpacing()
+        $0.textAlignment = .center
     }
     
     let okButton = UIButton().then {
@@ -38,6 +41,7 @@ class MainPopupView: UIView {
         $0.setTitle("확인", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 27
+        $0.addTarget(self, action: #selector(touchupOkButton(_:)), for: .touchUpInside)
     }
     
     var viewController = UIViewController()
@@ -72,25 +76,30 @@ class MainPopupView: UIView {
         
         noticeLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(levelImageView.snp.bottom).offset(19)
+            make.top.equalTo(levelImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 20 : 19)
         }
         
         characterImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(noticeLabel.snp.bottom).offset(24)
+            make.top.equalTo(noticeLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 26 : 24)
             make.width.height.equalTo(121)
         }
         
         nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(characterImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 12 : 3)
             make.centerX.equalToSuperview()
-            make.top.equalTo(characterImageView.snp.bottom).offset(3)
+            make.width.equalTo(195)
         }
         
         okButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nameLabel.snp.bottom).offset(23)
+            make.bottom.equalToSuperview().inset(UIScreen.main.hasNotch ? 43 : 40)
             make.height.equalTo(50)
             make.width.equalTo(173)
         }
+    }
+    
+    @objc func touchupOkButton(_ sender: UIButton) {
+        viewController.dismiss(animated: true, completion: nil)
     }
 }

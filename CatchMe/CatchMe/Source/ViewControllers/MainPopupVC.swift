@@ -22,7 +22,7 @@ class MainPopupVC: UIViewController {
     
     // MARK: - Custom Method
     private func configUI() {
-        view.backgroundColor = .black200
+        view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.8)
     }
     
     private func setupLayout() {

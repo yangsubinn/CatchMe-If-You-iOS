@@ -217,11 +217,11 @@ class MainVC: UIViewController {
     
     // MARK: - @objc
     @objc func setupButtonAction(_ sender: UIButton) {
-        print("------눌렸다------")
         guard  let vc = storyboard?.instantiateViewController(identifier: "MainPopupVC") as? MainPopupVC else { return }
+        
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
 }
 

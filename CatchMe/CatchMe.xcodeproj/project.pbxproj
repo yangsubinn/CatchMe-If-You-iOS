@@ -27,6 +27,8 @@
 		5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08505F2691A126008F40B2 /* CharacterTVC.swift */; };
 		5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */; };
 		5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0850672691A659008F40B2 /* CharacterReportTVC.swift */; };
+		5B205760269D58BA00DE9629 /* AddActionDatePickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B20575F269D58BA00DE9629 /* AddActionDatePickerPopupView.swift */; };
+		5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B205763269D590600DE9629 /* AddActionDatePickerPopupVC.swift */; };
 		5B447CBD2694D3D100F79AB7 /* CharacterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */; };
 		5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */; };
 		5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */; };
@@ -142,6 +144,8 @@
 		5B08505F2691A126008F40B2 /* CharacterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterTVC.swift; path = CatchMe/Source/Cells/Character/CharacterTVC.swift; sourceTree = SOURCE_ROOT; };
 		5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHeaderView.swift; sourceTree = "<group>"; };
 		5B0850672691A659008F40B2 /* CharacterReportTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterReportTVC.swift; path = CatchMe/Source/Cells/Character/CharacterReportTVC.swift; sourceTree = SOURCE_ROOT; };
+		5B20575F269D58BA00DE9629 /* AddActionDatePickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionDatePickerPopupView.swift; sourceTree = "<group>"; };
+		5B205763269D590600DE9629 /* AddActionDatePickerPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionDatePickerPopupVC.swift; sourceTree = "<group>"; };
 		5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPopupView.swift; sourceTree = "<group>"; };
 		5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPopupVC.swift; sourceTree = "<group>"; };
 		5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionVC.swift; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				5B447D092699984D00F79AB7 /* AddActionPopupView.swift */,
+				5B20575F269D58BA00DE9629 /* AddActionDatePickerPopupView.swift */,
 			);
 			path = AddAction;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 				5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */,
 				5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */,
 				5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */,
+				5B205763269D590600DE9629 /* AddActionDatePickerPopupVC.swift */,
 				EDD12CA7268EB84C00DF766A /* ReportVC.swift */,
 				EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */,
 				EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */,
@@ -859,6 +865,7 @@
 				EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
+				5B205760269D58BA00DE9629 /* AddActionDatePickerPopupView.swift in Sources */,
 				EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */,
 				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
 				EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */,
@@ -873,6 +880,7 @@
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
+				5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */,
 				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
 				ED728411269D600F00D19FD5 /* SignupModel.swift in Sources */,
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,

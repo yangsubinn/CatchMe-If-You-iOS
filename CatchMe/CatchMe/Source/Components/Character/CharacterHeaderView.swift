@@ -43,8 +43,10 @@ class CharacterHeaderView: UIView {
         $0.backgroundColor = .orange
     }
     
+    let nameView = UIView()
+    
     let nameLabel = UILabel().then {
-        $0.text = "한둘셋넷다여일여아열\n한둘셋넷다여일여아열"
+        $0.text = "한둘셋넷다여일여아열한둘셋넷다여일여아열"
         $0.font = .systemFont(ofSize: 20, weight: .bold)
         $0.textAlignment = .left
         $0.textColor = .white
@@ -78,7 +80,8 @@ class CharacterHeaderView: UIView {
     }
         
     private func setupAutoLayout() {
-        addSubviews([lockDateStackView, fromLabel, writeButton, nameLabel])
+        addSubviews([lockDateStackView, fromLabel, writeButton,
+                     nameView, nameLabel])
         lockDateStackView.addArrangedSubview(lockImageView)
         lockDateStackView.addArrangedSubview(dateLabel)
         
@@ -103,12 +106,20 @@ class CharacterHeaderView: UIView {
             make.width.equalTo(72)
             make.height.equalTo(48)
         }
+        
+        nameView.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(13)
+            make.leading.equalToSuperview().inset(28)
+            make.width.equalTo(186)
+            make.height.lessThanOrEqualTo(52)
+        }
             
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(lockDateStackView.snp.bottom).offset(10)
-            make.leading.equalTo(self.snp.leading).inset(28)
+            make.centerY.equalTo(nameView.snp.centerY)
+            make.leading.equalTo(nameView.snp.leading)
             make.trailing.equalToSuperview().inset(161)
-            make.height.lessThanOrEqualTo(58)
+            make.width.equalTo(185)
+            make.height.lessThanOrEqualTo(52)
         }
     }
 }

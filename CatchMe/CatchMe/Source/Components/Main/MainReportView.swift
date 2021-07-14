@@ -1,5 +1,5 @@
 //
-//  mainReportView.swift
+//  MainReportView.swift
 //  CatchMe
 //
 //  Created by 양수빈 on 2021/07/04.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class mainReportView: UIView {
+class MainReportView: UIView {
     //MARK: - Properties
     let topLineView = UIView()
     let titleLabel = UILabel()

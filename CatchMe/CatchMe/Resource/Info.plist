@@ -8,6 +8,7 @@
 	<string>Dark</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>DINPro-Bold.otf</string>
 		<string>SpoqaHanSansNeo-Regular.otf</string>
 		<string>SpoqaHanSansNeo-Medium.otf</string>
 		<string>SpoqaHanSansNeo-Bold.otf</string>

@@ -72,10 +72,10 @@ class MainCardVC: UIViewController {
         }
         
         addButton.snp.makeConstraints { make in
-            make.top.equalTo(backButton.snp.bottom).offset(14)
+            make.top.equalTo(backButton.snp.bottom).offset(16)
             make.trailing.equalToSuperview().inset(27)
-            make.width.equalTo(72)
-            make.height.equalTo(48)
+            make.width.equalTo(91)
+            make.height.equalTo(38)
         }
         
         alignButton.snp.makeConstraints { make in
@@ -94,7 +94,7 @@ class MainCardVC: UIViewController {
         view.backgroundColor = .black100
         
         popupButton.setImage(UIImage(named: "btnGuide"), for: .normal)
-        addButton.setImage(UIImage(named: "actionDefault"), for: .normal)
+        addButton.setImage(UIImage(named: "btnCatchuCatching"), for: .normal)
         alignButton.setImage(UIImage(named: "btnAlign"), for: .normal)
         topBackView.image = UIImage(named: "scrollRectangle")
         emptyImageView.image = UIImage(named: "catchu")

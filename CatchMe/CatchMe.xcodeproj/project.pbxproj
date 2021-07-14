@@ -18,8 +18,10 @@
 		2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */; };
 		2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */; };
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
-		2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* mainReportView.swift */; };
+		2B3654EF2691D6D9002C2C5C /* MainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* MainReportView.swift */; };
 		2B84570A26998ABD0096DEAA /* EditNicknameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84570926998ABD0096DEAA /* EditNicknameVC.swift */; };
+		2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B256269E3685004BE562 /* MainPopupVC.swift */; };
+		2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B25A269E376A004BE562 /* MainPopupView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
 		2BDC1ABB26946882008381C3 /* MainCardCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AB926946882008381C3 /* MainCardCVC.swift */; };
 		2BDC1ABC26946882008381C3 /* MainCardCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDC1ABA26946882008381C3 /* MainCardCVC.xib */; };
@@ -28,6 +30,8 @@
 		5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08505F2691A126008F40B2 /* CharacterTVC.swift */; };
 		5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */; };
 		5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0850672691A659008F40B2 /* CharacterReportTVC.swift */; };
+		5B205760269D58BA00DE9629 /* AddActionDatePickerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B20575F269D58BA00DE9629 /* AddActionDatePickerPopupView.swift */; };
+		5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B205763269D590600DE9629 /* AddActionDatePickerPopupVC.swift */; };
 		5B447CBD2694D3D100F79AB7 /* CharacterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */; };
 		5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */; };
 		5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */; };
@@ -62,6 +66,7 @@
 		ED728426269EC82F00D19FD5 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728425269EC82F00D19FD5 /* ChangePasswordView.swift */; };
 		ED728428269EDC5700D19FD5 /* LogoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728427269EDC5700D19FD5 /* LogoutVC.swift */; };
 		ED72842A269EDFB900D19FD5 /* LogoutPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728429269EDFB900D19FD5 /* LogoutPopupView.swift */; };
+		ED72842C269EE3C300D19FD5 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED72842B269EE3C300D19FD5 /* DINPro-Bold.otf */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -141,8 +146,10 @@
 		2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCVC.swift; sourceTree = "<group>"; };
 		2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCVC.xib; sourceTree = "<group>"; };
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
-		2B3654EE2691D6D9002C2C5C /* mainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainReportView.swift; sourceTree = "<group>"; };
+		2B3654EE2691D6D9002C2C5C /* MainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReportView.swift; sourceTree = "<group>"; };
 		2B84570926998ABD0096DEAA /* EditNicknameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameVC.swift; sourceTree = "<group>"; };
+		2BD1B256269E3685004BE562 /* MainPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupVC.swift; sourceTree = "<group>"; };
+		2BD1B25A269E376A004BE562 /* MainPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupView.swift; sourceTree = "<group>"; };
 		2BDC1AAF26942973008381C3 /* MainCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardVC.swift; sourceTree = "<group>"; };
 		2BDC1AB926946882008381C3 /* MainCardCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCVC.swift; sourceTree = "<group>"; };
 		2BDC1ABA26946882008381C3 /* MainCardCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCVC.xib; sourceTree = "<group>"; };
@@ -151,6 +158,8 @@
 		5B08505F2691A126008F40B2 /* CharacterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterTVC.swift; path = CatchMe/Source/Cells/Character/CharacterTVC.swift; sourceTree = SOURCE_ROOT; };
 		5B0850632691A1A4008F40B2 /* CharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHeaderView.swift; sourceTree = "<group>"; };
 		5B0850672691A659008F40B2 /* CharacterReportTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterReportTVC.swift; path = CatchMe/Source/Cells/Character/CharacterReportTVC.swift; sourceTree = SOURCE_ROOT; };
+		5B20575F269D58BA00DE9629 /* AddActionDatePickerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionDatePickerPopupView.swift; sourceTree = "<group>"; };
+		5B205763269D590600DE9629 /* AddActionDatePickerPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionDatePickerPopupVC.swift; sourceTree = "<group>"; };
 		5B447CBC2694D3D100F79AB7 /* CharacterPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPopupView.swift; sourceTree = "<group>"; };
 		5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPopupVC.swift; sourceTree = "<group>"; };
 		5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionVC.swift; sourceTree = "<group>"; };
@@ -187,6 +196,7 @@
 		ED728425269EC82F00D19FD5 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordView.swift; path = CatchMe/Source/ViewControllers/ChangePasswordView.swift; sourceTree = SOURCE_ROOT; };
 		ED728427269EDC5700D19FD5 /* LogoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutVC.swift; sourceTree = "<group>"; };
 		ED728429269EDFB900D19FD5 /* LogoutPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogoutPopupView.swift; path = CatchMe/Source/ViewControllers/LogoutPopupView.swift; sourceTree = SOURCE_ROOT; };
+		ED72842B269EE3C300D19FD5 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -336,7 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				2B3654EA2691C4D7002C2C5C /* PageControl.swift */,
-				2B3654EE2691D6D9002C2C5C /* mainReportView.swift */,
+				2B3654EE2691D6D9002C2C5C /* MainReportView.swift */,
+				2BD1B25A269E376A004BE562 /* MainPopupView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -399,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				5B447D092699984D00F79AB7 /* AddActionPopupView.swift */,
+				5B20575F269D58BA00DE9629 /* AddActionDatePickerPopupView.swift */,
 			);
 			path = AddAction;
 			sourceTree = "<group>";
@@ -467,6 +479,7 @@
 				5B447CC426956DDB00F79AB7 /* CharacterPopupVC.swift */,
 				5B447CCA2695A52E00F79AB7 /* AddActionVC.swift */,
 				5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */,
+				5B205763269D590600DE9629 /* AddActionDatePickerPopupVC.swift */,
 				EDD12CA7268EB84C00DF766A /* ReportVC.swift */,
 				EDBDC7FE2694444300CDF1B2 /* ReportPopupVC.swift */,
 				EDBDC8042694B70C00CDF1B2 /* AddCatchuVC.swift */,
@@ -480,6 +493,7 @@
 				ED72841D269DD38600D19FD5 /* AddCatchuPopupVC.swift */,
 				ED728421269E9B3400D19FD5 /* EditPasswordVC.swift */,
 				ED728427269EDC5700D19FD5 /* LogoutVC.swift */,
+				2BD1B256269E3685004BE562 /* MainPopupVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -649,6 +663,7 @@
 		EDBBFCE12693982600443077 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				ED72842B269EE3C300D19FD5 /* DINPro-Bold.otf */,
 				EDBBFCD92693981D00443077 /* DINPro-Medium.otf */,
 				EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */,
 				EDBBFCD82693981D00443077 /* NanumSquareRoundOTFEB.otf */,
@@ -812,6 +827,7 @@
 				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
+				ED72842C269EE3C300D19FD5 /* DINPro-Bold.otf in Resources */,
 				EDD12CA6268EB82B00DF766A /* Report.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,6 +899,7 @@
 				EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
+				5B205760269D58BA00DE9629 /* AddActionDatePickerPopupView.swift in Sources */,
 				EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */,
 				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
 				EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */,
@@ -900,6 +917,7 @@
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
+				5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */,
 				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
 				ED728411269D600F00D19FD5 /* SignupModel.swift in Sources */,
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,
@@ -912,10 +930,11 @@
 				ED72841E269DD38600D19FD5 /* AddCatchuPopupVC.swift in Sources */,
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				EDB72D4F269AEB7B003EE228 /* NetworkLoggerPlugin.swift in Sources */,
+				2B3654EF2691D6D9002C2C5C /* MainReportView.swift in Sources */,
 				ED728424269E9BD400D19FD5 /* CurrentPasswordView.swift in Sources */,
-				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
+				2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */,
 				2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
@@ -957,6 +976,7 @@
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				EDB72D51269AEE60003EE228 /* UserData.swift in Sources */,
 				ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */,
+				2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */,
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
 				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,

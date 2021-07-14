@@ -26,7 +26,7 @@ extension MainService: TargetType {
     var method: Moya.Method {
         switch self {
         case .main:
-            return .post
+            return .get
         }
     }
     
@@ -44,8 +44,8 @@ extension MainService: TargetType {
     var headers: [String: String]? {
         switch self {
         default:
-            return ["Content-Type":"application/json",
-                    "token":GeneralAPI.token]
+            return ["Content-Type": "application/json",
+                    "token": GeneralAPI.token]
         }
     }
 }

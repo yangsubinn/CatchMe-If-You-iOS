@@ -7,14 +7,15 @@
 
 import UIKit
 
-enum Character {
-    case blue
-    case green
-    case orange
-    case purple
-    case yellowGreen
-    case skyblue
-    case yellow
+enum Character: Int {
+    case green = 1
+    case yellowGreen = 2
+    case orange = 3
+    case blue = 4
+    case purple = 5
+    case skyblue = 6
+    case yellow = 7
+    case gray = 8
 }
 
 extension Character {
@@ -34,6 +35,8 @@ extension Character {
             return UIImage(named: "colorSkybluePhase\(phase)Size\(size)")
         case .yellow:
             return UIImage(named: "colorYellowPhase\(phase)Size\(size)")
+        case .gray:
+            return UIImage(named: "colorGrayPhase\(phase)Size\(size)")
         }
     }
 }

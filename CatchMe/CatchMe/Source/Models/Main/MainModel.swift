@@ -12,12 +12,12 @@ struct MainModel: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: [MainCharacter]
+    let data: [MainCharacter]?
 }
 
 // MARK: - MainCharacter
 struct MainCharacter: Codable {
     let characterName: String
     let characterIndex, characterImageIndex, characterLevel, activityCount: Int
-    let countPercentage: Int
+    let countPercentage: Int?
 }

@@ -79,12 +79,12 @@ extension SettingVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
             navigationController?.pushViewController(vc, animated: true)
         case 1:
-            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditPasswordVC") as? EditPasswordVC else { return }
             navigationController?.pushViewController(vc, animated: true)
         case 2:
             guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }

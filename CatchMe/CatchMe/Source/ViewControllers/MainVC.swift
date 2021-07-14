@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Moya
 
 class MainVC: UIViewController {
     //MARK: - Properties
@@ -269,5 +270,34 @@ extension MainVC: UICollectionViewDelegate {
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
                          y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
+    }
+}
+
+// MARK: - Network
+extension MainVC {
+    func getCharacter() {
+//        guard let name = MainCharacter.characterName else { return }
+        
+//        guard let id = followerUserId else {return}
+//        print(id)
+//        authProvider.request(.followerDetail(id)) { response in
+//            switch response {
+//            case .success(let result):
+//                do {
+//                    self.follower = try result.map(FollowerDetailModel.self)
+//                    self.user = (self.follower?.data.user)!
+//                    self.isFollowing = self.follower?.data.isFollowing ?? false
+//                    self.courses.append(contentsOf: self.follower?.data.course ?? [])
+//                    self.records.append(contentsOf: self.follower?.data.record ?? [])
+//                    self.setUI()
+//                    self.followerTableView.reloadData()
+//                    print(self.isFollowing)
+//                } catch(let err) {
+//                    print(err.localizedDescription)
+//                }
+//            case .failure(let err):
+//                print(err.localizedDescription)
+//            }
+//        }
     }
 }

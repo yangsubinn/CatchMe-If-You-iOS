@@ -24,7 +24,6 @@ class CharacterCVC: UICollectionViewCell {
     
     //MARK: - Custom Method
     func configUI() {
-        characterImageView.image = Character.purple.getCharacterImage(phase: 3, size: 181)
         self.backgroundColor = .clear
     }
     
@@ -50,5 +49,9 @@ class CharacterCVC: UICollectionViewCell {
         reportView.layer.cornerRadius = 14
         reportView.layer.borderColor = UIColor.bordergrey.cgColor
         reportView.layer.borderWidth = 2
+    }
+    
+    func setImageView(level: Int, index: Int) {
+        characterImageView.image = setCharacterImage(level: level, index: index, size: 181)
     }
 }

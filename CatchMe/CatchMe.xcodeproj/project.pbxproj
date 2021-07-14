@@ -20,6 +20,9 @@
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
 		2B3654EF2691D6D9002C2C5C /* MainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* MainReportView.swift */; };
 		2B84570A26998ABD0096DEAA /* EditNicknameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84570926998ABD0096DEAA /* EditNicknameVC.swift */; };
+		2BB24C1F269ED48A002746BE /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C1E269ED48A002746BE /* MainService.swift */; };
+		2BB24C24269EDA88002746BE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C23269EDA88002746BE /* MainModel.swift */; };
+		2BB24C34269EEFDB002746BE /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BB24C33269EEFDB002746BE /* DINPro-Bold.otf */; };
 		2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B256269E3685004BE562 /* MainPopupVC.swift */; };
 		2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B25A269E376A004BE562 /* MainPopupView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
@@ -148,6 +151,9 @@
 		2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCVC.xib; sourceTree = "<group>"; };
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		2B3654EE2691D6D9002C2C5C /* MainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReportView.swift; sourceTree = "<group>"; };
+		2BB24C1E269ED48A002746BE /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
+		2BB24C23269EDA88002746BE /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		2BB24C33269EEFDB002746BE /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
 		2B84570926998ABD0096DEAA /* EditNicknameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameVC.swift; sourceTree = "<group>"; };
 		2BD1B256269E3685004BE562 /* MainPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupVC.swift; sourceTree = "<group>"; };
 		2BD1B25A269E376A004BE562 /* MainPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupView.swift; sourceTree = "<group>"; };
@@ -354,6 +360,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		2BB24C22269ED852002746BE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2BB24C23269EDA88002746BE /* MainModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		2BDC1AB7269466AA008381C3 /* MainCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +556,7 @@
 		ED63E89A268A1C54000F058F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2BB24C22269ED852002746BE /* Main */,
 				ED728418269DA98200D19FD5 /* MainCard */,
 				ED728402269D06C800D19FD5 /* Login */,
 				5B447CD226961D6400F79AB7 /* Character */,
@@ -611,6 +626,7 @@
 			children = (
 				ED728400269CFFED00D19FD5 /* LoginService.swift */,
 				ED728414269DA93300D19FD5 /* MainCardService.swift */,
+				2BB24C1E269ED48A002746BE /* MainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -894,6 +910,7 @@
 				ED728415269DA93300D19FD5 /* MainCardService.swift in Sources */,
 				EDC19D982698A90400F9E41B /* CustomNavigationBar.swift in Sources */,
 				2B12C6D8269B52BB00BCB7B3 /* LookVC.swift in Sources */,
+				2BB24C1F269ED48A002746BE /* MainService.swift in Sources */,
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
 				2B164B492695A988007F0F4A /* SettingVC.swift in Sources */,
 				EDB72D4D269AE607003EE228 /* GeneralAPI.swift in Sources */,
@@ -964,6 +981,7 @@
 				5B447D0A2699984E00F79AB7 /* AddActionPopupView.swift in Sources */,
 				EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */,
 				EDD12CA8268EB84C00DF766A /* ReportVC.swift in Sources */,
+				2BB24C24269EDA88002746BE /* MainModel.swift in Sources */,
 				EDB72D53269AEF86003EE228 /* Login.swift in Sources */,
 				EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */,
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,

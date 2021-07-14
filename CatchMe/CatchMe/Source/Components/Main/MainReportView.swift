@@ -139,15 +139,12 @@ class MainReportView: UIView {
         percentLabel.textColor = .white
         percentLabel.font = .stringMediumSystemFont(ofSize: 13)
         
-        activeCountLabel.text = "10"
         activeCountLabel.textColor = .white
         activeCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
-        levelCountLabel.text = "1"
         levelCountLabel.textColor = .white
         levelCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
-        percentCountLabel.text = "100"
         percentCountLabel.textColor = .white
         percentCountLabel.font = .numberMediumSystemFont(ofSize: 32)
         
@@ -158,5 +155,11 @@ class MainReportView: UIView {
         emptySubLabel.text = "캐칭을 기록하고 리포트로 확인해볼까요?"
         emptySubLabel.textColor = .white
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
+    }
+    
+    func setLabel(level: Int, activity: Int, percent: Int) {
+        levelCountLabel.text = "\(level)"
+        activeCountLabel.text = "\(activity)"
+        percentCountLabel.text = "\(percent)"
     }
 }

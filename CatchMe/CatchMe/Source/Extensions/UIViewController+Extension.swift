@@ -40,4 +40,27 @@ extension UIViewController {
             statusBar?.backgroundColor = color
         }
     }
+    
+    func setCharacterImage(level: Int, index: Int, size: Int) -> UIImage? {
+        switch index {
+        case Character.green.rawValue:
+            return Character.green.getCharacterImage(phase: level, size: size)
+        case Character.yellowGreen.rawValue:
+            return Character.yellowGreen.getCharacterImage(phase: level, size: size)
+        case Character.orange.rawValue:
+            return Character.orange.getCharacterImage(phase: level, size: size)
+        case Character.blue.rawValue:
+            return Character.blue.getCharacterImage(phase: level, size: size)
+        case Character.purple.rawValue:
+            return Character.purple.getCharacterImage(phase: level, size: size)
+        case Character.skyblue.rawValue:
+            return Character.skyblue.getCharacterImage(phase: level, size: size)
+        case Character.yellow.rawValue:
+            return Character.yellow.getCharacterImage(phase: level, size: size)
+        case Character.gray.rawValue:
+            return Character.gray.getCharacterImage(phase: level, size: size)
+        default:
+            return UIImage()
+        }
+    }
 }

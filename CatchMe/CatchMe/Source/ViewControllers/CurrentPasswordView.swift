@@ -37,11 +37,25 @@ class CurrentPasswordView: UIView {
         
         currentPWTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().inset(28)
+        }
+        
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(currentPWTitleLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(28)
+        }
+        
+        currentRemoveButton.snp.makeConstraints { make in
+            make.centerY.equalTo(passwordTextField.snp.centerY)
+            make.trailing.equalTo(passwordTextField.snp.trailing)
         }
     }
     
     private func configUI() {
+        currentPWTitleLabel.text = "현재 비밀번호 입력"
+        currentPWTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
+        currentPWTitleLabel.addCharacterSpacing()
         
+        currentRemoveButton.setImage(UIImage(named: "btnRemove"), for: .normal)
     }
 }

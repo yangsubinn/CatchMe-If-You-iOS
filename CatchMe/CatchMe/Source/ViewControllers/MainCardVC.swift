@@ -40,10 +40,6 @@ class MainCardVC: UIViewController {
     var characters: [Int] = []
     var levels: [Int] = []
     
-//    var names: [String] = ["안녕하세요", "양수빈입니다", "캐치는뭐지?", "권세훈짱나"]
-//    var characters: [Int] = [5, 5, 1, 3] // characterIndex: color
-//    var levels: [Int] = [1, 2, 2, 3]
-    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,13 +202,10 @@ class MainCardVC: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MainCardVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("--names---")
-        print(names.count)
         return names.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else { return UICollectionViewCell() }
         
         cell.nameLabel.text = names[indexPath.item]
@@ -259,9 +252,6 @@ extension MainCardVC {
                     names.removeAll()
                     levels.removeAll()
                     characters.removeAll()
-                    print("-----------------------------")
-                    print(data)
-//                    print(names)
                     
                     data.append(contentsOf: recentActivity?.data ?? [])
                     
@@ -275,12 +265,6 @@ extension MainCardVC {
                         levels.append(data[i].characterLevel)
                     }
                     collectionView.reloadData()
-//                    print("------------------------------")
-                    print(names)
-                    print(characters)
-                    print(levels)
-//                    print(data.count)
-//                    print("------------------------------------------")
                      
 //                    if data.isEmpty {
 //                        emptyImageView.isHidden = false

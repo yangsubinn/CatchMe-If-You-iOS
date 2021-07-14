@@ -12,15 +12,12 @@ import SnapKit
 
 class AddActionDatePickerPopupView: UIView {
     // MARK: - Properties
-    
     let closeButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .blue
+        $0.setImage(UIImage(named: "btnClose"), for: .normal)
     }
     
     let checkButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .blue
+        $0.setImage(UIImage(named: "btnDatepickerCheck"), for: .normal)
     }
     
     let selectLineView = UIView().then {
@@ -39,7 +36,6 @@ class AddActionDatePickerPopupView: UIView {
         $0.datePickerMode = .date
         $0.preferredDatePickerStyle = .wheels
         $0.locale = Locale(identifier: "ko_KR")
-//        $0.addTarget(self, action: #selector(changed), for: .valueChanged)
         $0.setValue(UIColor.white, forKeyPath: "textColor")
     }
     
@@ -106,22 +102,4 @@ class AddActionDatePickerPopupView: UIView {
             datePicker.minimumDate = minDate
         }
     }
-    
-    // MARK: - @objc
-//    @objc func changed() {
-//        let dateformatter = DateFormatter()
-//        dateformatter.dateStyle = .long
-//        dateformatter.timeStyle = .none
-//        dateformatter.locale = Locale(identifier: "ko_KR")
-//        dateformatter.dateFormat = "yyyy.MM.dd"
-//        
-//        var components = DateComponents()
-//        components.year = -20
-//        let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
-//        datePicker.minimumDate = minDate
-//        
-//        let date = dateformatter.string(from: datePicker.date)
-//        selectedDate = date
-//        print(selectedDate)
-//    }
 }

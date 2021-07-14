@@ -41,6 +41,7 @@
 		5B447CEF2697146800F79AB7 /* CharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */; };
 		5B447D0A2699984E00F79AB7 /* AddActionPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447D092699984D00F79AB7 /* AddActionPopupView.swift */; };
 		5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */; };
+		5B93ED3F269E367800B7F25C /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B93ED3E269E367800B7F25C /* DINPro-Bold.otf */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED3D6C402699A36800BB84C8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3D6C3F2699A36800BB84C8 /* String+Extension.swift */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
@@ -164,6 +165,7 @@
 		5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFooterView.swift; sourceTree = "<group>"; };
 		5B447D092699984D00F79AB7 /* AddActionPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionPopupView.swift; sourceTree = "<group>"; };
 		5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionPopupVC.swift; sourceTree = "<group>"; };
+		5B93ED3E269E367800B7F25C /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DINPro-Bold.otf"; path = "../../../../../DINPro-Bold.otf"; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3D6C3F2699A36800BB84C8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -657,6 +659,7 @@
 		EDBBFCE12693982600443077 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5B93ED3E269E367800B7F25C /* DINPro-Bold.otf */,
 				EDBBFCD92693981D00443077 /* DINPro-Medium.otf */,
 				EDBBFCDA2693981D00443077 /* DINPro-Regular.otf */,
 				EDBBFCD82693981D00443077 /* NanumSquareRoundOTFEB.otf */,
@@ -820,6 +823,7 @@
 				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
+				5B93ED3F269E367800B7F25C /* DINPro-Bold.otf in Resources */,
 				EDD12CA6268EB82B00DF766A /* Report.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

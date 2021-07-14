@@ -10,6 +10,7 @@ import UIKit
 struct AppFontName {
     static let numberRegular = "DINPro-Regular"
     static let numberMedium = "DINPro-Medium"
+    static let numberBold = "DINPro-Bold"
     static let catchuRegular = "NanumSquareRoundOTFEB"
     static let stringRegular = "SpoqaHanSansNeo-Regular"
     static let stringMedium = "SpoqaHanSansNeo-Medium"
@@ -27,6 +28,10 @@ extension UIFont {
     
     @objc class func numberMediumSystemFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.numberMedium, size: size)!
+    }
+    
+    @objc class func numberBoldSystemFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.numberBold, size: size)!
     }
     
     @objc class func catchuRegularSystemFont(ofSize size: CGFloat) -> UIFont {

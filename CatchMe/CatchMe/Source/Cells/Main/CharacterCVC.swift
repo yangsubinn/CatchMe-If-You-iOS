@@ -12,7 +12,7 @@ class CharacterCVC: UICollectionViewCell {
     
     //MARK: - Properties
     let characterImageView = UIImageView()
-    let reportView = mainReportView()
+    let reportView = MainReportView()
     
     //MARK: - Life Cycle
     override func awakeFromNib() {

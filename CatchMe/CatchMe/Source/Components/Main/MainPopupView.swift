@@ -33,7 +33,6 @@ class MainPopupView: UIView {
     }
     
     let okButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
         $0.backgroundColor = .pink100
         $0.titleLabel?.font = .stringMediumSystemFont(ofSize: 16)
         $0.setTitle("확인", for: .normal)

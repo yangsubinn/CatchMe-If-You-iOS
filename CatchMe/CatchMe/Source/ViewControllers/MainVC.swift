@@ -31,7 +31,7 @@ class MainVC: UIViewController {
     private let authProvider = MoyaProvider<MainService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     var characterData: MainModel?
 
-    //MARK: - Dummy Data
+    //MARK: - Server Data
     var levels: [Int] = []
     var activitys: [Int] = []
     var totals: [Int] = []
@@ -289,6 +289,12 @@ extension MainVC {
                     self.characterData = try result.map(MainModel.self)
                     data.append(contentsOf: characterData?.data ?? [])
                     
+                    names.removeAll()
+                    levels.removeAll()
+                    activitys.removeAll()
+                    totals.removeAll()
+                    characters.removeAll()
+                    
                     for i in 0..<data.count {
                         names.append(data[i].characterName)
                         levels.append(data[i].characterLevel)
@@ -296,13 +302,24 @@ extension MainVC {
                         totals.append(data[i].countPercentage ?? 0)
                         characters.append(data[i].characterIndex)
                     }
-                    
+
                     collectionView.reloadData()
                     pageControl.pages = names.count
-                    
                     if !names.isEmpty {
                         nameLabel.text = names[0]
                     }
+                    
+                    UIView.animate(withDuration: 0.5, animations: {
+                        pageControl.alpha = 0
+                        collectionView.alpha = 0
+                        nameLabel.alpha = 0
+                        pageControl.alpha = 1.0
+                        collectionView.alpha = 1.0
+                        nameLabel.alpha = 1.0
+                    })
+                    
+                    
+                    
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

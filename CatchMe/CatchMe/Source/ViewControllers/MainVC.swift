@@ -285,6 +285,8 @@ extension MainVC {
             case .success(let result):
                 do {
                     self.characterData = try result.map(MainModel.self)
+                     
+//                    if
                     data.append(contentsOf: characterData?.data ?? [])
                     
                     names.removeAll()

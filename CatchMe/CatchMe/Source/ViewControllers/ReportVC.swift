@@ -215,17 +215,18 @@ class ReportVC: UIViewController {
                 }
                 
                 let removedDuplicate: Set = Set(self.monthDate)
+                var dates: [String] = []
                 
                 for i in removedDuplicate {
                     if i.first == "0" {
-                        self.monthDate += [i.trimmingCharacters(in: ["0"])]
+                        dates += [i.trimmingCharacters(in: ["0"])]
                     } else {
-                        self.monthDate += [i]
+                        dates += [i]
                     }
-                    
                 }
-                self.monthDate = removedDuplicate.sorted()
-                
+                self.monthDate = dates.sorted(by: {
+                    $0.localizedStandardCompare($1) == .orderedAscending
+                })
             }
             
             print(self.indexs)
@@ -273,15 +274,18 @@ extension ReportVC: UICollectionViewDataSource {
             cell.dateLabel.font = .numberMediumSystemFont(ofSize: 18)
             cell.dateLabel.textColor = .gray500
             
+            
+            var inx = 0
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
-                    cell.characterImage.image = Character.orange.getCharacterImage(phase: 3, size: 43)
+                    cell.characterImage.image = setCharacterImage(level: levels[indexs[inx]], index: indexs[inx], size: 43)
                     cell.characterImage.isHidden = false
                     cell.countLabel.text = days[indexPath.row]
                     cell.countLabel.textColor = .gray400
                     cell.countLabel.font = .numberRegularSystemFont(ofSize: 13)
                     cell.dateLabel.isHidden = true
                     monthDate.removeFirst()
+                    inx += 1
                 } else {
                     cell.dateLabel.isHidden = false
                     cell.characterImage.isHidden = true

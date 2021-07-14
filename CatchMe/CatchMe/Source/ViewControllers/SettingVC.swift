@@ -15,7 +15,7 @@ class SettingVC: UIViewController {
     let titleLabel = UILabel()
     let settingTableView = UITableView(frame: .zero, style: .plain)
     
-    let sectionList: [String] = ["닉네임 변경", "비밀번호 변경", "이용약관", "오픈소스 라이선스", "로그아웃", "서비스 탈퇴"]
+    let sectionList: [String] = ["닉네임 변경", "비밀번호 변경", "이용약관", "오픈소스 라이선스", "개발자 정보", "로그아웃", "서비스 탈퇴"]
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -30,14 +30,17 @@ class SettingVC: UIViewController {
         view.addSubviews([backButton, titleLabel, settingTableView])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(55)
-            make.leading.equalTo(view.snp.leading).offset(14)
+            if UIScreen.main.hasNotch {
+                make.top.equalToSuperview().inset(55)
+            } else {
+                make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            }
+            make.leading.equalToSuperview().offset(14)
             make.width.height.equalTo(48)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(66)
-            make.centerX.equalTo(view.snp.centerX)
+            make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton.snp.centerY)
         }
         
@@ -49,12 +52,13 @@ class SettingVC: UIViewController {
     }
     
     func configUI() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         view.backgroundColor = .black100
-        backButton.backgroundColor = .blue100
         
         titleLabel.text = "설정"
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.stringBoldSystemFont(ofSize: 20)
+        titleLabel.font = .stringBoldSystemFont(ofSize: 20)
     }
     
     func setupTableView() {
@@ -67,6 +71,7 @@ class SettingVC: UIViewController {
         settingTableView.separatorStyle = .none
         settingTableView.tableFooterView = UIView(frame: .zero)
         settingTableView.sectionFooterHeight = 0
+        settingTableView.isScrollEnabled = false
     }
 }
 
@@ -77,7 +82,28 @@ extension SettingVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        switch indexPath.section {
+        case 0:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditPasswordVC") as? EditPasswordVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            break
+        case 5:
+            guard let vc = storyboard?.instantiateViewController(identifier: "LogoutVC") as? LogoutVC else { return }
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
+            present(vc, animated: true, completion: nil)
+        default:
+            guard let vc = storyboard?.instantiateViewController(identifier: "WithdrawalVC") as? WithdrawalVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
         
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -107,6 +133,8 @@ extension SettingVC: UITableViewDataSource {
         cell.backgroundColor = .black200
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = .stringRegularSystemFont(ofSize: 16)
+        
+        cell.selectionStyle = .none
 
         return cell
     }

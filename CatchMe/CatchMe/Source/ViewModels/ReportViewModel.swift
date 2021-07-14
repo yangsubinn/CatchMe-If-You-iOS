@@ -16,7 +16,7 @@ class ReportViewModel {
     private var reportModel: ReportModel?
     
     // MARK: - POST /maincard/create
-    func fetchReport(year: Int, month: Int, completion: @escaping ((ReportData?) -> ())) {
+    func fetchReport(year: Int, month: String, completion: @escaping ((ReportData?) -> ())) {
         authProvider.request(.report(year, month)) { response in
             switch response {
             case .success(let result):

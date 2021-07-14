@@ -191,13 +191,17 @@ class ReportVC: UIViewController {
         
         dayAndYear = year + "." + month
         
-        if let intYear = Int(year),
-           let intMonth = Int(month) {
-            fetchData(year: intYear, month: intMonth)
+        if let intYear = Int(year) {
+            fetchData(year: intYear, month: month)
         }
     }
     
-    func fetchData(year: Int, month: Int) {
+    func fetchData(year: Int, month: String) {
+        indexs.removeAll()
+        levels.removeAll()
+        activites.removeAll()
+        monthDate.removeAll()
+        
         viewModel.fetchReport(year: year, month: month) { data in
             self.reportView.setCharacterView(data: data)
             
@@ -207,12 +211,31 @@ class ReportVC: UIViewController {
                 self.activites.append(contentsOf: months)
                 
                 for i in months {
-                    self.monthDate += [i.activityMonth]
+                    self.monthDate += [i.activityDay]
                 }
                 
                 let removedDuplicate: Set = Set(self.monthDate)
+                
+                for i in removedDuplicate {
+                    if i.first == "0" {
+                        self.monthDate += [i.trimmingCharacters(in: ["0"])]
+                    } else {
+                        self.monthDate += [i]
+                    }
+                    
+                }
                 self.monthDate = removedDuplicate.sorted()
+                
             }
+            
+            print(self.indexs)
+            print("----------------")
+            print(self.levels)
+            print("----------------")
+            print(self.activites)
+            print("----------------")
+            print(self.monthDate)
+            self.dateCollectionView.reloadData()
         }
     }
 }

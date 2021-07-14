@@ -140,15 +140,6 @@ class CharacterVC: UIViewController {
         
         self.present(alertViewController, animated: true, completion: nil)
     }
-    
-// 캐치지수 팝업 관련 코드입니다.
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        super.touchesBegan(touches, with: event)
-    //        let touch = touches.first
-    //        if touch?.view != self.catchGuideImageView {
-    //            catchGuideImageView.isHidden = true
-    //        }
-    //    }
 }
 
 // MARK: - UITableViewDelegate
@@ -184,6 +175,9 @@ extension CharacterVC: UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        reportCell.catchGuideButton.isSelected = false
+        catchGuideImageView.isHidden = true
+        
         let width = UIScreen.main.bounds.width
         let backgroundWidth = self.upperView.backgroundView.bounds.width
         let backgroundHeight = self.upperView.backgroundView.bounds.height

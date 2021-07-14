@@ -182,7 +182,6 @@ class MainVC: UIViewController {
         nameLabel.textColor = .white
         nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         nameLabel.numberOfLines = 2
-        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         
         emptyTitleLabel.text = "캐츄를 추가해보세요!"
         emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
@@ -191,7 +190,6 @@ class MainVC: UIViewController {
         emptySubTitle.text = "캐츄와 함께 다양한 내 모습을 기록해요"
         emptySubTitle.font = .stringMediumSystemFont(ofSize: 14)
         emptySubTitle.textColor = .white
-   
     }
     
     private func setupCollectionView() {
@@ -307,6 +305,7 @@ extension MainVC {
                     pageControl.pages = names.count
                     if !names.isEmpty {
                         nameLabel.text = names[0]
+                        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
                     }
                     
                     UIView.animate(withDuration: 0.5, animations: {
@@ -317,8 +316,6 @@ extension MainVC {
                         collectionView.alpha = 1.0
                         nameLabel.alpha = 1.0
                     })
-                    
-                    
                     
                 } catch(let err) {
                     print(err.localizedDescription)

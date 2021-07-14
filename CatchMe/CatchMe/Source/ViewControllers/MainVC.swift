@@ -26,6 +26,10 @@ class MainVC: UIViewController {
     let catchMeButton = UIButton()
     
     var formatterDate = DateFormatter()
+    
+    //MARK: - Network
+    private let authProvider = MoyaProvider<MainService>()
+    var characterData: MainModel?
 
     //MARK: - Dummy Data
     var levels: [String] = ["3", "2", "2", "2", "1"]

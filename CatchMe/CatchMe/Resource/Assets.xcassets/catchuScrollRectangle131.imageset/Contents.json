@@ -3,17 +3,17 @@
     {
       "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "imgCatchGuide.png"
+      "filename" : "catchuScrollRectangle131.png"
     },
     {
-      "filename" : "imgCatchGuide@2x.png",
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "catchuScrollRectangle131@2x.png"
     },
     {
+      "filename" : "catchuScrollRectangle131@3x.png",
       "scale" : "3x",
-      "idiom" : "universal",
-      "filename" : "imgCatchGuide@3x.png"
+      "idiom" : "universal"
     }
   ],
   "info" : {

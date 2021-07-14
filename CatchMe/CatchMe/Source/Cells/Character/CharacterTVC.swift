@@ -15,7 +15,7 @@ class CharacterTVC: UITableViewCell {
 
     // MARK: - Properties
     let emptyStateImageView = UIImageView().then {
-        $0.image = UIImage(named: "ic")
+        $0.image = UIImage(named: "imgCharacterViewEmptyState")
         $0.backgroundColor = .orange
     }
     
@@ -56,8 +56,7 @@ class CharacterTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-        $0.image = UIImage(named: "icComment")
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "icCommentRectangle")
     }
     
     let commentLabel = UILabel().then {
@@ -66,11 +65,11 @@ class CharacterTVC: UITableViewCell {
         $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.textAlignment = .left
         $0.numberOfLines = 0
-        $0.addCharacterSpacing(kernValue: -0.08, paragraphValue: 4)
+        $0.addCharacterSpacing(kernValue: -0.08, paragraphValue: 2)
     }
     
     let photoImageView = UIImageView().then {
-        $0.image = UIImage(named: "imgContent")
+        $0.image = UIImage(named: "imgActivityPhoto")
         $0.layer.cornerRadius = 18
         $0.contentMode = .scaleAspectFill
     }
@@ -142,14 +141,13 @@ class CharacterTVC: UITableViewCell {
         
         commentView.snp.makeConstraints { make in
             make.width.equalTo(303)
-            make.height.equalTo(42)
         }
         
         commentLabel.snp.makeConstraints { make in
-            make.top.equalTo(commentView.snp.top).inset(12)
-            make.leading.equalTo(commentView.snp.leading).inset(14)
-            make.trailing.equalTo(commentView.snp.trailing).inset(14)
-            make.bottom.equalTo(commentView.snp.bottom).inset(12)
+            make.top.equalTo(12)
+            make.leading.equalTo(14)
+            make.trailing.equalTo(-14)
+            make.bottom.equalTo(-12)
         }
         
         photoImageView.snp.makeConstraints { make in

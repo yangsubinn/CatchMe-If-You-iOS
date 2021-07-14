@@ -25,32 +25,25 @@ class AddActionVC: UIViewController {
     }
     
     let dateButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = . white
+        $0.setImage(UIImage(named: "btnDropdown"), for: .normal)
         $0.addTarget(self, action: #selector(touchupDateButton(_:)), for: .touchUpInside)
     }
     
     let closeButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .blue
+        $0.setImage(UIImage(named: "btnClose"), for: .normal)
         $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
     
     let nameView = UIView()
     
     let nameLabel = UILabel().then {
-        $0.text = "캐치미를정캐츄캐치미를정캐츄캐치미"
+        $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
         $0.numberOfLines = 2
         $0.lineBreakMode = .byWordWrapping
-        
-        let attributedString = NSMutableAttributedString(string: $0.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        $0.attributedText = attributedString
+        $0.addCharacterSpacing(kernValue: -0.6, paragraphValue: 4)
     }
     
     let dateLabel = UILabel().then {
@@ -60,13 +53,12 @@ class AddActionVC: UIViewController {
     }
     
     let catchuImageView = UIImageView().then {
-        //        $0.image = UIImage(named: "")
-        $0.backgroundColor = .orange
+        $0.image = Character.orange.getCharacterImage(phase: 2, size: 151)
+        $0.contentMode = .scaleAspectFill
     }
     
     let radiusImageView = UIImageView().then {
-        //        $0.setImage(UIImage(named: "imgScroll"), for: .normal)
-        $0.backgroundColor = .yellow
+        $0.image = UIImage(named: "imgScrollRadius")
     }
     
     let blackBackgroundView = UIView().then {
@@ -114,22 +106,19 @@ class AddActionVC: UIViewController {
     }
     
     let photoButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.setImage(UIImage(named: "btnAddPhoto"), for: .normal)
         $0.layer.cornerRadius = 13
         $0.clipsToBounds = true
         $0.imageView?.contentMode = .scaleAspectFill
-        $0.backgroundColor = .orange
         $0.addTarget(self, action: #selector(touchupPhotoButton(_:)), for: .touchUpInside)
     }
     
     let deletePhotoButton = UIButton().then {
-        //        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .yellow
+        $0.setImage(UIImage(named: "btnRemove"), for: .normal)
         $0.addTarget(self, action: #selector(touchupDeletePhotoButton(_:)), for: .touchUpInside)
     }
     
-    let uploadButton = BottomButton(title: "기록하기").then {
-        //        $0.isEnabled = true
+    let uploadButton = BottomButton(title: "캐칭 완료").then {
         $0.backgroundColor = .gray300
         $0.addTarget(self, action: #selector(touchupUploadButton(_:)), for: .touchUpInside)
     }
@@ -198,16 +187,16 @@ class AddActionVC: UIViewController {
             make.height.lessThanOrEqualTo(58)
         }
         
-        catchuImageView.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(UIScreen.main.hasNotch ? 6 : -9)
-            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 28 : 20)
-            make.width.height.equalTo(131)
-        }
-        
         radiusImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.centerY.equalTo(pinkBackgroundView.snp.bottom)
             make.height.equalTo(UIScreen.main.hasNotch ? 36 : 25)
+        }
+        
+        catchuImageView.snp.makeConstraints { make in
+            make.bottom.equalTo(radiusImageView.snp.top).offset(35)
+            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 15 : 15)
+            make.width.height.equalTo(151)
         }
         
         blackBackgroundView.snp.makeConstraints { make in

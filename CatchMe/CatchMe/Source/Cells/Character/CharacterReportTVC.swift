@@ -53,7 +53,7 @@ class CharacterReportTVC: UITableViewCell {
     }
     
     let activityLabel = UILabel().then {
-        $0.text = "활동 수"
+        $0.text = "캐칭"
         $0.textColor = .gray300
         $0.font = .stringRegularSystemFont(ofSize: 14)
     }
@@ -63,13 +63,9 @@ class CharacterReportTVC: UITableViewCell {
     }
     
     let catchNumberLabel = UILabel().then {
-        $0.text = "50%"
+        $0.text = "50"
         $0.textColor = .white
         $0.font = .numberBoldSystemFont(ofSize: 20)
-        
-        let attributtedString = NSMutableAttributedString(string: $0.text!)
-        attributtedString.addAttribute(.font, value: UIFont.numberBoldSystemFont(ofSize: 15), range: ($0.text! as NSString).range(of:"%"))
-        $0.attributedText = attributtedString
     }
 
     let catchLabel = UILabel().then {
@@ -152,7 +148,7 @@ class CharacterReportTVC: UITableViewCell {
         
         catchNumberLabel.snp.makeConstraints { make in
             make.top.equalTo(lineTopView.snp.bottom).offset(10)
-            make.trailing.equalTo(self.snp.trailing).inset(43)
+            make.trailing.equalTo(self.snp.trailing).inset(50)
         }
         
         catchLabel.snp.makeConstraints { make in

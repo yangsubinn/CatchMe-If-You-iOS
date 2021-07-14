@@ -15,7 +15,7 @@ class CharacterFirstTVC: UITableViewCell {
     
     // MARK: - Properties    
     let emptyStateImageView = UIImageView().then {
-        $0.image = UIImage(named: "ic")
+        $0.image = UIImage(named: "imgCharacterViewEmptyState")
         $0.backgroundColor = .orange
     }
     
@@ -52,8 +52,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-        $0.image = UIImage(named: "icComment")
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "icCommentRectangle")
     }
     
     let commentLabel = UILabel().then {
@@ -66,7 +65,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let photoImageView = UIImageView().then {
-        $0.image = UIImage(named: "imgContent")
+        $0.image = UIImage(named: "imgActivityPhoto")
         $0.layer.cornerRadius = 18
         $0.contentMode = .scaleAspectFill
     }

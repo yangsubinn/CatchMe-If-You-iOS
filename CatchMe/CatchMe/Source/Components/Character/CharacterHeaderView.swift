@@ -14,6 +14,11 @@ class CharacterHeaderView: UIView {
     // MARK: - Properties
     let vc = CharacterVC()
     
+    let shadowImageView = UIImageView().then {
+        $0.image = UIImage(named: "catchuScrollRectangle131")
+        $0.layer.masksToBounds = false
+    }
+    
     let lockDateStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4
@@ -46,7 +51,7 @@ class CharacterHeaderView: UIView {
     let nameView = UIView()
     
     let nameLabel = UILabel().then {
-        $0.text = "한둘셋넷다여일여아열한둘셋넷다여일여아열"
+        $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
@@ -56,7 +61,7 @@ class CharacterHeaderView: UIView {
     }
     
     // MARK: - Lifecycle
-    init(date: String = "2021.05.01", name: String = "한둘셋넷다여일여아열한둘셋넷다여일여아열") {
+    init(date: String = "2021.05.01", name: String = "캐치미를정말좋아하는동글귀염보라돌이캐츄") {
         super.init(frame: .zero)
         configUI(date: date, name: name)
         setupAutoLayout()
@@ -75,11 +80,16 @@ class CharacterHeaderView: UIView {
     }
         
     private func setupAutoLayout() {
-        addSubviews([lockDateStackView, fromLabel, writeButton,
-                     nameView, nameLabel])
+        addSubviews([shadowImageView, lockDateStackView, fromLabel,
+                     writeButton, nameView, nameLabel])
         lockDateStackView.addArrangedSubview(lockImageView)
         lockDateStackView.addArrangedSubview(dateLabel)
         
+//        shadowImageView.snp.makeConstraints { make in
+//            make.leading.trailing.equalToSuperview()
+//            make.bottom.equalTo(-1)
+//        }
+//        
         lockImageView.snp.makeConstraints { make in
             make.width.equalTo(20)
             make.height.equalTo(20)
@@ -96,25 +106,23 @@ class CharacterHeaderView: UIView {
         }
         
         writeButton.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(11)
+            make.top.equalTo(self.snp.top).inset(20)
             make.trailing.equalToSuperview().inset(28)
-            make.width.equalTo(72)
-            make.height.equalTo(48)
+            make.width.equalTo(91)
+            make.height.equalTo(38)
         }
         
         nameView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(13)
             make.leading.equalToSuperview().inset(28)
-            make.width.equalTo(186)
-            make.height.lessThanOrEqualTo(52)
+            make.width.equalTo(192)
+            make.height.lessThanOrEqualTo(54)
         }
             
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(nameView.snp.centerY)
             make.leading.equalTo(nameView.snp.leading)
-            make.trailing.equalToSuperview().inset(161)
-            make.width.equalTo(185)
-            make.height.lessThanOrEqualTo(52)
+            make.trailing.equalTo(nameView.snp.trailing)
         }
     }
 }

@@ -23,10 +23,10 @@ class CharacterVC: UIViewController {
         $0.image = UIImage(named: "imgCatchGuide")
     }
     
-    var posts = [Activity(date: "2021.05.01", comment: "캐치미사랑해?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "위얼 줌보걸즈 위얼 줌보걸즈 위얼 줌보걸즈", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "왜 다를까? 킹이 받아용 왜 다를까? 킹이 받아용 왜 다를까? 킹이 받아용", image: "왕"),
+    var posts = [Activity(date: "2021.05.01", comment: "캐치미사랑해? 말해모해? 당연하지", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "위얼 훈지킴 마이지 조치미 훈븨킴 쇼틀마이쇼틀 갸야야야아앙 줌보걸즈 위얼 줌보걸즈 위얼 줌보걸즈", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 너무 더웡 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 맥주 배불렁 오늘은 배가 부르당 마트 다녀오셨어요? 네..?", image: "왕"),
+                 Activity(date: "2021.05.01", comment: "캐치미 채키라웃 붐붑 캐치미 해리포터, 기능띵세륀 누누 조리나 흑마법사 훈세 영자이 밥오", image: "왕"),
                  Activity(date: "2021.05.01", comment: "캐치미 너무 너무 조아욜~! 뷰가 킹받는데.. 오카징. 재사용 나가!", image: "왕")]
     
     // MARK: - Lifecycle
@@ -77,7 +77,7 @@ class CharacterVC: UIViewController {
         catchGuideImageView.snp.makeConstraints { make in
             make.top.equalTo(mainTableView.snp.top).inset(104)
             make.trailing.equalTo(view.snp.trailing).inset(28)
-            make.width.equalTo(166)
+            make.width.equalTo(189)
             make.height.equalTo(58)
         }
     }
@@ -157,6 +157,7 @@ extension CharacterVC: UITableViewDelegate {
         switch section {
         case 0:
             let headerView = CharacterHeaderView()
+            headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             return headerView
         default:
@@ -187,7 +188,7 @@ extension CharacterVC: UITableViewDelegate {
         let backgroundWidth = self.upperView.backgroundView.bounds.width
         let backgroundHeight = self.upperView.backgroundView.bounds.height
         let offset = scrollView.contentOffset.y
-        
+        print(offset)
         if width - offset < 171 {
             UIView.animate(withDuration: 0.1) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)

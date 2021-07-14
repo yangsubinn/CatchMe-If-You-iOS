@@ -18,6 +18,9 @@ class SignupVC: UIViewController {
     let signupButton = BottomButton(title: "가입하기")
     let height = UIApplication.statusBarHeight
     
+    // MARK: - Connect Server
+    let viewModel = LoginViewModel.shared
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +61,12 @@ class SignupVC: UIViewController {
     
     private func setupButtonAction() {
         let registerAction = UIAction { _ in
-            /// connect server
             print("register")
+            if let email = self.textFieldView.emailTextField.text,
+               let nickname = self.textFieldView.idTextField.text,
+               let password = self.textFieldView.passwordTextField.text {
+                self.viewModel.dispatchSignup(email: email, nickname: nickname, password: password, vc: self)
+            }
         }
         signupButton.addAction(registerAction, for: .touchUpInside)
     }

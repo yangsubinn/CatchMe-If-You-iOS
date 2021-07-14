@@ -9,10 +9,12 @@ import Foundation
 
 struct SignupRequest: Codable {
     var email: String
+    var nickname: String
     var password: String
     
-    init(_ email: String, _ password: String) {
+    init(_ email: String, _ nickname: String, _ password: String) {
         self.email = email
+        self.nickname = nickname
         self.password = password
     }
 }

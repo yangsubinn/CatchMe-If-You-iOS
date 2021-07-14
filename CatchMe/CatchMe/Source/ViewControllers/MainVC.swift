@@ -37,9 +37,7 @@ class MainVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let cellWidth = UIScreen.main.bounds.width * (319/375)
         var cellHeight : CGFloat = UIScreen.main.hasNotch ? 450 : 400
-        
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
         let spacing = (UIScreen.main.bounds.width - cellWidth) / 2
         layout.minimumLineSpacing = 16
         layout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
@@ -97,8 +95,7 @@ class MainVC: UIViewController {
     }
     
     private func setupLayout() {
-        view.addSubviews([nameLabel, catchingButton,
-                          collectionView, pageControl])
+        view.addSubviews([nameLabel, catchingButton, collectionView, pageControl])
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
@@ -240,6 +237,7 @@ extension MainVC: UICollectionViewDataSource {
         cell.reportView.activeCountLabel.text = activitys[indexPath.row]
         cell.reportView.levelCountLabel.text = levels[indexPath.row]
         cell.reportView.percentCountLabel.text = totals[indexPath.row]
+        
         return cell
     }
 }

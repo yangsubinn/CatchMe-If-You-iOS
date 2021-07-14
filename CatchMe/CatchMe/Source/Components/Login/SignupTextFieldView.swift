@@ -553,6 +553,8 @@ extension SignupTextFieldView {
                     self.emailButton.isHidden = true
                     
                     self.doubleCheck = true
+                    
+                    self.checkValidateUI()
                 default:
                     self.emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
                     self.emailMessageLabel.textColor = .red100

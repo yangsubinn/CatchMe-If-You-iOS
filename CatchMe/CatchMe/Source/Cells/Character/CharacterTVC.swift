@@ -15,20 +15,18 @@ class CharacterTVC: UITableViewCell {
 
     // MARK: - Properties
     let emptyStateImageView = UIImageView().then {
-//        $0.image = UIImage(named: "icPin")
-        $0.backgroundColor = .gray
+        $0.image = UIImage(named: "imgCharacterViewEmptyState")
     }
     
     let emptyStateLabel = UILabel().then {
         $0.text = "아직 캐츄의 활동이 없어요"
-        $0.font = .stringRegularSystemFont(ofSize: 18)
+        $0.font = (UIScreen.main.hasNotch ? .stringRegularSystemFont(ofSize: 18) : .stringRegularSystemFont(ofSize: 10))
         $0.textColor = .gray200
         $0.textAlignment = .center
     }
     
     let pinImageView = UIImageView().then {
-//        $0.image = UIImage(named: "icPin")
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "ic")
     }
     
     let lineTopView = UIView().then {
@@ -42,15 +40,14 @@ class CharacterTVC: UITableViewCell {
     let dateLabel = UILabel().then {
         $0.text = "2021.08.01"
         $0.textColor = .gray310
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .numberRegularSystemFont(ofSize: 14)
         $0.textAlignment = .left
     }
     
     let moreButton = UIButton().then {
-//        $0.setImage(UIImage(named: ""), for: .normal)
-        $0.backgroundColor = .green
+        $0.setImage(UIImage(named: "btnMore"), for: .normal)
     }
-        
+    
     let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 16
@@ -58,28 +55,22 @@ class CharacterTVC: UITableViewCell {
     }
     
     let commentView = UIImageView().then {
-//        $0.image = UIImage(named: "icComment")
-        $0.backgroundColor = .orange
+        $0.image = UIImage(named: "icCommentRectangle")
     }
     
     let commentLabel = UILabel().then {
         $0.text = "암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-"
         $0.textColor = .white
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.textAlignment = .left
         $0.numberOfLines = 0
-        
-        let attributedString = NSMutableAttributedString(string: $0.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        $0.attributedText = attributedString
+        $0.addCharacterSpacing(kernValue: -0.08, paragraphValue: 2)
     }
     
     let photoImageView = UIImageView().then {
-//        $0.image = UIImage(named: "")
-        $0.backgroundColor = .systemPink
+        $0.image = UIImage(named: "imgActivityPhoto")
         $0.layer.cornerRadius = 18
+        $0.contentMode = .scaleAspectFill
     }
     
     // MARK: - Lifecycle
@@ -98,7 +89,7 @@ class CharacterTVC: UITableViewCell {
     
     // MARK: - Custom Method
     func configUI() {
-        backgroundColor = .black
+        backgroundColor = .black100
         self.sendSubviewToBack(contentView)
     }
     
@@ -149,14 +140,13 @@ class CharacterTVC: UITableViewCell {
         
         commentView.snp.makeConstraints { make in
             make.width.equalTo(303)
-            make.height.equalTo(42)
         }
         
         commentLabel.snp.makeConstraints { make in
-            make.top.equalTo(commentView.snp.top).inset(12)
-            make.leading.equalTo(commentView.snp.leading).inset(14)
-            make.trailing.equalTo(commentView.snp.trailing).inset(14)
-            make.bottom.equalTo(commentView.snp.bottom).inset(12)
+            make.top.equalTo(12)
+            make.leading.equalTo(14)
+            make.trailing.equalTo(-14)
+            make.bottom.equalTo(-12)
         }
         
         photoImageView.snp.makeConstraints { make in
@@ -169,10 +159,10 @@ class CharacterTVC: UITableViewCell {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
         emptyStateImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(30)
+            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 25 : 10)
             make.centerX.equalToSuperview()
-            make.width.equalTo(251)
-            make.height.equalTo(145)
+            make.width.equalTo(UIScreen.main.hasNotch ? 251 : 82)
+            make.height.equalTo(UIScreen.main.hasNotch ? 145 : 43)
         }
         
         emptyStateLabel.snp.makeConstraints { make in

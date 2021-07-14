@@ -25,7 +25,7 @@ class MainVC: UIViewController {
     let catchMeButton = UIButton()
     
     var formatterDate = DateFormatter()
-    
+
     //MARK: - Dummy Data
     var levels: [String] = ["3", "2", "2", "2", "1"]
     var activitys: [String] = ["10", "5", "6", "8", "1"]
@@ -164,6 +164,8 @@ class MainVC: UIViewController {
         catchMeButton.setImage(UIImage(named: "btnCatching"), for: .normal)
         emptyImageView.image = UIImage(named: "catchu")
         
+        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
+        
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
         dateLabel.addCharacterSpacing(kernValue: -0.6)
@@ -211,6 +213,15 @@ class MainVC: UIViewController {
     
     private func changeLabelText(page: Int) {
         nameLabel.text = names[page]
+    }
+    
+    // MARK: - @objc
+    @objc func setupButtonAction(_ sender: UIButton) {
+        guard  let vc = storyboard?.instantiateViewController(identifier: "MainPopupVC") as? MainPopupVC else { return }
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
     }
 }
 

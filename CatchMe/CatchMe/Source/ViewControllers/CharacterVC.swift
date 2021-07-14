@@ -11,6 +11,7 @@ import Moya
 import Then
 import SnapKit
 
+
 class CharacterVC: UIViewController {
     private let authProvider = MoyaProvider<CharacterService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     private var characterModel: CharacterModel?
@@ -23,16 +24,15 @@ class CharacterVC: UIViewController {
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let reportCell = CharacterReportTVC()
     let firstCell = CharacterFirstTVC()
+    var index = 0
     
     let catchGuideImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCatchGuide")
     }
     
-    var posts = [Activity(date: "2021.05.01", comment: "캐치미사랑해? 말해모해? 당연하지", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "위얼 훈지킴 마이지 조치미 훈븨킴 쇼틀마이쇼틀 갸야야야아앙 줌보걸즈 위얼 줌보걸즈 위얼 줌보걸즈", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "와 너무 재밌다. 너무 더웡 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 마트 다녀오셨어요? 네..? 와 너무 재밌다. 맥주 배불렁 오늘은 배가 부르당 마트 다녀오셨어요? 네..?", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "캐치미 채키라웃 붐붑 캐치미 해리포터, 기능띵세륀 누누 조리나 흑마법사 훈세 영자이 밥오", image: "왕"),
-                 Activity(date: "2021.05.01", comment: "캐치미 너무 너무 조아욜~! 뷰가 킹받는데.. 오카징. 재사용 나가!", image: "왕")]
+    var posts = [ActivityDetail(id: "", activityIndex: 1, activityContent: "캐치미사랑해? 말해모해? 당연하지", activityImage: "https://user-images.githubusercontent.com/42545818/122653517-10095c00-d180-11eb-93ee-dbbc984ff969.png", activityYear: "2021", activityMonth: "02", activityDay: "02"), ActivityDetail(id: "", activityIndex: 1, activityContent: "캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지", activityImage: "https://user-images.githubusercontent.com/42545818/122653517-10095c00-d180-11eb-93ee-dbbc984ff969.png", activityYear: "2021", activityMonth: "02", activityDay: "02")]
+                 
+                 
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -105,52 +105,52 @@ class CharacterVC: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
-    @objc func touchupMoreButton(_ sender: UIButton) {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
-        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertViewController.view.tintColor = .white
-        
-        if let actionSheet = alertViewController.view.subviews.first,
-           let secondSheet = alertViewController.view.subviews.last {
-            for innerView in actionSheet.subviews {
-                innerView.backgroundColor = .black300
-                innerView.layer.cornerRadius = 18.0
-                innerView.clipsToBounds = true
-            }
-            for innerView in secondSheet.subviews {
-                innerView.backgroundColor = .black300
-                innerView.layer.cornerRadius = 18.0
-                innerView.clipsToBounds = true
-            }
-        }
-        
-        let editAction = UIAlertAction(title: "수정", style: .default) { result in
-            print("수정")
-            // 편집VC로 화면 전환 코드 작성해야 함
-            let vc = AddActionVC()
-            vc.modalPresentationStyle = .overFullScreen
-            vc.text = self.firstCell.commentLabel.text
-            self.present(vc, animated: true, completion: nil)
-        }
-        
-        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterPopupVC") as? CharacterPopupVC else { return }
-            
-            vc.modalPresentationStyle = .overCurrentContext
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
-        }
-        
-        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
-        alertViewController.addAction(editAction)
-        alertViewController.addAction(deleteAction)
-        alertViewController.addAction(cancelAction)
-        
-        self.present(alertViewController, animated: true, completion: nil)
-    }
+//    @objc func touchupMoreButton(_ sender: UIButton) {
+//        let generator = UIImpactFeedbackGenerator(style: .medium)
+//        generator.impactOccurred()
+//        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        alertViewController.view.tintColor = .white
+//
+//        if let actionSheet = alertViewController.view.subviews.first,
+//           let secondSheet = alertViewController.view.subviews.last {
+//            for innerView in actionSheet.subviews {
+//                innerView.backgroundColor = .black300
+//                innerView.layer.cornerRadius = 18.0
+//                innerView.clipsToBounds = true
+//            }
+//            for innerView in secondSheet.subviews {
+//                innerView.backgroundColor = .black300
+//                innerView.layer.cornerRadius = 18.0
+//                innerView.clipsToBounds = true
+//            }
+//        }
+//
+//        let editAction = UIAlertAction(title: "수정", style: .default) { result in
+//            print("수정")
+//            // 편집VC로 화면 전환 코드 작성해야 함
+//            let vc = AddActionVC()
+//            vc.modalPresentationStyle = .overFullScreen
+//            vc.text = self.firstCell.commentLabel.text
+//            self.present(vc, animated: true, completion: nil)
+//        }
+//
+//        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
+//            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterPopupVC") as? CharacterPopupVC else { return }
+//
+//            vc.modalPresentationStyle = .overCurrentContext
+//            vc.modalTransitionStyle = .crossDissolve
+//            self.present(vc, animated: true, completion: nil)
+//        }
+//
+//        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
+//        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+//
+//        alertViewController.addAction(editAction)
+//        alertViewController.addAction(deleteAction)
+//        alertViewController.addAction(cancelAction)
+//
+//        self.present(alertViewController, animated: true, completion: nil)
+//    }
 }
 
 // MARK: - UITableViewDelegate
@@ -267,21 +267,17 @@ extension CharacterVC: UITableViewDataSource {
                     firstCell.setupEmptyLayout()
                 } else {
                     firstCell.setupAutoLayout()
-                    firstCell.setData(date: posts[0].date, comment: posts[0].comment, image: posts[0].image)
-                    firstCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
+                    firstCell.data = posts[0]
+                    firstCell.setData()
                 }
                 return firstCell
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
                 guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
                 restCell.rootVC = self
                 restCell.selectionStyle = .none
-                if posts.count == 0 {
-                    restCell.setupEmptyLayout()
-                } else {
-                    restCell.setupAutoLayout()
-                    restCell.moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
-                    restCell.setData(date: posts[indexPath.row-1].date, comment: posts[indexPath.row-1].comment, image: posts[indexPath.row-1].image)
-                }
+                restCell.setupAutoLayout()
+                restCell.data = posts[indexPath.row-1]
+                restCell.setData()
                 return restCell
             }
         default:
@@ -293,13 +289,14 @@ extension CharacterVC: UITableViewDataSource {
 extension CharacterVC {
     // MARK: - Network
     func fetchCharacterDetail() {
-        let param = CharacterRequest.init(7)
-        authProvider.request(.characterDetail(param: param)) { response in
+        authProvider.request(.characterDetail(1)) { response in
             switch response {
             case .success(let result):
                 do {
                     self.characterModel = try result.map(CharacterModel.self)
+//                    self.posts.append(contentsOf: self.characterModel?.data?.character.activity ?? <#default value#>)
                     
+                    print(self.posts)
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

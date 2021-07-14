@@ -21,7 +21,7 @@ struct DataClass: Codable {
     let characterActivitiesCount, catchRate: Int
 }
 
-// MARK: - Character
+// MARK: - CharacterDetail
 struct CharacterDetail: Codable {
     let characterName: String
     let characterIndex, characterImageIndex: Int
@@ -46,3 +46,4 @@ struct ActivityDetail: Codable {
         case activityIndex, activityContent, activityImage, activityYear, activityMonth, activityDay
     }
 }
+

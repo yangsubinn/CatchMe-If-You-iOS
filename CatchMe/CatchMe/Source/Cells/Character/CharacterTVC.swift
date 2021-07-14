@@ -15,6 +15,7 @@ class CharacterTVC: UITableViewCell {
 
     // MARK: - Properties
     var rootVC: UIViewController?
+    var data: ActivityDetail?
 
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
@@ -48,7 +49,6 @@ class CharacterTVC: UITableViewCell {
     
     let moreButton = UIButton().then {
         $0.setImage(UIImage(named: "btnMore"), for: .normal)
-        $0.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
     }
     
     let contentStackView = UIStackView().then {
@@ -74,12 +74,14 @@ class CharacterTVC: UITableViewCell {
         $0.image = UIImage(named: "imgActivityPhoto")
         $0.layer.cornerRadius = 18
         $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
     }
     
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
+        moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -199,7 +201,11 @@ class CharacterTVC: UITableViewCell {
             // 편집VC로 화면 전환 코드 작성해야 함
             let vc = AddActionVC()
             vc.modalPresentationStyle = .overFullScreen
-            vc.text = self.commentLabel.text
+            guard let data = self.data else { return }
+            
+            vc.text = data.activityContent
+            vc.photoURL = self.photoImageView.image
+            vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
             self.rootVC?.present(vc, animated: true, completion: nil)
         }
         
@@ -220,12 +226,13 @@ class CharacterTVC: UITableViewCell {
         self.rootVC?.present(alertViewController, animated: true, completion: nil)
     }
     
-    func setData(date: String, comment: String, image: String) {
-        dateLabel.text = date
-        commentLabel.text = comment
+    func setData() {
+        guard let data = data else { return }
+        dateLabel.text = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+        commentLabel.text = data.activityContent
         
-        if let image = UIImage(named: image) {
-            photoImageView.image = image
+        if let image = URL(string: data.activityImage) {
+            photoImageView.kf.setImage(with: image)
         }
     }
 }

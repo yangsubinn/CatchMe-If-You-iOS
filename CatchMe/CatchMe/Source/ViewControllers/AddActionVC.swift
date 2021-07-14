@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import Then
 import SnapKit
 
@@ -18,6 +19,8 @@ class AddActionVC: UIViewController {
     let maxWordCount: Int = 150
     var wordCount: Int = 0
     var text: String?
+    var photoURL: UIImage?
+    var date: String?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -79,6 +82,7 @@ class AddActionVC: UIViewController {
     let activityTextView = UITextView().then {
         $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.backgroundColor = .black200
+        $0.textColor = .white
         $0.layer.cornerRadius = 13
         $0.textAlignment = .left
         $0.tintColor = .pink100
@@ -138,15 +142,19 @@ class AddActionVC: UIViewController {
         
         deletePhotoButton.isHidden = true
         
-        activityTextView.text = placholder
-        activityTextView.textColor = .gray200
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
-        
-        print(text ?? placholder)
-        
-        activityTextView.text = text ?? placholder
-    
-        
+        if let text = text {
+            activityTextView.text = text
+            activityTextView.textColor = .white
+            uploadButton.backgroundColor = .pink100
+            textExists()
+
+            photoButton.setImage(photoURL, for: .normal)
+            dateLabel.text = date
+        } else {
+            activityTextView.text = placholder
+            activityTextView.textColor = .gray200
+        }
     }
     
     func setupAutoLayout() {
@@ -285,14 +293,14 @@ class AddActionVC: UIViewController {
     
     // MARK: - @objc
     @objc func touchupCloseButton(_ sender: UIButton) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionPopupVC") as? AddActionPopupVC else { return }
+        let vc = AddActionPopupVC()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
     
     @objc func touchupDateButton(_ sender: UIButton) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddActionDatePickerPopupVC") as? AddActionDatePickerPopupVC else { return }
+        let vc = AddActionDatePickerPopupVC()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         
@@ -398,3 +406,4 @@ extension AddActionVC: UIImagePickerControllerDelegate, UINavigationControllerDe
         dismiss(animated: true, completion: nil)
     }
 }
+

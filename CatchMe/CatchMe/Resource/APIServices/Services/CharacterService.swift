@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum CharacterService {
-    case characterDetail(param: CharacterRequest)
+    case characterDetail(Int)
 }
 
 extension CharacterService: TargetType {
@@ -19,15 +19,15 @@ extension CharacterService: TargetType {
     
     var path: String {
         switch self {
-        case .characterDetail:
-            return "/character"
+        case .characterDetail(let param):
+            return "/character/\(param)"
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
         case .characterDetail:
-            return URLEncoding.default
+            return JSONEncoding.default
         }
     }
     
@@ -44,12 +44,11 @@ extension CharacterService: TargetType {
     
     var task: Task {
         switch self {
-        case .characterDetail(let param):
-            return .requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
-            
+        case .characterDetail:
+            return .requestPlain
         }
     }
-    
+//    requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
     var headers: [String: String]? {
         switch self {
         default:

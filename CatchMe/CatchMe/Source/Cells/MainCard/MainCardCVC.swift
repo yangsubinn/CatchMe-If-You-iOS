@@ -28,13 +28,10 @@ class MainCardCVC: UICollectionViewCell {
         self.layer.cornerRadius = 14
         self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         characterBackView.backgroundColor = .gray100
-//        characterImageView.image = Character.blue.getCharacterImage(phase: 2, size: 101)
-//        levelStarImageView.image = UIImage(named: "level2")
-        
-//        nameLabel.text = "캐치미캐치유캐치미를정말정말좋아하는캐츄"
+
         nameLabel.textColor = .black200
         nameLabel.font = .catchuRegularSystemFont(ofSize: 14)
-        nameLabel.addCharacterSpacing()
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         nameLabel.numberOfLines = 2
     }
     

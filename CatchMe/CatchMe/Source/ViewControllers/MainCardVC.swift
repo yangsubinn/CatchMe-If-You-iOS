@@ -47,7 +47,7 @@ class MainCardVC: UIViewController {
         setupLayout()
         configUI()
         setupCollectionView()
-//        setupEmptyLayout()
+        setupEmptyLayout()
     }
     
     //MARK: - Custom Method
@@ -127,6 +127,10 @@ class MainCardVC: UIViewController {
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
         
         alignButton.addTarget(self, action: #selector(alignButtonAction), for: .touchUpInside)
+        
+        emptyImageView.isHidden = true
+        emptyTitleLabel.isHidden = true
+        emptySubLabel.isHidden = true
     }
     
     func setupCollectionView() {
@@ -209,6 +213,8 @@ extension MainCardVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else { return UICollectionViewCell() }
         
         cell.nameLabel.text = names[indexPath.item]
+//        cell.nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+//        cell.nameLabel.numberOfLines = 2
         cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
         cell.setStatLevel(level: levels[indexPath.item])
         
@@ -254,54 +260,25 @@ extension MainCardVC {
                     characters.removeAll()
                     
                     data.append(contentsOf: recentActivity?.data ?? [])
-                    
-//                    emptyImageView.isHidden = true
-//                    emptyTitleLabel.isHidden = true
-//                    emptySubLabel.isHidden = true
 
-                    for i in 0..<data.count {
-                        names.append(data[i].characterName)
-                        characters.append(data[i].characterIndex)
-                        levels.append(data[i].characterLevel)
+                    if data.isEmpty {
+                        emptyImageView.isHidden = false
+                        emptyTitleLabel.isHidden = false
+                        emptySubLabel.isHidden = false
+                        collectionView.isHidden = true
+                    } else {
+                        emptyImageView.isHidden = true
+                        emptyTitleLabel.isHidden = true
+                        emptySubLabel.isHidden = true
+                        collectionView.isHidden = false
+                        
+                        for i in 0..<data.count {
+                            names.append(data[i].characterName)
+                            characters.append(data[i].characterIndex)
+                            levels.append(data[i].characterLevel)
+                        }
+                        collectionView.reloadData()
                     }
-                    collectionView.reloadData()
-                     
-//                    if data.isEmpty {
-//                        emptyImageView.isHidden = false
-//                        emptyTitleLabel.isHidden = false
-//                        emptySubLabel.isHidden = false
-//                        nameLabel.isHidden = true
-//                        catchingButton.isHidden = true
-//                        collectionView.isHidden = true
-//                        pageControl.isHidden = true
-//                        catchingButton.isHidden = true
-//
-//                        UIView.animate(withDuration: 0.3, animations: {
-//                            emptyImageView.alpha = 0
-//                            emptyTitleLabel.alpha = 0
-//                            emptySubTitle.alpha = 0
-//                            catchMeButton.alpha = 0
-//                            emptyImageView.alpha = 1.0
-//                            emptyTitleLabel.alpha = 1.0
-//                            emptySubTitle.alpha = 1.0
-//                            catchMeButton.alpha = 1.0
-//                        })
-//
-//                    } else {
-//                        emptyImageView.isHidden = true
-//                        emptyTitleLabel.isHidden = true
-//                        emptySubLabel.isHidden = true
-//
-//                        for i in 0..<data.count {
-//                            names.append(data[i].characterName)
-//                            characters.append(data[i].characterIndex)
-//                        }
-//
-////                        collectionView.reloadData()
-////                        if !names.isEmpty {
-////                            MainCardCVC().nameLabel.text = names[0]
-////                        }
-//                    }
                     
                 } catch(let err) {
                     print(err.localizedDescription)

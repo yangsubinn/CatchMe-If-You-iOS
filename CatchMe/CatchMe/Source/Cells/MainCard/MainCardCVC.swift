@@ -28,10 +28,10 @@ class MainCardCVC: UICollectionViewCell {
         self.layer.cornerRadius = 14
         self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         characterBackView.backgroundColor = .gray100
-        characterImageView.image = Character.blue.getCharacterImage(phase: 2, size: 101)
-        levelStarImageView.image = UIImage(named: "level2")
+//        characterImageView.image = Character.blue.getCharacterImage(phase: 2, size: 101)
+//        levelStarImageView.image = UIImage(named: "level2")
         
-        nameLabel.text = "캐치미캐치유캐치미를정말정말좋아하는캐츄"
+//        nameLabel.text = "캐치미캐치유캐치미를정말정말좋아하는캐츄"
         nameLabel.textColor = .black200
         nameLabel.font = .catchuRegularSystemFont(ofSize: 14)
         nameLabel.addCharacterSpacing()
@@ -66,4 +66,26 @@ class MainCardCVC: UICollectionViewCell {
             make.height.equalTo(36)
         }
     }
+    
+    func setImageView(level: Int, index: Int) {
+        characterImageView.image = setCharacterImage(level: level, index: index, size: 101)
+    }
+    
+    func setStarImageView(level: Int) -> UIImage? {
+        switch level {
+        case 1:
+            return UIImage(named: "level1")
+        case 2:
+            return UIImage(named: "level2")
+        case 3:
+            return UIImage(named: "level3")
+        default:
+            return UIImage()
+        }
+    }
+    
+    func setStatLevel(level: Int) {
+        levelStarImageView.image = setStarImageView(level: level)
+    }
+
 }

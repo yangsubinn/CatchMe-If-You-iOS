@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Moya
 
 class MainCardVC: UIViewController {
     //MARK: - Properties
@@ -30,9 +31,23 @@ class MainCardVC: UIViewController {
     var isSecondButtonChecked = false
     var isThirdButtonChecked = false
     
+    //MARK: - Network
+    private let authProvider = MoyaProvider<MainCardService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var recentActivity: RecentActivityModel?
+    
+    //MARK: - Server Data
+    var names: [String] = []
+    var characters: [Int] = []
+    var levels: [Int] = []
+    
+//    var names: [String] = ["안녕하세요", "양수빈입니다", "캐치는뭐지?", "권세훈짱나"]
+//    var characters: [Int] = [5, 5, 1, 3] // characterIndex: color
+//    var levels: [Int] = [1, 2, 2, 3]
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchCharacter()
         setupLayout()
         configUI()
         setupCollectionView()
@@ -119,12 +134,12 @@ class MainCardVC: UIViewController {
     }
     
     func setupCollectionView() {
-        collectionViewFlowLayout.scrollDirection = .vertical
         collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.setupCollectionViewNib(nib: MainCardCVC.identifier)
         collectionView.backgroundColor = .clear
+        collectionViewFlowLayout.scrollDirection = .vertical
         collectionView.showsVerticalScrollIndicator = false
     }
     
@@ -191,14 +206,19 @@ class MainCardVC: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MainCardVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        print("--names---")
+        print(names.count)
+        return names.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else {
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else { return UICollectionViewCell() }
+        
+        cell.nameLabel.text = names[indexPath.item]
+        cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
+        cell.setStatLevel(level: levels[indexPath.item])
+        
         return cell
     }
 }
@@ -223,5 +243,88 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 11, left: 29, bottom: 0, right: 28)
+    }
+}
+
+// MARK: - Network
+extension MainCardVC {
+    func fetchCharacter() {
+        var data: [RecentActivity] = []
+        authProvider.request(.recentActivity) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.recentActivity = try result.map(RecentActivityModel.self)
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    characters.removeAll()
+                    print("-----------------------------")
+                    print(data)
+//                    print(names)
+                    
+                    data.append(contentsOf: recentActivity?.data ?? [])
+                    
+//                    emptyImageView.isHidden = true
+//                    emptyTitleLabel.isHidden = true
+//                    emptySubLabel.isHidden = true
+
+                    for i in 0..<data.count {
+                        names.append(data[i].characterName)
+                        characters.append(data[i].characterIndex)
+                        levels.append(data[i].characterLevel)
+                    }
+                    collectionView.reloadData()
+//                    print("------------------------------")
+                    print(names)
+                    print(characters)
+                    print(levels)
+//                    print(data.count)
+//                    print("------------------------------------------")
+                     
+//                    if data.isEmpty {
+//                        emptyImageView.isHidden = false
+//                        emptyTitleLabel.isHidden = false
+//                        emptySubLabel.isHidden = false
+//                        nameLabel.isHidden = true
+//                        catchingButton.isHidden = true
+//                        collectionView.isHidden = true
+//                        pageControl.isHidden = true
+//                        catchingButton.isHidden = true
+//
+//                        UIView.animate(withDuration: 0.3, animations: {
+//                            emptyImageView.alpha = 0
+//                            emptyTitleLabel.alpha = 0
+//                            emptySubTitle.alpha = 0
+//                            catchMeButton.alpha = 0
+//                            emptyImageView.alpha = 1.0
+//                            emptyTitleLabel.alpha = 1.0
+//                            emptySubTitle.alpha = 1.0
+//                            catchMeButton.alpha = 1.0
+//                        })
+//
+//                    } else {
+//                        emptyImageView.isHidden = true
+//                        emptyTitleLabel.isHidden = true
+//                        emptySubLabel.isHidden = true
+//
+//                        for i in 0..<data.count {
+//                            names.append(data[i].characterName)
+//                            characters.append(data[i].characterIndex)
+//                        }
+//
+////                        collectionView.reloadData()
+////                        if !names.isEmpty {
+////                            MainCardCVC().nameLabel.text = names[0]
+////                        }
+//                    }
+                    
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }

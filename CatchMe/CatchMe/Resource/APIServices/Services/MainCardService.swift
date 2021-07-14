@@ -8,6 +8,9 @@
 import Moya
 
 enum MainCardService {
+    case recentActivity
+    case most
+    case recentCreate
     case create(param: CreateCharacterRequest)
 }
 
@@ -18,6 +21,12 @@ extension MainCardService: TargetType {
     
     var path: String {
         switch self {
+        case .recentActivity:
+            return "/maincard"
+        case .most:
+            return "/maincard/most"
+        case .recentCreate:
+            return "/maincard/recent"
         case .create:
             return "/maincard/create"
         }
@@ -25,6 +34,10 @@ extension MainCardService: TargetType {
     
     var method: Moya.Method {
         switch self {
+        case .recentActivity,
+             .most,
+             .recentCreate:
+            return .get
         case .create:
             return .post
         }
@@ -36,6 +49,10 @@ extension MainCardService: TargetType {
     
     var task: Task {
         switch self {
+        case .recentActivity,
+             .most,
+             .recentCreate:
+            return .requestPlain
         case .create(let param):
             return .requestJSONEncodable(param)
         }
@@ -47,7 +64,7 @@ extension MainCardService: TargetType {
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": GeneralAPI.token]
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"] //GeneralAPI.token
         }
     }
 }

@@ -16,9 +16,8 @@ class NavigationBar: UIView {
     lazy var backButton = BackButton(viewController)
     
     let editButton = UIButton().then {
-//        $0.setImage(UIImage(named: "btnWrite"), for: .normal)
+        $0.setImage(UIImage(named: "btnProfileEdit"), for: .normal)
         $0.addTarget(self, action: #selector(touchupEditButton), for: .touchUpInside)
-        $0.backgroundColor = .orange
     }
     
     // MARK: - Lifecycle
@@ -39,12 +38,12 @@ class NavigationBar: UIView {
         addSubviews([backButton, editButton])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(55)
+            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 55 : 41)
             make.leading.equalTo(self.snp.leading).inset(14)
         }
         
         editButton.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(55)
+            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 55 : 41)
             make.trailing.equalTo(self.snp.trailing).inset(15)
             make.width.height.equalTo(48)
         }

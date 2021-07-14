@@ -13,7 +13,7 @@ import SnapKit
 class CharacterFooterView: UIView {
     // MARK: - Properties
     let lineView = UIView().then {
-        $0.backgroundColor = .white10
+        $0.backgroundColor = .black200
     }
 
     // MARK: - Lifecycle
@@ -29,7 +29,7 @@ class CharacterFooterView: UIView {
     
     // MARK: - Custom Method
     func configUI() {
-        backgroundColor = .black
+        backgroundColor = .black100
     }
         
     private func setupAutoLayout() {

@@ -98,7 +98,8 @@ extension SettingVC: UITableViewDelegate {
             vc.modalPresentationStyle = .overCurrentContext
             present(vc, animated: true, completion: nil)
         default:
-            break
+            guard let vc = storyboard?.instantiateViewController(identifier: "WithdrawalVC") as? WithdrawalVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
         

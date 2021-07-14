@@ -59,6 +59,7 @@
 		ED728420269DD58400D19FD5 /* AddCatchuPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72841F269DD58400D19FD5 /* AddCatchuPopupView.swift */; };
 		ED728422269E9B3400D19FD5 /* EditPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728421269E9B3400D19FD5 /* EditPasswordVC.swift */; };
 		ED728424269E9BD400D19FD5 /* CurrentPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728423269E9BD400D19FD5 /* CurrentPasswordView.swift */; };
+		ED728426269EC82F00D19FD5 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728425269EC82F00D19FD5 /* ChangePasswordView.swift */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -181,6 +182,7 @@
 		ED72841F269DD58400D19FD5 /* AddCatchuPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatchuPopupView.swift; sourceTree = "<group>"; };
 		ED728421269E9B3400D19FD5 /* EditPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordVC.swift; sourceTree = "<group>"; };
 		ED728423269E9BD400D19FD5 /* CurrentPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentPasswordView.swift; path = CatchMe/Source/ViewControllers/CurrentPasswordView.swift; sourceTree = SOURCE_ROOT; };
+		ED728425269EC82F00D19FD5 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangePasswordView.swift; path = CatchMe/Source/ViewControllers/ChangePasswordView.swift; sourceTree = SOURCE_ROOT; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				ED728423269E9BD400D19FD5 /* CurrentPasswordView.swift */,
+				ED728425269EC82F00D19FD5 /* ChangePasswordView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				ED728413269DA8FD00D19FD5 /* MainCardViewModel.swift in Sources */,
 				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B447CDE2697036C00F79AB7 /* CharacterFirstTVC.swift in Sources */,
+				ED728426269EC82F00D19FD5 /* ChangePasswordView.swift in Sources */,
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,

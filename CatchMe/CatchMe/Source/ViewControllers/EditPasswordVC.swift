@@ -10,10 +10,11 @@ import UIKit
 class EditPasswordVC: UIViewController {
     // MARK: - Lazy Properties
     lazy var backButton = BackButton(self)
+    lazy var passwordView = CurrentPasswordView(button: editButton)
+    lazy var changePasswordView = ChangePasswordView(button: editButton)
     
     // MARK: - Properties
     let editButton = BottomButton(title: "다음")
-    let passwordView = CurrentPasswordView()
     
     // MARK: - Dummy Data
     var password = "password12@"
@@ -23,11 +24,13 @@ class EditPasswordVC: UIViewController {
         super.viewDidLoad()
         setupLayout()
         configUI()
+        setupButtonAction()
     }
     
     // MARK: - Custom Method
-    func setupLayout() {
-        view.addSubviews([backButton, editButton, passwordView])
+    private func setupLayout() {
+        view.addSubviews([backButton, editButton, passwordView,
+                          changePasswordView])
         
         backButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(55)
@@ -46,21 +49,51 @@ class EditPasswordVC: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(255)
         }
+        
+        changePasswordView.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom).offset(37)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(255)
+        }
     }
     
-    func configUI() {
+    private func configUI() {
         view.backgroundColor = .black100
         
         editButton.backgroundColor = .gray200
         editButton.isEnabled = false
         
+        changePasswordView.isHidden = true
+        
         hideKeyboardWhenTappedAround()
+    }
+    
+    private func setupButtonAction() {
+        let nextAction = UIAction { _ in
+            if let text = self.passwordView.passwordTextField.text {
+                if text == self.password {
+                    self.passwordView.checkTextField.resignFirstResponder()
+                    
+                    self.passwordView.isHidden = true
+                    self.changePasswordView.isHidden = false
+                    
+                    self.editButton.isEnabled = false
+                    self.editButton.backgroundColor = .gray300
+                    self.editButton.changeBottomButtonTitle(title: "완료")
+                } else {
+                    self.passwordView.currentLabel.text = "비밀번호가 틀렸습니다."
+                    self.passwordView.currentLabel.textColor = .red100
+                    
+                    self.passwordView.currentImageView.image = UIImage(named: "icWarning")
+                }
+            }
+        }
+        editButton.addAction(nextAction, for: .touchUpInside)
     }
     
     @objc
     override func dismissKeyboard() {
-        if !passwordView.currentRemoveButton.isTouchInside &&
-            !passwordView.checkRemoveButton.isTouchInside {
+        if !editButton.isTouchInside {
             view.endEditing(true)
         }
     }

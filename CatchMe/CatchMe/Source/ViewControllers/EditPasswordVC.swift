@@ -18,6 +18,7 @@ class EditPasswordVC: UIViewController {
     
     // MARK: - Dummy Data
     var password = "password12@"
+    var isNext = false
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -70,21 +71,25 @@ class EditPasswordVC: UIViewController {
     
     private func setupButtonAction() {
         let nextAction = UIAction { _ in
-            if let text = self.passwordView.passwordTextField.text {
-                if text == self.password {
-                    self.passwordView.checkTextField.resignFirstResponder()
-                    
-                    self.passwordView.isHidden = true
-                    self.changePasswordView.isHidden = false
-                    
-                    self.editButton.isEnabled = false
-                    self.editButton.backgroundColor = .gray300
-                    self.editButton.changeBottomButtonTitle(title: "완료")
-                } else {
-                    self.passwordView.currentLabel.text = "비밀번호가 틀렸습니다."
-                    self.passwordView.currentLabel.textColor = .red100
-                    
-                    self.passwordView.currentImageView.image = UIImage(named: "icWarning")
+            if !self.isNext {
+                if let text = self.passwordView.passwordTextField.text {
+                    if text == self.password {
+                        self.passwordView.checkTextField.resignFirstResponder()
+                        
+                        self.passwordView.isHidden = true
+                        self.changePasswordView.isHidden = false
+                        
+                        self.editButton.isEnabled = false
+                        self.editButton.backgroundColor = .gray300
+                        self.editButton.changeBottomButtonTitle(title: "완료")
+                        
+                        self.isNext = true
+                    } else {
+                        self.passwordView.currentLabel.text = "비밀번호가 틀렸습니다."
+                        self.passwordView.currentLabel.textColor = .red100
+                        
+                        self.passwordView.currentImageView.image = UIImage(named: "icWarning")
+                    }
                 }
             }
         }

@@ -105,8 +105,6 @@ extension ChangePasswordView: UITextFieldDelegate {
         return true
     }
     
-    
-    
     @objc
     func changePWTextFieldUI(){
         if !(passwordTextField.text!.validatePassword()) && passwordTextField.hasText {

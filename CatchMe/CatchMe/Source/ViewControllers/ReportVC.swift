@@ -35,9 +35,11 @@ class ReportVC: UIViewController {
     let viewModel = ReportViewModel.shared
     var activites: [ActivitiesOfMonth] = []
     var indexs: [Int] = []
+    var imageIndexs: [Int] = []
     var levels: [Int] = []
     var monthDate: [String] = []
     var dayAndYear = ""
+    var inx = 0
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -201,6 +203,7 @@ class ReportVC: UIViewController {
         levels.removeAll()
         activites.removeAll()
         monthDate.removeAll()
+        inx = 0
         
         viewModel.fetchReport(year: year, month: month) { data in
             self.reportView.setCharacterView(data: data)
@@ -208,6 +211,7 @@ class ReportVC: UIViewController {
             if let months = data?.activitiesOfMonth {
                 self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
                 self.levels.append(contentsOf: data?.characterLevelArr ?? [])
+                self.imageIndexs.append(contentsOf: data?.characterImageArr ?? [])
                 self.activites.append(contentsOf: months)
                 
                 for i in months {
@@ -274,11 +278,9 @@ extension ReportVC: UICollectionViewDataSource {
             cell.dateLabel.font = .numberMediumSystemFont(ofSize: 18)
             cell.dateLabel.textColor = .gray500
             
-            
-            var inx = 0
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
-                    cell.characterImage.image = setCharacterImage(level: levels[indexs[inx]], index: indexs[inx], size: 43)
+                    cell.characterImage.image = setCharacterImage(level: levels[indexs[inx]-1], index: imageIndexs[indexs[inx]-1], size: 43)
                     cell.characterImage.isHidden = false
                     cell.countLabel.text = days[indexPath.row]
                     cell.countLabel.textColor = .gray400

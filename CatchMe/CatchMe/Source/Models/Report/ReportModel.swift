@@ -20,7 +20,7 @@ struct ReportData: Codable {
     let characterName: String
     let characterIndex, characterImageIndex, characterLevel, catching: Int
     let activitiesOfMonth: [ActivitiesOfMonth]
-    let characterIndexArr, characterLevelArr: [Int]
+    let characterIndexArr, characterLevelArr, characterImageArr: [Int]
 }
 
 // MARK: - ActivitiesOfMonth

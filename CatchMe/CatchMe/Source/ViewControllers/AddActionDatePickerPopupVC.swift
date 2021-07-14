@@ -13,9 +13,9 @@ class AddActionDatePickerPopupVC: UIViewController {
     // MARK: - lazy Properties
     lazy var popupView = AddActionDatePickerPopupView(vc: self)
 
-//    // MARK: - Properties
+    // MARK: - Properties
     var sendData: ((String?) -> ())?
-    var selectedDate: String = String()
+    var selectedDate: String = ""
 
     let vc = AddActionVC()
     

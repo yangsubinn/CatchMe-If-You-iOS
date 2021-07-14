@@ -19,6 +19,7 @@ class AddActionVC: UIViewController {
     var wordCount: Int = 0
     
     let imagePicker = UIImagePickerController()
+    let nameView = UIView()
     
     let pinkBackgroundView = UIView().then {
         $0.backgroundColor = .pink100
@@ -33,9 +34,7 @@ class AddActionVC: UIViewController {
         $0.setImage(UIImage(named: "btnClose"), for: .normal)
         $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
-    
-    let nameView = UIView()
-    
+        
     let nameLabel = UILabel().then {
         $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)

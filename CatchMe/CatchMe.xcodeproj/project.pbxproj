@@ -18,7 +18,9 @@
 		2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */; };
 		2B3654E22691ACBC002C2C5C /* CharacterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */; };
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
-		2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* mainReportView.swift */; };
+		2B3654EF2691D6D9002C2C5C /* MainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* MainReportView.swift */; };
+		2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B256269E3685004BE562 /* MainPopupVC.swift */; };
+		2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B25A269E376A004BE562 /* MainPopupView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
 		2BDC1ABB26946882008381C3 /* MainCardCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AB926946882008381C3 /* MainCardCVC.swift */; };
 		2BDC1ABC26946882008381C3 /* MainCardCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDC1ABA26946882008381C3 /* MainCardCVC.xib */; };
@@ -137,7 +139,9 @@
 		2B3654DF2691ACBC002C2C5C /* CharacterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCVC.swift; sourceTree = "<group>"; };
 		2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCVC.xib; sourceTree = "<group>"; };
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
-		2B3654EE2691D6D9002C2C5C /* mainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainReportView.swift; sourceTree = "<group>"; };
+		2B3654EE2691D6D9002C2C5C /* MainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReportView.swift; sourceTree = "<group>"; };
+		2BD1B256269E3685004BE562 /* MainPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupVC.swift; sourceTree = "<group>"; };
+		2BD1B25A269E376A004BE562 /* MainPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupView.swift; sourceTree = "<group>"; };
 		2BDC1AAF26942973008381C3 /* MainCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardVC.swift; sourceTree = "<group>"; };
 		2BDC1AB926946882008381C3 /* MainCardCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardCVC.swift; sourceTree = "<group>"; };
 		2BDC1ABA26946882008381C3 /* MainCardCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCardCVC.xib; sourceTree = "<group>"; };
@@ -325,7 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				2B3654EA2691C4D7002C2C5C /* PageControl.swift */,
-				2B3654EE2691D6D9002C2C5C /* mainReportView.swift */,
+				2B3654EE2691D6D9002C2C5C /* MainReportView.swift */,
+				2BD1B25A269E376A004BE562 /* MainPopupView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				2B12C6D7269B52BB00BCB7B3 /* LookVC.swift */,
 				ED7283FD269CCAF500D19FD5 /* EditCatchuVC.swift */,
 				ED72841D269DD38600D19FD5 /* AddCatchuPopupVC.swift */,
+				2BD1B256269E3685004BE562 /* MainPopupVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -899,9 +905,10 @@
 				ED72841E269DD38600D19FD5 /* AddCatchuPopupVC.swift in Sources */,
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				EDB72D4F269AEB7B003EE228 /* NetworkLoggerPlugin.swift in Sources */,
-				2B3654EF2691D6D9002C2C5C /* mainReportView.swift in Sources */,
+				2B3654EF2691D6D9002C2C5C /* MainReportView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
+				2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */,
 				2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
@@ -941,6 +948,7 @@
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				EDB72D51269AEE60003EE228 /* UserData.swift in Sources */,
 				ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */,
+				2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */,
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
 				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,

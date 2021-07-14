@@ -16,7 +16,8 @@ class MainPopupVC: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configUI()
+        setupLayout()
     }
     
     // MARK: - Custom Method

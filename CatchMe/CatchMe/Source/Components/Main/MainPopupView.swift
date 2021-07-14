@@ -89,6 +89,8 @@ class MainPopupView: UIView {
         okButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(23)
+            make.height.equalTo(50)
+            make.width.equalTo(173)
         }
     }
 }

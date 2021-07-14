@@ -43,6 +43,19 @@
 		ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E881268A14E5000F058F /* SceneDelegate.swift */; };
 		ED63E889268A14E7000F058F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63E888268A14E7000F058F /* Assets.xcassets */; };
 		ED63E88C268A14E7000F058F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63E88A268A14E7000F058F /* LaunchScreen.storyboard */; };
+		ED7283FE269CCAF500D19FD5 /* EditCatchuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7283FD269CCAF500D19FD5 /* EditCatchuVC.swift */; };
+		ED728401269CFFED00D19FD5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728400269CFFED00D19FD5 /* LoginService.swift */; };
+		ED728404269D06EB00D19FD5 /* SigninRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728403269D06EB00D19FD5 /* SigninRequest.swift */; };
+		ED728406269D073E00D19FD5 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728405269D073E00D19FD5 /* SignupRequest.swift */; };
+		ED728408269D079E00D19FD5 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728407269D079E00D19FD5 /* SigninModel.swift */; };
+		ED72840B269D090C00D19FD5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72840A269D090C00D19FD5 /* LoginViewModel.swift */; };
+		ED72840D269D460D00D19FD5 /* EmailCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72840C269D460D00D19FD5 /* EmailCheckRequest.swift */; };
+		ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72840E269D46AB00D19FD5 /* EmailCheckModel.swift */; };
+		ED728411269D600F00D19FD5 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728410269D600F00D19FD5 /* SignupModel.swift */; };
+		ED728413269DA8FD00D19FD5 /* MainCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728412269DA8FD00D19FD5 /* MainCardViewModel.swift */; };
+		ED728415269DA93300D19FD5 /* MainCardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728414269DA93300D19FD5 /* MainCardService.swift */; };
+		ED72841A269DA9A100D19FD5 /* CreateCharacterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728419269DA9A100D19FD5 /* CreateCharacterRequest.swift */; };
+		ED72841C269DAB3D00D19FD5 /* CreateCharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72841B269DAB3D00D19FD5 /* CreateCharacterModel.swift */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -75,7 +88,7 @@
 		EDC19D9126983C7100F9E41B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */; };
 		EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D932698478100F9E41B /* TextFieldView.swift */; };
 		EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D952698A23700F9E41B /* SignupVC.swift */; };
-		EDC19D982698A90400F9E41B /* SignupNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D972698A90400F9E41B /* SignupNaviBar.swift */; };
+		EDC19D982698A90400F9E41B /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D972698A90400F9E41B /* CustomNavigationBar.swift */; };
 		EDC19D9C2698AEEC00F9E41B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9B2698AEEC00F9E41B /* UIApplication+Extension.swift */; };
 		EDC19D9E2698B06D00F9E41B /* SignupTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC19D9D2698B06D00F9E41B /* SignupTextFieldView.swift */; };
 		EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3780B2691D3CC007C53F2 /* ReportView.swift */; };
@@ -149,6 +162,19 @@
 		ED63E888268A14E7000F058F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63E88B268A14E7000F058F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED63E88D268A14E7000F058F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED7283FD269CCAF500D19FD5 /* EditCatchuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCatchuVC.swift; sourceTree = "<group>"; };
+		ED728400269CFFED00D19FD5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		ED728403269D06EB00D19FD5 /* SigninRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninRequest.swift; sourceTree = "<group>"; };
+		ED728405269D073E00D19FD5 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
+		ED728407269D079E00D19FD5 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
+		ED72840A269D090C00D19FD5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		ED72840C269D460D00D19FD5 /* EmailCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckRequest.swift; sourceTree = "<group>"; };
+		ED72840E269D46AB00D19FD5 /* EmailCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckModel.swift; sourceTree = "<group>"; };
+		ED728410269D600F00D19FD5 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		ED728412269DA8FD00D19FD5 /* MainCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardViewModel.swift; sourceTree = "<group>"; };
+		ED728414269DA93300D19FD5 /* MainCardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardService.swift; sourceTree = "<group>"; };
+		ED728419269DA9A100D19FD5 /* CreateCharacterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterRequest.swift; sourceTree = "<group>"; };
+		ED72841B269DAB3D00D19FD5 /* CreateCharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCharacterModel.swift; sourceTree = "<group>"; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -181,7 +207,7 @@
 		EDC19D9026983C7100F9E41B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		EDC19D932698478100F9E41B /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		EDC19D952698A23700F9E41B /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
-		EDC19D972698A90400F9E41B /* SignupNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNaviBar.swift; sourceTree = "<group>"; };
+		EDC19D972698A90400F9E41B /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		EDC19D9B2698AEEC00F9E41B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		EDC19D9D2698B06D00F9E41B /* SignupTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupTextFieldView.swift; sourceTree = "<group>"; };
 		EDC3780B2691D3CC007C53F2 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
@@ -410,6 +436,7 @@
 			children = (
 				ED63E89B268A1C56000F058F /* Extensions */,
 				ED63E89A268A1C54000F058F /* Models */,
+				ED728409269D08DD00D19FD5 /* ViewModels */,
 				ED63E89D268A1CB9000F058F /* Components */,
 				ED63E899268A1C4A000F058F /* Cells */,
 				ED63E895268A1B98000F058F /* ViewControllers */,
@@ -435,6 +462,7 @@
 				EDD262C8269771BD00845F7B /* LoginVC.swift */,
 				EDC19D952698A23700F9E41B /* SignupVC.swift */,
 				2B12C6D7269B52BB00BCB7B3 /* LookVC.swift */,
+				ED7283FD269CCAF500D19FD5 /* EditCatchuVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -480,6 +508,8 @@
 		ED63E89A268A1C54000F058F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED728418269DA98200D19FD5 /* MainCard */,
+				ED728402269D06C800D19FD5 /* Login */,
 				5B447CD226961D6400F79AB7 /* Character */,
 			);
 			path = Models;
@@ -533,12 +563,53 @@
 		ED63E89E268A1D78000F058F /* APIServices */ = {
 			isa = PBXGroup;
 			children = (
+				ED7283FF269CFFDB00D19FD5 /* Services */,
 				EDB72D4C269AE607003EE228 /* GeneralAPI.swift */,
 				EDB72D4E269AEB7B003EE228 /* NetworkLoggerPlugin.swift */,
 				EDB72D50269AEE60003EE228 /* UserData.swift */,
 				EDB72D52269AEF86003EE228 /* Login.swift */,
 			);
 			path = APIServices;
+			sourceTree = "<group>";
+		};
+		ED7283FF269CFFDB00D19FD5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ED728400269CFFED00D19FD5 /* LoginService.swift */,
+				ED728414269DA93300D19FD5 /* MainCardService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		ED728402269D06C800D19FD5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ED728403269D06EB00D19FD5 /* SigninRequest.swift */,
+				ED728405269D073E00D19FD5 /* SignupRequest.swift */,
+				ED72840C269D460D00D19FD5 /* EmailCheckRequest.swift */,
+				ED728407269D079E00D19FD5 /* SigninModel.swift */,
+				ED72840E269D46AB00D19FD5 /* EmailCheckModel.swift */,
+				ED728410269D600F00D19FD5 /* SignupModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		ED728409269D08DD00D19FD5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED72840A269D090C00D19FD5 /* LoginViewModel.swift */,
+				ED728412269DA8FD00D19FD5 /* MainCardViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		ED728418269DA98200D19FD5 /* MainCard */ = {
+			isa = PBXGroup;
+			children = (
+				ED728419269DA9A100D19FD5 /* CreateCharacterRequest.swift */,
+				ED72841B269DAB3D00D19FD5 /* CreateCharacterModel.swift */,
+			);
+			path = MainCard;
 			sourceTree = "<group>";
 		};
 		EDB431B52695BA800008BFB4 /* AddCatchu */ = {
@@ -587,7 +658,6 @@
 			isa = PBXGroup;
 			children = (
 				EDC19D932698478100F9E41B /* TextFieldView.swift */,
-				EDC19D972698A90400F9E41B /* SignupNaviBar.swift */,
 				EDC19D9D2698B06D00F9E41B /* SignupTextFieldView.swift */,
 			);
 			path = Login;
@@ -612,6 +682,7 @@
 				EDD12C95268EB16800DF766A /* XmarkButton.swift */,
 				EDD12C97268EB27500DF766A /* BottomButton.swift */,
 				EDB431BC269603210008BFB4 /* CustomTextField.swift */,
+				EDC19D972698A90400F9E41B /* CustomNavigationBar.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -783,12 +854,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDC19D982698A90400F9E41B /* SignupNaviBar.swift in Sources */,
+				ED728415269DA93300D19FD5 /* MainCardService.swift in Sources */,
+				EDC19D982698A90400F9E41B /* CustomNavigationBar.swift in Sources */,
 				2B12C6D8269B52BB00BCB7B3 /* LookVC.swift in Sources */,
 				EDD12C98268EB27500DF766A /* BottomButton.swift in Sources */,
 				2B164B492695A988007F0F4A /* SettingVC.swift in Sources */,
 				EDB72D4D269AE607003EE228 /* GeneralAPI.swift in Sources */,
 				EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */,
+				ED72841A269DA9A100D19FD5 /* CreateCharacterRequest.swift in Sources */,
 				EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,
 				EDD12C9E268EB71000DF766A /* MainVC.swift in Sources */,
@@ -798,8 +871,10 @@
 				EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */,
 				EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */,
 				EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */,
+				ED7283FE269CCAF500D19FD5 /* EditCatchuVC.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
 				2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */,
+				ED728413269DA8FD00D19FD5 /* MainCardViewModel.swift in Sources */,
 				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B447CDE2697036C00F79AB7 /* CharacterFirstTVC.swift in Sources */,
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
@@ -807,8 +882,11 @@
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
 				5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */,
 				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
+				ED728411269D600F00D19FD5 /* SignupModel.swift in Sources */,
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,
 				ED3D6C402699A36800BB84C8 /* String+Extension.swift in Sources */,
+				ED72840D269D460D00D19FD5 /* EmailCheckRequest.swift in Sources */,
+				ED728401269CFFED00D19FD5 /* LoginService.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
 				5B08504D26919416008F40B2 /* NavigationBar.swift in Sources */,
@@ -821,13 +899,17 @@
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
 				2B0534CC26983FEB00646974 /* UILabel+Extension.swift in Sources */,
 				EDC19D9E2698B06D00F9E41B /* SignupTextFieldView.swift in Sources */,
+				ED72840B269D090C00D19FD5 /* LoginViewModel.swift in Sources */,
 				EDBBFCD226936F4600443077 /* CalendarCVC.swift in Sources */,
+				ED728404269D06EB00D19FD5 /* SigninRequest.swift in Sources */,
 				EDB431BF2696325E0008BFB4 /* ThirdFlowView.swift in Sources */,
+				ED72841C269DAB3D00D19FD5 /* CreateCharacterModel.swift in Sources */,
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,
 				EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */,
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
+				ED728406269D073E00D19FD5 /* SignupRequest.swift in Sources */,
 				5B447CEF2697146800F79AB7 /* CharacterFooterView.swift in Sources */,
 				EDBBFCE32693996F00443077 /* UIFont+Extension.swift in Sources */,
 				EDBDC80A269585F800CDF1B2 /* CatchuTitleView.swift in Sources */,
@@ -842,6 +924,7 @@
 				EDD12CB0268EBE1600DF766A /* UITextField+Extension.swift in Sources */,
 				EDC19D9126983C7100F9E41B /* UIButton+Extension.swift in Sources */,
 				5B447CDA269628D900F79AB7 /* Activity.swift in Sources */,
+				ED728408269D079E00D19FD5 /* SigninModel.swift in Sources */,
 				5B447CBD2694D3D100F79AB7 /* CharacterPopupView.swift in Sources */,
 				EDD12CAC268EBD2200DF766A /* UIViewController+Extension.swift in Sources */,
 				2B3654E12691ACBC002C2C5C /* CharacterCVC.swift in Sources */,
@@ -849,6 +932,7 @@
 				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				EDB72D51269AEE60003EE228 /* UserData.swift in Sources */,
+				ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */,
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
 				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,

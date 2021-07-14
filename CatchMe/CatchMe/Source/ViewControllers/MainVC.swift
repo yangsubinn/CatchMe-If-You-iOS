@@ -285,8 +285,7 @@ extension MainVC {
             case .success(let result):
                 do {
                     self.characterData = try result.map(MainModel.self)
-                     
-//                    if
+                    
                     data.append(contentsOf: characterData?.data ?? [])
                     
                     names.removeAll()
@@ -318,6 +317,52 @@ extension MainVC {
                         collectionView.alpha = 1.0
                         nameLabel.alpha = 1.0
                     })
+                     
+//                    if data.isEmpty {
+//                        emptyImageView.isHidden = false
+//                        emptyTitleLabel.isHidden = false
+//                        emptySubTitle.isHidden = false
+//                        nameLabel.isHidden = true
+//                        catchingButton.isHidden = true
+//                        collectionView = true
+//                        pageControl = true
+//                    } else {
+//                        emptyImageView.isHidden = true
+//                        emptyTitleLabel.isHidden = true
+//                        emptySubTitle.isHidden = true
+//
+//                        data.append(contentsOf: characterData?.data ?? [])
+//
+//                        names.removeAll()
+//                        levels.removeAll()
+//                        activitys.removeAll()
+//                        totals.removeAll()
+//                        characters.removeAll()
+//
+//                        for i in 0..<data.count {
+//                            names.append(data[i].characterName)
+//                            levels.append(data[i].characterLevel)
+//                            activitys.append(data[i].activityCount)
+//                            totals.append(data[i].countPercentage ?? 0)
+//                            characters.append(data[i].characterIndex)
+//                        }
+//
+//                        collectionView.reloadData()
+//                        pageControl.pages = names.count
+//                        if !names.isEmpty {
+//                            nameLabel.text = names[0]
+//                            nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+//                        }
+//
+//                        UIView.animate(withDuration: 0.5, animations: {
+//                            pageControl.alpha = 0
+//                            collectionView.alpha = 0
+//                            nameLabel.alpha = 0
+//                            pageControl.alpha = 1.0
+//                            collectionView.alpha = 1.0
+//                            nameLabel.alpha = 1.0
+//                        })
+//                    }
                     
                 } catch(let err) {
                     print(err.localizedDescription)

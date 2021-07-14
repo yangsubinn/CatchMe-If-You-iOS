@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Moya
 
 class ReportVC: UIViewController {
     // MARK: - lazy Properties
@@ -31,8 +32,7 @@ class ReportVC: UIViewController {
     var weekdayAdding = 0
     
     // MARK: - Dummy Data
-    let dummyFormatter = DateFormatter()
-    var dummyDate: [String] = ["2021-09-13", "2021-08-31", "2021-07-17", "2021-06-15", "2021-06-16", "2021-06-17", "2021-06-18", "2021-06-25", "2021-10-31"]
+    let viewModel = ReportViewModel.shared
     var monthDate: [String] = []
     var dayAndYear = ""
     
@@ -48,7 +48,7 @@ class ReportVC: UIViewController {
         calculateCalendarDate()
     }
 
-    // MARK: - Custom Methods
+    // MARK: - Custom Method
     fileprivate func configUI() {
         view.backgroundColor = .black100
         setupStatusBar(.pink100)
@@ -169,8 +169,6 @@ class ReportVC: UIViewController {
     
     private func makeMonthDate() {
         monthDate.removeAll()
-        dummyFormatter.dateFormat = "YYYY"
-        dayAndYear = ""
         
         let firstDayOfMonth = Calendar.current.date(from: components)
         
@@ -184,20 +182,20 @@ class ReportVC: UIViewController {
         let titleMonth = dateFormatter.string(from: firstDayOfMonth!)
         calendarTitleView.applyMonthLabel(to: titleMonth)
         
-        /// dummyDate를 위한 month 설정
+        /// Server 연결을 위한 month 설정
         dateFormatter.dateFormat = "MM"
         let month = dateFormatter.string(from: firstDayOfMonth!)
         
         dayAndYear = year + "." + month
         
-        for date in dummyDate {
-            let string = date.split(separator: "-")
-            
-            if string[0] == year && string[1] == month {
-                let day = (string[2] as NSString).integerValue
-                monthDate.append("\(day)")
-            }
+        if let intYear = Int(year),
+           let intMonth = Int(month) {
+            fetchData(year: intYear, month: intMonth)
         }
+    }
+    
+    func fetchData(year: Int, month: Int) {
+        viewModel.fetchReport(year: year, month: month)
     }
 }
 

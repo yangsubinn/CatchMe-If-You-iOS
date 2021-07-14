@@ -68,6 +68,9 @@
 		ED72842A269EDFB900D19FD5 /* LogoutPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728429269EDFB900D19FD5 /* LogoutPopupView.swift */; };
 		ED72842C269EE3C300D19FD5 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED72842B269EE3C300D19FD5 /* DINPro-Bold.otf */; };
 		ED72842E269EEBCF00D19FD5 /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72842D269EEBCF00D19FD5 /* WithdrawalVC.swift */; };
+		ED728435269F3F8700D19FD5 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728434269F3F8700D19FD5 /* ReportViewModel.swift */; };
+		ED728437269F3FBB00D19FD5 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728436269F3FBB00D19FD5 /* ReportService.swift */; };
+		ED728439269F406900D19FD5 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED728438269F406900D19FD5 /* ReportModel.swift */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -199,6 +202,9 @@
 		ED728429269EDFB900D19FD5 /* LogoutPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogoutPopupView.swift; path = CatchMe/Source/ViewControllers/LogoutPopupView.swift; sourceTree = SOURCE_ROOT; };
 		ED72842B269EE3C300D19FD5 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
 		ED72842D269EEBCF00D19FD5 /* WithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
+		ED728434269F3F8700D19FD5 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		ED728436269F3FBB00D19FD5 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		ED728438269F406900D19FD5 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -542,6 +548,7 @@
 		ED63E89A268A1C54000F058F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED728433269F3F7900D19FD5 /* Report */,
 				ED728418269DA98200D19FD5 /* MainCard */,
 				ED728402269D06C800D19FD5 /* Login */,
 				5B447CD226961D6400F79AB7 /* Character */,
@@ -611,6 +618,7 @@
 			children = (
 				ED728400269CFFED00D19FD5 /* LoginService.swift */,
 				ED728414269DA93300D19FD5 /* MainCardService.swift */,
+				ED728436269F3FBB00D19FD5 /* ReportService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -633,6 +641,7 @@
 			children = (
 				ED72840A269D090C00D19FD5 /* LoginViewModel.swift */,
 				ED728412269DA8FD00D19FD5 /* MainCardViewModel.swift */,
+				ED728434269F3F8700D19FD5 /* ReportViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -644,6 +653,14 @@
 				ED72841B269DAB3D00D19FD5 /* CreateCharacterModel.swift */,
 			);
 			path = MainCard;
+			sourceTree = "<group>";
+		};
+		ED728433269F3F7900D19FD5 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				ED728438269F406900D19FD5 /* ReportModel.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		EDB431B52695BA800008BFB4 /* AddCatchu */ = {
@@ -915,6 +932,7 @@
 				ED728413269DA8FD00D19FD5 /* MainCardViewModel.swift in Sources */,
 				EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */,
 				5B447CDE2697036C00F79AB7 /* CharacterFirstTVC.swift in Sources */,
+				ED728435269F3F8700D19FD5 /* ReportViewModel.swift in Sources */,
 				ED72842A269EDFB900D19FD5 /* LogoutPopupView.swift in Sources */,
 				ED728426269EC82F00D19FD5 /* ChangePasswordView.swift in Sources */,
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
@@ -931,6 +949,7 @@
 				ED72842E269EEBCF00D19FD5 /* WithdrawalVC.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
 				5B08504D26919416008F40B2 /* NavigationBar.swift in Sources */,
+				ED728439269F406900D19FD5 /* ReportModel.swift in Sources */,
 				ED72841E269DD38600D19FD5 /* AddCatchuPopupVC.swift in Sources */,
 				EDD12C94268EAD1F00DF766A /* BackButton.swift in Sources */,
 				EDB72D4F269AEB7B003EE228 /* NetworkLoggerPlugin.swift in Sources */,
@@ -986,6 +1005,7 @@
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,
 				EDC19D9C2698AEEC00F9E41B /* UIApplication+Extension.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
+				ED728437269F3FBB00D19FD5 /* ReportService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -303,9 +303,8 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupDeletePhotoButton(_ sender: UIButton) {
-        /// 나중에 버튼 이미지 이름 부분에 디자이너가 넘겨준 에셋을 넘겨줄 예정입니다
-        photoButton.setImage(UIImage(named: ""), for: .normal)
-        if photoButton.currentImage == UIImage(named: "") {
+        photoButton.setImage(UIImage(named: "btnAddPhoto"), for: .normal)
+        if photoButton.currentImage == UIImage(named: "btnAddPhoto") {
             deletePhotoButton.isHidden = true
         } else {
             deletePhotoButton.isHidden = false

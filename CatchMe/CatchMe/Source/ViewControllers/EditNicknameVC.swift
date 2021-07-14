@@ -93,6 +93,7 @@ class EditNicknameVC: UIViewController {
         
         editButton.backgroundColor = .gray200
         editButton.isEnabled = false
+        editButton.addTarget(self, action: #selector(touchupEditButton), for: .touchUpInside)
 
         removeButton.setImage(UIImage(named: "btnRemove"), for: .normal)
         removeButton.isHidden = true
@@ -107,6 +108,9 @@ class EditNicknameVC: UIViewController {
         countLabel.text = "0/10"
         countLabel.textColor = .gray200
         
+        editButton.isEnabled = false
+        editButton.backgroundColor = .gray300
+        
         if !nicknameTextField.isEditing {
             countLabel.isHidden = true
             removeButton.isHidden = true
@@ -114,8 +118,14 @@ class EditNicknameVC: UIViewController {
     }
     
     @objc
+    func touchupEditButton() {
+        print("click edit")
+    }
+    
+    @objc
     override func dismissKeyboard() {
-        if !removeButton.isTouchInside {
+        if !removeButton.isTouchInside &&
+            !editButton.isTouchInside {
             view.endEditing(true)
         }
     }
@@ -127,12 +137,20 @@ extension EditNicknameVC: UITextFieldDelegate {
         textfield.becomeFirstResponder()
         self.nicknameTextField.setupPinkLine()
         
+        moveTextFieldView()
+        
         countLabel.isHidden = false
         removeButton.isHidden = false
+        
+        if textfield.hasText {
+            editButton.isEnabled = true
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.nicknameTextField.setupOriginalLine()
+        
+        backToOriginalView()
         
         countLabel.isHidden = true
         
@@ -148,6 +166,16 @@ extension EditNicknameVC: UITextFieldDelegate {
     }
     
     @objc func textDidChanged(_ textField: UITextField) {
+        if !nicknameTextField.hasText {
+            removeButton.isHidden = true
+            editButton.isEnabled = false
+            editButton.backgroundColor = .gray200
+        } else {
+            editButton.changeBottomButton(isEnable: true)
+            editButton.isEnabled = true
+            editButton.backgroundColor = .pink100
+        }
+        
         textCount = nicknameTextField.text?.count ?? 0
         
         switch textCount {
@@ -172,5 +200,17 @@ extension EditNicknameVC: UITextFieldDelegate {
         if (textField.text?.count ?? 0 > maxLength) {
             textField.deleteBackward()
         }
+    }
+    
+    private func moveTextFieldView() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.editButton.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.hasNotch ? -UIScreen.main.bounds.size.height * 0.32 : -180)
+        })
+    }
+    
+    private func backToOriginalView() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.editButton.transform = .identity
+        })
     }
 }

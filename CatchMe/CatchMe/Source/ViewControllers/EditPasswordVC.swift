@@ -12,11 +12,11 @@ class EditPasswordVC: UIViewController {
     lazy var backButton = BackButton(self)
     
     // MARK: - Properties
-    let editButton = BottomButton(title: "완료")
+    let editButton = BottomButton(title: "다음")
     let passwordView = CurrentPasswordView()
     
     // MARK: - Dummy Data
-    var currentNickname = "@야@꿍@이@"
+    var password = "password12@"
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -59,6 +59,9 @@ class EditPasswordVC: UIViewController {
     
     @objc
     override func dismissKeyboard() {
-        view.endEditing(true)
+        if !passwordView.currentRemoveButton.isTouchInside &&
+            !passwordView.checkRemoveButton.isTouchInside {
+            view.endEditing(true)
+        }
     }
 }

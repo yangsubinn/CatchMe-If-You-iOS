@@ -87,20 +87,18 @@ extension SettingVC: UITableViewDelegate {
             guard let vc = storyboard?.instantiateViewController(identifier: "EditPasswordVC") as? EditPasswordVC else { return }
             navigationController?.pushViewController(vc, animated: true)
         case 2:
-            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
-            navigationController?.pushViewController(vc, animated: true)
+            break
         case 3:
-            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
-            navigationController?.pushViewController(vc, animated: true)
+            break
         case 4:
-            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
-            navigationController?.pushViewController(vc, animated: true)
+            break
         case 5:
-            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
-            navigationController?.pushViewController(vc, animated: true)
+            guard let vc = storyboard?.instantiateViewController(identifier: "LogoutVC") as? LogoutVC else { return }
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
+            present(vc, animated: true, completion: nil)
         default:
-            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
-            navigationController?.pushViewController(vc, animated: true)
+            break
         }
     }
         

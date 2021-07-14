@@ -30,13 +30,16 @@ class SettingVC: UIViewController {
         view.addSubviews([backButton, titleLabel, settingTableView])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(55)
+            if UIScreen.main.hasNotch {
+                make.top.equalToSuperview().inset(55)
+            } else {
+                make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            }
             make.leading.equalToSuperview().offset(14)
             make.width.height.equalTo(48)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(66)
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton.snp.centerY)
         }

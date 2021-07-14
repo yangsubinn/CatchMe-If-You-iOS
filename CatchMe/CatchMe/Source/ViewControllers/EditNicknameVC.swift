@@ -38,7 +38,11 @@ class EditNicknameVC: UIViewController {
                           countLabel, editButton, removeButton])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(55)
+            if UIScreen.main.hasNotch {
+                make.top.equalToSuperview().inset(55)
+            } else {
+                make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            }
             make.leading.equalToSuperview().offset(14)
             make.width.height.equalTo(48)
         }
@@ -65,8 +69,7 @@ class EditNicknameVC: UIViewController {
         }
         
         editButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(319)
+            make.leading.trailing.equalToSuperview().inset(28)
             make.bottom.equalToSuperview().inset(50)
         }
     }

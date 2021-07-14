@@ -34,25 +34,28 @@ class EditPasswordVC: UIViewController {
                           changePasswordView])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(55)
+            if UIScreen.main.hasNotch {
+                make.top.equalToSuperview().inset(55)
+            } else {
+                make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            }
             make.leading.equalToSuperview().offset(14)
             make.width.height.equalTo(48)
         }
         
         editButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(319)
+            make.leading.trailing.equalToSuperview().inset(28)
             make.bottom.equalToSuperview().inset(50)
         }
         
         passwordView.snp.makeConstraints { make in
-            make.top.equalTo(backButton.snp.bottom).offset(37)
+            make.top.equalTo(backButton.snp.bottom).offset(UIScreen.main.hasNotch ? 37 : 15)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(255)
         }
         
         changePasswordView.snp.makeConstraints { make in
-            make.top.equalTo(backButton.snp.bottom).offset(37)
+            make.top.equalTo(backButton.snp.bottom).offset(UIScreen.main.hasNotch ? 37 : 15)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(255)
         }

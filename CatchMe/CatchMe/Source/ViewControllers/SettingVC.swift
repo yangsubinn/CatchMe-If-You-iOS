@@ -15,7 +15,7 @@ class SettingVC: UIViewController {
     let titleLabel = UILabel()
     let settingTableView = UITableView(frame: .zero, style: .plain)
     
-    let sectionList: [String] = ["닉네임 변경", "비밀번호 변경", "이용약관", "오픈소스 라이선스", "로그아웃", "서비스 탈퇴"]
+    let sectionList: [String] = ["닉네임 변경", "비밀번호 변경", "이용약관", "오픈소스 라이선스", "개발자 정보", "로그아웃", "서비스 탈퇴"]
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -93,6 +93,9 @@ extension SettingVC: UITableViewDelegate {
             guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
             navigationController?.pushViewController(vc, animated: true)
         case 4:
+            guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
+            navigationController?.pushViewController(vc, animated: true)
+        case 5:
             guard let vc = storyboard?.instantiateViewController(identifier: "EditNicknameVC") as? EditNicknameVC else { return }
             navigationController?.pushViewController(vc, animated: true)
         default:

@@ -23,7 +23,7 @@ class EditNicknameVC: UIViewController {
     var textCount = 0
     
     // MARK: - Dummy Data
-    var currentNickname = "괜찮아도 괜찮아"
+    var currentNickname = "@야@꿍@이@"
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -82,7 +82,7 @@ class EditNicknameVC: UIViewController {
         countLabel.textAlignment = .right
         countLabel.font = .numberRegularSystemFont(ofSize: 14)
         countLabel.text = "0/10"
-        countLabel.textColor = .gray
+        countLabel.textColor = .gray200
         countLabel.isHidden = true
         
         nicknameTextField.delegate = self
@@ -105,7 +105,7 @@ class EditNicknameVC: UIViewController {
     func removeButtonClicked() {
         nicknameTextField.text = ""
         countLabel.text = "0/10"
-        // count 고쳐라
+        countLabel.textColor = .gray200
         
         if !nicknameTextField.isEditing {
             countLabel.isHidden = true

@@ -56,31 +56,28 @@ class mainReportView: UIView {
         
         lineLeftView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(45)
-            make.trailing.equalTo(activeLabel.snp.leading).offset(-35) //-33.5
+            make.trailing.equalTo(activeLabel.snp.leading).offset(-35)
             make.width.equalTo(2)
             make.height.equalTo(23)
         }
          
         lineRightView.snp.makeConstraints { make in
-            make.leading.equalTo(activeLabel.snp.trailing).offset(35) //33.5
+            make.leading.equalTo(activeLabel.snp.trailing).offset(35)
             make.bottom.equalToSuperview().inset(45)
             make.width.equalTo(2)
             make.height.equalTo(23)
         }
         
-        // 캐칭
         activeLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(27)
             make.centerX.equalToSuperview()
         }
         
-        // 캐치지수
         percentLabel.snp.makeConstraints { make in
             make.leading.equalTo(lineRightView.snp.trailing).offset(25)
             make.bottom.equalToSuperview().inset(27)
         }
         
-        // 레벨
         levelLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(27)
             make.trailing.equalTo(lineLeftView.snp.leading).offset(-38) //-33.5

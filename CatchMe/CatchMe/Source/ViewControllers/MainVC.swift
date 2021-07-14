@@ -37,9 +37,7 @@ class MainVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let cellWidth = UIScreen.main.bounds.width * (319/375)
         var cellHeight : CGFloat = UIScreen.main.hasNotch ? 450 : 400
-        
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
         let spacing = (UIScreen.main.bounds.width - cellWidth) / 2
         layout.minimumLineSpacing = 16
         layout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
@@ -97,8 +95,7 @@ class MainVC: UIViewController {
     }
     
     private func setupLayout() {
-        view.addSubviews([nameLabel, catchingButton,
-                          collectionView, pageControl])
+        view.addSubviews([nameLabel, catchingButton, collectionView, pageControl])
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
@@ -175,13 +172,7 @@ class MainVC: UIViewController {
         nameLabel.textColor = .white
         nameLabel.font = .catchuRegularSystemFont(ofSize: 22)
         nameLabel.numberOfLines = 2
-        nameLabel.addCharacterSpacing(kernValue: -0.6)
-        
-        let attributedString = NSMutableAttributedString(string: nameLabel.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 9
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        nameLabel.attributedText = attributedString
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         
         emptyTitleLabel.text = "캐츄를 추가해보세요!"
         emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
@@ -235,6 +226,7 @@ extension MainVC: UICollectionViewDataSource {
         cell.reportView.activeCountLabel.text = activitys[indexPath.row]
         cell.reportView.levelCountLabel.text = levels[indexPath.row]
         cell.reportView.percentCountLabel.text = totals[indexPath.row]
+        
         return cell
     }
 }

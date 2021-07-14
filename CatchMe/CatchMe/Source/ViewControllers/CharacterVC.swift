@@ -188,7 +188,7 @@ extension CharacterVC: UITableViewDelegate {
         let backgroundWidth = self.upperView.backgroundView.bounds.width
         let backgroundHeight = self.upperView.backgroundView.bounds.height
         let offset = scrollView.contentOffset.y
-        print(offset)
+
         if width - offset < 171 {
             UIView.animate(withDuration: 0.1) {
                 self.upperView.characterImageView.transform = CGAffineTransform(scaleX: 65/150, y: 65/150).translatedBy(x: 0, y: -238)

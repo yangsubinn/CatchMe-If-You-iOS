@@ -228,7 +228,7 @@ class CharacterTVC: UITableViewCell {
     
     func setData() {
         guard let data = data else { return }
-        dateLabel.text = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+        dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent
         
         if let image = URL(string: data.activityImage) {

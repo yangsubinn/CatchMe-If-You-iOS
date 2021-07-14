@@ -48,7 +48,7 @@ extension CharacterService: TargetType {
             return .requestPlain
         }
     }
-//    requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
+
     var headers: [String: String]? {
         switch self {
         default:

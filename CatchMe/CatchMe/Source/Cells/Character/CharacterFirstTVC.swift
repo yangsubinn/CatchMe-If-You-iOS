@@ -96,7 +96,6 @@ class CharacterFirstTVC: UITableViewCell {
     func configUI() {
         backgroundColor = .black100
         self.sendSubviewToBack(contentView)
-
     }
     
     func setupAutoLayout() {
@@ -192,8 +191,6 @@ class CharacterFirstTVC: UITableViewCell {
         }
         
         let editAction = UIAlertAction(title: "수정", style: .default) { result in
-            print("수정")
-            // 편집VC로 화면 전환 코드 작성해야 함
             let vc = AddActionVC()
             vc.modalPresentationStyle = .overFullScreen
             
@@ -224,7 +221,7 @@ class CharacterFirstTVC: UITableViewCell {
     
     func setData() {
         guard let data = data else { return }
-        dateLabel.text = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+        dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent
         
         if let image = URL(string: data.activityImage) {

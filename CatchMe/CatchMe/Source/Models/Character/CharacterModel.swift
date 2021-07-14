@@ -12,13 +12,13 @@ struct CharacterModel: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: DataClass?
+    let data: CharacterReportData
 }
 
-// MARK: - DataClass
-struct DataClass: Codable {
+// MARK: - CharacterReportData
+struct CharacterReportData: Codable {
     let character: CharacterDetail
-    let characterActivitiesCount, catchRate: Int
+    let characterActivitiesCount, catchRate: Int  
 }
 
 // MARK: - CharacterDetail
@@ -40,10 +40,9 @@ struct ActivityDetail: Codable {
     let activityContent: String
     let activityImage: String
     let activityYear, activityMonth, activityDay: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case activityIndex, activityContent, activityImage, activityYear, activityMonth, activityDay
     }
 }
-

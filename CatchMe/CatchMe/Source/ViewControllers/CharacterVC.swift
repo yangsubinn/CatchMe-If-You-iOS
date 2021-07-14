@@ -24,15 +24,14 @@ class CharacterVC: UIViewController {
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let reportCell = CharacterReportTVC()
     let firstCell = CharacterFirstTVC()
-    var index = 0
     
     let catchGuideImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCatchGuide")
     }
     
-    var posts = [ActivityDetail(id: "", activityIndex: 1, activityContent: "캐치미사랑해? 말해모해? 당연하지", activityImage: "https://user-images.githubusercontent.com/42545818/122653517-10095c00-d180-11eb-93ee-dbbc984ff969.png", activityYear: "2021", activityMonth: "02", activityDay: "02"), ActivityDetail(id: "", activityIndex: 1, activityContent: "캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지캐치미사랑해? 말해모해? 당연하지", activityImage: "https://user-images.githubusercontent.com/42545818/122653517-10095c00-d180-11eb-93ee-dbbc984ff969.png", activityYear: "2021", activityMonth: "02", activityDay: "02")]
-                 
-                 
+    var catchu: CharacterDetail?
+    var report: CharacterReportData?
+    var posts = [ActivityDetail]()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -47,6 +46,8 @@ class CharacterVC: UIViewController {
     func configUI() {
         upperView.backgroundColor = .black100
         catchGuideImageView.isHidden = true
+        
+        upperView.characterImageView.image = Character.ima
     }
     
     func setupTableView() {
@@ -104,53 +105,6 @@ class CharacterVC: UIViewController {
         nextVC.modalPresentationStyle = .fullScreen
         present(nextVC, animated: true, completion: nil)
     }
-    
-//    @objc func touchupMoreButton(_ sender: UIButton) {
-//        let generator = UIImpactFeedbackGenerator(style: .medium)
-//        generator.impactOccurred()
-//        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        alertViewController.view.tintColor = .white
-//
-//        if let actionSheet = alertViewController.view.subviews.first,
-//           let secondSheet = alertViewController.view.subviews.last {
-//            for innerView in actionSheet.subviews {
-//                innerView.backgroundColor = .black300
-//                innerView.layer.cornerRadius = 18.0
-//                innerView.clipsToBounds = true
-//            }
-//            for innerView in secondSheet.subviews {
-//                innerView.backgroundColor = .black300
-//                innerView.layer.cornerRadius = 18.0
-//                innerView.clipsToBounds = true
-//            }
-//        }
-//
-//        let editAction = UIAlertAction(title: "수정", style: .default) { result in
-//            print("수정")
-//            // 편집VC로 화면 전환 코드 작성해야 함
-//            let vc = AddActionVC()
-//            vc.modalPresentationStyle = .overFullScreen
-//            vc.text = self.firstCell.commentLabel.text
-//            self.present(vc, animated: true, completion: nil)
-//        }
-//
-//        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
-//            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterPopupVC") as? CharacterPopupVC else { return }
-//
-//            vc.modalPresentationStyle = .overCurrentContext
-//            vc.modalTransitionStyle = .crossDissolve
-//            self.present(vc, animated: true, completion: nil)
-//        }
-//
-//        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
-//        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-//
-//        alertViewController.addAction(editAction)
-//        alertViewController.addAction(deleteAction)
-//        alertViewController.addAction(cancelAction)
-//
-//        self.present(alertViewController, animated: true, completion: nil)
-//    }
 }
 
 // MARK: - UITableViewDelegate
@@ -159,6 +113,14 @@ extension CharacterVC: UITableViewDelegate {
         switch section {
         case 0:
             let headerView = CharacterHeaderView()
+            if catchu?.characterPrivacy == false {
+                headerView.lockImageView.isHidden = true
+            } else {
+                headerView.lockImageView.isHidden = false
+            }
+            
+            headerView.dateLabel.text = catchu?.characterBirth
+            headerView.nameLabel.text = catchu?.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             return headerView
@@ -258,6 +220,7 @@ extension CharacterVC: UITableViewDataSource {
                 reportCell.selectionStyle = .none
                 reportCell.setupAutoLayout()
                 reportCell.catchGuideButton.addTarget(self, action: #selector(touchupCatchGuidebutton(_:)), for: .touchUpInside)
+                reportCell.setData(level: report?.character.characterLevel, catchRate: report?.catchRate, activity: report?.characterActivitiesCount)
                 return reportCell
             } else if indexPath.row == 1 { // 첫 번째 lineView가 안 붙여져 있는 cell
                 guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC else { return UITableViewCell() }
@@ -269,6 +232,8 @@ extension CharacterVC: UITableViewDataSource {
                     firstCell.setupAutoLayout()
                     firstCell.data = posts[0]
                     firstCell.setData()
+                    firstCell.emptyStateImageView.isHidden = true
+                    firstCell.emptyStateLabel.isHidden = true
                 }
                 return firstCell
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
@@ -289,14 +254,18 @@ extension CharacterVC: UITableViewDataSource {
 extension CharacterVC {
     // MARK: - Network
     func fetchCharacterDetail() {
-        authProvider.request(.characterDetail(1)) { response in
+        authProvider.request(.characterDetail(2)) { response in
             switch response {
             case .success(let result):
                 do {
                     self.characterModel = try result.map(CharacterModel.self)
-//                    self.posts.append(contentsOf: self.characterModel?.data?.character.activity ?? <#default value#>)
+                    self.catchu = self.characterModel?.data.character
+                    self.report = self.characterModel?.data
+                    self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
+                    self.posts.reverse()
                     
-                    print(self.posts)
+
+                    self.mainTableView.reloadData()
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

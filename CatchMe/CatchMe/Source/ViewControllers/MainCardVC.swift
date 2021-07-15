@@ -109,7 +109,7 @@ class MainCardVC: UIViewController {
         addButton.setImage(UIImage(named: "btnCatchuCatching"), for: .normal)
         alignButton.setImage(UIImage(named: "btnAlign"), for: .normal)
         topBackView.image = UIImage(named: "scrollRectangle")
-        emptyImageView.image = UIImage(named: "catchu")
+        emptyImageView.image = UIImage(named: "mainCatchu")
                 
         nameLabel.text = "최고의대장피엠김해리 님"
         nameLabel.textColor = .white

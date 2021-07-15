@@ -182,7 +182,7 @@ class MainVC: UIViewController {
         allButton.setImage(UIImage(named: "btnSeeAll"), for: .normal)
         catchingButton.setImage(UIImage(named: "actionActive"), for: .normal)
         catchMeButton.setImage(UIImage(named: "btnCatching"), for: .normal)
-        emptyImageView.image = UIImage(named: "catchu")
+        emptyImageView.image = UIImage(named: "mainCatchu")
         
         lottieView.backgroundColor = .clear
         

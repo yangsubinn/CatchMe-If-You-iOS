@@ -24,7 +24,11 @@ class ThirdFlowView: UIView {
                                    Character.yellowGreen.getCharacterImage(phase: 1, size: 151),
                                    Character.orange.getCharacterImage(phase: 1, size: 151),
                                    Character.blue.getCharacterImage(phase: 1, size: 151),
-                                   Character.purple.getCharacterImage(phase: 1, size: 151)]
+                                   Character.purple.getCharacterImage(phase: 1, size: 151),
+                                   Character.skyblue.getCharacterImage(phase: 1, size: 151),
+                                   Character.yellow.getCharacterImage(phase: 1, size: 151),
+                                   Character.white.getCharacterImage(phase: 1, size: 151)]
+    let backColors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -57,7 +61,7 @@ class ThirdFlowView: UIView {
         backgroundImageView.snp.makeConstraints { make in
             make.bottom.equalTo(characterImageView.snp.bottom).offset(1)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(181)
+            make.height.width.equalTo(200)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -79,7 +83,7 @@ class ThirdFlowView: UIView {
     }
     
     private func configUI() {
-        backgroundImageView.backgroundColor = .white
+        backgroundImageView.layer.cornerRadius = 100
         
         nameLabel.numberOfLines = 2
         nameLabel.textColor = .white
@@ -105,6 +109,8 @@ class ThirdFlowView: UIView {
     // MARK: - external use function
     func setImageViewColor(selectedIndex: Int) {
         characterImageView.image = babyCatchus[selectedIndex]
+        
+        backgroundImageView.backgroundColor = backColors[selectedIndex]
     }
     
     func setCharacterName(name: String) {

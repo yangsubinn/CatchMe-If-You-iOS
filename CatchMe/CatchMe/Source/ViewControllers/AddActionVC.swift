@@ -14,9 +14,6 @@ import Then
 import SnapKit
 
 class AddActionVC: UIViewController {
-    //    private let authProvider = MoyaProvider<AddActionService>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    //    private var addActionModel: AddActionModel?
-    //
     // MARK: - Properties
     var keyHeight = CGFloat()
     var enteredText: String?
@@ -368,7 +365,6 @@ class AddActionVC: UIViewController {
                 }
                 
             }
-//            self.dismiss(animated: true, completion: nil)
         }
     }
 }

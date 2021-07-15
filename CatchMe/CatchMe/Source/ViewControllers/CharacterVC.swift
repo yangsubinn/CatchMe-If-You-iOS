@@ -107,7 +107,7 @@ class CharacterVC: UIViewController {
         let dateString = dateFormatter.string(from: now)
         
         vc.setLabel(text: dateString)
-        //        guard let data = self.data else { return }
+
         if let level = self.report?.character.characterLevel,
            let imageIndex = self.report?.character.characterImageIndex {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)

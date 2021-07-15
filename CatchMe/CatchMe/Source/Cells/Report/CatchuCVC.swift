@@ -19,8 +19,8 @@ class CatchuCVC: UICollectionViewCell {
     // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configUI()
         setupLayout()
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -28,22 +28,23 @@ class CatchuCVC: UICollectionViewCell {
     }
     
     // MARK: - Custom Method
-    private func configUI() {
-        backgroundImage.backgroundColor = .blue100
-    }
-    
     private func setupLayout() {
         addSubviews([backgroundImage, characterImage])
         
         backgroundImage.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.height.width.equalTo(150)
+            make.bottom.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.width.equalTo(130)
         }
         
         characterImage.snp.makeConstraints { make in
-            make.bottom.equalTo(backgroundImage.snp.bottom)
-            make.leading.equalTo(backgroundImage.snp.leading)
+            make.bottom.equalToSuperview().inset(4)
+            make.leading.equalToSuperview().inset(25)
             make.height.width.equalTo(121)
         }
+    }
+    
+    private func configUI() {
+        backgroundImage.layer.cornerRadius = 65
     }
 }

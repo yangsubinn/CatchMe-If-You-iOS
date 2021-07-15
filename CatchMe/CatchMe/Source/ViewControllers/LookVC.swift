@@ -7,12 +7,12 @@
 
 import UIKit
 
+import Moya
 import SnapKit
 
 class LookVC: UIViewController {
     //MARK: - Properties
     let titleLabel = UILabel()
-    let subTitleLabel = UILabel()
     let topImageView = UIImageView()
     let topBackImageView  = UIImageView()
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -21,11 +21,17 @@ class LookVC: UIViewController {
     lazy var backButton = BackButton(self)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
+    //MARK: - Network
+    private let authProvider = MoyaProvider<LookService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var otherCharacter: LookModel?
+    
     //MARK: - Server Data
     var nicknames: [String] = []
     var names: [String] = []
-    var characters: [Int] = []
+    var images: [Int] = []
     var levels: [Int] = []
+    var userids: [String] = []
+    var indexs: [Int] = []
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -33,16 +39,17 @@ class LookVC: UIViewController {
         setupLayout()
         configUI()
         setupCollectionView()
+        fetchOtherCharacter()
     }
     
     //MARK: - Custom Method
     func setupLayout() {
         view.addSubviews([collectionView, topBackImageView, backButton,
-                          titleLabel, subTitleLabel, topImageView])
+                          titleLabel, topImageView]) // subTitleLabel
         
         topBackImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(subTitleLabel.snp.bottom).offset(57)
+            make.bottom.equalTo(titleLabel.snp.bottom).offset(84)
         }
         
         backButton.snp.makeConstraints { make in
@@ -52,11 +59,6 @@ class LookVC: UIViewController {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(25)
-            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-        }
-        
-        subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
@@ -82,10 +84,6 @@ class LookVC: UIViewController {
         titleLabel.text = "다른 유저들의 캐츄"
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
-        
-        subTitleLabel.text = "다른 사용자의 캐츄를 둘러보세요!"
-        subTitleLabel.textColor = .gray310
-        subTitleLabel.font = .stringMediumSystemFont(ofSize: 16)
     }
     
     func setupCollectionView() {
@@ -102,7 +100,7 @@ class LookVC: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension LookVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return names.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,6 +108,11 @@ extension LookVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCVC.identifier, for: indexPath) as? LookCVC else {
             return UICollectionViewCell()
         }
+        
+        cell.nicknameLabel.text = "\(nicknames[indexPath.item]) 님의"
+        cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
+        cell.characterBackgroundView.backgroundColor = setBackgroundColor(index: indexs[indexPath.item])
+        
         return cell
     }
 }
@@ -134,5 +137,43 @@ extension LookVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 11, left: 28, bottom: 0, right: 28)
+    }
+}
+
+//MARK: - Network
+extension LookVC {
+    func fetchOtherCharacter() {
+        var data: [OtherCharacter] = []
+        authProvider.request(.other) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.otherCharacter = try result.map(LookModel.self)
+                    
+                    nicknames.removeAll()
+                    names.removeAll()
+                    images.removeAll()
+                    levels.removeAll()
+                    userids.removeAll()
+                    indexs.removeAll()
+                    
+                    data.append(contentsOf: otherCharacter?.data ?? [])
+                    
+                    for i in 0..<data.count {
+                        nicknames.append(data[i].userNickname)
+                        names.append(data[i].characterName)
+                        images.append(data[i].characterIndex)
+                        levels.append(data[i].characterLevel)
+                        userids.append(data[i].userID)
+                        indexs.append(data[i].characterIndex)
+                    }
+                    collectionView.reloadData()
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }

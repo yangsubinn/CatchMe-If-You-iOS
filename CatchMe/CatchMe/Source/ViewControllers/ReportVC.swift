@@ -366,6 +366,7 @@ extension ReportVC: UICollectionViewDelegate {
                 var popupCatchus: [String] = []
                 var imageArr: [UIImage?] = []
                 var indexArr: [Int] = []
+                var colorArr: [Int] = []
                 var cnt = 0
                 
                 for i in catchuDate {
@@ -374,13 +375,15 @@ extension ReportVC: UICollectionViewDelegate {
                             popupCatchus += [names[catchuIndex[cnt] - 1]]
                             imageArr += [setCharacterImage(level: levels[catchuIndex[cnt] - 1], index: imageIndexs[catchuIndex[cnt] - 1], size: 121)]
                             indexArr += [catchuIndex[cnt]]
+                            colorArr += [imageIndexs[catchuIndex[cnt] - 1]]
                         }
                     }
                     cnt += 1
                 }
                 
                 vc.popupView.nameLabel.text = popupCatchus[0]
-                vc.popupView.setPopupImages(catchus: popupCatchus, images: imageArr, index: indexArr)
+                vc.popupView.setPopupImages(catchus: popupCatchus, images: imageArr, index: indexArr, back: colorArr)
+                
                 
                 if popupCatchus.count == 1 {
                     vc.popupView.rightButton.isHidden = true

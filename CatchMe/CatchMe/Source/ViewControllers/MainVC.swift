@@ -30,6 +30,7 @@ class MainVC: UIViewController {
     lazy var lottieView = AnimationView(name: "background_ios_375812")
     
     var formatterDate = DateFormatter()
+    var isFirst = true
     
     //MARK: - Network
     private let authProvider = MoyaProvider<MainService>(plugins: [NetworkLoggerPlugin(verbose: true)])
@@ -70,8 +71,14 @@ class MainVC: UIViewController {
         setupEmptyLayout()
         configUI()
         setupCollectionView()
+        setupAddTarget()
         setupPageControl()
+        
+        print("--- token 확인용 ---")
+        print(UserDefaultStorage.accessToken)
+        print(UserDefaultStorage.userName)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         lottieView.play()
     }
@@ -174,6 +181,8 @@ class MainVC: UIViewController {
     }
     
     private func configUI() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         view.backgroundColor = .black100
         
         settingButton.setImage(UIImage(named: "icSetting"), for: .normal)
@@ -191,9 +200,6 @@ class MainVC: UIViewController {
         lottieView.contentMode = .scaleAspectFill
         lottieView.layer.masksToBounds = true
         lottieView.isHidden = false
-        
-        // 캐칭버튼 클릭
-//        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
         
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
@@ -231,6 +237,15 @@ class MainVC: UIViewController {
         collectionView.isPagingEnabled = false
     }
     
+    private func setupAddTarget() {
+        allButton.addTarget(self, action: #selector(touchupAllButton), for: .touchUpInside)
+        lookButton.addTarget(self, action: #selector(touchupLook), for: .touchUpInside)
+        calendarButton.addTarget(self, action: #selector(touchupReport), for: .touchUpInside)
+        settingButton.addTarget(self, action: #selector(touchupSetting), for: .touchUpInside)
+        // 캐칭버튼 클릭
+//        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
+    }
+    
     private func setupPageControl() {
         pageControl.pages = names.count
     }
@@ -251,8 +266,34 @@ class MainVC: UIViewController {
     }
     
     // MARK: - @objc
-    @objc func setupButtonAction(_ sender: UIButton) {
-        // 나중에 버튼 액션 추가
+    @objc func touchupCatching(_ sender: UIButton) {
+        
+    }
+    
+    @objc
+    func touchupAllButton() {
+        guard let vc = storyboard?.instantiateViewController(identifier: "MainCardVC") as? MainCardVC else { return }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    func touchupLook() {
+        guard let vc = storyboard?.instantiateViewController(identifier: "LookVC") as? LookVC else { return }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    func touchupReport() {
+        let storyboard = UIStoryboard.init(name: "Report", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "ReportVC") as? ReportVC else { return }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    func touchupSetting() {
+        let storyboard = UIStoryboard.init(name: "Setting", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "SettingVC") as? SettingVC else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -298,8 +339,6 @@ extension MainVC: UICollectionViewDelegate {
         
         let cnt = names.count
         if Int(roundedIndex) < cnt  {
-            print("index: \(index)")
-            
             changeLabelText(index: Int(roundedIndex))
             pageControl.selectedPage = Int(roundedIndex)
         }
@@ -374,17 +413,20 @@ extension MainVC {
                             nameLabel.text = names[0]
                             nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
                         }
-
-                        UIView.animate(withDuration: 0.5, animations: {
-                            pageControl.alpha = 0
-                            collectionView.alpha = 0
-                            nameLabel.alpha = 0
-                            catchingButton.alpha = 0
-                            pageControl.alpha = 1.0
-                            collectionView.alpha = 1.0
-                            nameLabel.alpha = 1.0
-                            catchingButton.alpha = 1.0
-                        })
+                        
+                        if isFirst {
+                            UIView.animate(withDuration: 0.5, animations: {
+                                pageControl.alpha = 0
+                                collectionView.alpha = 0
+                                nameLabel.alpha = 0
+                                catchingButton.alpha = 0
+                                pageControl.alpha = 1.0
+                                collectionView.alpha = 1.0
+                                nameLabel.alpha = 1.0
+                                catchingButton.alpha = 1.0
+                            })
+                            isFirst = false
+                        }
                     }
                     
                 } catch(let err) {

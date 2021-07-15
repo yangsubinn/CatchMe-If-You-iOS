@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ycV-qG-b6A">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,22 +13,23 @@
             <objects>
                 <viewController storyboardIdentifier="MainVC" id="Y6W-OH-hqX" customClass="MainVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KKw-aQ-wjS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="116"/>
+            <point key="canvasLocation" x="1052" y="115.59220389805098"/>
         </scene>
         <!--Main CardVC-->
         <scene sceneID="KUm-Ah-QED">
             <objects>
                 <viewController storyboardIdentifier="MainCardVC" id="3el-f5-fVg" customClass="MainCardVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ov2-og-vbr">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="KPi-TO-lMz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -36,14 +37,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1MR-2G-984" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="116"/>
+            <point key="canvasLocation" x="1850.4000000000001" y="115.59220389805098"/>
         </scene>
         <!--LookVC-->
         <scene sceneID="0wa-Op-QzO">
             <objects>
                 <viewController storyboardIdentifier="LookVC" title="LookVC" id="JVw-7Q-S94" customClass="LookVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6lY-KI-jgO">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="9EX-Ac-sGo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,14 +52,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eH7-ED-bRt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="116"/>
+            <point key="canvasLocation" x="2679.1999999999998" y="115.59220389805098"/>
         </scene>
         <!--MainPopupVC-->
         <scene sceneID="2b5-aK-1dR">
             <objects>
                 <viewController restorationIdentifier="MainPopupVC" storyboardIdentifier="MainPopupVC" title="MainPopupVC" id="DtU-4N-9Yv" customClass="MainPopupVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSo-mU-5fM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="O2v-h6-wJJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -67,6 +68,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u7-Fc-2Ga" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="114" y="880"/>
+        </scene>
+        <!--MainNavi-->
+        <scene sceneID="0Xs-YN-riz">
+            <objects>
+                <navigationController storyboardIdentifier="MainNavi" title="MainNavi" automaticallyAdjustsScrollViewInsets="NO" id="ycV-qG-b6A" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4o0-br-DYH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="6Me-Jh-Dck"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YrR-2X-HCc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112.8" y="115.59220389805098"/>
         </scene>
     </scenes>
     <resources>

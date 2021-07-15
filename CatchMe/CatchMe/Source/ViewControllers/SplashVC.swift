@@ -24,7 +24,7 @@ class SplashVC: UIViewController {
             if Login.shared.isLogin() {
                 /// 로그인이 되어있는 상태 == mainVC로 이동
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let dvc = storyboard.instantiateViewController(identifier: "MainVC") as? MainVC else { return }
+                let dvc = storyboard.instantiateViewController(identifier: "MainNavi")
                 dvc.modalPresentationStyle = .fullScreen
                 self.present(dvc, animated: true, completion: nil)
             } else {

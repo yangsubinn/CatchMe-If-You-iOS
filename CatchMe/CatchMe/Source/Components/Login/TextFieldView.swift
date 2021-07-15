@@ -183,7 +183,7 @@ class TextFieldView: UIView {
                         self.logoImageView.fadeIn()
                         self.passwordTextField.resignFirstResponder()
                         
-                        guard let dvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainVC") as? MainVC else { return }
+                        let dvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainNavi")
                         dvc.modalPresentationStyle = .fullScreen
                         self.rootVC.present(dvc, animated: true, completion: nil)
                     case 412:

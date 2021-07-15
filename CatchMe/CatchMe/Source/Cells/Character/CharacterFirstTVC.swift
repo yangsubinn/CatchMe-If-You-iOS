@@ -147,7 +147,6 @@ class CharacterFirstTVC: UITableViewCell {
         
         commentView.snp.makeConstraints { make in
             make.width.equalTo(303)
-            make.height.equalTo(42)
         }
         
         commentLabel.snp.makeConstraints { make in
@@ -199,6 +198,7 @@ class CharacterFirstTVC: UITableViewCell {
                   let selectedData = self.characterData
             else { return }
             let vc = AddActionVC()
+            vc.isEdited = true
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"

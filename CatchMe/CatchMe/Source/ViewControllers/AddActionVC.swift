@@ -27,6 +27,7 @@ class AddActionVC: UIViewController {
     var catchu: UIImage?
     var buttonImage: UIImage?
     var report: CharacterReportData?
+    var isEdited: Bool?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -155,6 +156,8 @@ class AddActionVC: UIViewController {
             activityTextView.textColor = .white
             uploadButton.backgroundColor = .pink100
             textExists()
+            
+//            if photoButton
             
             photoButton.setImage(photoURL, for: .normal)
             dateLabel.text = date
@@ -334,22 +337,16 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupUploadButton(_ sender: UIButton) {
-        if activityTextView.text == placholder || activityTextView.text == "" {
-            uploadButton.isEnabled = true
-        } else {
-            uploadButton.isEnabled = false
-            
-            print("와asdasdasdasd")
-            guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
-            AddActionNewService.shared
-                .uploadNewActivity(
-                    imageData: buttonImage,
-                    content: activityTextView.text!,
-                    year: String(date[0]),
-                    month: String(date[1]),
-                    day: String(date[2]),
-                    index: 2
-                ) { result in
+        guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
+
+        if isEdited == true {
+            AddActionEditService.shared.editActivity(imageData: buttonImage,
+                                                     content: activityTextView.text!,
+                                                     year: String(date[0]),
+                                                     month: String(date[1]),
+                                                     day: String(date[2]),
+                                                     index: 2,
+                                                     activityIndex: 1) { result in
                 switch result {
                 case .success:
                     self.dismiss(animated: true, completion: nil)
@@ -361,10 +358,39 @@ class AddActionVC: UIViewController {
                     print("serverERR")
                 case .networkFail:
                     print("networkFail")
-                }
                 
+                }
+            }
+        } else if isEdited == false {
+            if activityTextView.text == placholder || activityTextView.text == "" {
+                uploadButton.isEnabled = true
+            } else {
+                uploadButton.isEnabled = false
+                
+                AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
+                                                             content: activityTextView.text!,
+                                                             year: String(date[0]),
+                                                             month: String(date[1]),
+                                                             day: String(date[2]),
+                                                             index: 2) { result in
+                    switch result {
+                    case .success:
+                        self.dismiss(animated: true, completion: nil)
+                    case .requestErr(let msg):
+                        print("requestERR", msg)
+                    case .pathErr:
+                        print("pathERR")
+                    case .serverErr:
+                        print("serverERR")
+                    case .networkFail:
+                        print("networkFail")
+                    }
+                    
+                }
             }
         }
+        
+        
     }
 }
 

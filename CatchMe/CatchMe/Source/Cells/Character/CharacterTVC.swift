@@ -203,6 +203,7 @@ class CharacterTVC: UITableViewCell {
                   let selectedData = self.characterData
             else { return }
             let vc = AddActionVC()
+            vc.isEdited = true
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"

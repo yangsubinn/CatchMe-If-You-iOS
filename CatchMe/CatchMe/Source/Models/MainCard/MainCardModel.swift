@@ -1,5 +1,5 @@
 //
-//  RecentActivityModel.swift
+//  MainCardModel.swift
 //  CatchMe
 //
 //  Created by 양수빈 on 2021/07/15.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-// MARK: - RecentActivityModel
-struct RecentActivityModel: Codable {
+// MARK: - MainCardModel
+struct MainCardModel: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: [RecentActivity]?
+    let data: [CardCharacter]?
 }
 
-// MARK: - RecentActivity
-struct RecentActivity: Codable {
+// MARK: - CardCharacter
+struct CardCharacter: Codable {
     let characterName: String
     let characterIndex, characterImageIndex: Int
     let characterPrivacy: Bool

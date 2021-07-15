@@ -33,7 +33,7 @@ class MainCardVC: UIViewController {
     
     //MARK: - Network
     private let authProvider = MoyaProvider<MainCardService>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    var recentActivity: RecentActivityModel?
+    var cardCharacter: MainCardModel?
     
     //MARK: - Server Data
     var names: [String] = []
@@ -248,18 +248,18 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 extension MainCardVC {
     func fetchCharacter() {
-        var data: [RecentActivity] = []
+        var data: [CardCharacter] = []
         authProvider.request(.recentActivity) { [self] response in
             switch response {
             case .success(let result):
                 do {
-                    self.recentActivity = try result.map(RecentActivityModel.self)
+                    self.cardCharacter = try result.map(MainCardModel.self)
                     
                     names.removeAll()
                     levels.removeAll()
                     characters.removeAll()
                     
-                    data.append(contentsOf: recentActivity?.data ?? [])
+                    data.append(contentsOf: cardCharacter?.data ?? [])
 
                     if data.isEmpty {
                         emptyImageView.isHidden = false
@@ -288,4 +288,6 @@ extension MainCardVC {
             }
         }
     }
+    
+//    func fetch
 }

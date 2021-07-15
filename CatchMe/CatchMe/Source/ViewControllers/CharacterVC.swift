@@ -254,21 +254,12 @@ extension CharacterVC {
                     self.report = self.characterModel?.data
                     self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
                     self.posts.reverse()
-                    
-                    print("@@@@",self.report?.character)
                     if let index = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
                        let privacy = self.report?.character.characterPrivacy {
-                        print("보이세요????~?~!~!~!~~~~₩₩~₩₩₩₩")
-                        print("----------------------------------------------")
-                        print(index)
-                        print(imageIndex)
-
-                        print("----------------------------------------------")
                         self.upperView.characterImageView.image = self.setCharacterImage(level: index, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = privacy
                     }
-
                     self.mainTableView.reloadData()
                 } catch(let err) {
                     print(err.localizedDescription)

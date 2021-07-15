@@ -46,8 +46,6 @@ extension MainService: TargetType {
         default:
             return ["Content-Type": "application/json",
                     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"] // GeneralAPI.token
-        // 안드 토큰
-//            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBmMDFhMjhmMTY3YWM2YTJmODJlOWQwIn0sImlhdCI6MTYyNjM0ODU1NiwiZXhwIjoxNjI3NTU4MTU2fQ.qqmjvEgAM6bkhzousz33-yZ2Na3WNCmXutJ_OkRQ5No
         }
     }
 }

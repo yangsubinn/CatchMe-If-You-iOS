@@ -355,10 +355,6 @@ extension MainVC {
                             nicknames.append(data[i].userNickname)
                             indexs.append(data[i].characterIndex)
                         }
-                        
-                        print("------------------------------")
-                        print(nicknames)
-                        print(indexs)
 
                         collectionView.reloadData()
                         pageControl.pages = names.count

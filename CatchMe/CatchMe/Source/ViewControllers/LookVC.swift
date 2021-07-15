@@ -13,7 +13,6 @@ import SnapKit
 class LookVC: UIViewController {
     //MARK: - Properties
     let titleLabel = UILabel()
-//    let subTitleLabel = UILabel()
     let topImageView = UIImageView()
     let topBackImageView  = UIImageView()
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -63,11 +62,6 @@ class LookVC: UIViewController {
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
-//        subTitleLabel.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-//            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-//        }
-        
         topImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(UIScreen.main.hasNotch ? 84 : 90)
             make.trailing.equalToSuperview().inset(18)
@@ -90,10 +84,6 @@ class LookVC: UIViewController {
         titleLabel.text = "다른 유저들의 캐츄"
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
-        
-//        subTitleLabel.text = "다른 사용자의 캐츄를 둘러보세요!"
-//        subTitleLabel.textColor = .gray310
-//        subTitleLabel.font = .stringMediumSystemFont(ofSize: 16)
     }
     
     func setupCollectionView() {
@@ -175,14 +165,6 @@ extension LookVC {
                         userids.append(data[i].userID)
                         indexs.append(data[i].characterIndex)
                     }
-                    print(nicknames)
-                    print(names)
-                    print("---------imagecolor")
-                    print(images)
-                    print("---------level")
-                    print(levels)
-                    print(userids)
-                    
                     collectionView.reloadData()
                 } catch(let err) {
                     print(err.localizedDescription)

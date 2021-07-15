@@ -39,7 +39,7 @@ class MainCardVC: UIViewController {
     var names: [String] = []
     var images: [Int] = []
     var levels: [Int] = []
-    var indexs: [Int] = [] // characterIndex 메인카드 상세로 넘어갈 데이터
+    var indexs: [Int] = []
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -282,12 +282,6 @@ extension MainCardVC {
                             indexs.append(data[i].characterIndex)
                         }
                         collectionView.reloadData()
-                        
-//                        print("---------------------------")
-//                        print(names)
-//                        print(images)
-//                        print(levels)
-//                        print(indexs)
                     }
                 } catch(let err) {
                     print(err.localizedDescription)
@@ -331,12 +325,6 @@ extension MainCardVC {
                             indexs.append(data[i].characterIndex)
                         }
                         collectionView.reloadData()
-                        
-//                        print("---------------------------")
-//                        print(names)
-//                        print(images)
-//                        print(levels)
-//                        print(indexs)
                     }
                 } catch(let err) {
                     print(err.localizedDescription)
@@ -380,12 +368,6 @@ extension MainCardVC {
                             indexs.append(data[i].characterIndex)
                         }
                         collectionView.reloadData()
-                        
-//                        print("---------------------------")
-//                        print(names)
-//                        print(images)
-//                        print(levels)
-//                        print(indexs)
                     }
                 } catch(let err) {
                     print(err.localizedDescription)

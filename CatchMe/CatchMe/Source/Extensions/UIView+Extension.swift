@@ -57,8 +57,8 @@ extension UIView {
             return Character.skyblue.getCharacterImage(phase: level, size: size)
         case Character.yellow.rawValue:
             return Character.yellow.getCharacterImage(phase: level, size: size)
-        case Character.gray.rawValue:
-            return Character.gray.getCharacterImage(phase: level, size: size)
+        case Character.white.rawValue:
+            return Character.white.getCharacterImage(phase: level, size: size)
         default:
             return UIImage()
         }

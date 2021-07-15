@@ -12,7 +12,7 @@ import SnapKit
 
 class CharacterHeaderView: UIView {
     // MARK: - Properties
-    let vc = CharacterVC()
+//    let vc = CharacterVC()
     
     let shadowImageView = UIImageView().then {
         $0.image = UIImage(named: "catchuScrollRectangle131")
@@ -85,11 +85,6 @@ class CharacterHeaderView: UIView {
         lockDateStackView.addArrangedSubview(lockImageView)
         lockDateStackView.addArrangedSubview(dateLabel)
         
-//        shadowImageView.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(-1)
-//        }
-//        
         lockImageView.snp.makeConstraints { make in
             make.width.equalTo(20)
             make.height.equalTo(20)

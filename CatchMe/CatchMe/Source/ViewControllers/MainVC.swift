@@ -265,7 +265,7 @@ extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCVC.identifier, for: indexPath) as? CharacterCVC else { return UICollectionViewCell() }
         
-        if activitys[indexPath.item] == 48 {
+        if activitys[indexPath.item] == 0 {
             
             cell.reportView.setupEmptyLayout()
             cell.reportView.emptyUI()

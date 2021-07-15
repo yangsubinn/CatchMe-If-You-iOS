@@ -66,6 +66,14 @@ class CustomTextField: UITextField {
         layer.borderColor = UIColor.pink100.cgColor
     }
     
+    func setupBlueLine() {
+        layer.borderColor = UIColor.blue100.cgColor
+    }
+    
+    func setupRedLine() {
+        layer.borderColor = UIColor.red100.cgColor
+    }
+    
     func changePaddingPoints(point: CGFloat) {
         setLeftPaddingPoints(point)
     }

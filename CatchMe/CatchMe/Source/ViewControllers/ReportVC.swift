@@ -359,11 +359,9 @@ extension ReportVC: UICollectionViewDelegate {
                 }
                 vc.date = dayAndYear + newText
                 
-                /// 1. catchu date 순으로 배열 가져오기
                 let catchuDate = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.activityDay })
                 let catchuIndex = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.characterIndex })
                 
-                /// 2. activityDay와 date가 같은 날짜 가져와서
                 var popupCatchus: [String] = []
                 var imageArr: [UIImage?] = []
                 var indexArr: [Int] = []

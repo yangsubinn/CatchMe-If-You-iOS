@@ -46,6 +46,11 @@
 		5B447CEF2697146800F79AB7 /* CharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */; };
 		5B447D0A2699984E00F79AB7 /* AddActionPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447D092699984D00F79AB7 /* AddActionPopupView.swift */; };
 		5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */; };
+		5B53A061269F5BA500E7CCF0 /* AddActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53A060269F5BA500E7CCF0 /* AddActionViewModel.swift */; };
+		5B53A065269F5BD500E7CCF0 /* AddActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53A064269F5BD500E7CCF0 /* AddActionService.swift */; };
+		5B53A069269F5D7800E7CCF0 /* AddActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53A068269F5D7800E7CCF0 /* AddActionRequest.swift */; };
+		5B93ED68269EF9BC00B7F25C /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B93ED67269EF9BC00B7F25C /* CharacterModel.swift */; };
+		5B93ED6C269F02D000B7F25C /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B93ED6B269F02D000B7F25C /* CharacterService.swift */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
 		ED3D6C402699A36800BB84C8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3D6C3F2699A36800BB84C8 /* String+Extension.swift */; };
 		ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63E87F268A14E5000F058F /* AppDelegate.swift */; };
@@ -181,6 +186,11 @@
 		5B447CEE2697146700F79AB7 /* CharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFooterView.swift; sourceTree = "<group>"; };
 		5B447D092699984D00F79AB7 /* AddActionPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionPopupView.swift; sourceTree = "<group>"; };
 		5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionPopupVC.swift; sourceTree = "<group>"; };
+		5B53A060269F5BA500E7CCF0 /* AddActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionViewModel.swift; sourceTree = "<group>"; };
+		5B53A064269F5BD500E7CCF0 /* AddActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionService.swift; sourceTree = "<group>"; };
+		5B53A068269F5D7800E7CCF0 /* AddActionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionRequest.swift; sourceTree = "<group>"; };
+		5B93ED67269EF9BC00B7F25C /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		5B93ED6B269F02D000B7F25C /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3D6C3F2699A36800BB84C8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		ED63E87C268A14E5000F058F /* CatchMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -440,6 +450,8 @@
 			isa = PBXGroup;
 			children = (
 				5B447CD9269628D900F79AB7 /* Activity.swift */,
+				5B93ED67269EF9BC00B7F25C /* CharacterModel.swift */,
+				5B53A068269F5D7800E7CCF0 /* AddActionRequest.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -652,6 +664,8 @@
 				ED728414269DA93300D19FD5 /* MainCardService.swift */,
 				2BB24C1E269ED48A002746BE /* MainService.swift */,
 				2BC68ADB26A02267008C52EE /* LookService.swift */,
+				5B93ED6B269F02D000B7F25C /* CharacterService.swift */,
+				5B53A064269F5BD500E7CCF0 /* AddActionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -674,6 +688,7 @@
 			children = (
 				ED72840A269D090C00D19FD5 /* LoginViewModel.swift */,
 				ED728412269DA8FD00D19FD5 /* MainCardViewModel.swift */,
+				5B53A060269F5BA500E7CCF0 /* AddActionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -950,6 +965,7 @@
 				EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */,
 				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
 				EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */,
+				5B93ED68269EF9BC00B7F25C /* CharacterModel.swift in Sources */,
 				EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */,
 				EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */,
 				ED7283FE269CCAF500D19FD5 /* EditCatchuVC.swift in Sources */,
@@ -965,6 +981,7 @@
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
+				5B93ED6C269F02D000B7F25C /* CharacterService.swift in Sources */,
 				5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */,
 				2BB24C43269F6DDE002746BE /* MainCardModel.swift in Sources */,
 				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
@@ -985,6 +1002,7 @@
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
 				2BC68ADC26A02267008C52EE /* LookService.swift in Sources */,
+				5B53A069269F5D7800E7CCF0 /* AddActionRequest.swift in Sources */,
 				2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */,
 				2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
@@ -998,6 +1016,7 @@
 				ED63E880268A14E5000F058F /* AppDelegate.swift in Sources */,
 				EDC3780C2691D3CC007C53F2 /* ReportView.swift in Sources */,
 				EDD12CA4268EB80300DF766A /* CharacterVC.swift in Sources */,
+				5B53A061269F5BA500E7CCF0 /* AddActionViewModel.swift in Sources */,
 				EDD12CB4268EBE6D00DF766A /* UITableView+Extension.swift in Sources */,
 				5B0850602691A126008F40B2 /* CharacterTVC.swift in Sources */,
 				ED728428269EDC5700D19FD5 /* LogoutVC.swift in Sources */,
@@ -1025,6 +1044,7 @@
 				ED728422269E9B3400D19FD5 /* EditPasswordVC.swift in Sources */,
 				EDBDC7FF2694444300CDF1B2 /* ReportPopupVC.swift in Sources */,
 				ED728420269DD58400D19FD5 /* AddCatchuPopupView.swift in Sources */,
+				5B53A065269F5BD500E7CCF0 /* AddActionService.swift in Sources */,
 				EDBDC8012694481A00CDF1B2 /* PopupView.swift in Sources */,
 				EDB72D51269AEE60003EE228 /* UserData.swift in Sources */,
 				ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */,

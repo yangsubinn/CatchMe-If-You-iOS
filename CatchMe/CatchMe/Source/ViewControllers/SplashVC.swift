@@ -13,7 +13,6 @@ class SplashVC: UIViewController {
     private var animationView: AnimationView?
 
     override func viewDidLoad() {
-//        super.viewDidLoad()
         print("로티 시작")
         setupLottieView()
         print("로티 끝남")
@@ -21,54 +20,39 @@ class SplashVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [self] in
-            //            goOnBoardPopUp()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
             if Login.shared.isLogin() {
-                let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
-                let dvc = storyboard.instantiateViewController(identifier: "TabbarController")
+                /// 로그인이 되어있는 상태 == mainVC로 이동
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let dvc = storyboard.instantiateViewController(identifier: "LoginNavi")
                 dvc.modalPresentationStyle = .fullScreen
                 self.present(dvc, animated: true, completion: nil)
             } else {
-                goOnBoardPopUp()
-                //                let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                //                let dvc = storyboard.instantiateViewController(identifier: "LoginNaviController")
-                //                dvc.modalPresentationStyle = .fullScreen
-                //                self.present(dvc, animated: true, completion: nil)
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let dvc = storyboard.instantiateViewController(identifier: "LoginNavi")
+                dvc.modalPresentationStyle = .fullScreen
+                self.present(dvc, animated: true, completion: nil)
             }
-            //            goOnBoardPopUp()
         })
     }
     override func viewWillAppear(_ animated: Bool) {
         print(viewWillAppear)
-        // goOnBoardPopUp()
     }
     func setupLottieView() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .black100
         animationView = .init(name: "splash")
-        animationView!.frame = CGRect.zero
+        animationView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         animationView!.contentMode = .scaleAspectFit
-        //        animationView!.loopMode = .loop
         animationView!.animationSpeed = 1
         animationView!.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView!)
         NSLayoutConstraint.activate([
-            animationView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0),
+            animationView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -30),
             animationView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            animationView!.widthAnchor.constraint(equalToConstant: 600),
-            animationView!.heightAnchor.constraint(equalToConstant: 600),
+            animationView!.widthAnchor.constraint(equalToConstant: 297),
+            animationView!.heightAnchor.constraint(equalToConstant: 87),
         ])
         animationView!.play()
         print("애니메이션 끝남")
-    }
-    func goOnBoardPopUp(){
-        print("goOnBoardPopUp 시작")
-        //        let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
-        //        print(keywordStoryboard)
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let dvc = storyboard.instantiateViewController(identifier: "SplashVC") as! SplashVC
-        print(dvc)
-//        dvc.checkOnBoard(check: true)
-        dvc.modalPresentationStyle = .fullScreen
-        self.present(dvc, animated: true, completion: nil)
     }
 }

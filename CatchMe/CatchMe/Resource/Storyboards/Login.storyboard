@@ -57,7 +57,7 @@
         <!--LoginNavi-->
         <scene sceneID="4QC-cX-ky3">
             <objects>
-                <navigationController title="LoginNavi" automaticallyAdjustsScrollViewInsets="NO" id="za0-LI-5Yn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavi" title="LoginNavi" automaticallyAdjustsScrollViewInsets="NO" id="za0-LI-5Yn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8TA-td-EXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

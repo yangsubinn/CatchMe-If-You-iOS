@@ -45,9 +45,9 @@ class CharacterView: UIView {
 
     // MARK: - Life Cycle
     /// 후에 character default 이미지 name으로 character 변경
-    init(catching: Int = 0, name: String = "아직 잡은\n캐츄가 없어요 !", character: UIImage? = UIImage(named: "catchu")) {
-        super.init(frame: .zero)
-        configUI(catching: catching, name: name, character: character)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configUI()
     }
     
     required init?(coder: NSCoder) {
@@ -92,15 +92,29 @@ class CharacterView: UIView {
     }
     
     // MARK: - Custom Methods
-    private func configUI(catching: Int, name: String, character: UIImage?) {
+    private func configUI() {
         addSubviews([lineTopView, totalWordLabel, catchingLabel,
                      catchingCountLabel, nameLabel, characterImageView])
         
         backgroundColor = .white
         layer.cornerRadius = 18
         
+        catchingCountLabel.text = ""
+        nameLabel.text = ""
+        nameLabel.addCharacterSpacing()
+        characterImageView.image = UIImage()
+    }
+    
+    func setupEmptyView() {
+        catchingCountLabel.text = "0"
+        nameLabel.text = "아직 잡은\n캐츄가 없어요 !"
+        nameLabel.addCharacterSpacing()
+        characterImageView.image = UIImage(named: "catchu")
+    }
+    
+    func setupCharacterView(catching: Int, name: String, character: UIImage?) {
         catchingCountLabel.text = "\(catching)"
-        nameLabel.text = name
+        nameLabel.text = "\(name)"
         nameLabel.addCharacterSpacing()
         characterImageView.image = character
     }

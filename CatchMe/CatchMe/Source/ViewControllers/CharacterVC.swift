@@ -31,6 +31,7 @@ class CharacterVC: UIViewController {
     }
     
     var report: CharacterReportData?
+    var data: ActivityDetail?
     var posts = [ActivityDetail]()
     
     // MARK: - Lifecycle
@@ -98,10 +99,23 @@ class CharacterVC: UIViewController {
     }
     
     @objc func touchupWriteButton(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
-        nextVC.setLabel(text: "2021.07.14")
-        nextVC.modalPresentationStyle = .fullScreen
-        present(nextVC, animated: true, completion: nil)
+        let vc = AddActionVC()
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        let dateString = dateFormatter.string(from: now)
+        
+        vc.setLabel(text: dateString)
+        //        guard let data = self.data else { return }
+        if let index = self.report?.character.characterLevel,
+           let imageIndex = self.report?.character.characterImageIndex,
+           let privacy = self.report?.character.characterPrivacy {
+            vc.catchu = self.setCharacterImage(level: index, index: imageIndex, size: 151)
+        }
+        
+        vc.name = report?.character.characterName
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -110,8 +124,21 @@ extension CharacterVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let headerView = CharacterHeaderView()
-            headerView.dateLabel.text = report?.character.characterBirth
+            if let birth = self.report?.character.characterBirth {
+                let yearStart = birth.index(birth.startIndex, offsetBy: 0)
+                let yearEnd = birth.index(birth.endIndex, offsetBy: -10)
+                let yearRange = yearStart..<yearEnd
+                
+                let monthStart = birth.index(birth.startIndex, offsetBy: 4)
+                let monthEnd = birth.index(birth.endIndex, offsetBy: -8)
+                let monthRange = monthStart..<monthEnd
+                
+                let dayStart = birth.index(birth.startIndex, offsetBy: 6)
+                let dayEnd = birth.index(birth.endIndex, offsetBy: -6)
+                let dayRange = dayStart..<dayEnd
+                
+                headerView.dateLabel.text = String(birth[yearRange]) + "." + String(birth[monthRange]) + "." + String(birth[dayRange])
+            }
             headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
@@ -253,12 +280,15 @@ extension CharacterVC {
                     self.characterModel = try result.map(CharacterModel.self)
                     self.report = self.characterModel?.data
                     self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
-                    self.posts.reverse()
+                    
                     if let index = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
-                       let privacy = self.report?.character.characterPrivacy {
+                       let privacy = self.report?.character.characterPrivacy,
+                       let birth = self.report?.character.characterBirth {
                         self.upperView.characterImageView.image = self.setCharacterImage(level: index, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = privacy
+                        
+                        
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {

@@ -144,10 +144,10 @@ class AddActionVC: UIViewController {
         
         deletePhotoButton.isHidden = true
         
+        nameLabel.text = name
         catchuImageView.image = catchu
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
         if let text = text {
-            nameLabel.text = name
             activityTextView.text = text
             activityTextView.textColor = .white
             uploadButton.backgroundColor = .pink100
@@ -411,3 +411,7 @@ extension AddActionVC: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
 }
 
+// MARK: - Network
+extension AddActionVC {
+    
+}

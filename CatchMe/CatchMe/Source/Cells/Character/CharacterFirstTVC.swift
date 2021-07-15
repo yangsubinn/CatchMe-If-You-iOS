@@ -148,11 +148,6 @@ class CharacterFirstTVC: UITableViewCell {
             make.trailing.equalTo(commentView.snp.trailing).inset(14)
             make.bottom.equalTo(commentView.snp.bottom).inset(12)
         }
-        
-        photoImageView.snp.makeConstraints { make in
-            make.width.equalTo(303)
-            make.height.equalTo(228)
-        }
     }
     
     func setupEmptyLayout() {
@@ -226,9 +221,16 @@ class CharacterFirstTVC: UITableViewCell {
         guard let data = data else { return }
         dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent
-        
+
         if let image = URL(string: data.activityImage) {
-            photoImageView.kf.setImage(with: image)
+            if data.activityImage == "" {
+                photoImageView.isHidden = true
+            } else {
+                photoImageView.kf.setImage(with: image)
+                photoImageView.snp.makeConstraints { make in
+                    make.height.equalTo(228)
+                }
+            }
         }
     }
 }

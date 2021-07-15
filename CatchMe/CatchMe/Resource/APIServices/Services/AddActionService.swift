@@ -7,8 +7,6 @@
 //
 //import Moya
 //
-//import Alamofire
-//
 //enum AddActionService {
 //    case signUp(param: SignupRequest)
 //    case signIn(param: SigninRequest)

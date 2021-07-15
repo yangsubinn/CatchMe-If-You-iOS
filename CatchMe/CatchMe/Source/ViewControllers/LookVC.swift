@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Moya
 import SnapKit
 
 class LookVC: UIViewController {
@@ -21,11 +22,16 @@ class LookVC: UIViewController {
     lazy var backButton = BackButton(self)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
+    //MARK: - Network
+    private let authProvider = MoyaProvider<LookService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var otherCharacter: LookModel?
+    
     //MARK: - Server Data
     var nicknames: [String] = []
     var names: [String] = []
     var characters: [Int] = []
     var levels: [Int] = []
+    var ids: [String] = []
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -134,5 +140,42 @@ extension LookVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 11, left: 28, bottom: 0, right: 28)
+    }
+}
+
+//MARK: - Network
+extension LookVC {
+    func fetchOtherCharacter() {
+        var data: [OtherCharacter] = []
+        authProvider.request(.other) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.otherCharacter = try result.map(LookModel.self)
+                    
+                    nicknames.removeAll()
+                    names.removeAll()
+                    characters.removeAll()
+                    levels.removeAll()
+                    ids.removeAll()
+                    
+                    data.append(contentsOf: otherCharacter?.data ?? [])
+                    
+                    for i in 0..<data.count {
+                        nicknames.append(data[i].userNickname)
+                        names.append(data[i].characterName)
+                        characters.append(data[i].characterIndex)
+                        levels.append(data[i].characterLevel)
+                        ids.append(data[i].userID)
+                    }
+                    print(nicknames)
+                    collectionView.reloadData()
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }

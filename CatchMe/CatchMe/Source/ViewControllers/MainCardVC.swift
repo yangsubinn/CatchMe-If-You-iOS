@@ -37,9 +37,10 @@ class MainCardVC: UIViewController {
     
     //MARK: - Server Data
     var names: [String] = []
-    var characters: [Int] = []
+    var images: [Int] = []
     var levels: [Int] = []
-    
+    var indexs: [Int] = [] // characterIndex 메인카드 상세로 넘어갈 데이터
+
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -215,7 +216,7 @@ extension MainCardVC: UICollectionViewDataSource {
         cell.nameLabel.text = names[indexPath.item]
         cell.nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 4)
         cell.nameLabel.numberOfLines = 2
-        cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
+        cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
         cell.setStarLevel(level: levels[indexPath.item])
         
         return cell
@@ -257,7 +258,8 @@ extension MainCardVC {
                     
                     names.removeAll()
                     levels.removeAll()
-                    characters.removeAll()
+                    images.removeAll()
+                    indexs.removeAll()
                     
                     data.append(contentsOf: cardCharacter?.data ?? [])
 
@@ -272,12 +274,20 @@ extension MainCardVC {
                         emptySubLabel.isHidden = true
                         collectionView.isHidden = false
                         
+                        
                         for i in 0..<data.count {
                             names.append(data[i].characterName)
-                            characters.append(data[i].characterIndex)
+                            images.append(data[i].characterImageIndex)
                             levels.append(data[i].characterLevel)
+                            indexs.append(data[i].characterIndex)
                         }
                         collectionView.reloadData()
+                        
+//                        print("---------------------------")
+//                        print(names)
+//                        print(images)
+//                        print(levels)
+//                        print(indexs)
                     }
                 } catch(let err) {
                     print(err.localizedDescription)
@@ -298,7 +308,8 @@ extension MainCardVC {
                     
                     names.removeAll()
                     levels.removeAll()
-                    characters.removeAll()
+                    images.removeAll()
+                    indexs.removeAll()
                     
                     data.append(contentsOf: cardCharacter?.data ?? [])
 
@@ -315,10 +326,17 @@ extension MainCardVC {
                         
                         for i in 0..<data.count {
                             names.append(data[i].characterName)
-                            characters.append(data[i].characterIndex)
+                            images.append(data[i].characterImageIndex)
                             levels.append(data[i].characterLevel)
+                            indexs.append(data[i].characterIndex)
                         }
                         collectionView.reloadData()
+                        
+//                        print("---------------------------")
+//                        print(names)
+//                        print(images)
+//                        print(levels)
+//                        print(indexs)
                     }
                 } catch(let err) {
                     print(err.localizedDescription)
@@ -339,7 +357,8 @@ extension MainCardVC {
                     
                     names.removeAll()
                     levels.removeAll()
-                    characters.removeAll()
+                    images.removeAll()
+                    indexs.removeAll()
                     
                     data.append(contentsOf: cardCharacter?.data ?? [])
 
@@ -356,10 +375,17 @@ extension MainCardVC {
                         
                         for i in 0..<data.count {
                             names.append(data[i].characterName)
-                            characters.append(data[i].characterIndex)
+                            images.append(data[i].characterImageIndex)
                             levels.append(data[i].characterLevel)
+                            indexs.append(data[i].characterIndex)
                         }
                         collectionView.reloadData()
+                        
+//                        print("---------------------------")
+//                        print(names)
+//                        print(images)
+//                        print(levels)
+//                        print(indexs)
                     }
                 } catch(let err) {
                     print(err.localizedDescription)

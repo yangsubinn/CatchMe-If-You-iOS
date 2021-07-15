@@ -47,7 +47,7 @@ extension ReportService: TargetType {
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"]
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlZWM5ZGI1YzRjODc1MGQwODFlN2M4In0sImlhdCI6MTYyNjMzODgwMSwiZXhwIjoxNjI3NTQ4NDAxfQ.B8eX9gY8Y2dCN4WShAqYUyl5Ha8CgXndPDobBpYjyY8"]
         }
     }
 }

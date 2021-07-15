@@ -116,6 +116,8 @@ class PopupView: UIView {
                     
         backgroundColor = .black200
         layer.cornerRadius = 18
+        
+        dateLabel.text = date
     }
     
     private func setupCollectionView() {

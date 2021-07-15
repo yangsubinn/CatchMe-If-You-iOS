@@ -71,7 +71,6 @@ class CharacterTVC: UITableViewCell {
     }
     
     let photoImageView = UIImageView().then {
-        $0.image = UIImage(named: "imgActivityPhoto")
         $0.layer.cornerRadius = 18
         $0.contentMode = .scaleAspectFill
         $0.layer.masksToBounds = true

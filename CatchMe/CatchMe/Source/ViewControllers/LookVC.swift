@@ -21,6 +21,12 @@ class LookVC: UIViewController {
     lazy var backButton = BackButton(self)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
+    //MARK: - Server Data
+    var nicknames: [String] = []
+    var names: [String] = []
+    var characters: [Int] = []
+    var levels: [Int] = []
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

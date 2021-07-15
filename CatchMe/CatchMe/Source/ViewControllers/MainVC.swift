@@ -7,8 +7,9 @@
 
 import UIKit
 
-import SnapKit
+import Lottie
 import Moya
+import SnapKit
 
 class MainVC: UIViewController {
     //MARK: - Properties
@@ -17,13 +18,16 @@ class MainVC: UIViewController {
     let calendarButton = UIButton()
     let lookButton = UIButton()
     let allButton = UIButton()
-    lazy var nameLabel = UILabel()
     let catchingButton = UIButton()
     let pageControl = PageControl()
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubTitle = UILabel()
     let catchMeButton = UIButton()
+    
+    //MARK: - Lazy Properties
+    lazy var nameLabel = UILabel()
+    lazy var lottieView = AnimationView(name: "background_ios_375812")
     
     var formatterDate = DateFormatter()
     
@@ -66,11 +70,14 @@ class MainVC: UIViewController {
         setupCollectionView()
         setupPageControl()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        lottieView.play()
+    }
     
     // MARK: - Custome Method
     private func setupTopLayout() {
-        view.addSubviews([dateLabel, settingButton, calendarButton,
-                          lookButton, allButton])
+        view.addSubviews([lottieView, dateLabel, settingButton,
+                          calendarButton, lookButton, allButton])
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 48)
@@ -101,6 +108,8 @@ class MainVC: UIViewController {
             make.width.equalTo(72)
             make.height.equalTo(48)
         }
+        
+        lottieView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
     }
     
     private func setupLayout() {
@@ -173,7 +182,16 @@ class MainVC: UIViewController {
         catchMeButton.setImage(UIImage(named: "btnCatching"), for: .normal)
         emptyImageView.image = UIImage(named: "catchu")
         
-        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
+        lottieView.backgroundColor = .clear
+        
+        lottieView.center = view.center
+        lottieView.loopMode = .loop
+        lottieView.contentMode = .scaleAspectFill
+        lottieView.layer.masksToBounds = true
+        lottieView.isHidden = false
+        
+        // 캐칭버튼 클릭
+//        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
         
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
@@ -232,11 +250,7 @@ class MainVC: UIViewController {
     
     // MARK: - @objc
     @objc func setupButtonAction(_ sender: UIButton) {
-        guard  let vc = storyboard?.instantiateViewController(identifier: "MainPopupVC") as? MainPopupVC else { return }
-        
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
+        // 나중에 버튼 액션 추가
     }
 }
 

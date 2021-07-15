@@ -170,21 +170,21 @@ class MainCardVC: UIViewController {
             self.isFirstButtonChecked = true
             self.isSecondButtonChecked = false
             self.isThirdButtonChecked = false
-            print("recordButton tapped") // 해당 버튼 클릭시 변화 넣어줄 부분
+            fetchCharacter()
         })
 
         let createButton = UIAlertAction(title: "최근 생성 순", style: .default, handler: { [unowned self] _ in
             self.isFirstButtonChecked = false
             self.isSecondButtonChecked = true
             self.isThirdButtonChecked = false
-            print("createButton tapped")
+            fetchRecentCharacter()
         })
         
         let activeButton = UIAlertAction(title: "활동 많은 순", style: .default, handler: { [unowned self] _ in
             self.isFirstButtonChecked = false
             self.isSecondButtonChecked = false
             self.isThirdButtonChecked = true
-            print("activeButton tapped")
+            fetchMostCharacter()
         })
         
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -289,5 +289,87 @@ extension MainCardVC {
         }
     }
     
-//    func fetch
+    func fetchMostCharacter() {
+        var data: [CardCharacter] = []
+        authProvider.request(.most) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.cardCharacter = try result.map(MainCardModel.self)
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    characters.removeAll()
+                    
+                    data.append(contentsOf: cardCharacter?.data ?? [])
+
+                    if data.isEmpty {
+                        emptyImageView.isHidden = false
+                        emptyTitleLabel.isHidden = false
+                        emptySubLabel.isHidden = false
+                        collectionView.isHidden = true
+                    } else {
+                        emptyImageView.isHidden = true
+                        emptyTitleLabel.isHidden = true
+                        emptySubLabel.isHidden = true
+                        collectionView.isHidden = false
+                        
+                        for i in 0..<data.count {
+                            names.append(data[i].characterName)
+                            characters.append(data[i].characterIndex)
+                            levels.append(data[i].characterLevel)
+                        }
+                        collectionView.reloadData()
+                    }
+                    
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchRecentCharacter() {
+        var data: [CardCharacter] = []
+        authProvider.request(.recentCreate) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.cardCharacter = try result.map(MainCardModel.self)
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    characters.removeAll()
+                    
+                    data.append(contentsOf: cardCharacter?.data ?? [])
+
+                    if data.isEmpty {
+                        emptyImageView.isHidden = false
+                        emptyTitleLabel.isHidden = false
+                        emptySubLabel.isHidden = false
+                        collectionView.isHidden = true
+                    } else {
+                        emptyImageView.isHidden = true
+                        emptyTitleLabel.isHidden = true
+                        emptySubLabel.isHidden = true
+                        collectionView.isHidden = false
+                        
+                        for i in 0..<data.count {
+                            names.append(data[i].characterName)
+                            characters.append(data[i].characterIndex)
+                            levels.append(data[i].characterLevel)
+                        }
+                        collectionView.reloadData()
+                    }
+                    
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }

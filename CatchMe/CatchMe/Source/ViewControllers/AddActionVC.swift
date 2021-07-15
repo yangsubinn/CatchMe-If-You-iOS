@@ -27,7 +27,7 @@ class AddActionVC: UIViewController {
     var catchu: UIImage?
     var buttonImage: UIImage?
     var report: CharacterReportData?
-    var isEdited: Bool?
+    var isEdited: Bool = false
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -346,16 +346,18 @@ class AddActionVC: UIViewController {
     @objc func touchupUploadButton(_ sender: UIButton) {
         guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
 
-        if isEdited == true {
+        if isEdited{
+            print("수정")
             AddActionEditService.shared.editActivity(imageData: buttonImage,
                                                      content: activityTextView.text!,
                                                      year: String(date[0]),
                                                      month: String(date[1]),
                                                      day: String(date[2]),
-                                                     index: 2,
-                                                     activityIndex: 1) { result in
+                                                     index: 1,
+                                                     activityIndex: 36) { result in
                 switch result {
-                case .success:
+                case .success(let msg):
+                    print("success", msg)
                     self.dismiss(animated: true, completion: nil)
                 case .requestErr(let msg):
                     print("requestERR", msg)
@@ -365,10 +367,10 @@ class AddActionVC: UIViewController {
                     print("serverERR")
                 case .networkFail:
                     print("networkFail")
-                
                 }
             }
         } else if isEdited == false {
+            print("글 생성")
             if activityTextView.text == placholder || activityTextView.text == "" {
                 uploadButton.isEnabled = true
             } else {
@@ -381,7 +383,8 @@ class AddActionVC: UIViewController {
                                                              day: String(date[2]),
                                                              index: 2) { result in
                     switch result {
-                    case .success:
+                    case .success(let msg):
+                        print("success", msg)
                         self.dismiss(animated: true, completion: nil)
                     case .requestErr(let msg):
                         print("requestERR", msg)
@@ -392,7 +395,6 @@ class AddActionVC: UIViewController {
                     case .networkFail:
                         print("networkFail")
                     }
-                    
                 }
             }
         }        

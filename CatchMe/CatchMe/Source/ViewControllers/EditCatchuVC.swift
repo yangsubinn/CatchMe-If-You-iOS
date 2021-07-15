@@ -12,7 +12,7 @@ import SnapKit
 class EditCatchuVC: UIViewController {
     // MARK: - Lazy Properties
     lazy var navigationBar = CustomNavigationBar(self, title: "캐츄 수정")
-    lazy var textCount = nickname.count
+    lazy var textCount = characterName.count
     lazy var currentLock = isLock
     
     // MARK: - Properties
@@ -27,7 +27,11 @@ class EditCatchuVC: UIViewController {
     let height = UIApplication.statusBarHeight
     
     var isLock = true
-    var nickname: String = "캐치 캐치 기여미 캐치"
+    
+    // MARK: - Server Data
+    let viewModel = CharacterViewModel.shared
+    var characterName: String = ""
+    var characterIndex: Int = 4
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -106,7 +110,7 @@ class EditCatchuVC: UIViewController {
         nameLabel.addCharacterSpacing()
         
         nameTextField.tintColor = .pink100
-        nameTextField.text = nickname
+        nameTextField.text = characterName
         nameTextField.delegate = self
         nameTextField.addTarget(self, action: #selector(textDidChanged(_:)), for: .editingChanged)
         
@@ -127,7 +131,7 @@ class EditCatchuVC: UIViewController {
         countLabel.addCharacterSpacing(kernValue: -0.08, paragraphValue: 4)
         countLabel.textAlignment = .right
         
-        switch nickname.count {
+        switch characterName.count {
         case 0:
             countLabel.text = "0/20"
             countLabel.textColor = .gray200
@@ -136,8 +140,8 @@ class EditCatchuVC: UIViewController {
             attributedStr.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("20/20" as NSString).range(of: "20/20"))
             countLabel.attributedText = attributedStr
         default:
-            let attributedStr = NSMutableAttributedString(string: "\(nickname.count)/20")
-            attributedStr.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("\(nickname.count)/20" as NSString).range(of: "\(nickname.count)"))
+            let attributedStr = NSMutableAttributedString(string: "\(characterName.count)/20")
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("\(characterName.count)/20" as NSString).range(of: "\(characterName.count)"))
             countLabel.attributedText = attributedStr
         }
     }
@@ -147,7 +151,7 @@ class EditCatchuVC: UIViewController {
             self.lockButton.setImage(self.isLock ? UIImage(named: "checkboxInactive") : UIImage(named: "checkboxActive"), for: .normal)
             self.lockLabel.textColor = self.isLock ? .gray400 : .white
             
-            if (self.nameTextField.text == self.nickname) && self.nameTextField.hasText {
+            if (self.nameTextField.text == self.characterName) && self.nameTextField.hasText {
                 if self.currentLock == !self.isLock {
                     self.editButton.backgroundColor = .gray300
                     self.editButton.isEnabled = false
@@ -162,8 +166,10 @@ class EditCatchuVC: UIViewController {
         lockButton.addAction(lockAction, for: .touchUpInside)
         
         let editAction = UIAction { _ in
-            /// 서버로 바뀐 이름 PUT
             print("edit")
+            if let text = self.nameTextField.text {
+                self.viewModel.dispatchCharacterEdit(name: text, index: self.characterIndex, privacy: self.isLock, vc: self)
+            }
         }
         editButton.addAction(editAction, for: .touchUpInside)
     }
@@ -200,11 +206,11 @@ extension EditCatchuVC: UITextFieldDelegate {
     @objc
     func textDidChanged(_ sender: Any) {
         /// 변경하기 부분
-        if nameTextField.text != nickname && nameTextField.hasText {
+        if nameTextField.text != characterName && nameTextField.hasText {
             editButton.backgroundColor = .pink100
             editButton.isEnabled = true
         } else {
-            if nameTextField.text == nickname && currentLock != isLock {
+            if nameTextField.text == characterName && currentLock != isLock {
                 editButton.backgroundColor = .pink100
                 editButton.isEnabled = true
             } else {

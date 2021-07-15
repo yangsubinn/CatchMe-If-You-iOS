@@ -17,7 +17,12 @@ struct MainModel: Codable {
 
 // MARK: - MainCharacter
 struct MainCharacter: Codable {
-    let characterName: String
+    let userNickname, characterName: String
     let characterIndex, characterImageIndex, characterLevel, activityCount: Int
     let countPercentage: Int?
+    
+    enum CodingKeys: String, CodingKey {
+            case userNickname = "user_nickname"
+            case characterName, characterIndex, characterImageIndex, characterLevel, activityCount, countPercentage
+        }
 }

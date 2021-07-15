@@ -41,8 +41,9 @@ class LoginViewModel {
                         } else {
                             success = 200
                             
-                            if let token = self.signinModel?.data?.token {
-                                Login.shared.setLogin(token: token)
+                            if let token = self.signinModel?.data?.token,
+                               let nickname = self.signinModel?.data?.nickname {
+                                Login.shared.setLogin(token: token, nickname: nickname)
                             }
                         }
                     }

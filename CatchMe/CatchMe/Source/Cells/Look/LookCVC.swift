@@ -86,4 +86,7 @@ class LookCVC: UICollectionViewCell {
         characterLabel.numberOfLines = 2
     }
 
+    func setImageView(level: Int, index: Int) {
+        characterImageView.image = setCharacterImage(level: level, index: index, size: 101)
+    }
 }

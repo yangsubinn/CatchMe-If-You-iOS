@@ -57,10 +57,33 @@ extension UIViewController {
             return Character.skyblue.getCharacterImage(phase: level, size: size)
         case Character.yellow.rawValue:
             return Character.yellow.getCharacterImage(phase: level, size: size)
-        case Character.gray.rawValue:
-            return Character.gray.getCharacterImage(phase: level, size: size)
+        case Character.white.rawValue:
+            return Character.white.getCharacterImage(phase: level, size: size)
         default:
             return UIImage()
+        }
+    }
+    
+    func setBackgroundColor(index: Int) -> UIColor {
+        switch index {
+        case Character.green.rawValue:
+            return .back300
+        case Character.yellowGreen.rawValue:
+            return .back300
+        case Character.orange.rawValue:
+            return .back200
+        case Character.blue.rawValue:
+            return .back400
+        case Character.purple.rawValue:
+            return .back100
+        case Character.skyblue.rawValue:
+            return .back400
+        case Character.yellow.rawValue:
+            return .back200
+        case Character.white.rawValue:
+            return .back100
+        default:
+            return UIColor()
         }
     }
 }

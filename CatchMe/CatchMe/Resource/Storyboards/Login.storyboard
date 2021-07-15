@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="za0-LI-5Yn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3PI-A7-I59">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,10 +39,25 @@
             </objects>
             <point key="canvasLocation" x="1935.2" y="124.58770614692655"/>
         </scene>
+        <!--SplashVC-->
+        <scene sceneID="W07-Vl-uw5">
+            <objects>
+                <viewController storyboardIdentifier="SplashVC" title="SplashVC" id="3PI-A7-I59" customClass="SplashVC" customModule="CatchMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B8h-7z-erd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Cke-W0-YEx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J0U-RC-uvA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-815" y="125"/>
+        </scene>
         <!--LoginNavi-->
         <scene sceneID="4QC-cX-ky3">
             <objects>
-                <navigationController title="LoginNavi" automaticallyAdjustsScrollViewInsets="NO" id="za0-LI-5Yn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavi" title="LoginNavi" automaticallyAdjustsScrollViewInsets="NO" id="za0-LI-5Yn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8TA-td-EXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -265,9 +265,14 @@ extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCVC.identifier, for: indexPath) as? CharacterCVC else { return UICollectionViewCell() }
         
+        if activitys[indexPath.item] == 48 {
+            
+            cell.reportView.setupEmptyLayout()
+            cell.reportView.emptyUI()
+        }
+        
         cell.reportView.setLabel(level: levels[indexPath.item], activity: activitys[indexPath.item], percent: totals[indexPath.item])
         cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
-        
         return cell
     }
 }
@@ -345,7 +350,6 @@ extension MainVC {
                         catchMeButton.isHidden = true
                         catchingButton.isHidden = false
 
-                        
                         for i in 0..<data.count {
                             names.append(data[i].characterName)
                             levels.append(data[i].characterLevel)
@@ -358,6 +362,7 @@ extension MainVC {
 
                         collectionView.reloadData()
                         pageControl.pages = names.count
+                        
                         if !names.isEmpty {
                             nameLabel.text = names[0]
                             nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)

@@ -21,7 +21,6 @@ class CharacterFirstTVC: UITableViewCell {
     var data: ActivityDetail?
     let upperView = CharacterUpperView()
 
-
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
     }

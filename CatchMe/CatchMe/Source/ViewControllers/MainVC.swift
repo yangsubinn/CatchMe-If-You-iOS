@@ -283,19 +283,26 @@ extension MainVC: UICollectionViewDelegate {
         guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
 
         let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-
+        
         var offset = targetContentOffset.pointee
-        let index = (offset.x + scrollView.contentInset.left ) /  cellWidthIncludingSpacing
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
         var roundedIndex = round(index)
         
-        if scrollView.contentOffset.x > targetContentOffset.pointee.x{
+        if scrollView.contentOffset.x > targetContentOffset.pointee.x {
             roundedIndex = floor(index)
-        } else {
+        } else if scrollView.contentOffset.x < targetContentOffset.pointee.x {
             roundedIndex = ceil(index)
+        } else {
+            roundedIndex = round(index)
         }
         
-        changeLabelText(index: Int(roundedIndex))
-        pageControl.selectedPage = Int(roundedIndex)
+        let cnt = names.count
+        if Int(roundedIndex) < cnt  {
+            print("index: \(index)")
+            
+            changeLabelText(index: Int(roundedIndex))
+            pageControl.selectedPage = Int(roundedIndex)
+        }
         
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
                          y: -scrollView.contentInset.top)

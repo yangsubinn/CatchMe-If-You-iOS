@@ -15,6 +15,8 @@ class CharacterTVC: UITableViewCell {
 
     // MARK: - Properties
     var rootVC: UIViewController?
+    var upperView: CharacterUpperView?
+    var characterData: CharacterDetail?
     var data: ActivityDetail?
 
     let emptyStateImageView = UIImageView().then {
@@ -196,15 +198,20 @@ class CharacterTVC: UITableViewCell {
         }
         
         let editAction = UIAlertAction(title: "수정", style: .default) { result in
-            print("수정")
-            // 편집VC로 화면 전환 코드 작성해야 함
+            guard let data = self.data,
+                  let selectedData = self.characterData
+            else { return }
             let vc = AddActionVC()
-            vc.modalPresentationStyle = .overFullScreen
-            guard let data = self.data else { return }
-            
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+            vc.catchu = self.upperView?.characterImageView.setCharacterImage(
+                level: selectedData.characterImageIndex,
+                index: selectedData.characterIndex,
+                size: 151
+            )
+            
+            vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)
         }
         

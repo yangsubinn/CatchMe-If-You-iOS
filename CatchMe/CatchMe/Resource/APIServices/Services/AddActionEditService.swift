@@ -1,5 +1,5 @@
 //
-//  AddActionNewService.swift
+//  AddActionEditService.swift
 //  CatchMe
 //
 //  Created by Thisisme Hi on 2021/07/15.
@@ -8,19 +8,20 @@
 import Foundation
 import Alamofire
 
-struct AddActionNewService {
+struct AddActionEditService {
     
-    static let shared = AddActionNewService()
+    static let shared = AddActionEditService()
     
-    func uploadNewActivity (imageData: UIImage?,
+    func editActivity (imageData: UIImage?,
                             content: String,
                             year: String,
                             month: String,
                             day: String,
                             index: Int,
+                            activityIndex: Int,
                             completion: @escaping (NetworkResult<Any>) -> Void) {
         
-        let URL = APIConstants.newURL
+        let URL = APIConstants.editURL
         let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjM1NzM3NywiZXhwIjoxNjI3NTY2OTc3fQ.LTRShmdY60bZJZqqYHv5BIYVIJGgfm6sDpXnXGWbq1s"
         let header : HTTPHeaders = [
             "Content-Type" : "multipart/form-data",
@@ -32,7 +33,8 @@ struct AddActionNewService {
             "activityYear": year,
             "activityMonth": month,
             "activityDay": day,
-            "characterIndex": index
+            "characterIndex": index,
+            "activityIndex": activityIndex
         ]
         AF.upload(multipartFormData: { multipartFormData in
             for (key, value) in parameters {

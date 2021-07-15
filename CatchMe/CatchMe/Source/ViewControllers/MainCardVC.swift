@@ -7,8 +7,8 @@
 
 import UIKit
 
-import SnapKit
 import Moya
+import SnapKit
 
 class MainCardVC: UIViewController {
     //MARK: - Properties
@@ -216,7 +216,7 @@ extension MainCardVC: UICollectionViewDataSource {
         cell.nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 4)
         cell.nameLabel.numberOfLines = 2
         cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
-        cell.setStatLevel(level: levels[indexPath.item])
+        cell.setStarLevel(level: levels[indexPath.item])
         
         return cell
     }
@@ -279,7 +279,6 @@ extension MainCardVC {
                         }
                         collectionView.reloadData()
                     }
-                    
                 } catch(let err) {
                     print(err.localizedDescription)
                 }
@@ -321,7 +320,6 @@ extension MainCardVC {
                         }
                         collectionView.reloadData()
                     }
-                    
                 } catch(let err) {
                     print(err.localizedDescription)
                 }
@@ -363,7 +361,6 @@ extension MainCardVC {
                         }
                         collectionView.reloadData()
                     }
-                    
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

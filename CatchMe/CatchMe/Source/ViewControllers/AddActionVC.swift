@@ -7,15 +7,16 @@
 
 import UIKit
 
+import Alamofire
 import Kingfisher
 import Moya
 import Then
 import SnapKit
 
 class AddActionVC: UIViewController {
-    private let authProvider = MoyaProvider<AddActionService>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    private var addActionModel: AddActionModel?
-    
+    //    private let authProvider = MoyaProvider<AddActionService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    //    private var addActionModel: AddActionModel?
+    //
     // MARK: - Properties
     var keyHeight = CGFloat()
     var enteredText: String?
@@ -27,6 +28,7 @@ class AddActionVC: UIViewController {
     var date: String?
     var name: String?
     var catchu: UIImage?
+    var buttonImage: UIImage?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -44,7 +46,7 @@ class AddActionVC: UIViewController {
         $0.setImage(UIImage(named: "btnClose"), for: .normal)
         $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
-        
+    
     let nameLabel = UILabel().then {
         $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
@@ -140,7 +142,7 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
-//        dispatchAddAction()
+        //        dispatchAddAction()
     }
     
     // MARK: - Custom Method
@@ -157,7 +159,7 @@ class AddActionVC: UIViewController {
             activityTextView.textColor = .white
             uploadButton.backgroundColor = .pink100
             textExists()
-
+            
             photoButton.setImage(photoURL, for: .normal)
             dateLabel.text = date
         } else {
@@ -340,8 +342,33 @@ class AddActionVC: UIViewController {
             uploadButton.isEnabled = true
         } else {
             uploadButton.isEnabled = false
-            /// 여기에 기록하기 버튼을 누르면 글이 업로드 되는 코드를 작성해야 함
-            self.dismiss(animated: true, completion: nil)
+            
+            print("와asdasdasdasd")
+            guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
+            AddActionNewService.shared
+                .uploadNewActivity(
+                    imageData: buttonImage,
+                    content: activityTextView.text!,
+                    year: String(date[0]),
+                    month: String(date[1]),
+                    day: String(date[2]),
+                    index: 1
+                ) { result in
+                switch result {
+                case .success:
+                    self.dismiss(animated: true, completion: nil)
+                case .requestErr(let msg):
+                    print("requestERR", msg)
+                case .pathErr:
+                    print("pathERR")
+                case .serverErr:
+                    print("serverERR")
+                case .networkFail:
+                    print("networkFail")
+                }
+                
+            }
+//            self.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -408,17 +435,12 @@ extension AddActionVC: UIImagePickerControllerDelegate, UINavigationControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             photoButton.setImage(image, for: .normal)
+            buttonImage = image
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             photoButton.setImage(image, for: .normal)
+            buttonImage = image
         }
         deletePhotoButton.isHidden = false
         dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - Network
-extension AddActionVC {
-    func dispatchAddAction() {
-        
     }
 }

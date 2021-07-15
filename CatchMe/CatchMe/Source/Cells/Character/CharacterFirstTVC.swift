@@ -19,7 +19,7 @@ class CharacterFirstTVC: UITableViewCell {
     var rootVC: UIViewController?
     var characterData: CharacterDetail?
     var data: ActivityDetail?
-    let upperView = CharacterUpperView()
+    var upperView: CharacterUpperView?
 
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
@@ -62,7 +62,6 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     let commentLabel = UILabel().then {
-        $0.text = "암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-암벽을 올랐다. 뿌듯해따 -.-"
         $0.textColor = .white
         $0.font = .stringRegularSystemFont(ofSize: 14)
         $0.textAlignment = .left
@@ -88,6 +87,11 @@ class CharacterFirstTVC: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.isHidden = false
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -99,8 +103,13 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     func setupAutoLayout() {
-        addSubviews([lineView, pinImageView,
-                     dateLabel, contentStackView, moreButton])
+        addSubviews([
+            lineView,
+            pinImageView,
+            dateLabel,
+            contentStackView,
+            moreButton
+        ])
         commentView.addSubview(commentLabel)
         contentStackView.addArrangedSubview(commentView)
         contentStackView.addArrangedSubview(photoImageView)
@@ -186,14 +195,18 @@ class CharacterFirstTVC: UITableViewCell {
         }
         
         let editAction = UIAlertAction(title: "수정", style: .default) { result in
+            guard let data = self.data,
+                  let selectedData = self.characterData
+            else { return }
             let vc = AddActionVC()
-            guard let data = self.data else { return }
-            guard let selectedData = self.characterData else { return }
-            
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
-            vc.catchu = self.upperView.characterImageView.setCharacterImage(level: selectedData.characterImageIndex, index: selectedData.characterIndex, size: 151)
+            vc.catchu = self.upperView?.characterImageView.setCharacterImage(
+                level: selectedData.characterImageIndex,
+                index: selectedData.characterIndex,
+                size: 151
+            )
             
             vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)

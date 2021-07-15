@@ -87,6 +87,11 @@ class CharacterTVC: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.isHidden = false
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -226,14 +231,12 @@ class CharacterTVC: UITableViewCell {
         commentLabel.text = data.activityContent
 
         if let image = URL(string: data.activityImage) {
-            if data.activityImage == "" {
-                photoImageView.isHidden = true
-            } else {
-                photoImageView.kf.setImage(with: image)
-                photoImageView.snp.makeConstraints { make in
-                    make.height.equalTo(228)
-                }
+            photoImageView.kf.setImage(with: image)
+            photoImageView.snp.makeConstraints { make in
+                make.height.equalTo(228)
             }
+        } else {
+            photoImageView.isHidden = true
         }
     }
 }

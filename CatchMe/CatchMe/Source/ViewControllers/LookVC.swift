@@ -13,7 +13,7 @@ import SnapKit
 class LookVC: UIViewController {
     //MARK: - Properties
     let titleLabel = UILabel()
-    let subTitleLabel = UILabel()
+//    let subTitleLabel = UILabel()
     let topImageView = UIImageView()
     let topBackImageView  = UIImageView()
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -29,9 +29,10 @@ class LookVC: UIViewController {
     //MARK: - Server Data
     var nicknames: [String] = []
     var names: [String] = []
-    var characters: [Int] = []
+    var images: [Int] = []
     var levels: [Int] = []
-    var ids: [String] = []
+    var userids: [String] = []
+    var indexs: [Int] = []
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -39,16 +40,17 @@ class LookVC: UIViewController {
         setupLayout()
         configUI()
         setupCollectionView()
+        fetchOtherCharacter()
     }
     
     //MARK: - Custom Method
     func setupLayout() {
         view.addSubviews([collectionView, topBackImageView, backButton,
-                          titleLabel, subTitleLabel, topImageView])
+                          titleLabel, topImageView]) // subTitleLabel
         
         topBackImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(subTitleLabel.snp.bottom).offset(57)
+            make.bottom.equalTo(titleLabel.snp.bottom).offset(84)
         }
         
         backButton.snp.makeConstraints { make in
@@ -61,10 +63,10 @@ class LookVC: UIViewController {
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
         }
         
-        subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
-        }
+//        subTitleLabel.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+//            make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+//        }
         
         topImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(UIScreen.main.hasNotch ? 84 : 90)
@@ -89,9 +91,9 @@ class LookVC: UIViewController {
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
         
-        subTitleLabel.text = "다른 사용자의 캐츄를 둘러보세요!"
-        subTitleLabel.textColor = .gray310
-        subTitleLabel.font = .stringMediumSystemFont(ofSize: 16)
+//        subTitleLabel.text = "다른 사용자의 캐츄를 둘러보세요!"
+//        subTitleLabel.textColor = .gray310
+//        subTitleLabel.font = .stringMediumSystemFont(ofSize: 16)
     }
     
     func setupCollectionView() {
@@ -108,7 +110,7 @@ class LookVC: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension LookVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return names.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -116,6 +118,9 @@ extension LookVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCVC.identifier, for: indexPath) as? LookCVC else {
             return UICollectionViewCell()
         }
+        
+        cell.nicknameLabel.text = "\(nicknames[indexPath.item]) 님의"
+        cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
         return cell
     }
 }
@@ -155,20 +160,29 @@ extension LookVC {
                     
                     nicknames.removeAll()
                     names.removeAll()
-                    characters.removeAll()
+                    images.removeAll()
                     levels.removeAll()
-                    ids.removeAll()
+                    userids.removeAll()
+                    indexs.removeAll()
                     
                     data.append(contentsOf: otherCharacter?.data ?? [])
                     
                     for i in 0..<data.count {
                         nicknames.append(data[i].userNickname)
                         names.append(data[i].characterName)
-                        characters.append(data[i].characterIndex)
+                        images.append(data[i].characterIndex)
                         levels.append(data[i].characterLevel)
-                        ids.append(data[i].userID)
+                        userids.append(data[i].userID)
+                        indexs.append(data[i].characterIndex)
                     }
                     print(nicknames)
+                    print(names)
+                    print("---------imagecolor")
+                    print(images)
+                    print("---------level")
+                    print(levels)
+                    print(userids)
+                    
                     collectionView.reloadData()
                 } catch(let err) {
                     print(err.localizedDescription)

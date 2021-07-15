@@ -233,13 +233,6 @@ class ReportVC: UIViewController {
                 })
             }
             
-            print(self.indexs)
-            print("----------------")
-            print(self.levels)
-            print("----------------")
-            print(self.activites)
-            print("----------------")
-            print(self.monthDate)
             self.dateCollectionView.reloadData()
         }
     }

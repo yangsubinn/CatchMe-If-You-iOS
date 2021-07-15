@@ -54,7 +54,6 @@ class ReportView: UIView {
         if let data = data {
             let character = setCharacterImage(level: data.characterLevel, index: data.characterImageIndex, size: 121)
             characterView.setupCharacterView(catching: data.catching, name: data.characterName, character: character)
-            
         } else {
             characterView.setupEmptyView()
         }

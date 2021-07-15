@@ -16,6 +16,7 @@ class SettingViewModel {
     private var nicknameModel: SettingModel?
     private var passwordCheckModel: PasswordCheckModel?
     private var passwordModel: SettingModel?
+    private var withdrawModel: SettingModel?
     
     // MARK: - POST /setting/nickname
     func dispatchNickname(name: String, completion: @escaping (() -> ())) {
@@ -68,6 +69,24 @@ class SettingViewModel {
                     self.passwordModel = try result.map(SettingModel.self)
                     
                     completion(self.passwordModel?.success ?? false)
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    // MARK: - POST /setting/withdraw
+    func dispatchWithdraw() {
+        authProvider.request(.withdraw) { response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.withdrawModel = try result.map(SettingModel.self)
+                    
+                    Login.shared.setLoginOut()
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

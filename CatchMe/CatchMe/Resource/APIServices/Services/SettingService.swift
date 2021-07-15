@@ -74,7 +74,7 @@ extension SettingService: TargetType {
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"]
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBmMDQ2ZDVmMTY3YWM2YTJmODJlYjM5In0sImlhdCI6MTYyNjM2MDM0MCwiZXhwIjoxNjI3NTY5OTQwfQ.LA-kNqFCE32SaI7lFQ-AzSzw9CK-MzSlnCy92cje_g0"]
         }
     }
 }

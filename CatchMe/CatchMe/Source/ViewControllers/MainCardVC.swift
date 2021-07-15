@@ -213,8 +213,8 @@ extension MainCardVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else { return UICollectionViewCell() }
         
         cell.nameLabel.text = names[indexPath.item]
-//        cell.nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
-//        cell.nameLabel.numberOfLines = 2
+        cell.nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 4)
+        cell.nameLabel.numberOfLines = 2
         cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
         cell.setStatLevel(level: levels[indexPath.item])
         

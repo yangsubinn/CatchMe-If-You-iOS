@@ -40,11 +40,14 @@ class MainCardVC: UIViewController {
     var images: [Int] = []
     var levels: [Int] = []
     var indexs: [Int] = []
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchCharacter()
+    }
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCharacter()
         setupLayout()
         configUI()
         setupCollectionView()
@@ -133,6 +136,8 @@ class MainCardVC: UIViewController {
         emptyImageView.isHidden = true
         emptyTitleLabel.isHidden = true
         emptySubLabel.isHidden = true
+        
+        addButton.addTarget(self, action: #selector(touchupAdd), for: .touchUpInside)
     }
     
     func setupCollectionView() {
@@ -203,6 +208,14 @@ class MainCardVC: UIViewController {
 
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @objc
+    func touchupAdd() {
+        let storyboard  = UIStoryboard.init(name: "Character", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "AddCatchuVC") as? AddCatchuVC else { return }
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -248,6 +261,16 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+extension MainCardVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Character", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
+        /// characterIndex 보내주기
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 // MARK: - Network
 extension MainCardVC {
     func fetchCharacter() {
@@ -283,6 +306,7 @@ extension MainCardVC {
                             levels.append(data[i].characterLevel)
                             indexs.append(data[i].characterIndex)
                         }
+                        
                         collectionView.reloadData()
                     }
                 } catch(let err) {

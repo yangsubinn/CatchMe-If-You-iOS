@@ -74,7 +74,7 @@ class FirstFlowView: UIView {
         let insetX = (UIScreen.main.bounds.size.width - cellWidth) / 2.0
         catchuCollectionView.contentInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
             let indexPath = IndexPath(item: 0, section: 0)
             if let cell = self.catchuCollectionView.cellForItem(at: indexPath) {
                 self.animateZoomforCell(zoomCell: cell)

@@ -52,7 +52,7 @@ class AddCatchuPopupView: UIView {
         $0.setTitle("나갈래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 21
-        $0.addTarget(self, action: #selector(touchupCancelButton(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
     
     var viewController = UIViewController()

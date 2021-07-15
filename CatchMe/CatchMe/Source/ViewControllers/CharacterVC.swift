@@ -66,7 +66,7 @@ class CharacterVC: UIViewController {
         view.addSubviews([mainTableView, upperView, naviBar, catchGuideImageView])
         
         naviBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(48)
         }
         

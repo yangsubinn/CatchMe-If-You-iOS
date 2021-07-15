@@ -24,8 +24,7 @@ class EditNicknameVC: UIViewController {
     
     // MARK: - Dummy Data
     let viewModel = SettingViewModel.shared
-//    var currentNickname = UserDefaultStorage.userName
-    var currentNickname = "@꿍@루@"
+    var currentNickname = UserDefaultStorage.userName
     
     // MARK: - Life Cycle
     override func viewDidLoad() {

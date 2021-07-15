@@ -23,6 +23,8 @@
 		2BB24C1F269ED48A002746BE /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C1E269ED48A002746BE /* MainService.swift */; };
 		2BB24C24269EDA88002746BE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C23269EDA88002746BE /* MainModel.swift */; };
 		2BB24C43269F6DDE002746BE /* MainCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C42269F6DDE002746BE /* MainCardModel.swift */; };
+		2BC68AD626A02243008C52EE /* LookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC68AD526A02243008C52EE /* LookModel.swift */; };
+		2BC68ADC26A02267008C52EE /* LookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC68ADB26A02267008C52EE /* LookService.swift */; };
 		2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B256269E3685004BE562 /* MainPopupVC.swift */; };
 		2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B25A269E376A004BE562 /* MainPopupView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
@@ -155,6 +157,8 @@
 		2BB24C1E269ED48A002746BE /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		2BB24C23269EDA88002746BE /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		2BB24C42269F6DDE002746BE /* MainCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardModel.swift; sourceTree = "<group>"; };
+		2BC68AD526A02243008C52EE /* LookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookModel.swift; sourceTree = "<group>"; };
+		2BC68ADB26A02267008C52EE /* LookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookService.swift; sourceTree = "<group>"; };
 		2BD1B256269E3685004BE562 /* MainPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupVC.swift; sourceTree = "<group>"; };
 		2BD1B25A269E376A004BE562 /* MainPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupView.swift; sourceTree = "<group>"; };
 		2BDC1AAF26942973008381C3 /* MainCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardVC.swift; sourceTree = "<group>"; };
@@ -368,6 +372,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		2BC68AD426A02234008C52EE /* Look */ = {
+			isa = PBXGroup;
+			children = (
+				2BC68AD526A02243008C52EE /* LookModel.swift */,
+			);
+			path = Look;
+			sourceTree = "<group>";
+		};
 		2BDC1AB7269466AA008381C3 /* MainCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +568,7 @@
 		ED63E89A268A1C54000F058F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2BC68AD426A02234008C52EE /* Look */,
 				2BB24C22269ED852002746BE /* Main */,
 				ED728418269DA98200D19FD5 /* MainCard */,
 				ED728402269D06C800D19FD5 /* Login */,
@@ -627,6 +640,7 @@
 				ED728400269CFFED00D19FD5 /* LoginService.swift */,
 				ED728414269DA93300D19FD5 /* MainCardService.swift */,
 				2BB24C1E269ED48A002746BE /* MainService.swift */,
+				2BC68ADB26A02267008C52EE /* LookService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -927,6 +941,7 @@
 				EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */,
 				EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */,
 				ED7283FE269CCAF500D19FD5 /* EditCatchuVC.swift in Sources */,
+				2BC68AD626A02243008C52EE /* LookModel.swift in Sources */,
 				EDD12C96268EB16800DF766A /* XmarkButton.swift in Sources */,
 				2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */,
 				2B84570A26998ABD0096DEAA /* EditNicknameVC.swift in Sources */,
@@ -957,6 +972,7 @@
 				ED728424269E9BD400D19FD5 /* CurrentPasswordView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
+				2BC68ADC26A02267008C52EE /* LookService.swift in Sources */,
 				2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */,
 				2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,

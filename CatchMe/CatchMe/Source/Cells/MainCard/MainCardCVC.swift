@@ -15,6 +15,7 @@ class MainCardCVC: UICollectionViewCell {
     let characterImageView = UIImageView()
     let levelStarImageView = UIImageView()
     let nameLabel = UILabel()
+    let labelBackView = UIView()
     
     // MARK: - Life Cycle
     override func awakeFromNib() {
@@ -26,17 +27,18 @@ class MainCardCVC: UICollectionViewCell {
     // MARK: - Custom Method
     func configUI() {
         self.layer.cornerRadius = 14
-        self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        characterBackView.backgroundColor = .gray100
-
+        self.backgroundColor = .clear
+        
         nameLabel.textColor = .black200
         nameLabel.font = .catchuRegularSystemFont(ofSize: 14)
-        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 5)
         nameLabel.numberOfLines = 2
+        
+        labelBackView.backgroundColor = UIColor.white.withAlphaComponent(0.7)
     }
     
     func setupLayout() {
-        addSubviews([characterBackView, characterImageView, levelStarImageView, nameLabel])
+        addSubviews([characterBackView, labelBackView, characterImageView, levelStarImageView, nameLabel])
         
         characterImageView.snp.makeConstraints { make in
             make.top.equalTo(levelStarImageView.snp.bottom).offset(9)
@@ -45,8 +47,7 @@ class MainCardCVC: UICollectionViewCell {
         }
         
         characterBackView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(144)
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
         
         levelStarImageView.snp.makeConstraints { make in
@@ -57,10 +58,16 @@ class MainCardCVC: UICollectionViewCell {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(characterBackView.snp.bottom).offset(11)
+//            make.top.equalTo(characterBackView.snp.bottom).offset(11)
+            make.centerY.equalTo(labelBackView.snp.centerY)
             make.leading.equalToSuperview().inset(14)
             make.width.equalTo(127)
             make.height.equalTo(36)
+        }
+        
+        labelBackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(144)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     

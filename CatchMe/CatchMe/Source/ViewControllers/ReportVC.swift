@@ -201,6 +201,7 @@ class ReportVC: UIViewController {
     func fetchData(year: Int, month: String) {
         indexs.removeAll()
         levels.removeAll()
+        imageIndexs.removeAll()
         activites.removeAll()
         monthDate.removeAll()
         inx = 0
@@ -208,14 +209,18 @@ class ReportVC: UIViewController {
         viewModel.fetchReport(year: year, month: month) { data in
             self.reportView.setCharacterView(data: data)
             
-            if let months = data?.activitiesOfMonth {
+            if let months = data?.activitiesOfMonth,
+               let infos = data?.characterInfoArr {
                 self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
-                self.levels.append(contentsOf: data?.characterLevelArr ?? [])
-                self.imageIndexs.append(contentsOf: data?.characterImageArr ?? [])
                 self.activites.append(contentsOf: months)
                 
                 for i in months {
                     self.monthDate += [i.activityDay]
+                }
+                
+                for i in infos {
+                    self.levels.append(i.characterLevel)
+                    self.imageIndexs.append(i.characterImageIndex)
                 }
                 
                 let removedDuplicate: Set = Set(self.monthDate)
@@ -232,6 +237,11 @@ class ReportVC: UIViewController {
                     $0.localizedStandardCompare($1) == .orderedAscending
                 })
             }
+            
+            print(self.monthDate)
+            print("------------")
+            print(self.levels)
+            print(self.imageIndexs)
             
             self.dateCollectionView.reloadData()
         }

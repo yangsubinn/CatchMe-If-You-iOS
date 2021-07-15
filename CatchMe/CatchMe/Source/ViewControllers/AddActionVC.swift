@@ -145,14 +145,20 @@ class AddActionVC: UIViewController {
     // MARK: - Custom Method
     func configUI() {
         view.backgroundColor = .black100
-        
+
         deletePhotoButton.isHidden = true
-        print(photoURL)
         
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        let dateString = dateFormatter.string(from: now)
+        dateLabel.text = dateString
         nameLabel.text = name
         catchuImageView.image = catchu
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
+        
         if let text = text {
+            dateLabel.text = date
             activityTextView.text = text
             activityTextView.textColor = .white
             uploadButton.backgroundColor = .pink100
@@ -163,10 +169,7 @@ class AddActionVC: UIViewController {
             } else {
                 photoButton.setImage(photoURL, for: .normal)
                 deletePhotoButton.isHidden = false
-
             }
-            
-            dateLabel.text = date
         } else {
             activityTextView.text = placholder
             activityTextView.textColor = .gray200
@@ -319,11 +322,9 @@ class AddActionVC: UIViewController {
         let vc = AddActionDatePickerPopupVC()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        
         vc.sendData = { text in
             self.dateLabel.text = text
         }
-        
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -394,9 +395,7 @@ class AddActionVC: UIViewController {
                     
                 }
             }
-        }
-        
-        
+        }        
     }
 }
 

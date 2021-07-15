@@ -24,7 +24,10 @@ class SecondFlowView: UIView {
                                    Character.yellowGreen.getCharacterImage(phase: 1, size: 151),
                                    Character.orange.getCharacterImage(phase: 1, size: 151),
                                    Character.blue.getCharacterImage(phase: 1, size: 151),
-                                   Character.purple.getCharacterImage(phase: 1, size: 151)]
+                                   Character.purple.getCharacterImage(phase: 1, size: 151),
+                                   Character.skyblue.getCharacterImage(phase: 1, size: 151),
+                                   Character.yellow.getCharacterImage(phase: 1, size: 151),
+                                   Character.white.getCharacterImage(phase: 1, size: 151)]
 
     // MARK: - Life Cycle
     override init(frame: CGRect) {

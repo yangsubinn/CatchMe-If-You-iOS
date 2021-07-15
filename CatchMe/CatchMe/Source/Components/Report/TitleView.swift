@@ -20,7 +20,7 @@ class TitleView: UIView {
     let postpositionLabel = UILabel().then {
         $0.font = .stringMediumSystemFont(ofSize: 18)
         $0.textColor = .white
-        $0.text = "의"
+        $0.text = "님의"
     }
     
     let monthLabel = UILabel().then {

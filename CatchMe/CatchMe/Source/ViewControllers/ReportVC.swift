@@ -202,6 +202,7 @@ class ReportVC: UIViewController {
     func fetchData(year: Int, month: String) {
         indexs.removeAll()
         levels.removeAll()
+        names.removeAll()
         imageIndexs.removeAll()
         activites.removeAll()
         monthDate.removeAll()
@@ -209,10 +210,10 @@ class ReportVC: UIViewController {
         
         viewModel.fetchReport(year: year, month: month) { data in
             self.reportView.setCharacterView(data: data)
+            self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
             
             if let months = data?.activitiesOfMonth,
                let infos = data?.characterInfoArr {
-                self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
                 self.activites.append(contentsOf: months)
                 
                 for i in months {
@@ -220,9 +221,9 @@ class ReportVC: UIViewController {
                 }
                 
                 for i in infos {
-                    self.levels.append(i.characterLevel)
-                    self.imageIndexs.append(i.characterImageIndex)
-                    self.names.append(i.characterName)
+                    self.levels += [i.characterLevel]
+                    self.imageIndexs += [i.characterImageIndex]
+                    self.names += [i.characterName]
                 }
                 
                 let removedDuplicate: Set = Set(self.monthDate)
@@ -359,28 +360,30 @@ extension ReportVC: UICollectionViewDelegate {
                 }
                 vc.date = dayAndYear + newText
                 
-                /// 1. catchu date 순으로 배열 가져오기
                 let catchuDate = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.activityDay })
                 let catchuIndex = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.characterIndex })
                 
-                /// 2. activityDay와 date가 같은 날짜 가져와서
                 var popupCatchus: [String] = []
                 var imageArr: [UIImage?] = []
                 var indexArr: [Int] = []
+                var colorArr: [Int] = []
                 var cnt = 0
+                
                 for i in catchuDate {
                     if i == dateText {
                         if !(popupCatchus.contains(names[catchuIndex[cnt] - 1])) {
                             popupCatchus += [names[catchuIndex[cnt] - 1]]
                             imageArr += [setCharacterImage(level: levels[catchuIndex[cnt] - 1], index: imageIndexs[catchuIndex[cnt] - 1], size: 121)]
                             indexArr += [catchuIndex[cnt]]
+                            colorArr += [imageIndexs[catchuIndex[cnt] - 1]]
                         }
                     }
                     cnt += 1
                 }
                 
                 vc.popupView.nameLabel.text = popupCatchus[0]
-                vc.popupView.setPopupImages(catchus: popupCatchus, images: imageArr, index: indexArr)
+                vc.popupView.setPopupImages(catchus: popupCatchus, images: imageArr, index: indexArr, back: colorArr)
+                
                 
                 if popupCatchus.count == 1 {
                     vc.popupView.rightButton.isHidden = true

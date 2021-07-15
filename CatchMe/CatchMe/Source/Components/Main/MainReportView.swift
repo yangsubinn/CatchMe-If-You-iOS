@@ -29,7 +29,7 @@ class MainReportView: UIView {
         super.init(frame: frame)
         configUI()
         setupLayout()
-//        setupEmptyLayout()
+        setupEmptyLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -99,7 +99,7 @@ class MainReportView: UIView {
         }
     }
     
-    private func setupEmptyLayout() {
+    func setupEmptyLayout() {
         addSubviews([emptyTitleLabel, emptySubLabel])
         
         emptyTitleLabel.snp.makeConstraints { make in
@@ -111,6 +111,22 @@ class MainReportView: UIView {
             make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    func emptyUI() {
+        topLineView.isHidden = true
+        titleLabel.isHidden = true
+        levelCountLabel.isHidden = true
+        activeCountLabel.isHidden = true
+        percentCountLabel.isHidden = true
+        levelLabel.isHidden = true
+        activeLabel.isHidden = true
+        percentLabel.isHidden = true
+        lineLeftView.isHidden = true
+        lineRightView.isHidden = true
+        
+        emptyTitleLabel.isHidden = false
+        emptySubLabel.isHidden = false
     }
     
     private func configUI() {
@@ -155,6 +171,9 @@ class MainReportView: UIView {
         emptySubLabel.text = "캐칭을 기록하고 리포트로 확인해볼까요?"
         emptySubLabel.textColor = .white
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
+        
+        emptyTitleLabel.isHidden = true
+        emptySubLabel.isHidden = true
     }
     
     func setLabel(level: Int, activity: Int, percent: Int) {

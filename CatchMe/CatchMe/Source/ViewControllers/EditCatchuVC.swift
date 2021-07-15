@@ -101,9 +101,10 @@ class EditCatchuVC: UIViewController {
         
         view.backgroundColor = .black100
         
-        backgroundImageView.backgroundColor = .pink100
+        backgroundImageView.layer.cornerRadius = 125/2
+        backgroundImageView.backgroundColor = setBackgroundColor(index: characterIndex)
         
-        characterImageView.image = Character.green.getCharacterImage(phase: 1, size: 101)
+        characterImageView.image = Character.blue.getCharacterImage(phase: 1, size: 101)
         
         nameLabel.text = "이름 변경"
         nameLabel.font = .stringMediumSystemFont(ofSize: 18)

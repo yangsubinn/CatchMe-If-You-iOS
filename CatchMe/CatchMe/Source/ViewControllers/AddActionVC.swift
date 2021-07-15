@@ -147,6 +147,7 @@ class AddActionVC: UIViewController {
         view.backgroundColor = .black100
         
         deletePhotoButton.isHidden = true
+        print(photoURL)
         
         nameLabel.text = name
         catchuImageView.image = catchu
@@ -157,9 +158,14 @@ class AddActionVC: UIViewController {
             uploadButton.backgroundColor = .pink100
             textExists()
             
-//            if photoButton
+            if photoURL == nil {
+                photoButton.setImage(UIImage(named: "btnAddPhoto"), for: .normal)
+            } else {
+                photoButton.setImage(photoURL, for: .normal)
+                deletePhotoButton.isHidden = false
+
+            }
             
-            photoButton.setImage(photoURL, for: .normal)
             dateLabel.text = date
         } else {
             activityTextView.text = placholder

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Moya
 import SnapKit
 
 class MainCardVC: UIViewController {
@@ -30,13 +31,23 @@ class MainCardVC: UIViewController {
     var isSecondButtonChecked = false
     var isThirdButtonChecked = false
     
+    //MARK: - Network
+    private let authProvider = MoyaProvider<MainCardService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var cardCharacter: MainCardModel?
+    
+    //MARK: - Server Data
+    var names: [String] = []
+    var characters: [Int] = []
+    var levels: [Int] = []
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchCharacter()
         setupLayout()
         configUI()
         setupCollectionView()
-//        setupEmptyLayout()
+        setupEmptyLayout()
     }
     
     //MARK: - Custom Method
@@ -116,15 +127,19 @@ class MainCardVC: UIViewController {
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
         
         alignButton.addTarget(self, action: #selector(alignButtonAction), for: .touchUpInside)
+        
+        emptyImageView.isHidden = true
+        emptyTitleLabel.isHidden = true
+        emptySubLabel.isHidden = true
     }
     
     func setupCollectionView() {
-        collectionViewFlowLayout.scrollDirection = .vertical
         collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.setupCollectionViewNib(nib: MainCardCVC.identifier)
         collectionView.backgroundColor = .clear
+        collectionViewFlowLayout.scrollDirection = .vertical
         collectionView.showsVerticalScrollIndicator = false
     }
     
@@ -155,21 +170,21 @@ class MainCardVC: UIViewController {
             self.isFirstButtonChecked = true
             self.isSecondButtonChecked = false
             self.isThirdButtonChecked = false
-            print("recordButton tapped") // 해당 버튼 클릭시 변화 넣어줄 부분
+            fetchCharacter()
         })
 
         let createButton = UIAlertAction(title: "최근 생성 순", style: .default, handler: { [unowned self] _ in
             self.isFirstButtonChecked = false
             self.isSecondButtonChecked = true
             self.isThirdButtonChecked = false
-            print("createButton tapped")
+            fetchRecentCharacter()
         })
         
         let activeButton = UIAlertAction(title: "활동 많은 순", style: .default, handler: { [unowned self] _ in
             self.isFirstButtonChecked = false
             self.isSecondButtonChecked = false
             self.isThirdButtonChecked = true
-            print("activeButton tapped")
+            fetchMostCharacter()
         })
         
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -191,14 +206,18 @@ class MainCardVC: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MainCardVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return names.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else {
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCardCVC.identifier, for: indexPath) as? MainCardCVC else { return UICollectionViewCell() }
+        
+        cell.nameLabel.text = names[indexPath.item]
+        cell.nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 4)
+        cell.nameLabel.numberOfLines = 2
+        cell.setImageView(level: levels[indexPath.item], index: characters[indexPath.item])
+        cell.setStarLevel(level: levels[indexPath.item])
+        
         return cell
     }
 }
@@ -223,5 +242,131 @@ extension MainCardVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 11, left: 29, bottom: 0, right: 28)
+    }
+}
+
+// MARK: - Network
+extension MainCardVC {
+    func fetchCharacter() {
+        var data: [CardCharacter] = []
+        authProvider.request(.recentActivity) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.cardCharacter = try result.map(MainCardModel.self)
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    characters.removeAll()
+                    
+                    data.append(contentsOf: cardCharacter?.data ?? [])
+
+                    if data.isEmpty {
+                        emptyImageView.isHidden = false
+                        emptyTitleLabel.isHidden = false
+                        emptySubLabel.isHidden = false
+                        collectionView.isHidden = true
+                    } else {
+                        emptyImageView.isHidden = true
+                        emptyTitleLabel.isHidden = true
+                        emptySubLabel.isHidden = true
+                        collectionView.isHidden = false
+                        
+                        for i in 0..<data.count {
+                            names.append(data[i].characterName)
+                            characters.append(data[i].characterIndex)
+                            levels.append(data[i].characterLevel)
+                        }
+                        collectionView.reloadData()
+                    }
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchMostCharacter() {
+        var data: [CardCharacter] = []
+        authProvider.request(.most) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.cardCharacter = try result.map(MainCardModel.self)
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    characters.removeAll()
+                    
+                    data.append(contentsOf: cardCharacter?.data ?? [])
+
+                    if data.isEmpty {
+                        emptyImageView.isHidden = false
+                        emptyTitleLabel.isHidden = false
+                        emptySubLabel.isHidden = false
+                        collectionView.isHidden = true
+                    } else {
+                        emptyImageView.isHidden = true
+                        emptyTitleLabel.isHidden = true
+                        emptySubLabel.isHidden = true
+                        collectionView.isHidden = false
+                        
+                        for i in 0..<data.count {
+                            names.append(data[i].characterName)
+                            characters.append(data[i].characterIndex)
+                            levels.append(data[i].characterLevel)
+                        }
+                        collectionView.reloadData()
+                    }
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchRecentCharacter() {
+        var data: [CardCharacter] = []
+        authProvider.request(.recentCreate) { [self] response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.cardCharacter = try result.map(MainCardModel.self)
+                    
+                    names.removeAll()
+                    levels.removeAll()
+                    characters.removeAll()
+                    
+                    data.append(contentsOf: cardCharacter?.data ?? [])
+
+                    if data.isEmpty {
+                        emptyImageView.isHidden = false
+                        emptyTitleLabel.isHidden = false
+                        emptySubLabel.isHidden = false
+                        collectionView.isHidden = true
+                    } else {
+                        emptyImageView.isHidden = true
+                        emptyTitleLabel.isHidden = true
+                        emptySubLabel.isHidden = true
+                        collectionView.isHidden = false
+                        
+                        for i in 0..<data.count {
+                            names.append(data[i].characterName)
+                            characters.append(data[i].characterIndex)
+                            levels.append(data[i].characterLevel)
+                        }
+                        collectionView.reloadData()
+                    }
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }

@@ -115,6 +115,7 @@ class AddCatchuVC: UIViewController {
             } else if self.currentFlow == Flow.complete.rawValue {
                 if let name = self.secondFlowView.textField.text {
                     self.viewModel.dispatchCreateCharacter(name: name, index: self.firstFlowView.previousIndex+1, privacy: self.thirdFlowView.isLock, vc: self)
+                    self.dismiss(animated: true, completion: nil)
                 }
                 
             }

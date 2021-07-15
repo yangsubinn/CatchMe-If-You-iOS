@@ -167,10 +167,12 @@ class MainReportView: UIView {
         emptyTitleLabel.text = "아직 캐츄의 활동이 없어요"
         emptyTitleLabel.textColor = .white
         emptyTitleLabel.font = .stringMediumSystemFont(ofSize: 20)
+        emptyTitleLabel.addCharacterSpacing()
         
         emptySubLabel.text = "캐칭을 기록하고 리포트로 확인해볼까요?"
         emptySubLabel.textColor = .white
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
+        emptySubLabel.addCharacterSpacing()
         
         emptyTitleLabel.isHidden = true
         emptySubLabel.isHidden = true

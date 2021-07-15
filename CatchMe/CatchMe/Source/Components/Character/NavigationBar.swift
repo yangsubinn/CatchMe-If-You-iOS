@@ -38,18 +38,21 @@ class NavigationBar: UIView {
         addSubviews([backButton, editButton])
         
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 55 : 41)
+            make.top.equalTo(self.snp.top)
             make.leading.equalTo(self.snp.leading).inset(14)
         }
         
         editButton.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 55 : 41)
+            make.top.equalTo(self.snp.top)
             make.trailing.equalTo(self.snp.trailing).inset(15)
             make.width.height.equalTo(48)
         }
     }
     
     @objc func touchupEditButton() {
-        
+        print(#fileID, #function, #line, "")
+        let storyboard = UIStoryboard(name: "Character", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "EditCatchuVC") as? EditCatchuVC else { return }
+        viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

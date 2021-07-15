@@ -59,12 +59,11 @@ extension MainCardService: TargetType {
     }
     
     var headers: [String: String]? {
-        /// 나중에 실제로 accessToken이 들어오면 사용하기
         let accessToken = UserDefaultStorage.accessToken
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"]
+                    "token": accessToken]
         }
     }
 }

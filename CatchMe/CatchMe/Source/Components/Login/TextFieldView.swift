@@ -79,7 +79,7 @@ class TextFieldView: UIView {
         
         memberLabel.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(33)
-            make.leading.equalToSuperview().inset(UIScreen.main.bounds.size.width * 0.25)
+            make.leading.equalToSuperview().inset(UIScreen.main.bounds.size.width * 0.24)
         }
         
         memberButton.snp.makeConstraints { make in
@@ -115,7 +115,7 @@ class TextFieldView: UIView {
         autoLabel.text = "자동 로그인"
         
         memberLabel.font = .stringRegularSystemFont(ofSize: 14)
-        memberLabel.text = "아직회원이 아니신가요?"
+        memberLabel.text = "아직 회원이 아니신가요?"
         
         emailMessageLabel.font = .stringRegularSystemFont(ofSize: 12)
         emailMessageLabel.textColor = .pink210

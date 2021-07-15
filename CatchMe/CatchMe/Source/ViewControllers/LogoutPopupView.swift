@@ -42,7 +42,7 @@ class LogoutPopupView: UIView {
         $0.setTitle("네", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 15
-        $0.addTarget(self, action: #selector(touchupCancelButton(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(touchupCloseButton(_:)), for: .touchUpInside)
     }
     
     var viewController = UIViewController()

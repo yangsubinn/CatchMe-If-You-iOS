@@ -11,8 +11,7 @@ import SnapKit
 
 class ReportView: UIView {
     // MARK: - Properties
-    /// UserDefault로 가져오기
-    let titleView = TitleView(nickname: "캐치미 대장 해리")
+    let titleView = TitleView(nickname: UserDefaultStorage.userName)
     var characterView = CharacterView()
     
     var isEmpty: Bool?

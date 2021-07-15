@@ -49,9 +49,10 @@ class PopupView: UIView {
     var viewController = UIViewController()
     var currentIndex: CGFloat = 0
     
-    // MARK: - Dummy Data
-    var catchus: [String] = ["자유로이 세상을 떠도는 탐험가", "눈만 뜨는 암벽등반하는 나", "감바스가 먹고 싶은 아요"]
-    var catchuImages: [UIImage?] = [Character.purple.getCharacterImage(phase: 1, size: 121), Character.blue.getCharacterImage(phase: 2, size: 121), Character.green.getCharacterImage(phase: 3, size: 121)]
+    // MARK: - Server Data
+    var catchus: [String] = []
+    var catchuImages: [UIImage?] = []
+    var catchuIndex: [Int] = []
 
     // MARK: - Life Cycle
     init(date: String, vc: UIViewController) {
@@ -115,9 +116,6 @@ class PopupView: UIView {
                     
         backgroundColor = .black200
         layer.cornerRadius = 18
-        
-        nameLabel.text = catchus[0]
-        dateLabel.text = date
     }
     
     private func setupCollectionView() {
@@ -152,6 +150,18 @@ class PopupView: UIView {
                 rightButton.isHidden = false
             }
         }
+    }
+    
+    func setPopupImages(catchus: [String], images: [UIImage?], index: [Int]) {
+        self.catchus = catchus
+        self.catchuImages = images
+        self.catchuIndex = index
+        
+        print("catchus : \(catchus)")
+        print("images : \(catchuImages)")
+        print("indexs : \(catchuIndex)")
+        
+        characterCollectionView.reloadData()
     }
 }
 

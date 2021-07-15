@@ -85,6 +85,8 @@
 		ED72844426A0596E00D19FD5 /* NicknameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844326A0596E00D19FD5 /* NicknameRequest.swift */; };
 		ED72844626A059DB00D19FD5 /* PasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844526A059DB00D19FD5 /* PasswordRequest.swift */; };
 		ED72844826A05A0900D19FD5 /* PasswordCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844726A05A0900D19FD5 /* PasswordCheckRequest.swift */; };
+		ED72844A26A067D900D19FD5 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844926A067D900D19FD5 /* SettingViewModel.swift */; };
+		ED72844C26A067FB00D19FD5 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844B26A067FB00D19FD5 /* SettingModel.swift */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -233,6 +235,8 @@
 		ED72844326A0596E00D19FD5 /* NicknameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRequest.swift; sourceTree = "<group>"; };
 		ED72844526A059DB00D19FD5 /* PasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRequest.swift; sourceTree = "<group>"; };
 		ED72844726A05A0900D19FD5 /* PasswordCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCheckRequest.swift; sourceTree = "<group>"; };
+		ED72844926A067D900D19FD5 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		ED72844B26A067FB00D19FD5 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -689,6 +693,7 @@
 				ED728412269DA8FD00D19FD5 /* MainCardViewModel.swift */,
 				ED728434269F3F8700D19FD5 /* ReportViewModel.swift */,
 				ED72843E26A045C400D19FD5 /* CharacterViewModel.swift */,
+				ED72844926A067D900D19FD5 /* SettingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -717,6 +722,7 @@
 				ED72844326A0596E00D19FD5 /* NicknameRequest.swift */,
 				ED72844526A059DB00D19FD5 /* PasswordRequest.swift */,
 				ED72844726A05A0900D19FD5 /* PasswordCheckRequest.swift */,
+				ED72844B26A067FB00D19FD5 /* SettingModel.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1011,6 +1017,7 @@
 				ED728401269CFFED00D19FD5 /* LoginService.swift in Sources */,
 				ED72844626A059DB00D19FD5 /* PasswordRequest.swift in Sources */,
 				EDD12CAE268EBDE400DF766A /* UIScreen+Extension.swift in Sources */,
+				ED72844C26A067FB00D19FD5 /* SettingModel.swift in Sources */,
 				ED72842E269EEBCF00D19FD5 /* WithdrawalVC.swift in Sources */,
 				EDD12CAA268EBCA000DF766A /* UIView+Extension.swift in Sources */,
 				5B08504D26919416008F40B2 /* NavigationBar.swift in Sources */,
@@ -1075,6 +1082,7 @@
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
 				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,
+				ED72844A26A067D900D19FD5 /* SettingViewModel.swift in Sources */,
 				EDC19D9C2698AEEC00F9E41B /* UIApplication+Extension.swift in Sources */,
 				ED63E882268A14E5000F058F /* SceneDelegate.swift in Sources */,
 				ED728437269F3FBB00D19FD5 /* ReportService.swift in Sources */,

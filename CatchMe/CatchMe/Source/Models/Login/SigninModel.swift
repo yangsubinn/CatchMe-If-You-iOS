@@ -18,4 +18,5 @@ struct SigninModel: Codable {
 // MARK: - DataClass
 struct LoginData: Codable {
     let token: String
+    let nickname: String
 }

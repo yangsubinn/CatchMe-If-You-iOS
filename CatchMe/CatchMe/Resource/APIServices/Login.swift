@@ -19,9 +19,10 @@ class Login: NSObject {
         return flag
     }
     
-    func setLogin(token: String) {
+    func setLogin(token: String, nickname: String) {
         let def = UserDefaults.standard
         UserData.set(token, forKey: .accessToken)
+        UserData.set(nickname, forKey: .userName)
         
         def.set(true, forKey: login)
         def.synchronize()
@@ -38,5 +39,9 @@ class Login: NSObject {
         let rootVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = rootVC
+    }
+    
+    func changeNickname(nickname: String) {
+        UserData.set(nickname, forKey: .userName)
     }
 }

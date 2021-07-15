@@ -23,7 +23,9 @@ class EditNicknameVC: UIViewController {
     var textCount = 0
     
     // MARK: - Dummy Data
-    var currentNickname = "@야@꿍@이@"
+    let viewModel = SettingViewModel.shared
+//    var currentNickname = UserDefaultStorage.userName
+    var currentNickname = "@꿍@루@"
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -123,6 +125,12 @@ class EditNicknameVC: UIViewController {
     @objc
     func touchupEditButton() {
         print("click edit")
+        if let name = nicknameTextField.text {
+            viewModel.dispatchNickname(name: name) {
+                Login.shared.changeNickname(nickname: name)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     @objc

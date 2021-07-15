@@ -1,62 +1,64 @@
-////
-////  AddActionService.swift
-////  CatchMe
-////
-////  Created by Thisisme Hi on 2021/07/15.
-////
 //
-//import Moya
+//  AddActionService.swift
+//  CatchMe
 //
-//enum AddActionService {
-//    case signUp(param: SignupRequest)
-//    case signIn(param: SigninRequest)
-//    case emailCheck(param: EmailCheckRequest)
-//}
+//  Created by Thisisme Hi on 2021/07/15.
 //
-//extension LoginService: TargetType {
-//    public var baseURL: URL {
-//        return URL(string: GeneralAPI.baseURL)!
-//    }
-//
-//    var path: String {
-//        switch self {
-//        case .signUp:
-//            return "/user/signup"
-//        case .signIn:
-//            return "/user/login"
-//        case .emailCheck:
-//            return "/user/emailcheck"
-//        }
-//    }
-//
-//    var method: Moya.Method {
-//        switch self {
-//        case .signUp,
-//             .signIn,
-//             .emailCheck:
-//            return .post
-//        }
-//    }
-//
-//    var sampleData: Data {
-//        return "@@".data(using: .utf8)!
-//    }
-//
-//    var task: Task {
-//        switch self {
-//        case .signUp(let param):
-//            return .requestJSONEncodable(param)
-//        case .signIn(let param):
-//            return .requestJSONEncodable(param)
-//        case .emailCheck(let param):
-//            return .requestJSONEncodable(param)
-//        }
-//    }
-//
-//    var headers: [String: String]? {
-//        switch self {
-//        default:
-//            return ["Content-Type": "application/json"]
-//        }
-//    }
-//}
+
+import Alamofire
+import Moya
+
+enum AddActionService {
+    case new(param: NewRequest)
+    case edit(param: SignupRequest)
+    case delete(param: SigninRequest)
+}
+
+extension AddActionService: TargetType {
+    public var baseURL: URL {
+        return URL(string: GeneralAPI.baseURL)!
+    }
+    
+    var path: String {
+        switch self {
+        case .new:
+            return "/activity/new"
+        case .edit:
+            return "/activity/edit"
+        case .delete:
+            return "/activity/delete"
+        }
+    }
+    
+    var method: Moya.Method {
+        switch self {
+        case .new,
+             .edit,
+             .delete:
+            return .post
+        }
+    }
+    
+    var sampleData: Data {
+        return "@@".data(using: .utf8)!
+    }
+    
+    var task: Task {
+        switch self {
+        case .new(let param):
+            return .requestJSONEncodable(param)
+        case .edit(let param):
+            return .requestJSONEncodable(param)
+        case .delete(let param):
+            return .requestJSONEncodable(param)
+        }
+    }
+    
+    var headers: [String: String]? {
+        switch self {
+        default:
+            return ["Content-Type": "application/json",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"]
+        }
+    }
+}

@@ -43,8 +43,10 @@
 		5B447D0A2699984E00F79AB7 /* AddActionPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447D092699984D00F79AB7 /* AddActionPopupView.swift */; };
 		5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */; };
 		5B53A065269F5BD500E7CCF0 /* AddActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53A064269F5BD500E7CCF0 /* AddActionService.swift */; };
-		5B53A069269F5D7800E7CCF0 /* AddActionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53A068269F5D7800E7CCF0 /* AddActionRequest.swift */; };
+		5B53A069269F5D7800E7CCF0 /* NewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B53A068269F5D7800E7CCF0 /* NewRequest.swift */; };
 		5B71F37226A022C40014180C /* AddActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71F37126A022C40014180C /* AddActionModel.swift */; };
+		5B71F37626A0368D0014180C /* DeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71F37526A0368D0014180C /* DeleteRequest.swift */; };
+		5B71F37C26A037020014180C /* EditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B71F37B26A037020014180C /* EditRequest.swift */; };
 		5B93ED68269EF9BC00B7F25C /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B93ED67269EF9BC00B7F25C /* CharacterModel.swift */; };
 		5B93ED6C269F02D000B7F25C /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B93ED6B269F02D000B7F25C /* CharacterService.swift */; };
 		7F1C995CA6C0BE2CAB6A7210 /* Pods_CatchMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4445868E9E1388C569074A /* Pods_CatchMe.framework */; };
@@ -179,8 +181,10 @@
 		5B447D092699984D00F79AB7 /* AddActionPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionPopupView.swift; sourceTree = "<group>"; };
 		5B447D1A2699F74300F79AB7 /* AddActionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionPopupVC.swift; sourceTree = "<group>"; };
 		5B53A064269F5BD500E7CCF0 /* AddActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionService.swift; sourceTree = "<group>"; };
-		5B53A068269F5D7800E7CCF0 /* AddActionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionRequest.swift; sourceTree = "<group>"; };
+		5B53A068269F5D7800E7CCF0 /* NewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequest.swift; sourceTree = "<group>"; };
 		5B71F37126A022C40014180C /* AddActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActionModel.swift; sourceTree = "<group>"; };
+		5B71F37526A0368D0014180C /* DeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRequest.swift; sourceTree = "<group>"; };
+		5B71F37B26A037020014180C /* EditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRequest.swift; sourceTree = "<group>"; };
 		5B93ED67269EF9BC00B7F25C /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		5B93ED6B269F02D000B7F25C /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
 		BB4445868E9E1388C569074A /* Pods_CatchMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatchMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -443,8 +447,10 @@
 		5B71F36126A01C6F0014180C /* AddAction */ = {
 			isa = PBXGroup;
 			children = (
-				5B53A068269F5D7800E7CCF0 /* AddActionRequest.swift */,
 				5B71F37126A022C40014180C /* AddActionModel.swift */,
+				5B53A068269F5D7800E7CCF0 /* NewRequest.swift */,
+				5B71F37B26A037020014180C /* EditRequest.swift */,
+				5B71F37526A0368D0014180C /* DeleteRequest.swift */,
 			);
 			path = AddAction;
 			sourceTree = "<group>";
@@ -959,6 +965,7 @@
 				5B447CCB2695A52F00F79AB7 /* AddActionVC.swift in Sources */,
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
+				5B71F37626A0368D0014180C /* DeleteRequest.swift in Sources */,
 				5B93ED6C269F02D000B7F25C /* CharacterService.swift in Sources */,
 				5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */,
 				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
@@ -978,7 +985,7 @@
 				ED728424269E9BD400D19FD5 /* CurrentPasswordView.swift in Sources */,
 				5B08505C26919C0B008F40B2 /* CharacterUpperView.swift in Sources */,
 				EDB72D49269AB82F003EE228 /* Character+Extension.swift in Sources */,
-				5B53A069269F5D7800E7CCF0 /* AddActionRequest.swift in Sources */,
+				5B53A069269F5D7800E7CCF0 /* NewRequest.swift in Sources */,
 				2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */,
 				2B12C6DE269B52FB00BCB7B3 /* LookCVC.swift in Sources */,
 				EDD12CB2268EBE4E00DF766A /* UICollectionView+Extension.swift in Sources */,
@@ -1026,6 +1033,7 @@
 				ED72840F269D46AB00D19FD5 /* EmailCheckModel.swift in Sources */,
 				2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */,
 				5B447CC526956DDB00F79AB7 /* CharacterPopupVC.swift in Sources */,
+				5B71F37C26A037020014180C /* EditRequest.swift in Sources */,
 				EDB72D4B269AE4DA003EE228 /* Encodable+Extension.swift in Sources */,
 				5B447D1B2699F74300F79AB7 /* AddActionPopupVC.swift in Sources */,
 				EDC19D9C2698AEEC00F9E41B /* UIApplication+Extension.swift in Sources */,

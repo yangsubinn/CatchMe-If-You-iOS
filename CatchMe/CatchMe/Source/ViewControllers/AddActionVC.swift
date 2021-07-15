@@ -8,10 +8,14 @@
 import UIKit
 
 import Kingfisher
+import Moya
 import Then
 import SnapKit
 
 class AddActionVC: UIViewController {
+    private let authProvider = MoyaProvider<AddActionService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    private var addActionModel: AddActionModel?
+    
     // MARK: - Properties
     var keyHeight = CGFloat()
     var enteredText: String?
@@ -136,6 +140,7 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
+//        dispatchAddAction()
     }
     
     // MARK: - Custom Method
@@ -413,5 +418,7 @@ extension AddActionVC: UIImagePickerControllerDelegate, UINavigationControllerDe
 
 // MARK: - Network
 extension AddActionVC {
-    
+    func dispatchAddAction() {
+        
+    }
 }

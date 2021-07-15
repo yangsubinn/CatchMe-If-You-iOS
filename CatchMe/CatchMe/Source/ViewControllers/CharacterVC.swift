@@ -283,12 +283,9 @@ extension CharacterVC {
                     
                     if let index = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
-                       let privacy = self.report?.character.characterPrivacy,
-                       let birth = self.report?.character.characterBirth {
+                       let privacy = self.report?.character.characterPrivacy {
                         self.upperView.characterImageView.image = self.setCharacterImage(level: index, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = privacy
-                        
-                        
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {

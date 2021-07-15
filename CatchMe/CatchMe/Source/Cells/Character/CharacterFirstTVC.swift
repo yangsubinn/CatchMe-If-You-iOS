@@ -15,8 +15,12 @@ class CharacterFirstTVC: UITableViewCell {
     static let identifier = "CharacterFirstTVC"
     
     // MARK: - Properties
+    let headerView = CharacterHeaderView()
     var rootVC: UIViewController?
+    var characterData: CharacterDetail?
     var data: ActivityDetail?
+    let upperView = CharacterUpperView()
+
 
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
@@ -79,9 +83,7 @@ class CharacterFirstTVC: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.sendSubviewToBack(contentView)
         configUI()
-//        moreButton.isSelected = true
         moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
-
     }
     
     required init?(coder: NSCoder) {
@@ -192,13 +194,15 @@ class CharacterFirstTVC: UITableViewCell {
         
         let editAction = UIAlertAction(title: "수정", style: .default) { result in
             let vc = AddActionVC()
-            vc.modalPresentationStyle = .overFullScreen
-            
             guard let data = self.data else { return }
+            guard let selectedData = self.characterData else { return }
             
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+            vc.catchu = self.upperView.characterImageView.setCharacterImage(level: selectedData.characterImageIndex, index: selectedData.characterIndex, size: 151)
+            
+            vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)
         }
         

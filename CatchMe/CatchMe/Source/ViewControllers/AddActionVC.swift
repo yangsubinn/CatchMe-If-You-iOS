@@ -21,6 +21,8 @@ class AddActionVC: UIViewController {
     var text: String?
     var photoURL: UIImage?
     var date: String?
+    var name: String?
+    var catchu: UIImage?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -142,8 +144,10 @@ class AddActionVC: UIViewController {
         
         deletePhotoButton.isHidden = true
         
+        catchuImageView.image = catchu
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
         if let text = text {
+            nameLabel.text = name
             activityTextView.text = text
             activityTextView.textColor = .white
             uploadButton.backgroundColor = .pink100

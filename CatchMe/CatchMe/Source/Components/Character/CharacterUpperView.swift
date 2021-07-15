@@ -12,13 +12,13 @@ import SnapKit
 
 class CharacterUpperView: UIView {
     // MARK: - Properties
+    var catchu: CharacterDetail?
+
     let backgroundView = UIView().then {
         $0.backgroundColor = .pink100
     }
 
-    let characterImageView = UIImageView().then {
-        $0.image = Character.blue.getCharacterImage(phase: 1, size: 151)
-    }
+    let characterImageView = UIImageView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

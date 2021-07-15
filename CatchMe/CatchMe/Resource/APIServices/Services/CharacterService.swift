@@ -53,7 +53,7 @@ extension CharacterService: TargetType {
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": GeneralAPI.token]
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"]
         }
     }
 }

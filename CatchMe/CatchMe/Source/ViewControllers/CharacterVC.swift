@@ -29,7 +29,6 @@ class CharacterVC: UIViewController {
         $0.image = UIImage(named: "imgCatchGuide")
     }
     
-    var catchu: CharacterDetail?
     var report: CharacterReportData?
     var posts = [ActivityDetail]()
     
@@ -46,8 +45,6 @@ class CharacterVC: UIViewController {
     func configUI() {
         upperView.backgroundColor = .black100
         catchGuideImageView.isHidden = true
-        
-        upperView.characterImageView.image = Character.ima
     }
     
     func setupTableView() {
@@ -113,14 +110,9 @@ extension CharacterVC: UITableViewDelegate {
         switch section {
         case 0:
             let headerView = CharacterHeaderView()
-            if catchu?.characterPrivacy == false {
-                headerView.lockImageView.isHidden = true
-            } else {
-                headerView.lockImageView.isHidden = false
-            }
-            
-            headerView.dateLabel.text = catchu?.characterBirth
-            headerView.nameLabel.text = catchu?.characterName
+            headerView.lockImageView.isHidden = ((report?.character.characterPrivacy) != nil)
+            headerView.dateLabel.text = report?.character.characterBirth
+            headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             return headerView
@@ -259,11 +251,21 @@ extension CharacterVC {
             case .success(let result):
                 do {
                     self.characterModel = try result.map(CharacterModel.self)
-                    self.catchu = self.characterModel?.data.character
                     self.report = self.characterModel?.data
                     self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
                     self.posts.reverse()
                     
+                    print("@@@@",self.report?.character)
+                    if let index = self.report?.character.characterLevel,
+                       let imageIndex = self.report?.character.characterImageIndex {
+                        print("보이세요????~?~!~!~!~~~~₩₩~₩₩₩₩")
+                        print("----------------------------------------------")
+                        print(index)
+                        print(imageIndex)
+
+                        print("----------------------------------------------")
+                        self.upperView.characterImageView.image = self.setCharacterImage(level: index, index: imageIndex, size: 151)
+                    }
 
                     self.mainTableView.reloadData()
                 } catch(let err) {

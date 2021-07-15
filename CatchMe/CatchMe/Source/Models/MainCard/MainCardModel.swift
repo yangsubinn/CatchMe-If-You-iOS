@@ -23,5 +23,5 @@ struct CardCharacter: Codable {
     let characterLevel: Int
     let characterBirth: String
     let activityCount: Int
-    let recentActivityTime: String
+    let recentActivityTime: String?
 }

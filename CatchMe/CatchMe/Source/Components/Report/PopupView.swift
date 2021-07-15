@@ -53,6 +53,8 @@ class PopupView: UIView {
     var catchus: [String] = []
     var catchuImages: [UIImage?] = []
     var catchuIndex: [Int] = []
+    var catchuColor: [UIColor] = []
+    var catchuBack: [Int] = []
 
     // MARK: - Life Cycle
     init(date: String, vc: UIViewController) {
@@ -154,14 +156,16 @@ class PopupView: UIView {
         }
     }
     
-    func setPopupImages(catchus: [String], images: [UIImage?], index: [Int]) {
+    func setPopupImages(catchus: [String], images: [UIImage?], index: [Int], back: [Int]) {
         self.catchus = catchus
         self.catchuImages = images
         self.catchuIndex = index
+        self.catchuBack = back
         
         print("catchus : \(catchus)")
         print("images : \(catchuImages)")
         print("indexs : \(catchuIndex)")
+        print("back : \(catchuBack)")
         
         characterCollectionView.reloadData()
     }
@@ -179,6 +183,7 @@ extension PopupView: UICollectionViewDataSource {
         }
         
         cell.characterImage.image = catchuImages[indexPath.item]
+        cell.backgroundImage.backgroundColor = setBackgroundColor(index: catchuBack[indexPath.item])
         
         return cell
     }

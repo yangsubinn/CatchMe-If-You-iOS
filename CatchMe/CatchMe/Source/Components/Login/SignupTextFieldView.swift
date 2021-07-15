@@ -306,6 +306,7 @@ extension SignupTextFieldView: UITextFieldDelegate {
             if doubleCheck {
                 emailImageView.isHidden = false
                 emailImageView.image = UIImage(named: "icCheck")
+                emailTextField.setupBlueLine()
                 emailButton.isHidden = true
             } else {
                 emailMessageLabel.isHidden = false
@@ -323,14 +324,24 @@ extension SignupTextFieldView: UITextFieldDelegate {
             idImageView.isHidden = true
             idButton.isHidden = false
         case passwordTextField:
-            passwordTextField.setupPinkLine()
             moveTextFieldView()
+            
+            if passwordTextField.text!.validatePassword() {
+                passwordTextField.setupBlueLine()
+            } else {
+                passwordTextField.setupPinkLine()
+            }
             
             pwMessageLabel.isHidden = false
             pwImageView.isHidden = false
         case checkPasswordTextField:
-            checkPasswordTextField.setupPinkLine()
             moveTextFieldView()
+            
+            if passwordTextField.text == checkPasswordTextField.text {
+                checkPasswordTextField.setupBlueLine()
+            } else {
+                checkPasswordTextField.setupPinkLine()
+            }
             
             checkMessageLabel.isHidden = false
             checkImageView.isHidden = false
@@ -387,6 +398,8 @@ extension SignupTextFieldView: UITextFieldDelegate {
             emailButton.isHidden = false
             emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
             
+            emailTextField.setupPinkLine()
+            
             checkValidateUI()
             
             return true
@@ -429,13 +442,16 @@ extension SignupTextFieldView {
         if !(passwordTextField.text!.validatePassword()) && passwordTextField.hasText {
             pwMessageLabel.text = "비밀번호 조합조건이 틀렸습니다."
             pwMessageLabel.textColor = .red100
+            passwordTextField.setupRedLine()
             pwImageView.image = UIImage(named: "icWarning")
         } else if passwordTextField.hasText {
             pwMessageLabel.text = ""
             pwImageView.image = UIImage(named: "icCheck")
+            passwordTextField.setupBlueLine()
         } else {
             pwMessageLabel.text = "영문, 숫자, 특수문자 포함 8~16자"
             pwMessageLabel.textColor = .pink210
+            passwordTextField.setupPinkLine()
             pwImageView.image = UIImage(named: "")
         }
         
@@ -447,13 +463,16 @@ extension SignupTextFieldView {
         if !(passwordTextField.text == checkPasswordTextField.text) && checkPasswordTextField.hasText {
             checkMessageLabel.text = "비밀번호가 일치하지 않습니다."
             checkMessageLabel.textColor = .red100
+            checkPasswordTextField.setupRedLine()
             checkImageView.image = UIImage(named: "icWarning")
         } else if checkPasswordTextField.hasText {
             checkMessageLabel.text = ""
+            checkPasswordTextField.setupBlueLine()
             checkImageView.image = UIImage(named: "icCheck")
         } else {
             checkMessageLabel.text = "비밀번호를 다시 입력해주세요."
             checkMessageLabel.textColor = .pink210
+            checkPasswordTextField.setupPinkLine()
             checkImageView.image = UIImage(named: "")
         }
         
@@ -531,6 +550,8 @@ extension SignupTextFieldView {
                 emailImageView.image = UIImage(named: "icWarning")
                 emailButton.isHidden = true
                 
+                emailTextField.setupRedLine()
+                
                 doubleCheck = false
             } else {
                 emailMessageLabel.text = "중복을 확인해주세요."
@@ -539,6 +560,8 @@ extension SignupTextFieldView {
                 emailImageView.isHidden = true
                 emailButton.setImage(UIImage(named: "btnRemove"), for: .normal)
                 emailButton.isHidden = false
+                
+                emailTextField.setupPinkLine()
                 
                 doubleCheck = false
             }
@@ -554,14 +577,18 @@ extension SignupTextFieldView {
                     
                     self.doubleCheck = true
                     
+                    self.emailTextField.setupBlueLine()
+                    
                     self.checkValidateUI()
                 default:
-                    self.emailMessageLabel.text = "이메일 주소를 다시 입력해주세요."
+                    self.emailMessageLabel.text = "이미 존재하는 이메일입니다."
                     self.emailMessageLabel.textColor = .red100
                     
                     self.emailImageView.isHidden = false
                     self.emailImageView.image = UIImage(named: "icWarning")
                     self.emailButton.isHidden = true
+                    
+                    self.emailTextField.setupRedLine()
                     
                     self.doubleCheck = false
                 }

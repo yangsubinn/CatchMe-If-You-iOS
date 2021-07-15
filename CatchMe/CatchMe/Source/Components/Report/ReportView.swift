@@ -12,7 +12,7 @@ import SnapKit
 class ReportView: UIView {
     // MARK: - Properties
     /// UserDefault로 가져오기
-    let titleView = TitleView(nickname: "집인데 집가고 싶다")
+    let titleView = TitleView(nickname: "캐치미 대장 해리")
     var characterView = CharacterView()
     
     var isEmpty: Bool?

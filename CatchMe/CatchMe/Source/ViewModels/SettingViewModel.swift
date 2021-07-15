@@ -15,6 +15,7 @@ class SettingViewModel {
     private let authProvider = MoyaProvider<SettingService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     private var nicknameModel: SettingModel?
     private var passwordCheckModel: PasswordCheckModel?
+    private var passwordModel: SettingModel?
     
     // MARK: - POST /setting/nickname
     func dispatchNickname(name: String, completion: @escaping (() -> ())) {
@@ -47,6 +48,26 @@ class SettingViewModel {
                     self.passwordCheckModel = try result.map(PasswordCheckModel.self)
                     
                     completion(self.passwordCheckModel?.data?.check ?? "false")
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    // MARK: - POST /setting/password
+    func dispatchPassword(password: String, completion: @escaping ((Bool) -> ())) {
+        let param = PasswordRequest.init(password)
+        
+        authProvider.request(.password(param: param)) { response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.passwordModel = try result.map(SettingModel.self)
+                    
+                    completion(self.passwordModel?.success ?? false)
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

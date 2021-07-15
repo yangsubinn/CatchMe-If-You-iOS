@@ -96,6 +96,19 @@ class EditPasswordVC: UIViewController {
                         }
                     })
                 }
+            } else {
+                if let text = self.changePasswordView.passwordTextField.text {
+                    self.viewModel.dispatchPassword(password: text, completion: { check in
+                        if check {
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            self.changePasswordView.passwordLabel.text = "현재 비밀번호와 똑같습니다."
+                            self.changePasswordView.passwordLabel.textColor = .red100
+                            
+                            self.changePasswordView.currentImageView.image = UIImage(named: "icWarning")
+                        }
+                    })
+                }
             }
         }
         editButton.addAction(nextAction, for: .touchUpInside)

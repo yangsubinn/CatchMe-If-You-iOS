@@ -41,6 +41,8 @@ class MainVC: UIViewController {
     var totals: [Int] = []
     var names: [String] = []
     var characters: [Int] = []
+    var nicknames: [String] = []
+    var indexs: [Int] = []
     
     let collectionViewFlowLayout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -180,7 +182,7 @@ class MainVC: UIViewController {
         allButton.setImage(UIImage(named: "btnSeeAll"), for: .normal)
         catchingButton.setImage(UIImage(named: "actionActive"), for: .normal)
         catchMeButton.setImage(UIImage(named: "btnCatching"), for: .normal)
-        emptyImageView.image = UIImage(named: "catchu")
+        emptyImageView.image = UIImage(named: "mainCatchu")
         
         lottieView.backgroundColor = .clear
         
@@ -343,12 +345,15 @@ extension MainVC {
                         catchMeButton.isHidden = true
                         catchingButton.isHidden = false
 
+                        
                         for i in 0..<data.count {
                             names.append(data[i].characterName)
                             levels.append(data[i].characterLevel)
                             activitys.append(data[i].activityCount)
                             totals.append(data[i].countPercentage ?? 0)
-                            characters.append(data[i].characterIndex)
+                            characters.append(data[i].characterImageIndex)
+                            nicknames.append(data[i].userNickname)
+                            indexs.append(data[i].characterIndex)
                         }
 
                         collectionView.reloadData()

@@ -10,6 +10,7 @@ import Moya
 
 enum CharacterService {
     case characterDetail(Int)
+    case edit(param: EditCharacterRequest)
 }
 
 extension CharacterService: TargetType {
@@ -21,12 +22,15 @@ extension CharacterService: TargetType {
         switch self {
         case .characterDetail(let param):
             return "/character/\(param)"
+        case .edit:
+            return "/character/edit"
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .characterDetail:
+        case .characterDetail,
+             .edit:
             return JSONEncoding.default
         }
     }
@@ -35,6 +39,8 @@ extension CharacterService: TargetType {
         switch self {
         case .characterDetail:
             return .get
+        case .edit:
+            return .post
         }
     }
     
@@ -46,6 +52,8 @@ extension CharacterService: TargetType {
         switch self {
         case .characterDetail:
             return .requestPlain
+        case .edit(let param):
+            return .requestJSONEncodable(param)
         }
     }
 

@@ -19,6 +19,9 @@ class WithdrawalVC: UIViewController {
     
     var isAgree = false
     
+    // MARK: - Server Data
+    let viewModel = SettingViewModel.shared
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,5 +105,6 @@ class WithdrawalVC: UIViewController {
     @objc
     func touchupEditButton() {
         print("with drawal~")
+        viewModel.dispatchWithdraw()
     }
 }

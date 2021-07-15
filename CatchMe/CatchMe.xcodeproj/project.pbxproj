@@ -22,7 +22,7 @@
 		2B84570A26998ABD0096DEAA /* EditNicknameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84570926998ABD0096DEAA /* EditNicknameVC.swift */; };
 		2BB24C1F269ED48A002746BE /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C1E269ED48A002746BE /* MainService.swift */; };
 		2BB24C24269EDA88002746BE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C23269EDA88002746BE /* MainModel.swift */; };
-		2BB24C34269EEFDB002746BE /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BB24C33269EEFDB002746BE /* DINPro-Bold.otf */; };
+		2BB24C43269F6DDE002746BE /* MainCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C42269F6DDE002746BE /* MainCardModel.swift */; };
 		2BD1B257269E3685004BE562 /* MainPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B256269E3685004BE562 /* MainPopupVC.swift */; };
 		2BD1B25B269E376A004BE562 /* MainPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1B25A269E376A004BE562 /* MainPopupView.swift */; };
 		2BDC1AB026942973008381C3 /* MainCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDC1AAF26942973008381C3 /* MainCardVC.swift */; };
@@ -151,10 +151,10 @@
 		2B3654E02691ACBC002C2C5C /* CharacterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCVC.xib; sourceTree = "<group>"; };
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		2B3654EE2691D6D9002C2C5C /* MainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReportView.swift; sourceTree = "<group>"; };
+		2B84570926998ABD0096DEAA /* EditNicknameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameVC.swift; sourceTree = "<group>"; };
 		2BB24C1E269ED48A002746BE /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		2BB24C23269EDA88002746BE /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
-		2BB24C33269EEFDB002746BE /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
-		2B84570926998ABD0096DEAA /* EditNicknameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameVC.swift; sourceTree = "<group>"; };
+		2BB24C42269F6DDE002746BE /* MainCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardModel.swift; sourceTree = "<group>"; };
 		2BD1B256269E3685004BE562 /* MainPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupVC.swift; sourceTree = "<group>"; };
 		2BD1B25A269E376A004BE562 /* MainPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopupView.swift; sourceTree = "<group>"; };
 		2BDC1AAF26942973008381C3 /* MainCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardVC.swift; sourceTree = "<group>"; };
@@ -658,6 +658,7 @@
 			children = (
 				ED728419269DA9A100D19FD5 /* CreateCharacterRequest.swift */,
 				ED72841B269DAB3D00D19FD5 /* CreateCharacterModel.swift */,
+				2BB24C42269F6DDE002746BE /* MainCardModel.swift */,
 			);
 			path = MainCard;
 			sourceTree = "<group>";
@@ -938,6 +939,7 @@
 				5B0850682691A659008F40B2 /* CharacterReportTVC.swift in Sources */,
 				EDBDC8082695816100CDF1B2 /* AddCatchuPageControl.swift in Sources */,
 				5B205764269D590600DE9629 /* AddActionDatePickerPopupVC.swift in Sources */,
+				2BB24C43269F6DDE002746BE /* MainCardModel.swift in Sources */,
 				EDD262C9269771BD00845F7B /* LoginVC.swift in Sources */,
 				ED728411269D600F00D19FD5 /* SignupModel.swift in Sources */,
 				EDBBFCD4269394EE00443077 /* UIColor+Extension.swift in Sources */,

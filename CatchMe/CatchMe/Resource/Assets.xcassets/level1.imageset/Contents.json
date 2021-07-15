@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "level1.png",
+      "idiom" : "universal",
       "scale" : "1x",
+      "filename" : "level1.png"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "level1@2x.png",
       "idiom" : "universal"
     },
     {
       "idiom" : "universal",
-      "filename" : "level1@2x.png",
-      "scale" : "2x"
-    },
-    {
       "scale" : "3x",
-      "idiom" : "universal",
       "filename" : "level1@3x.png"
     }
   ],

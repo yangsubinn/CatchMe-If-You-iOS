@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Moya
 
 class ReportVC: UIViewController {
     // MARK: - lazy Properties
@@ -30,11 +31,16 @@ class ReportVC: UIViewController {
     var daysCountInMonth = 0
     var weekdayAdding = 0
     
-    // MARK: - Dummy Data
-    let dummyFormatter = DateFormatter()
-    var dummyDate: [String] = ["2021-09-13", "2021-08-31", "2021-07-17", "2021-06-15", "2021-06-16", "2021-06-17", "2021-06-18", "2021-06-25", "2021-10-31"]
+    // MARK: - Server Data
+    let viewModel = ReportViewModel.shared
+    var activites: [ActivitiesOfMonth] = []
+    var indexs: [Int] = []
+    var imageIndexs: [Int] = []
+    var levels: [Int] = []
+    var names: [String] = []
     var monthDate: [String] = []
     var dayAndYear = ""
+    var inx = 0
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -48,7 +54,7 @@ class ReportVC: UIViewController {
         calculateCalendarDate()
     }
 
-    // MARK: - Custom Methods
+    // MARK: - Custom Method
     fileprivate func configUI() {
         view.backgroundColor = .black100
         setupStatusBar(.pink100)
@@ -169,8 +175,6 @@ class ReportVC: UIViewController {
     
     private func makeMonthDate() {
         monthDate.removeAll()
-        dummyFormatter.dateFormat = "YYYY"
-        dayAndYear = ""
         
         let firstDayOfMonth = Calendar.current.date(from: components)
         
@@ -184,19 +188,64 @@ class ReportVC: UIViewController {
         let titleMonth = dateFormatter.string(from: firstDayOfMonth!)
         calendarTitleView.applyMonthLabel(to: titleMonth)
         
-        /// dummyDate를 위한 month 설정
+        /// Server 연결을 위한 month 설정
         dateFormatter.dateFormat = "MM"
         let month = dateFormatter.string(from: firstDayOfMonth!)
         
         dayAndYear = year + "." + month
         
-        for date in dummyDate {
-            let string = date.split(separator: "-")
+        if let intYear = Int(year) {
+            fetchData(year: intYear, month: month)
+        }
+    }
+    
+    func fetchData(year: Int, month: String) {
+        indexs.removeAll()
+        levels.removeAll()
+        imageIndexs.removeAll()
+        activites.removeAll()
+        monthDate.removeAll()
+        inx = 0
+        
+        viewModel.fetchReport(year: year, month: month) { data in
+            self.reportView.setCharacterView(data: data)
             
-            if string[0] == year && string[1] == month {
-                let day = (string[2] as NSString).integerValue
-                monthDate.append("\(day)")
+            if let months = data?.activitiesOfMonth,
+               let infos = data?.characterInfoArr {
+                self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
+                self.activites.append(contentsOf: months)
+                
+                for i in months {
+                    self.monthDate += [i.activityDay]
+                }
+                
+                for i in infos {
+                    self.levels.append(i.characterLevel)
+                    self.imageIndexs.append(i.characterImageIndex)
+                    self.names.append(i.characterName)
+                }
+                
+                let removedDuplicate: Set = Set(self.monthDate)
+                var dates: [String] = []
+                
+                for i in removedDuplicate {
+                    if i.first == "0" {
+                        dates += [i.trimmingCharacters(in: ["0"])]
+                    } else {
+                        dates += [i]
+                    }
+                }
+                self.monthDate = dates.sorted(by: {
+                    $0.localizedStandardCompare($1) == .orderedAscending
+                })
             }
+            
+            print(self.names)
+            print("------------")
+            print(self.levels)
+            print(self.imageIndexs)
+            
+            self.dateCollectionView.reloadData()
         }
     }
 }
@@ -236,13 +285,14 @@ extension ReportVC: UICollectionViewDataSource {
             
             if !monthDate.isEmpty {
                 if monthDate[0] == days[indexPath.row] {
-                    cell.characterImage.image = Character.orange.getCharacterImage(phase: 3, size: 43)
+                    cell.characterImage.image = setCharacterImage(level: levels[indexs[inx]-1], index: imageIndexs[indexs[inx]-1], size: 43)
                     cell.characterImage.isHidden = false
                     cell.countLabel.text = days[indexPath.row]
                     cell.countLabel.textColor = .gray400
                     cell.countLabel.font = .numberRegularSystemFont(ofSize: 13)
                     cell.dateLabel.isHidden = true
                     monthDate.removeFirst()
+                    inx += 1
                 } else {
                     cell.dateLabel.isHidden = false
                     cell.characterImage.isHidden = true
@@ -299,12 +349,49 @@ extension ReportVC: UICollectionViewDelegate {
             
             if let text = currentCell.dateLabel.text {
                 var newText = ""
+                var dateText = ""
                 if text.count == 1 {
                     newText = ".0\(text)"
+                    dateText = "0\(text)"
                 } else {
                     newText = ".\(text)"
+                    dateText = text
                 }
                 vc.date = dayAndYear + newText
+                
+                /// 1. catchu date 순으로 배열 가져오기
+                let catchuDate = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.activityDay })
+                let catchuIndex = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.characterIndex })
+                
+                /// 2. activityDay와 date가 같은 날짜 가져와서
+                var popupCatchus: [String] = []
+                var imageArr: [UIImage?] = []
+                var indexArr: [Int] = []
+                var cnt = 0
+                for i in catchuDate {
+                    if i == dateText {
+                        if !(popupCatchus.contains(names[catchuIndex[cnt] - 1])) {
+                            popupCatchus += [names[catchuIndex[cnt] - 1]]
+                            imageArr += [setCharacterImage(level: levels[catchuIndex[cnt] - 1], index: imageIndexs[catchuIndex[cnt] - 1], size: 121)]
+                            indexArr += [catchuIndex[cnt]]
+                        }
+                    }
+                    cnt += 1
+                }
+                
+                vc.popupView.nameLabel.text = popupCatchus[0]
+                vc.popupView.setPopupImages(catchus: popupCatchus, images: imageArr, index: indexArr)
+                
+                if popupCatchus.count == 1 {
+                    vc.popupView.rightButton.isHidden = true
+                }
+                
+                print("---- 제발 돼라 돼라 -----")
+                print(popupCatchus)
+                print("---- characterImage ----")
+                print(imageArr)
+                print("---- index ----")
+                print(indexArr)
             }
             
             vc.modalPresentationStyle = .overCurrentContext

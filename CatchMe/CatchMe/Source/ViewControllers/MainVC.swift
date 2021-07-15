@@ -110,7 +110,7 @@ class MainVC: UIViewController {
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 172 : 124)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
             make.width.equalTo(220)
-            make.height.equalTo(58)
+            make.height.lessThanOrEqualTo(58)
         }
         
         pageControl.snp.makeConstraints { make in
@@ -121,7 +121,7 @@ class MainVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(UIScreen.main.hasNotch ? 21 : 20)
+            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 76 : 74)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.hasNotch ? 450 : 380)
             make.centerX.equalToSuperview()

@@ -1,31 +1,39 @@
 //
-//  ReportService.swift
+//  CharacterService.swift
 //  CatchMe
 //
-//  Created by SHIN YOON AH on 2021/07/15.
+//  Created by Thisisme Hi on 2021/07/14.
 //
 
+import Foundation
 import Moya
 
-enum ReportService {
-    case report(Int, String)
+enum CharacterService {
+    case characterDetail(Int)
 }
 
-extension ReportService: TargetType {
+extension CharacterService: TargetType {
     public var baseURL: URL {
         return URL(string: GeneralAPI.baseURL)!
     }
     
     var path: String {
         switch self {
-        case .report(let year, let month):
-            return "/report/\(year)/\(month)"
+        case .characterDetail(let param):
+            return "/character/\(param)"
+        }
+    }
+    
+    var parameterEncoding: ParameterEncoding {
+        switch self {
+        case .characterDetail:
+            return JSONEncoding.default
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .report:
+        case .characterDetail:
             return .get
         }
     }
@@ -36,14 +44,12 @@ extension ReportService: TargetType {
     
     var task: Task {
         switch self {
-        case .report:
+        case .characterDetail:
             return .requestPlain
         }
     }
-    
+
     var headers: [String: String]? {
-        /// 나중에 실제로 accessToken이 들어오면 사용하기
-        let accessToken = UserDefaultStorage.accessToken
         switch self {
         default:
             return ["Content-Type": "application/json",
@@ -51,3 +57,4 @@ extension ReportService: TargetType {
         }
     }
 }
+

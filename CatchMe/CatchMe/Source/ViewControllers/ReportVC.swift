@@ -364,40 +364,34 @@ extension ReportVC: UICollectionViewDelegate {
                 let catchuIndex = self.activites.sorted(by: {$0.activityDay < $1.activityDay}).map({ $0.characterIndex })
                 
                 /// 2. activityDay와 date가 같은 날짜 가져와서
-                var popupCatchus: Set = Set<String>()
-                var popupCatchuImage: Set = Set<UIImage?>()
-                var popupIndex: Set = Set<Int>()
-                var catchusArr: [String] = []
+                var popupCatchus: [String] = []
                 var imageArr: [UIImage?] = []
                 var indexArr: [Int] = []
                 var cnt = 0
                 for i in catchuDate {
                     if i == dateText {
-                        popupCatchus.insert(names[catchuIndex[cnt] - 1])
-                        popupCatchuImage.insert(setCharacterImage(level: levels[catchuIndex[cnt] - 1], index: imageIndexs[catchuIndex[cnt] - 1], size: 121))
-                        popupIndex.insert(catchuIndex[cnt])
+                        if !(popupCatchus.contains(names[catchuIndex[cnt] - 1])) {
+                            popupCatchus += [names[catchuIndex[cnt] - 1]]
+                            imageArr += [setCharacterImage(level: levels[catchuIndex[cnt] - 1], index: imageIndexs[catchuIndex[cnt] - 1], size: 121)]
+                            indexArr += [catchuIndex[cnt]]
+                        }
                     }
                     cnt += 1
                 }
                 
-                for i in popupCatchus {
-                    catchusArr += [i]
-                }
-                
-                for i in popupCatchuImage {
-                    imageArr += [i]
-                }
-                
-                for i in popupIndex {
-                    indexArr += [i]
-                }
-                
-                vc.popupView.nameLabel.text = catchusArr[0]
-                vc.popupView.setPopupImages(catchus: catchusArr, images: imageArr, index: indexArr)
+                vc.popupView.nameLabel.text = popupCatchus[0]
+                vc.popupView.setPopupImages(catchus: popupCatchus, images: imageArr, index: indexArr)
                 
                 if popupCatchus.count == 1 {
                     vc.popupView.rightButton.isHidden = true
                 }
+                
+                print("---- 제발 돼라 돼라 -----")
+                print(popupCatchus)
+                print("---- characterImage ----")
+                print(imageArr)
+                print("---- index ----")
+                print(indexArr)
             }
             
             vc.modalPresentationStyle = .overCurrentContext

@@ -202,6 +202,7 @@ class ReportVC: UIViewController {
     func fetchData(year: Int, month: String) {
         indexs.removeAll()
         levels.removeAll()
+        names.removeAll()
         imageIndexs.removeAll()
         activites.removeAll()
         monthDate.removeAll()
@@ -209,10 +210,10 @@ class ReportVC: UIViewController {
         
         viewModel.fetchReport(year: year, month: month) { data in
             self.reportView.setCharacterView(data: data)
+            self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
             
             if let months = data?.activitiesOfMonth,
                let infos = data?.characterInfoArr {
-                self.indexs.append(contentsOf: data?.characterIndexArr ?? [])
                 self.activites.append(contentsOf: months)
                 
                 for i in months {
@@ -220,9 +221,9 @@ class ReportVC: UIViewController {
                 }
                 
                 for i in infos {
-                    self.levels.append(i.characterLevel)
-                    self.imageIndexs.append(i.characterImageIndex)
-                    self.names.append(i.characterName)
+                    self.levels += [i.characterLevel]
+                    self.imageIndexs += [i.characterImageIndex]
+                    self.names += [i.characterName]
                 }
                 
                 let removedDuplicate: Set = Set(self.monthDate)
@@ -366,6 +367,7 @@ extension ReportVC: UICollectionViewDelegate {
                 var imageArr: [UIImage?] = []
                 var indexArr: [Int] = []
                 var cnt = 0
+                
                 for i in catchuDate {
                     if i == dateText {
                         if !(popupCatchus.contains(names[catchuIndex[cnt] - 1])) {

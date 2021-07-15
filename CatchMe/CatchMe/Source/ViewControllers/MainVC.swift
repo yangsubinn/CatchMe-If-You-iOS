@@ -132,14 +132,14 @@ class MainVC: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 76 : 74)
+            make.top.equalTo(allButton.snp.bottom).offset(UIScreen.main.hasNotch ? 76 : 62)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.hasNotch ? 450 : 380)
             make.centerX.equalToSuperview()
         }
         
         catchingButton.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 28 : 22)
+            make.top.equalTo(collectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 28 : 10)
             make.height.equalTo(50)
             make.width.equalTo(173)
             make.centerX.equalToSuperview()

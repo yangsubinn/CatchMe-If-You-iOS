@@ -81,8 +81,7 @@ class MainCardCVC: UICollectionViewCell {
         }
     }
     
-    func setStatLevel(level: Int) {
+    func setStarLevel(level: Int) {
         levelStarImageView.image = setStarImageView(level: level)
     }
-
 }

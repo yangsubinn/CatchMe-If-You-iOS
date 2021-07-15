@@ -38,6 +38,21 @@ class SettingViewModel {
     
     // MARK: - POST /setting/passwordcheck
     func dispatchPasswordCheck(password: String, completion: @escaping (() -> ())) {
+        let param = PasswordRequest.init(password)
         
+        authProvider.request(.passwordCheck(param: param)) { response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.passwordCheckModel = try result.map(SettingModel.self)
+                    
+                    completion()
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }

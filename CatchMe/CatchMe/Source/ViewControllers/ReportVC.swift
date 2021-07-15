@@ -373,8 +373,8 @@ extension ReportVC: UICollectionViewDelegate {
                 var cnt = 0
                 for i in catchuDate {
                     if i == dateText {
-                        popupCatchus.insert(names[catchuIndex[cnt]])
-                        popupCatchuImage.insert(setCharacterImage(level: levels[catchuIndex[cnt]], index: imageIndexs[catchuIndex[cnt]], size: 121))
+                        popupCatchus.insert(names[catchuIndex[cnt] - 1])
+                        popupCatchuImage.insert(setCharacterImage(level: levels[catchuIndex[cnt] - 1], index: imageIndexs[catchuIndex[cnt] - 1], size: 121))
                         popupIndex.insert(catchuIndex[cnt])
                     }
                     cnt += 1

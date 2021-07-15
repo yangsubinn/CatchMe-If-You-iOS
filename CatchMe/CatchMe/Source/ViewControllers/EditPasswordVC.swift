@@ -16,8 +16,8 @@ class EditPasswordVC: UIViewController {
     // MARK: - Properties
     let editButton = BottomButton(title: "다음")
     
-    // MARK: - Dummy Data
-    var password = "password12@"
+    // MARK: - Server data
+    let viewModel = SettingViewModel.shared
     var isNext = false
     
     // MARK: - Life Cycle
@@ -76,23 +76,25 @@ class EditPasswordVC: UIViewController {
         let nextAction = UIAction { _ in
             if !self.isNext {
                 if let text = self.passwordView.passwordTextField.text {
-                    if text == self.password {
-                        self.passwordView.checkTextField.resignFirstResponder()
-                        
-                        self.passwordView.isHidden = true
-                        self.changePasswordView.isHidden = false
-                        
-                        self.editButton.isEnabled = false
-                        self.editButton.backgroundColor = .gray300
-                        self.editButton.changeBottomButtonTitle(title: "완료")
-                        
-                        self.isNext = true
-                    } else {
-                        self.passwordView.currentLabel.text = "비밀번호가 틀렸습니다."
-                        self.passwordView.currentLabel.textColor = .red100
-                        
-                        self.passwordView.currentImageView.image = UIImage(named: "icWarning")
-                    }
+                    self.viewModel.dispatchPasswordCheck(password: text, completion: { check in
+                        if check == "true" {
+                            self.passwordView.checkTextField.resignFirstResponder()
+                            
+                            self.passwordView.isHidden = true
+                            self.changePasswordView.isHidden = false
+                            
+                            self.editButton.isEnabled = false
+                            self.editButton.backgroundColor = .gray300
+                            self.editButton.changeBottomButtonTitle(title: "완료")
+                            
+                            self.isNext = true
+                        } else {
+                            self.passwordView.currentLabel.text = "비밀번호가 틀렸습니다."
+                            self.passwordView.currentLabel.textColor = .red100
+                            
+                            self.passwordView.currentImageView.image = UIImage(named: "icWarning")
+                        }
+                    })
                 }
             }
         }

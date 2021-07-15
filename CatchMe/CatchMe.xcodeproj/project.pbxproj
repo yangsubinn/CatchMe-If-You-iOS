@@ -86,6 +86,7 @@
 		ED72844626A059DB00D19FD5 /* PasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844526A059DB00D19FD5 /* PasswordRequest.swift */; };
 		ED72844A26A067D900D19FD5 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844926A067D900D19FD5 /* SettingViewModel.swift */; };
 		ED72844C26A067FB00D19FD5 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844B26A067FB00D19FD5 /* SettingModel.swift */; };
+		ED72844E26A06DED00D19FD5 /* PasswordCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED72844D26A06DED00D19FD5 /* PasswordCheckModel.swift */; };
 		EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */; };
 		EDB431B72695BA9F0008BFB4 /* CarouselCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */; };
 		EDB431BB2695F9200008BFB4 /* SecondFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */; };
@@ -235,6 +236,7 @@
 		ED72844526A059DB00D19FD5 /* PasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRequest.swift; sourceTree = "<group>"; };
 		ED72844926A067D900D19FD5 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		ED72844B26A067FB00D19FD5 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		ED72844D26A06DED00D19FD5 /* PasswordCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCheckModel.swift; sourceTree = "<group>"; };
 		EDB431B126958D1F0008BFB4 /* FirstFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFlowView.swift; sourceTree = "<group>"; };
 		EDB431B62695BA9F0008BFB4 /* CarouselCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCVC.swift; sourceTree = "<group>"; };
 		EDB431BA2695F9200008BFB4 /* SecondFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFlowView.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 				ED72844326A0596E00D19FD5 /* NicknameRequest.swift */,
 				ED72844526A059DB00D19FD5 /* PasswordRequest.swift */,
 				ED72844B26A067FB00D19FD5 /* SettingModel.swift */,
+				ED72844D26A06DED00D19FD5 /* PasswordCheckModel.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				EDB431B226958D1F0008BFB4 /* FirstFlowView.swift in Sources */,
 				EDC19D962698A23700F9E41B /* SignupVC.swift in Sources */,
 				5B93ED68269EF9BC00B7F25C /* CharacterModel.swift in Sources */,
+				ED72844E26A06DED00D19FD5 /* PasswordCheckModel.swift in Sources */,
 				EDC19D942698478100F9E41B /* TextFieldView.swift in Sources */,
 				EDB431BD269603210008BFB4 /* CustomTextField.swift in Sources */,
 				ED7283FE269CCAF500D19FD5 /* EditCatchuVC.swift in Sources */,

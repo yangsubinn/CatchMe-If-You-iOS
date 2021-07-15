@@ -76,8 +76,8 @@ class MainVC: UIViewController {
     
     // MARK: - Custome Method
     private func setupTopLayout() {
-        view.addSubviews([lottieView, dateLabel, settingButton, calendarButton,
-                          lookButton, allButton])
+        view.addSubviews([lottieView, dateLabel, settingButton,
+                          calendarButton, lookButton, allButton])
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(UIScreen.main.hasNotch ? 64 : 48)
@@ -190,7 +190,8 @@ class MainVC: UIViewController {
         lottieView.layer.masksToBounds = true
         lottieView.isHidden = false
         
-        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
+        // 캐칭버튼 클릭
+//        catchingButton.addTarget(self, action: #selector(setupButtonAction(_:)), for: .touchUpInside)
         
         dateLabel.textColor = .white
         dateLabel.font = .stringMediumSystemFont(ofSize: 15)
@@ -249,11 +250,7 @@ class MainVC: UIViewController {
     
     // MARK: - @objc
     @objc func setupButtonAction(_ sender: UIButton) {
-        guard  let vc = storyboard?.instantiateViewController(identifier: "MainPopupVC") as? MainPopupVC else { return }
-        
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
+        // 나중에 버튼 액션 추가
     }
 }
 

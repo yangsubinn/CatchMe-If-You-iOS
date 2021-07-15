@@ -177,10 +177,10 @@ class CharacterReportTVC: UITableViewCell {
             make.height.equalTo(1)
         }
     }
-    
-    func setData(level: String, percent: String, activity: String) {
-        levelLabel.text = level
-        catchLabel.text = percent
-        activityLabel.text = activity
+
+    func setData(level: Int?, catchRate: Int?, activity: Int?) {
+        levelNumberLabel.text = String(level ?? 0)
+        catchNumberLabel.text = String(catchRate ?? 0)
+        activityNumberLabel.text = String(activity ?? 0)
     }
 }

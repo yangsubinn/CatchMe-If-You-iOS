@@ -14,13 +14,16 @@ class CharacterTVC: UITableViewCell {
     static let identifier = "CharacterTVC"
 
     // MARK: - Properties
+    var rootVC: UIViewController?
+    var data: ActivityDetail?
+
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
     }
     
     let emptyStateLabel = UILabel().then {
         $0.text = "아직 캐츄의 활동이 없어요"
-        $0.font = (UIScreen.main.hasNotch ? .stringRegularSystemFont(ofSize: 18) : .stringRegularSystemFont(ofSize: 10))
+        $0.font = .stringRegularSystemFont(ofSize: 18)
         $0.textColor = .gray200
         $0.textAlignment = .center
     }
@@ -68,15 +71,16 @@ class CharacterTVC: UITableViewCell {
     }
     
     let photoImageView = UIImageView().then {
-        $0.image = UIImage(named: "imgActivityPhoto")
         $0.layer.cornerRadius = 18
         $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
     }
     
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
+        moreButton.addTarget(self, action: #selector(touchupMoreButton(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -159,24 +163,75 @@ class CharacterTVC: UITableViewCell {
         addSubviews([emptyStateImageView, emptyStateLabel])
         
         emptyStateImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(UIScreen.main.hasNotch ? 25 : 10)
+            make.top.equalTo(self.snp.top).inset(25)
             make.centerX.equalToSuperview()
-            make.width.equalTo(UIScreen.main.hasNotch ? 251 : 82)
-            make.height.equalTo(UIScreen.main.hasNotch ? 145 : 43)
+            make.width.equalTo(UIScreen.main.hasNotch ? 251 : 0)
+            make.height.equalTo(UIScreen.main.hasNotch ? 145 : 0)
         }
         
         emptyStateLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyStateImageView.snp.bottom)
+            make.top.equalTo(emptyStateImageView.snp.bottom).offset(UIScreen.main.hasNotch ? 0 : 10)
             make.centerX.equalToSuperview()
         }
     }
     
-    func setData(date: String, comment: String, image: String) {
-        dateLabel.text = date
-        commentLabel.text = comment
+    @objc func touchupMoreButton(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertViewController.view.tintColor = .white
         
-        if let image = UIImage(named: image) {
-            photoImageView.image = image
+        if let actionSheet = alertViewController.view.subviews.first,
+           let secondSheet = alertViewController.view.subviews.last {
+            for innerView in actionSheet.subviews {
+                innerView.backgroundColor = .black300
+                innerView.layer.cornerRadius = 18.0
+                innerView.clipsToBounds = true
+            }
+            for innerView in secondSheet.subviews {
+                innerView.backgroundColor = .black300
+                innerView.layer.cornerRadius = 18.0
+                innerView.clipsToBounds = true
+            }
+        }
+        
+        let editAction = UIAlertAction(title: "수정", style: .default) { result in
+            print("수정")
+            // 편집VC로 화면 전환 코드 작성해야 함
+            let vc = AddActionVC()
+            vc.modalPresentationStyle = .overFullScreen
+            guard let data = self.data else { return }
+            
+            vc.text = data.activityContent
+            vc.photoURL = self.photoImageView.image
+            vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+            self.rootVC?.present(vc, animated: true, completion: nil)
+        }
+        
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
+            let vc = CharacterPopupVC()
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.rootVC?.present(vc, animated: true, completion: nil)
+        }
+        
+        deleteAction.setValue(UIColor.red100, forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alertViewController.addAction(editAction)
+        alertViewController.addAction(deleteAction)
+        alertViewController.addAction(cancelAction)
+        
+        self.rootVC?.present(alertViewController, animated: true, completion: nil)
+    }
+    
+    func setData() {
+        guard let data = data else { return }
+        dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
+        commentLabel.text = data.activityContent
+        
+        if let image = URL(string: data.activityImage) {
+            photoImageView.kf.setImage(with: image)
         }
     }
 }

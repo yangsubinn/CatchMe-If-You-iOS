@@ -31,6 +31,7 @@ class CharacterVC: UIViewController {
     }
     
     var report: CharacterReportData?
+    var data: ActivityDetail?
     var posts = [ActivityDetail]()
     
     // MARK: - Lifecycle
@@ -98,10 +99,23 @@ class CharacterVC: UIViewController {
     }
     
     @objc func touchupWriteButton(_ sender: UIButton) {
-        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "AddActionVC") as? AddActionVC else { return }
-        nextVC.setLabel(text: "2021.07.14")
-        nextVC.modalPresentationStyle = .fullScreen
-        present(nextVC, animated: true, completion: nil)
+        
+        let vc = AddActionVC()
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        let dateString = dateFormatter.string(from: now)
+        
+        vc.setLabel(text: dateString)
+
+        if let level = self.report?.character.characterLevel,
+           let imageIndex = self.report?.character.characterImageIndex {
+            vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
+        }
+        
+        vc.name = report?.character.characterName        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -110,8 +124,21 @@ extension CharacterVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let headerView = CharacterHeaderView()
-            headerView.dateLabel.text = report?.character.characterBirth
+            if let birth = self.report?.character.characterBirth {
+                let yearStart = birth.index(birth.startIndex, offsetBy: 0)
+                let yearEnd = birth.index(birth.endIndex, offsetBy: -10)
+                let yearRange = yearStart..<yearEnd
+                
+                let monthStart = birth.index(birth.startIndex, offsetBy: 4)
+                let monthEnd = birth.index(birth.endIndex, offsetBy: -8)
+                let monthRange = monthStart..<monthEnd
+                
+                let dayStart = birth.index(birth.startIndex, offsetBy: 6)
+                let dayEnd = birth.index(birth.endIndex, offsetBy: -6)
+                let dayRange = dayStart..<dayEnd
+                
+                headerView.dateLabel.text = String(birth[yearRange]) + "." + String(birth[monthRange]) + "." + String(birth[dayRange])
+            }
             headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
@@ -204,23 +231,27 @@ extension CharacterVC: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
-                guard let reportCell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC else { return UITableViewCell() }
+                guard let reportCell = tableView.dequeueReusableCell(withIdentifier: "CharacterReportTVC", for: indexPath) as? CharacterReportTVC
+                else { return UITableViewCell() }
                 reportCell.selectionStyle = .none
                 reportCell.setupAutoLayout()
                 reportCell.catchGuideButton.addTarget(self, action: #selector(touchupCatchGuidebutton(_:)), for: .touchUpInside)
                 reportCell.setData(level: report?.character.characterLevel, catchRate: report?.catchRate, activity: report?.characterActivitiesCount)
                 return reportCell
             } else if indexPath.row == 1 { // 첫 번째 lineView가 안 붙여져 있는 cell
-                guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC else { return UITableViewCell() }
+                guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC
+                else { return UITableViewCell() }
                 firstCell.rootVC = self
                 firstCell.selectionStyle = .none
                 if posts.count == 0 {
                     firstCell.setupEmptyLayout()
                 } else {
+                    firstCell.characterData = self.characterModel?.data.character
+                    firstCell.upperView = upperView
                     firstCell.setupAutoLayout()
                     firstCell.data = posts[0]
                     firstCell.setData()
@@ -229,12 +260,16 @@ extension CharacterVC: UITableViewDataSource {
                 }
                 return firstCell
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
-                guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC else { return UITableViewCell() }
+                guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC
+                else { return UITableViewCell() }
                 restCell.rootVC = self
                 restCell.selectionStyle = .none
                 restCell.setupAutoLayout()
                 restCell.data = posts[indexPath.row-1]
                 restCell.setData()
+                if posts[indexPath.row - 1].activityContent == "Dsdfs" {
+                    print("asdasd", posts[indexPath.row - 1])
+                }
                 return restCell
             }
         default:
@@ -253,11 +288,11 @@ extension CharacterVC {
                     self.characterModel = try result.map(CharacterModel.self)
                     self.report = self.characterModel?.data
                     self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
-                    self.posts.reverse()
-                    if let index = self.report?.character.characterLevel,
+                    
+                    if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
                        let privacy = self.report?.character.characterPrivacy {
-                        self.upperView.characterImageView.image = self.setCharacterImage(level: index, index: imageIndex, size: 151)
+                        self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = privacy
                     }
                     self.mainTableView.reloadData()

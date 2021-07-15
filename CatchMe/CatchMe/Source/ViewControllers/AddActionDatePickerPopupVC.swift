@@ -15,7 +15,7 @@ class AddActionDatePickerPopupVC: UIViewController {
 
     // MARK: - Properties
     var sendData: ((String?) -> ())?
-    var selectedDate: String = ""
+    var selectedDate: String?
 
     let vc = AddActionVC()
     

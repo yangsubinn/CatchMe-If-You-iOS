@@ -15,6 +15,8 @@ class CharacterTVC: UITableViewCell {
 
     // MARK: - Properties
     var rootVC: UIViewController?
+    var upperView: CharacterUpperView?
+    var characterData: CharacterDetail?
     var data: ActivityDetail?
 
     let emptyStateImageView = UIImageView().then {
@@ -87,6 +89,11 @@ class CharacterTVC: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.isHidden = false
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -152,11 +159,6 @@ class CharacterTVC: UITableViewCell {
             make.trailing.equalTo(-14)
             make.bottom.equalTo(-12)
         }
-        
-        photoImageView.snp.makeConstraints { make in
-            make.width.equalTo(303)
-            make.height.equalTo(228)
-        }
     }
 
     func setupEmptyLayout() {
@@ -196,15 +198,20 @@ class CharacterTVC: UITableViewCell {
         }
         
         let editAction = UIAlertAction(title: "수정", style: .default) { result in
-            print("수정")
-            // 편집VC로 화면 전환 코드 작성해야 함
+            guard let data = self.data,
+                  let selectedData = self.characterData
+            else { return }
             let vc = AddActionVC()
-            vc.modalPresentationStyle = .overFullScreen
-            guard let data = self.data else { return }
-            
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
+            vc.catchu = self.upperView?.characterImageView.setCharacterImage(
+                level: selectedData.characterImageIndex,
+                index: selectedData.characterIndex,
+                size: 151
+            )
+            
+            vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)
         }
         
@@ -229,9 +236,14 @@ class CharacterTVC: UITableViewCell {
         guard let data = data else { return }
         dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent
-        
+
         if let image = URL(string: data.activityImage) {
             photoImageView.kf.setImage(with: image)
+            photoImageView.snp.makeConstraints { make in
+                make.height.equalTo(228)
+            }
+        } else {
+            photoImageView.isHidden = true
         }
     }
 }

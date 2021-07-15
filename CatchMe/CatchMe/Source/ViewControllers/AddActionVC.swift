@@ -26,6 +26,7 @@ class AddActionVC: UIViewController {
     var name: String?
     var catchu: UIImage?
     var buttonImage: UIImage?
+    var report: CharacterReportData?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -45,7 +46,6 @@ class AddActionVC: UIViewController {
     }
     
     let nameLabel = UILabel().then {
-        $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
@@ -139,7 +139,6 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
-        //        dispatchAddAction()
     }
     
     // MARK: - Custom Method
@@ -349,7 +348,7 @@ class AddActionVC: UIViewController {
                     year: String(date[0]),
                     month: String(date[1]),
                     day: String(date[2]),
-                    index: 1
+                    index: 2
                 ) { result in
                 switch result {
                 case .success:

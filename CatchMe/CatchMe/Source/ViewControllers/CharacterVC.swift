@@ -263,6 +263,8 @@ extension CharacterVC: UITableViewDataSource {
                 guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC
                 else { return UITableViewCell() }
                 restCell.rootVC = self
+                restCell.characterData = self.characterModel?.data.character
+                restCell.upperView = upperView
                 restCell.selectionStyle = .none
                 restCell.setupAutoLayout()
                 restCell.data = posts[indexPath.row-1]
@@ -281,7 +283,7 @@ extension CharacterVC: UITableViewDataSource {
 extension CharacterVC {
     // MARK: - Network
     func fetchCharacterDetail() {
-        authProvider.request(.characterDetail(1)) { response in
+        authProvider.request(.characterDetail(2)) { response in
             switch response {
             case .success(let result):
                 do {

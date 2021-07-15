@@ -15,7 +15,7 @@ enum Character: Int {
     case purple = 5
     case skyblue = 6
     case yellow = 7
-    case gray = 8
+    case white = 8
 }
 
 extension Character {
@@ -35,8 +35,8 @@ extension Character {
             return UIImage(named: "colorSkybluePhase\(phase)Size\(size)")
         case .yellow:
             return UIImage(named: "colorYellowPhase\(phase)Size\(size)")
-        case .gray:
-            return UIImage(named: "colorGrayPhase\(phase)Size\(size)")
+        case .white:
+            return UIImage(named: "colorWhitePhase\(phase)Size\(size)")
         }
     }
 }

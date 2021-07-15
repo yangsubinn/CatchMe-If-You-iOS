@@ -20,6 +20,8 @@
 		2B3654EB2691C4D7002C2C5C /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EA2691C4D7002C2C5C /* PageControl.swift */; };
 		2B3654EF2691D6D9002C2C5C /* MainReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3654EE2691D6D9002C2C5C /* MainReportView.swift */; };
 		2B84570A26998ABD0096DEAA /* EditNicknameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84570926998ABD0096DEAA /* EditNicknameVC.swift */; };
+		2B8D2E1B26A0C07A00213464 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D2E1A26A0C07A00213464 /* SplashVC.swift */; };
+		2B8D2E1F26A0C1C700213464 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B8D2E1E26A0C1C700213464 /* splash.json */; };
 		2BB24C1F269ED48A002746BE /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C1E269ED48A002746BE /* MainService.swift */; };
 		2BB24C24269EDA88002746BE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C23269EDA88002746BE /* MainModel.swift */; };
 		2BB24C43269F6DDE002746BE /* MainCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB24C42269F6DDE002746BE /* MainCardModel.swift */; };
@@ -171,6 +173,8 @@
 		2B3654EA2691C4D7002C2C5C /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		2B3654EE2691D6D9002C2C5C /* MainReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReportView.swift; sourceTree = "<group>"; };
 		2B84570926998ABD0096DEAA /* EditNicknameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameVC.swift; sourceTree = "<group>"; };
+		2B8D2E1A26A0C07A00213464 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		2B8D2E1E26A0C1C700213464 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		2BB24C1E269ED48A002746BE /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		2BB24C23269EDA88002746BE /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		2BB24C42269F6DDE002746BE /* MainCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardModel.swift; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 		2BC68AE326A03AB4008C52EE /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				2B8D2E1E26A0C1C700213464 /* splash.json */,
 				2BC68AFB26A0483B008C52EE /* background_ios_375812.json */,
 			);
 			path = Lottie;
@@ -570,6 +575,7 @@
 				ED728427269EDC5700D19FD5 /* LogoutVC.swift */,
 				2BD1B256269E3685004BE562 /* MainPopupVC.swift */,
 				ED72842D269EEBCF00D19FD5 /* WithdrawalVC.swift */,
+				2B8D2E1A26A0C07A00213464 /* SplashVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -934,6 +940,7 @@
 				2B164B552695DCC9007F0F4A /* SettingTVC.xib in Resources */,
 				2B12C6DF269B52FB00BCB7B3 /* LookCVC.xib in Resources */,
 				2B164B4F2695AA77007F0F4A /* Setting.storyboard in Resources */,
+				2B8D2E1F26A0C1C700213464 /* splash.json in Resources */,
 				EDBBFCDD2693981D00443077 /* SpoqaHanSansNeo-Bold.otf in Resources */,
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
@@ -1006,6 +1013,7 @@
 				2B164B492695A988007F0F4A /* SettingVC.swift in Sources */,
 				EDB72D4D269AE607003EE228 /* GeneralAPI.swift in Sources */,
 				EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */,
+				2B8D2E1B26A0C07A00213464 /* SplashVC.swift in Sources */,
 				ED72841A269DA9A100D19FD5 /* CreateCharacterRequest.swift in Sources */,
 				EDBDC8052694B70C00CDF1B2 /* AddCatchuVC.swift in Sources */,
 				5B0850642691A1A4008F40B2 /* CharacterHeaderView.swift in Sources */,

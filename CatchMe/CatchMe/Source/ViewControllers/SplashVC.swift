@@ -1,0 +1,74 @@
+//
+//  SplashVC.swift
+//  CatchMe
+//
+//  Created by 양수빈 on 2021/07/16.
+//
+
+import UIKit
+import Lottie
+
+class SplashVC: UIViewController {
+    
+    private var animationView: AnimationView?
+
+    override func viewDidLoad() {
+//        super.viewDidLoad()
+        print("로티 시작")
+        setupLottieView()
+        print("로티 끝남")
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [self] in
+            //            goOnBoardPopUp()
+            if Login.shared.isLogin() {
+                let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
+                let dvc = storyboard.instantiateViewController(identifier: "TabbarController")
+                dvc.modalPresentationStyle = .fullScreen
+                self.present(dvc, animated: true, completion: nil)
+            } else {
+                goOnBoardPopUp()
+                //                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                //                let dvc = storyboard.instantiateViewController(identifier: "LoginNaviController")
+                //                dvc.modalPresentationStyle = .fullScreen
+                //                self.present(dvc, animated: true, completion: nil)
+            }
+            //            goOnBoardPopUp()
+        })
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print(viewWillAppear)
+        // goOnBoardPopUp()
+    }
+    func setupLottieView() {
+        view.backgroundColor = UIColor.white
+        animationView = .init(name: "splash")
+        animationView!.frame = CGRect.zero
+        animationView!.contentMode = .scaleAspectFit
+        //        animationView!.loopMode = .loop
+        animationView!.animationSpeed = 1
+        animationView!.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(animationView!)
+        NSLayoutConstraint.activate([
+            animationView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0),
+            animationView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            animationView!.widthAnchor.constraint(equalToConstant: 600),
+            animationView!.heightAnchor.constraint(equalToConstant: 600),
+        ])
+        animationView!.play()
+        print("애니메이션 끝남")
+    }
+    func goOnBoardPopUp(){
+        print("goOnBoardPopUp 시작")
+        //        let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
+        //        print(keywordStoryboard)
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let dvc = storyboard.instantiateViewController(identifier: "SplashVC") as! SplashVC
+        print(dvc)
+//        dvc.checkOnBoard(check: true)
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
+    }
+}

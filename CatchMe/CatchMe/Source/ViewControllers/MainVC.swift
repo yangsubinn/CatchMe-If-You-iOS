@@ -477,7 +477,6 @@ extension MainVC {
                         
                         print("----------------------------------------------")
                         print(names)
-//                        print(levels)
                         print(indexs)
                         print("----------------------------------------------")
                         

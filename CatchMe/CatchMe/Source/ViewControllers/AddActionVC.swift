@@ -346,8 +346,7 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupUploadButton(_ sender: UIButton) {
-        guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
-
+        guard let date = self.dateLabel.text?.split(separator: ".") else { print("날짜형식반영완료"); return }
         if isEdited {
             print("수정")
             AddActionEditService.shared.editActivity(imageData: buttonImage,

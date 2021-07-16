@@ -62,6 +62,7 @@ class NavigationBar: UIView {
         guard let vc = storyboard.instantiateViewController(identifier: "EditCatchuVC") as? EditCatchuVC else { return }
         vc.characterIndex = index
         vc.characterName = name
+        vc.characterLevel = level
         viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -29,8 +29,8 @@ struct CharacterDetail: Codable {
     let characterLevel: Int
     let characterBirth: String
     let activityCount: Int
-    let activity: [ActivityDetail]
-    let recentActivityTime: String
+    let activity: [ActivityDetail]?
+    let recentActivityTime: String?
 }
 
 // MARK: - Activity

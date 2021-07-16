@@ -26,6 +26,10 @@ class AddActionVC: UIViewController {
     var name: String?
     var catchu: UIImage?
     var buttonImage: UIImage?
+    var report: CharacterReportData?
+    var isEdited: Bool = false
+    var reloadData: (() -> ())?
+    var characterIndex = 0
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -45,7 +49,6 @@ class AddActionVC: UIViewController {
     }
     
     let nameLabel = UILabel().then {
-        $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
@@ -139,26 +142,36 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
-        //        dispatchAddAction()
     }
     
     // MARK: - Custom Method
     func configUI() {
         view.backgroundColor = .black100
-        
+
         deletePhotoButton.isHidden = true
         
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        let dateString = dateFormatter.string(from: now)
+        dateLabel.text = dateString
         nameLabel.text = name
         catchuImageView.image = catchu
         activityTextView.font = .stringRegularSystemFont(ofSize: 14)
+        
         if let text = text {
+            dateLabel.text = date
             activityTextView.text = text
             activityTextView.textColor = .white
             uploadButton.backgroundColor = .pink100
             textExists()
             
-            photoButton.setImage(photoURL, for: .normal)
-            dateLabel.text = date
+            if photoURL == nil {
+                photoButton.setImage(UIImage(named: "btnAddPhoto"), for: .normal)
+            } else {
+                photoButton.setImage(photoURL, for: .normal)
+                deletePhotoButton.isHidden = false
+            }
         } else {
             activityTextView.text = placholder
             activityTextView.textColor = .gray200
@@ -311,11 +324,9 @@ class AddActionVC: UIViewController {
         let vc = AddActionDatePickerPopupVC()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        
         vc.sendData = { text in
             self.dateLabel.text = text
         }
-        
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -335,24 +346,20 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupUploadButton(_ sender: UIButton) {
-        if activityTextView.text == placholder || activityTextView.text == "" {
-            uploadButton.isEnabled = true
-        } else {
-            uploadButton.isEnabled = false
-            
-            print("와asdasdasdasd")
-            guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
-            AddActionNewService.shared
-                .uploadNewActivity(
-                    imageData: buttonImage,
-                    content: activityTextView.text!,
-                    year: String(date[0]),
-                    month: String(date[1]),
-                    day: String(date[2]),
-                    index: 1
-                ) { result in
+        guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
+
+        if isEdited {
+            print("수정")
+            AddActionEditService.shared.editActivity(imageData: buttonImage,
+                                                     content: activityTextView.text!,
+                                                     year: String(date[0]),
+                                                     month: String(date[1]),
+                                                     day: String(date[2]),
+                                                     index: characterIndex,
+                                                     activityIndex: 36) { result in
                 switch result {
-                case .success:
+                case .success(let msg):
+                    print("success", msg)
                     self.dismiss(animated: true, completion: nil)
                 case .requestErr(let msg):
                     print("requestERR", msg)
@@ -363,7 +370,35 @@ class AddActionVC: UIViewController {
                 case .networkFail:
                     print("networkFail")
                 }
+            }
+        } else if isEdited == false {
+            print("글 생성")
+            if activityTextView.text == placholder || activityTextView.text == "" {
+                uploadButton.isEnabled = true
+            } else {
+                uploadButton.isEnabled = false
                 
+                AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
+                                                             content: activityTextView.text!,
+                                                             year: String(date[0]),
+                                                             month: String(date[1]),
+                                                             day: String(date[2]),
+                                                             index: characterIndex) { result in
+                    switch result {
+                    case .success(let msg):
+                        print("success", msg)
+                        self.reloadData?()
+                        self.dismiss(animated: true, completion: nil)
+                    case .requestErr(let msg):
+                        print("requestERR", msg)
+                    case .pathErr:
+                        print("pathERR")
+                    case .serverErr:
+                        print("serverERR")
+                    case .networkFail:
+                        print("networkFail")
+                    }
+                }
             }
         }
     }

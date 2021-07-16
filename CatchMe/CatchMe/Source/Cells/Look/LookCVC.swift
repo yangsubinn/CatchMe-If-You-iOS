@@ -53,7 +53,7 @@ class LookCVC: UICollectionViewCell {
             make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             make.leading.equalTo(characterBackgroundView.snp.trailing).offset(20)
             make.width.equalTo(157)
-            make.height.equalTo(46)
+            make.height.lessThanOrEqualTo(46)
         }
         
         arrowButton.snp.makeConstraints { make in

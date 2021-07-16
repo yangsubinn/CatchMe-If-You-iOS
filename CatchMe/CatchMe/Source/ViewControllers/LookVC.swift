@@ -111,6 +111,7 @@ extension LookVC: UICollectionViewDataSource {
         }
         
         cell.nicknameLabel.text = "\(nicknames[indexPath.item]) 님의"
+        cell.characterLabel.text = names[indexPath.item]
         cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
         cell.characterBackgroundView.backgroundColor = colors[images[indexPath.item]-1]
         
@@ -147,9 +148,10 @@ extension LookVC: UICollectionViewDelegate {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
         /// characterIndex 보내주기 property: index
-//        vc.index = indexs[indexPath.item]
+        vc.index = indexs[indexPath.item]
         /// user_id 보내주기 property: userid
-//        vc.userid = userids[indexPath.item]
+        vc.userId = userids[indexPath.item]
+        vc.isDetail = true
         print("-----------index-------------")
         print(indexs[indexPath.item])
         print("-----------user_id-------------")
@@ -185,6 +187,12 @@ extension LookVC {
                         userids.append(data[i].userID)
                         indexs.append(data[i].characterIndex)
                     }
+                    
+                    print("------ indexs -----")
+                    print(indexs)
+                    print("----- userid -----")
+                    print(userids)
+                    
                     collectionView.reloadData()
                 } catch(let err) {
                     print(err.localizedDescription)

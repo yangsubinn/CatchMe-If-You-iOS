@@ -64,7 +64,7 @@ class MainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupDate()
         nameLabel.text = firstname
-        nameLabel.addCharacterSpacing()
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         pageControl.selectedPage = 0
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
@@ -270,17 +270,20 @@ class MainVC: UIViewController {
     
     private func changeLabelText(index: Int) {
         nameLabel.text = names[index]
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
     }
     
     // MARK: - @objc
     @objc func touchupCatching(_ sender: UIButton) {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddActionVC") as? AddActionVC else { return }
-        /// character index, character nickname, imageindex값만 넘겨주세요.
         
-        // vc.index = indexs[currentIndex]
-        // vc.nickname = names[currnetIndex]
-        // vc.imageIndex = characters[currentIndex]
+        print("index : \(indexs[currentIndex])")
+        print("name : \(names[currentIndex])")
+        
+         vc.characterIndex = indexs[currentIndex]
+         vc.name = names[currentIndex]
+         vc.catchu = setCharacterImage(level: levels[currentIndex], index: characters[currentIndex], size: 151) 
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -380,6 +383,8 @@ extension MainVC: UICollectionViewDelegate {
             currentIndex = Int(roundedIndex)
         }
         
+        print(currentIndex)
+        
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
                          y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
@@ -389,7 +394,7 @@ extension MainVC: UICollectionViewDelegate {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
         /// characterIndex 보내주세요 property: index
-//        vc.index = indexs[indexPath.item]
+        vc.index = indexs[indexPath.item]
         print("-------------------------------")
         print(indexs)
         print(indexs[indexPath.item])

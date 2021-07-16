@@ -20,10 +20,15 @@ class NavigationBar: UIView {
         $0.addTarget(self, action: #selector(touchupEditButton), for: .touchUpInside)
     }
     
+    var index = 0
+    var name = ""
+    
     // MARK: - Lifecycle
-    init(vc: UIViewController) {
+    init(vc: UIViewController, index: Int, name: String) {
         super.init(frame: .zero)
         viewController = vc
+        self.index = index
+        self.name = name
         configUI()
     }
     
@@ -53,6 +58,8 @@ class NavigationBar: UIView {
         print(#fileID, #function, #line, "")
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "EditCatchuVC") as? EditCatchuVC else { return }
+        vc.characterIndex = index
+        vc.characterName = name
         viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -11,13 +11,17 @@ import Moya
 import Then
 import SnapKit
 
-
 class CharacterVC: UIViewController {
+    // MARK: - Network
     private let authProvider = MoyaProvider<CharacterService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     private var characterModel: CharacterModel?
     
+    private let authLookProvider = MoyaProvider<LookService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var lookDetailModel: LookDetailModel?
+    
     // MARK: - Lazy Properties
-    lazy var naviBar = NavigationBar(vc: self)
+    /// image index, name, level
+    lazy var naviBar = NavigationBar(vc: self, index: 1, name: "귀여운 캐츄")
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
@@ -25,14 +29,21 @@ class CharacterVC: UIViewController {
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let reportCell = CharacterReportTVC()
     let firstCell = CharacterFirstTVC()
+    var isDetail: Bool = false
     
     let catchGuideImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCatchGuide")
     }
     
+    // MARK: - Server Data
     var report: CharacterReportData?
     var data: ActivityDetail?
+    var lookData: LookActivityDetail?
     var posts = [ActivityDetail]()
+    var index = 0
+    var userId = ""
+    var detailReport: LookCharacterReportData?
+    var lookPosts = [LookActivityDetail]()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -40,7 +51,32 @@ class CharacterVC: UIViewController {
         configUI()
         setupAutoLayout()
         setupTableView()
-        fetchCharacterDetail()
+        
+        if isDetail {
+            print("다른 사람들 구경하기 상세")
+            fetchLookDetail()
+            naviBar.editButton.isHidden = true
+            headerView.dateLabel.isHidden = true
+            headerView.lockImageView.isHidden = true
+            headerView.writeButton.isHidden = true
+            headerView.fromLabel.text = "님의"
+        } else if isDetail == false {
+            print("그냥 내 캐릭터 상세")
+            fetchCharacterDetail(completion: { })
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if !isDetail {
+            fetchCharacterDetail() {
+                self.mainTableView.reloadData()
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     // MARK: - Custom Method
@@ -99,7 +135,6 @@ class CharacterVC: UIViewController {
     }
     
     @objc func touchupWriteButton(_ sender: UIButton) {
-        
         let vc = AddActionVC()
         let now = Date()
         let dateFormatter = DateFormatter()
@@ -112,8 +147,7 @@ class CharacterVC: UIViewController {
            let imageIndex = self.report?.character.characterImageIndex {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
         }
-        
-        vc.name = report?.character.characterName        
+        vc.name = report?.character.characterName
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -142,6 +176,7 @@ extension CharacterVC: UITableViewDelegate {
             headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
+            
             return headerView
         default:
             if posts.isEmpty {
@@ -161,7 +196,10 @@ extension CharacterVC: UITableViewDelegate {
             if posts.isEmpty {
                 return 0
             } else {
-                return 112
+                if posts.count < 4 {
+                    return 600
+                }
+                return 300
             }
         }
     }
@@ -240,7 +278,11 @@ extension CharacterVC: UITableViewDataSource {
                 reportCell.selectionStyle = .none
                 reportCell.setupAutoLayout()
                 reportCell.catchGuideButton.addTarget(self, action: #selector(touchupCatchGuidebutton(_:)), for: .touchUpInside)
-                reportCell.setData(level: report?.character.characterLevel, catchRate: report?.catchRate, activity: report?.characterActivitiesCount)
+                if isDetail {
+                    reportCell.setData(level: detailReport?.character.characterLevel, catchRate: detailReport?.catchRate, activity: detailReport?.characterActivitiesCount)
+                } else if isDetail == false {
+                    reportCell.setData(level: report?.character.characterLevel, catchRate: report?.catchRate, activity: report?.characterActivitiesCount)
+                }
                 return reportCell
             } else if indexPath.row == 1 { // 첫 번째 lineView가 안 붙여져 있는 cell
                 guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "CharacterFirstTVC", for: indexPath) as? CharacterFirstTVC
@@ -250,6 +292,9 @@ extension CharacterVC: UITableViewDataSource {
                 if posts.count == 0 {
                     firstCell.setupEmptyLayout()
                 } else {
+                    if isDetail {
+                        firstCell.moreButton.isHidden = true
+                    }
                     firstCell.characterData = self.characterModel?.data.character
                     firstCell.upperView = upperView
                     firstCell.setupAutoLayout()
@@ -262,7 +307,12 @@ extension CharacterVC: UITableViewDataSource {
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
                 guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC
                 else { return UITableViewCell() }
+                if isDetail {
+                    restCell.moreButton.isHidden = true
+                }
                 restCell.rootVC = self
+                restCell.characterData = self.characterModel?.data.character
+                restCell.upperView = upperView
                 restCell.selectionStyle = .none
                 restCell.setupAutoLayout()
                 restCell.data = posts[indexPath.row-1]
@@ -279,21 +329,54 @@ extension CharacterVC: UITableViewDataSource {
 }
 
 extension CharacterVC {
-    // MARK: - Network
-    func fetchCharacterDetail() {
-        authProvider.request(.characterDetail(1)) { response in
+    // MARK: - Network : fetchCharacterDetail
+    func fetchCharacterDetail(completion: @escaping (() -> ())) {
+        authProvider.request(.characterDetail(index)) { response in
             switch response {
             case .success(let result):
                 do {
+                    self.posts.removeAll()
+                    
                     self.characterModel = try result.map(CharacterModel.self)
                     self.report = self.characterModel?.data
-                    self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
+                    
+                    if let data = self.characterModel?.data.character.activity {
+                        self.posts = data
+                    }
                     
                     if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
                        let privacy = self.report?.character.characterPrivacy {
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
-                        self.headerView.lockImageView.isHidden = privacy
+                        self.headerView.lockImageView.isHidden = !privacy
+                    }
+                    self.mainTableView.reloadData()
+                } catch(let err) {
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    // MARK: - Network : fetchLookDetail
+    func fetchLookDetail() {
+        authLookProvider.request(.otherDetail(userId, index)) { response in
+            switch response {
+            case .success(let result):
+                do {
+                    self.lookPosts.removeAll()
+
+                    self.lookDetailModel = try result.map(LookDetailModel.self)
+                    self.lookPosts.append(contentsOf: self.lookDetailModel?.data.character.activity ?? [])
+                    self.detailReport = self.lookDetailModel?.data
+                    
+                    if let level = self.detailReport?.character.characterLevel,
+                       let imageIndex = self.detailReport?.character.characterIndex,
+                       let privacy = self.detailReport?.character.characterPrivacy {
+                        self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
+                        self.headerView.lockImageView.isHidden = !privacy
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {

@@ -31,7 +31,8 @@ class EditCatchuVC: UIViewController {
     // MARK: - Server Data
     let viewModel = CharacterViewModel.shared
     var characterName: String = ""
-    var characterIndex: Int = 4
+    var characterIndex: Int = 0
+    var characterLevel: Int = 1
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
 
     // MARK: - Life Cycle
@@ -105,7 +106,7 @@ class EditCatchuVC: UIViewController {
         backgroundImageView.layer.cornerRadius = 125/2
         backgroundImageView.backgroundColor = colors[characterIndex-1]
         
-        characterImageView.image = Character.blue.getCharacterImage(phase: 1, size: 101)
+        characterImageView.image = setCharacterImage(level: characterLevel, index: characterIndex, size: 101)
         
         nameLabel.text = "이름 변경"
         nameLabel.font = .stringMediumSystemFont(ofSize: 18)

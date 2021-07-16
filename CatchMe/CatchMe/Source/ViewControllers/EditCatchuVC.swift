@@ -38,10 +38,16 @@ class EditCatchuVC: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupLayout()
         configUI()
         setCountLabel()
         setupButtonAction()
+        
+        characterImageView.image = setCharacterImage(level: self.characterLevel, index: self.characterIndex, size: 101)
+        nameLabel.text = characterName
+        
+        
     }
     
     // MARK: - Custom Method

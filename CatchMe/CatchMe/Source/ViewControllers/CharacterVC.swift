@@ -21,7 +21,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Lazy Properties
     /// image index, name, level
-    lazy var naviBar = NavigationBar(vc: self, index: 1, name: "귀여운 캐츄")
+    lazy var naviBar = NavigationBar(vc: self, index: self.index, name: self.name, level: self.level)
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
@@ -37,32 +37,37 @@ class CharacterVC: UIViewController {
     
     // MARK: - Server Data
     var report: CharacterReportData?
+    var characterData: CharacterDetail?
     var data: ActivityDetail?
     var lookData: LookActivityDetail?
     var posts = [ActivityDetail]()
     var index = 0
     var userId = ""
+    var level = 0
+    var name = ""
     var detailReport: LookCharacterReportData?
     var lookPosts = [LookActivityDetail]()
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         setupAutoLayout()
         setupTableView()
-        
+                
         if isDetail {
             print("다른 사람들 구경하기 상세")
             fetchLookDetail()
             naviBar.editButton.isHidden = true
-            headerView.dateLabel.isHidden = true
+            headerView.nameLabel.text = lookDetailModel?.data.character.characterName
             headerView.lockImageView.isHidden = true
             headerView.writeButton.isHidden = true
             headerView.fromLabel.text = "님의"
         } else if isDetail == false {
             print("그냥 내 캐릭터 상세")
-            fetchCharacterDetail(completion: { })
+            fetchCharacterDetail() {
+                self.headerView.dateLabel.text = UserDefaultStorage.userName
+            }
         }
     }
     
@@ -70,6 +75,7 @@ class CharacterVC: UIViewController {
         super.viewDidAppear(true)
         if !isDetail {
             fetchCharacterDetail() {
+                print("그냥 내 캐릭터 상세")
                 self.mainTableView.reloadData()
             }
         }
@@ -142,7 +148,7 @@ class CharacterVC: UIViewController {
         let dateString = dateFormatter.string(from: now)
         
         vc.setLabel(text: dateString)
-
+        
         if let level = self.report?.character.characterLevel,
            let imageIndex = self.report?.character.characterImageIndex {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
@@ -367,7 +373,6 @@ extension CharacterVC {
             case .success(let result):
                 do {
                     self.lookPosts.removeAll()
-
                     self.lookDetailModel = try result.map(LookDetailModel.self)
                     self.lookPosts.append(contentsOf: self.lookDetailModel?.data.character.activity ?? [])
                     self.detailReport = self.lookDetailModel?.data

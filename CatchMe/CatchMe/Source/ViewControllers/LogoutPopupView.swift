@@ -103,11 +103,5 @@ class LogoutPopupView: UIView {
     func touchupCloseButton(_ sender: UIButton) {
         print("Log out!")
         Login.shared.setLoginOut()
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let root = storyboard.instantiateViewController(identifier: "LoginVC")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = root
-        viewController.dismiss(animated: true, completion: nil)
-//        self.viewController.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

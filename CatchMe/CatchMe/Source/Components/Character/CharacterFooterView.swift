@@ -39,7 +39,7 @@ class CharacterFooterView: UIView {
             make.top.bottom.equalToSuperview()
             make.leading.equalTo(self.snp.leading).inset(28)
             make.width.equalTo(1)
-            make.height.equalTo(112)
+            make.height.equalTo(500)
         }
     }
 }

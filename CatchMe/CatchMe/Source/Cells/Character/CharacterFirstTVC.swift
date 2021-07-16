@@ -15,11 +15,11 @@ class CharacterFirstTVC: UITableViewCell {
     static let identifier = "CharacterFirstTVC"
     
     // MARK: - Properties
-    let headerView = CharacterHeaderView()
     var rootVC: UIViewController?
     var characterData: CharacterDetail?
     var data: ActivityDetail?
     var upperView: CharacterUpperView?
+    var headerView: CharacterHeaderView?
 
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
@@ -147,7 +147,6 @@ class CharacterFirstTVC: UITableViewCell {
         
         commentView.snp.makeConstraints { make in
             make.width.equalTo(303)
-            make.height.equalTo(42)
         }
         
         commentLabel.snp.makeConstraints { make in
@@ -199,15 +198,16 @@ class CharacterFirstTVC: UITableViewCell {
                   let selectedData = self.characterData
             else { return }
             let vc = AddActionVC()
+            vc.isEdited = true
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
             vc.catchu = self.upperView?.characterImageView.setCharacterImage(
-                level: selectedData.characterImageIndex,
-                index: selectedData.characterIndex,
+                level: selectedData.characterLevel,
+                index: selectedData.characterImageIndex,
                 size: 151
             )
-            
+            vc.name = self.characterData?.characterName
             vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)
         }

@@ -15,9 +15,10 @@ class CharacterTVC: UITableViewCell {
 
     // MARK: - Properties
     var rootVC: UIViewController?
-    var upperView: CharacterUpperView?
     var characterData: CharacterDetail?
     var data: ActivityDetail?
+    var upperView: CharacterUpperView?
+    var headerView: CharacterHeaderView?
 
     let emptyStateImageView = UIImageView().then {
         $0.image = UIImage(named: "imgCharacterViewEmptyState")
@@ -202,15 +203,16 @@ class CharacterTVC: UITableViewCell {
                   let selectedData = self.characterData
             else { return }
             let vc = AddActionVC()
+            vc.isEdited = true
             vc.text = data.activityContent
             vc.photoURL = self.photoImageView.image
             vc.date = "\(data.activityYear).\(data.activityMonth).\(data.activityDay)"
             vc.catchu = self.upperView?.characterImageView.setCharacterImage(
-                level: selectedData.characterImageIndex,
-                index: selectedData.characterIndex,
+                level: selectedData.characterLevel,
+                index: selectedData.characterImageIndex,
                 size: 151
             )
-            
+            vc.name = self.characterData?.characterName
             vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)
         }

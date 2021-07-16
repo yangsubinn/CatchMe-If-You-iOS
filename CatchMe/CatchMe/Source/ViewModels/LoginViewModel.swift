@@ -22,7 +22,7 @@ class LoginViewModel {
     private var emailcheckModel: EmailCheckModel?
     
     // MARK: - POST /user/login
-    func dispatchLogin(email: String, password: String, completion: @escaping ((Int) -> Void)) {
+    func dispatchLogin(email: String, password: String, isAuto: Bool, completion: @escaping ((Int) -> Void)) {
         var success = 0
         let param = SigninRequest.init(email, password)
         
@@ -43,7 +43,7 @@ class LoginViewModel {
                             
                             if let token = self.signinModel?.data?.token,
                                let nickname = self.signinModel?.data?.nickname {
-                                Login.shared.setLogin(token: token, nickname: nickname)
+                                Login.shared.setLogin(token: token, nickname: nickname, isAuto: isAuto)
                             }
                         }
                     }

@@ -49,7 +49,6 @@ class CharacterPopupView: UIView {
         $0.setTitle("지울래요", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 21
-        $0.addTarget(self, action: #selector(touchupDeleteButton(_:)), for: .touchUpInside)
     }
     
     var viewController = UIViewController()
@@ -106,10 +105,6 @@ class CharacterPopupView: UIView {
     // MARK: - @objc
     @objc func touchupCancelButton(_ sender: UIButton) {
         viewController.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func touchupDeleteButton(_ sender: UIButton) {
-    // 삭제를 시키는 코드를 작성해야 합니다.
     }
 }
 

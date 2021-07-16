@@ -9,6 +9,7 @@ import Moya
 
 enum LookService {
     case other
+    case otherDetail(String, Int)
 }
 
 extension LookService: TargetType {
@@ -20,12 +21,15 @@ extension LookService: TargetType {
         switch self {
         case .other:
             return "/other"
+        case .otherDetail(let userID, let index):
+            return "/other/detail/\(userID)/\(index)"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .other:
+        case .other,
+             .otherDetail:
             return .get
         }
     }
@@ -38,14 +42,17 @@ extension LookService: TargetType {
         switch self {
         case .other:
             return .requestPlain
+        case .otherDetail(let userID, let index):
+            return .requestPlain
         }
     }
 
     var headers: [String: String]? {
+        let accessToken = UserDefaultStorage.accessToken
         switch self {
         default:
             return ["Content-Type": "application/json",
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjI2MDUxMSwiZXhwIjoxNjI3NDcwMTExfQ.mAni2lnF47sgNnQinxi-DTT-Vknf6KP7CmhCBf5VmLI"] // GeneralAPI.token
+                    "token": accessToken] // GeneralAPI.token
         }
     }
 }

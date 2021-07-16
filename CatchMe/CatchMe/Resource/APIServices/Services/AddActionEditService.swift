@@ -22,7 +22,7 @@ struct AddActionEditService {
                             completion: @escaping (NetworkResult<Any>) -> Void) {
         
         let URL = APIConstants.editURL
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjBlNWQzMTE0ZjM3ZTliMjUyYzYwOGJlIn0sImlhdCI6MTYyNjM1NzM3NywiZXhwIjoxNjI3NTY2OTc3fQ.LTRShmdY60bZJZqqYHv5BIYVIJGgfm6sDpXnXGWbq1s"
+        let token = UserDefaultStorage.accessToken
         let header : HTTPHeaders = [
             "Content-Type" : "multipart/form-data",
             "token" : token

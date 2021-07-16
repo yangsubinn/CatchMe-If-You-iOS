@@ -42,7 +42,6 @@ class AddActionPopupVC: UIViewController {
     
     @objc func touchupCloseButton(_ sender: UIButton) {
         guard let pvc = self.presentingViewController else { return }
-        
         self.dismiss(animated: true) {
             pvc.dismiss(animated: true, completion: nil)
         }

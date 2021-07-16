@@ -40,6 +40,7 @@ class MainCardVC: UIViewController {
     var images: [Int] = []
     var levels: [Int] = []
     var indexs: [Int] = []
+    var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     override func viewDidAppear(_ animated: Bool) {
         fetchCharacter()
@@ -231,7 +232,7 @@ extension MainCardVC: UICollectionViewDataSource {
         cell.nameLabel.numberOfLines = 2
         cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
         cell.setStarLevel(level: levels[indexPath.item])
-        cell.characterBackView.backgroundColor = setBackgroundColor(index: indexs[indexPath.item])
+        cell.characterBackView.backgroundColor = colors[images[indexPath.item] - 1]
         
         return cell
     }
@@ -265,7 +266,12 @@ extension MainCardVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
-
+        /// characterIndex 보내주기
+        vc.index = indexs[indexPath.item]
+        print("--------------------------------------------------------")
+        print(indexs)
+        print(indexs[indexPath.item])
+        print("--------------------------------------------------------")
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -21,7 +21,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Lazy Properties
     /// image index, name, level
-    lazy var naviBar = NavigationBar(vc: self, index: 1, name: "귀여운 캐츄")
+    lazy var naviBar = NavigationBar(vc: self, index: self.index, name: self.name, level: self.level)
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
@@ -44,6 +44,8 @@ class CharacterVC: UIViewController {
     var userId = ""
     var detailReport: LookCharacterReportData?
     var lookPosts = [LookActivityDetail]()
+    var level = 0
+    var name = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -56,13 +58,18 @@ class CharacterVC: UIViewController {
             print("다른 사람들 구경하기 상세")
             fetchLookDetail()
             naviBar.editButton.isHidden = true
-            headerView.dateLabel.isHidden = true
             headerView.lockImageView.isHidden = true
             headerView.writeButton.isHidden = true
             headerView.fromLabel.text = "님의"
+            
+            
+            
         } else if isDetail == false {
             print("그냥 내 캐릭터 상세")
-            fetchCharacterDetail(completion: { })
+            fetchCharacterDetail() {
+                self.headerView.dateLabel.text = UserDefaultStorage.userName
+//                self.headerView.nameLabel.text = 
+            }
         }
     }
     
@@ -70,6 +77,7 @@ class CharacterVC: UIViewController {
         super.viewDidAppear(true)
         if !isDetail {
             fetchCharacterDetail() {
+                print("그냥 내 캐릭터 상세")
                 self.mainTableView.reloadData()
             }
         }
@@ -142,7 +150,7 @@ class CharacterVC: UIViewController {
         let dateString = dateFormatter.string(from: now)
         
         vc.setLabel(text: dateString)
-
+        
         if let level = self.report?.character.characterLevel,
            let imageIndex = self.report?.character.characterImageIndex {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
@@ -367,7 +375,7 @@ extension CharacterVC {
             case .success(let result):
                 do {
                     self.lookPosts.removeAll()
-
+                    
                     self.lookDetailModel = try result.map(LookDetailModel.self)
                     self.lookPosts.append(contentsOf: self.lookDetailModel?.data.character.activity ?? [])
                     self.detailReport = self.lookDetailModel?.data

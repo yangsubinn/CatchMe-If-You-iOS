@@ -20,6 +20,7 @@ class MainVC: UIViewController {
     let allButton = UIButton()
     let catchingButton = UIButton()
     let pageControl = PageControl()
+    
     let emptyImageView = UIImageView()
     let emptyTitleLabel = UILabel()
     let emptySubTitle = UILabel()
@@ -349,6 +350,8 @@ extension MainVC: UICollectionViewDataSource {
             
             cell.reportView.setupEmptyLayout()
             cell.reportView.emptyUI()
+        } else {
+            cell.reportView.dataUI()
         }
         
         cell.reportView.setLabel(level: levels[indexPath.item], activity: activitys[indexPath.item], percent: totals[indexPath.item])

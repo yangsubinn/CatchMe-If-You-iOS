@@ -129,6 +129,22 @@ class MainReportView: UIView {
         emptySubLabel.isHidden = false
     }
     
+    func dataUI() {
+        topLineView.isHidden = false
+        titleLabel.isHidden = false
+        levelCountLabel.isHidden = false
+        activeCountLabel.isHidden = false
+        percentCountLabel.isHidden = false
+        levelLabel.isHidden = false
+        activeLabel.isHidden = false
+        percentLabel.isHidden = false
+        lineLeftView.isHidden = false
+        lineRightView.isHidden = false
+        
+        emptyTitleLabel.isHidden = true
+        emptySubLabel.isHidden = true
+    }
+    
     private func configUI() {
         topLineView.backgroundColor = .pink100
         topLineView.layer.cornerRadius = 2
@@ -173,6 +189,17 @@ class MainReportView: UIView {
         emptySubLabel.textColor = .white
         emptySubLabel.font = .stringRegularSystemFont(ofSize: 14)
         emptySubLabel.addCharacterSpacing()
+        
+        topLineView.isHidden = false
+        titleLabel.isHidden = false
+        levelCountLabel.isHidden = false
+        activeCountLabel.isHidden = false
+        percentCountLabel.isHidden = false
+        levelLabel.isHidden = false
+        activeLabel.isHidden = false
+        percentLabel.isHidden = false
+        lineLeftView.isHidden = false
+        lineRightView.isHidden = false
         
         emptyTitleLabel.isHidden = true
         emptySubLabel.isHidden = true

@@ -337,7 +337,7 @@ extension SignupTextFieldView: UITextFieldDelegate {
         case checkPasswordTextField:
             moveTextFieldView()
             
-            if passwordTextField.text == checkPasswordTextField.text {
+            if passwordTextField.text == checkPasswordTextField.text && checkPasswordTextField.hasText {
                 checkPasswordTextField.setupBlueLine()
             } else {
                 checkPasswordTextField.setupPinkLine()

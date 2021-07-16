@@ -44,22 +44,21 @@ class LookCVC: UICollectionViewCell {
         
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.equalTo(characterBackgroundView.snp.trailing).offset(17)
+            make.leading.equalTo(characterBackgroundView.snp.trailing).offset(20)
             make.width.equalTo(157)
             make.height.equalTo(18)
         }
         
         characterLabel.snp.makeConstraints { make in
             make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
-            make.leading.equalTo(characterBackgroundView.snp.trailing).offset(17)
+            make.leading.equalTo(characterBackgroundView.snp.trailing).offset(20)
             make.width.equalTo(157)
             make.height.equalTo(46)
         }
         
         arrowButton.snp.makeConstraints { make in
             make.centerY.equalTo(nicknameLabel).offset(-1)
-//            make.trailing.equalToSuperview().inset(UIScreen.main.hasNotch ? 60 : 46)
-            make.leading.equalTo(nicknameLabel.snp.trailing).offset(2)
+            make.leading.equalTo(nicknameLabel.snp.trailing).offset(10)
             make.width.equalTo(5)
             make.height.equalTo(10)
         }

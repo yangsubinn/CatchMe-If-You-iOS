@@ -31,6 +31,7 @@ class MainVC: UIViewController {
     
     var formatterDate = DateFormatter()
     var isFirst = true
+    var currentIndex = 0
     
     //MARK: - Network
     private let authProvider = MoyaProvider<MainService>(plugins: [NetworkLoggerPlugin(verbose: true)])
@@ -44,6 +45,7 @@ class MainVC: UIViewController {
     var characters: [Int] = []
     var nicknames: [String] = []
     var indexs: [Int] = []
+    var firstname = ""
     
     let collectionViewFlowLayout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -61,7 +63,11 @@ class MainVC: UIViewController {
     // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         setupDate()
-        fetchCharacter()
+        nameLabel.text = firstname
+        nameLabel.addCharacterSpacing()
+        pageControl.selectedPage = 0
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
     }
     
     override func viewDidLoad() {
@@ -80,6 +86,7 @@ class MainVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        fetchCharacter()
         lottieView.play()
     }
     
@@ -269,7 +276,11 @@ class MainVC: UIViewController {
     @objc func touchupCatching(_ sender: UIButton) {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddActionVC") as? AddActionVC else { return }
-        /// character index, character nickname Date 값만 넘겨주세요.
+        /// character index, character nickname, imageindex값만 넘겨주세요.
+        
+        // vc.index = indexs[currentIndex]
+        // vc.nickname = names[currnetIndex]
+        // vc.imageIndex = characters[currentIndex]
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -304,6 +315,19 @@ class MainVC: UIViewController {
     func touchupCatchMe() {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddCatchuVC") as? AddCatchuVC else { return }
+        
+        vc.reloadData = {
+            self.emptyImageView.isHidden = true
+            self.emptyTitleLabel.isHidden = true
+            self.emptySubTitle.isHidden = true
+            self.catchMeButton.isHidden = true
+            
+            self.catchingButton.isHidden = false
+            self.collectionView.isHidden = false
+            self.nameLabel.isHidden = false
+            self.pageControl.isHidden = false
+        }
+        
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -353,6 +377,7 @@ extension MainVC: UICollectionViewDelegate {
         if Int(roundedIndex) < cnt  {
             changeLabelText(index: Int(roundedIndex))
             pageControl.selectedPage = Int(roundedIndex)
+            currentIndex = Int(roundedIndex)
         }
         
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
@@ -363,7 +388,12 @@ extension MainVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
-        /// characterIndex 보내주세요
+        /// characterIndex 보내주세요 property: index
+//        vc.index = indexs[indexPath.item]
+        print("-------------------------------")
+        print(indexs)
+        print(indexs[indexPath.item])
+        print("-------------------------------")
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -387,6 +417,7 @@ extension MainVC {
                     data.append(contentsOf: characterData?.data ?? [])
                      
                     if data.isEmpty {
+                        print("data 안들어왔다!!!!!!")
                         emptyImageView.isHidden = false
                         emptyTitleLabel.isHidden = false
                         emptySubTitle.isHidden = false
@@ -396,7 +427,6 @@ extension MainVC {
                         catchingButton.isHidden = true
                         collectionView.isHidden = true
                         pageControl.isHidden = true
-                        catchingButton.isHidden = true
                         
                         if isFirst {
                             UIView.animate(withDuration: 0.3, animations: {
@@ -414,6 +444,8 @@ extension MainVC {
                         
                         
                     } else {
+                        print("data가 들어온 뷰!!!!!!!!")
+                        
                         emptyImageView.isHidden = true
                         emptyTitleLabel.isHidden = true
                         emptySubTitle.isHidden = true
@@ -440,6 +472,7 @@ extension MainVC {
                         if !names.isEmpty {
                             nameLabel.text = names[0]
                             nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+                            firstname = names[0]
                         }
                         
                         if isFirst {

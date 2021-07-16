@@ -32,6 +32,7 @@ class LookVC: UIViewController {
     var levels: [Int] = []
     var userids: [String] = []
     var indexs: [Int] = []
+    var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -105,14 +106,13 @@ extension LookVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCVC.identifier, for: indexPath) as? LookCVC else {
             return UICollectionViewCell()
         }
         
         cell.nicknameLabel.text = "\(nicknames[indexPath.item]) 님의"
         cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
-        cell.characterBackgroundView.backgroundColor = setBackgroundColor(index: indexs[indexPath.item])
+        cell.characterBackgroundView.backgroundColor = colors[images[indexPath.item]-1]
         
         return cell
     }
@@ -146,7 +146,14 @@ extension LookVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
-        /// characterIndex 보내주기
+        /// characterIndex 보내주기 property: index
+//        vc.index = indexs[indexPath.item]
+        /// user_id 보내주기 property: userid
+//        vc.userid = userids[indexPath.item]
+        print("-----------index-------------")
+        print(indexs[indexPath.item])
+        print("-----------user_id-------------")
+        print(userids[indexPath.item])
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -173,7 +180,7 @@ extension LookVC {
                     for i in 0..<data.count {
                         nicknames.append(data[i].userNickname)
                         names.append(data[i].characterName)
-                        images.append(data[i].characterIndex)
+                        images.append(data[i].characterImageIndex)
                         levels.append(data[i].characterLevel)
                         userids.append(data[i].userID)
                         indexs.append(data[i].characterIndex)

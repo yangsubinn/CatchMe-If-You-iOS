@@ -114,8 +114,6 @@ class MainCardVC: UIViewController {
         topBackView.image = UIImage(named: "scrollRectangle")
         emptyImageView.image = UIImage(named: "mainCatchu")
         
-//        print("----------------------")
-//        print(UserDefaultStorage.userName)
         nameLabel.text = "\(UserDefaultStorage.userName) 님"
         nameLabel.textColor = .white
         nameLabel.font = .stringBoldSystemFont(ofSize: 14)

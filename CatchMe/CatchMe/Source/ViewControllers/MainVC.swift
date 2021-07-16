@@ -264,6 +264,7 @@ class MainVC: UIViewController {
     
     private func changeLabelText(index: Int) {
         nameLabel.text = names[index]
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
     }
     
     // MARK: - @objc

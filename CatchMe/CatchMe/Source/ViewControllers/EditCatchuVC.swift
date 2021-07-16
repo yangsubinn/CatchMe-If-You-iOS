@@ -14,6 +14,8 @@ class EditCatchuVC: UIViewController {
     lazy var navigationBar = CustomNavigationBar(self, title: "캐츄 수정")
     lazy var textCount = characterName.count
     lazy var currentLock = isLock
+    lazy var nameTextField = CustomTextField(placeholder: characterName, isAddCatchu: true, small: true)
+
     
     // MARK: - Properties
     let backgroundImageView = UIImageView()
@@ -22,8 +24,7 @@ class EditCatchuVC: UIViewController {
     let lockLabel = UILabel()
     let countLabel = UILabel()
     let lockButton = UIButton()
-    let nameTextField = CustomTextField(placeholder: "캐츄 이름 입력", isAddCatchu: true, small: true)
-    let editButton = BottomButton(title: "변경하기")
+        let editButton = BottomButton(title: "변경하기")
     let height = UIApplication.statusBarHeight
     
     var isLock = true
@@ -43,11 +44,6 @@ class EditCatchuVC: UIViewController {
         configUI()
         setCountLabel()
         setupButtonAction()
-        
-        characterImageView.image = setCharacterImage(level: self.characterLevel, index: self.characterIndex, size: 101)
-        nameLabel.text = characterName
-        
-        
     }
     
     // MARK: - Custom Method

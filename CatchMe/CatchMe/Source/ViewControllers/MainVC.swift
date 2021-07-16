@@ -398,9 +398,10 @@ extension MainVC: UICollectionViewDelegate {
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
         /// characterIndex 보내주세요 property: index
         vc.index = indexs[indexPath.item]
+        print("시바 이게 프린트 되기는 하냐 시비ㅏ마아럼ㄴㅇ라ㅗ미ㅏ~!@~!@#@$@#$@#$34")
         print("-------------------------------")
-        print(indexs)
-        print(indexs[indexPath.item])
+        print("indexs: \(indexs)")
+        print("items: \(indexs[indexPath.item])")
         print("-------------------------------")
         navigationController?.pushViewController(vc, animated: true)
     }

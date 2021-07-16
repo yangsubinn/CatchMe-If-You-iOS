@@ -21,7 +21,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Lazy Properties
     /// image index, name, level
-    lazy var naviBar = NavigationBar(vc: self, index: self.index, name: self.name, level: self.level)
+    lazy var naviBar = NavigationBar(vc: self, index: index, name: name, level: level)
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
@@ -357,9 +357,17 @@ extension CharacterVC {
                     
                     if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
-                       let privacy = self.report?.character.characterPrivacy {
+                       let privacy = self.report?.character.characterPrivacy,
+                       let name = self.report?.character.characterName{
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
+                        self.level = level
+                        self.index = imageIndex
+                        self.name = name
                         self.headerView.lockImageView.isHidden = !privacy
+                        
+                        print(self.level)
+                        print(self.index)
+                        print(self.name)
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {

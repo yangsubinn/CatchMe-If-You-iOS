@@ -148,6 +148,11 @@ class CharacterVC: UIViewController {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
         }
         vc.name = report?.character.characterName
+        
+        vc.reloadData = {
+            
+        }
+        
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

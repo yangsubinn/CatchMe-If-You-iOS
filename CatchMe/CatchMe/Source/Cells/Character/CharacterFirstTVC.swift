@@ -234,7 +234,7 @@ class CharacterFirstTVC: UITableViewCell {
         dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent
 
-        if let image = URL(string: data.activityImage) {
+        if let image = URL(string: data.activityImage ?? "") {
             if data.activityImage == "" {
                 photoImageView.isHidden = true
             } else {

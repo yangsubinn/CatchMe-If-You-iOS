@@ -377,7 +377,7 @@ class AddActionVC: UIViewController {
                 uploadButton.isEnabled = true
             } else {
                 uploadButton.isEnabled = false
-                
+                print("여기로 들어오나요?")
                 AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
                                                              content: activityTextView.text!,
                                                              year: String(date[0]),
@@ -388,7 +388,8 @@ class AddActionVC: UIViewController {
                     case .success(let msg):
                         print("success", msg)
                         self.reloadData?()
-                        self.dismiss(animated: true, completion: nil)
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
+                        
                     case .requestErr(let msg):
                         print("requestERR", msg)
                     case .pathErr:

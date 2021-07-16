@@ -346,8 +346,7 @@ class AddActionVC: UIViewController {
     }
     
     @objc func touchupUploadButton(_ sender: UIButton) {
-        guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
-
+        guard let date = self.dateLabel.text?.split(separator: ".") else { print("날짜형식반영완료"); return }
         if isEdited {
             print("수정")
             AddActionEditService.shared.editActivity(imageData: buttonImage,
@@ -377,28 +376,26 @@ class AddActionVC: UIViewController {
                 uploadButton.isEnabled = true
             } else {
                 uploadButton.isEnabled = false
-                print("여기로 들어오나요?")
-                AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
-                                                             content: activityTextView.text!,
-                                                             year: String(date[0]),
-                                                             month: String(date[1]),
-                                                             day: String(date[2]),
-                                                             index: characterIndex) { result in
-                    switch result {
-                    case .success(let msg):
-                        print("success", msg)
-                        self.reloadData?()
-                        self.presentingViewController?.dismiss(animated: true, completion: nil)
-                        
-                    case .requestErr(let msg):
-                        print("requestERR", msg)
-                    case .pathErr:
-                        print("pathERR")
-                    case .serverErr:
-                        print("serverERR")
-                    case .networkFail:
-                        print("networkFail")
-                    }
+            }
+            AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
+                                                         content: activityTextView.text!,
+                                                         year: String(date[0]),
+                                                         month: String(date[1]),
+                                                         day: String(date[2]),
+                                                         index: characterIndex) { result in
+                switch result {
+                case .success(let msg):
+                    print("success", msg)
+                    self.reloadData?()
+                    self.dismiss(animated: true, completion: nil)
+                case .requestErr(let msg):
+                    print("requestERR", msg)
+                case .pathErr:
+                    print("pathERR")
+                case .serverErr:
+                    print("serverERR")
+                case .networkFail:
+                    print("networkFail")
                 }
             }
         }

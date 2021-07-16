@@ -93,9 +93,9 @@ class AddActionDatePickerPopupView: UIView {
             make.height.equalTo(169)
             
             var components = DateComponents()
-            components.day = 10
+//            components.day = 10
             let maxDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
-            components.day = -10
+            components.day = 0
             let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
 
             datePicker.maximumDate = maxDate

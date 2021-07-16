@@ -51,7 +51,7 @@ class CharacterHeaderView: UIView {
     let nameView = UIView()
     
     let nameLabel = UILabel().then {
-        $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
+//        $0.text = "캐치미를정말좋아하는동글귀염보라돌이캐츄"
         $0.font = .catchuRegularSystemFont(ofSize: 21)
         $0.textAlignment = .left
         $0.textColor = .white
@@ -61,7 +61,7 @@ class CharacterHeaderView: UIView {
     }
     
     // MARK: - Lifecycle
-    init(date: String = "2021.05.01", name: String = "캐치미를정말좋아하는동글귀염보라돌이캐츄") {
+    init(date: String = "123", name: String = "") {
         super.init(frame: .zero)
         configUI(date: date, name: name)
         setupAutoLayout()

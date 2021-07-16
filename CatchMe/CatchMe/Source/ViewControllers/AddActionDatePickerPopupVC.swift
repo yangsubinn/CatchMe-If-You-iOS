@@ -60,7 +60,7 @@ class AddActionDatePickerPopupVC: UIViewController {
         components.year = -20
         let minDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: Date())
         popupView.datePicker.minimumDate = minDate
-        
+
         let date = dateformatter.string(from: popupView.datePicker.date)
         selectedDate = date
         print(selectedDate)

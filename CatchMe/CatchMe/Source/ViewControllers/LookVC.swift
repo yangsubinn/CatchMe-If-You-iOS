@@ -152,6 +152,7 @@ extension LookVC: UICollectionViewDelegate {
         /// user_id 보내주기 property: userid
         vc.userId = userids[indexPath.item]
         vc.isDetail = true
+        vc.headerView.dateLabel.text = nicknames[indexPath.item]
         print("-----------index-------------")
         print(indexs[indexPath.item])
         print("-----------user_id-------------")

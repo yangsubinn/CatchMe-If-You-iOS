@@ -18,6 +18,8 @@ class CharacterFirstTVC: UITableViewCell {
     var rootVC: UIViewController?
     var characterData: CharacterDetail?
     var data: ActivityDetail?
+    var lookCharacterData: LookCharacterDetail?
+    var lookData: LookActivityDetail?
     var upperView: CharacterUpperView?
     var headerView: CharacterHeaderView?
 

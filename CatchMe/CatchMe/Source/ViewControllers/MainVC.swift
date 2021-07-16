@@ -45,6 +45,7 @@ class MainVC: UIViewController {
     var characters: [Int] = []
     var nicknames: [String] = []
     var indexs: [Int] = []
+    var firstname = ""
     
     let collectionViewFlowLayout: UICollectionViewLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -62,7 +63,11 @@ class MainVC: UIViewController {
     // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         setupDate()
-        fetchCharacter()
+        nameLabel.text = firstname
+        nameLabel.addCharacterSpacing()
+        pageControl.selectedPage = 0
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
     }
     
     override func viewDidLoad() {
@@ -81,6 +86,7 @@ class MainVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        fetchCharacter()
         lottieView.play()
     }
     
@@ -309,6 +315,19 @@ class MainVC: UIViewController {
     func touchupCatchMe() {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddCatchuVC") as? AddCatchuVC else { return }
+        
+        vc.reloadData = {
+            self.emptyImageView.isHidden = true
+            self.emptyTitleLabel.isHidden = true
+            self.emptySubTitle.isHidden = true
+            self.catchMeButton.isHidden = true
+            
+            self.catchingButton.isHidden = false
+            self.collectionView.isHidden = false
+            self.nameLabel.isHidden = false
+            self.pageControl.isHidden = false
+        }
+        
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -398,6 +417,7 @@ extension MainVC {
                     data.append(contentsOf: characterData?.data ?? [])
                      
                     if data.isEmpty {
+                        print("data 안들어왔다!!!!!!")
                         emptyImageView.isHidden = false
                         emptyTitleLabel.isHidden = false
                         emptySubTitle.isHidden = false
@@ -407,7 +427,6 @@ extension MainVC {
                         catchingButton.isHidden = true
                         collectionView.isHidden = true
                         pageControl.isHidden = true
-                        catchingButton.isHidden = true
                         
                         if isFirst {
                             UIView.animate(withDuration: 0.3, animations: {
@@ -425,6 +444,8 @@ extension MainVC {
                         
                         
                     } else {
+                        print("data가 들어온 뷰!!!!!!!!")
+                        
                         emptyImageView.isHidden = true
                         emptyTitleLabel.isHidden = true
                         emptySubTitle.isHidden = true
@@ -451,6 +472,7 @@ extension MainVC {
                         if !names.isEmpty {
                             nameLabel.text = names[0]
                             nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
+                            firstname = names[0]
                         }
                         
                         if isFirst {

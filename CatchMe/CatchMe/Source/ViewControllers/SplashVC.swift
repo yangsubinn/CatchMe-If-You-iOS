@@ -21,7 +21,7 @@ class SplashVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
-            if Login.shared.isLogin() {
+            if Login.shared.isLogin() && Login.shared.isAuto() {
                 /// 로그인이 되어있는 상태 == mainVC로 이동
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let dvc = storyboard.instantiateViewController(identifier: "MainNavi")

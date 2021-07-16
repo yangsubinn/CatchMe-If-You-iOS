@@ -40,6 +40,7 @@ class MainCardVC: UIViewController {
     var images: [Int] = []
     var levels: [Int] = []
     var indexs: [Int] = []
+    var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     override func viewDidAppear(_ animated: Bool) {
         fetchCharacter()
@@ -232,7 +233,7 @@ extension MainCardVC: UICollectionViewDataSource {
         cell.nameLabel.numberOfLines = 2
         cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
         cell.setStarLevel(level: levels[indexPath.item])
-        cell.characterBackView.backgroundColor = setBackgroundColor(index: indexs[indexPath.item])
+        cell.characterBackView.backgroundColor = colors[images[indexPath.item] - 1]
         
         return cell
     }

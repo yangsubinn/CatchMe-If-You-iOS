@@ -111,7 +111,6 @@ extension LookVC: UICollectionViewDataSource {
         
         cell.nicknameLabel.text = "\(nicknames[indexPath.item]) 님의"
         cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
-        cell.characterBackgroundView.backgroundColor = setBackgroundColor(index: indexs[indexPath.item])
         
         return cell
     }

@@ -55,6 +55,7 @@ class PopupView: UIView {
     var catchuIndex: [Int] = []
     var catchuColor: [UIColor] = []
     var catchuBack: [Int] = []
+    var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
 
     // MARK: - Life Cycle
     init(date: String, vc: UIViewController) {
@@ -183,7 +184,7 @@ extension PopupView: UICollectionViewDataSource {
         }
         
         cell.characterImage.image = catchuImages[indexPath.item]
-        cell.backgroundImage.backgroundColor = setBackgroundColor(index: catchuBack[indexPath.item])
+        cell.backgroundImage.backgroundColor = colors[catchuBack[indexPath.item]]
         
         return cell
     }

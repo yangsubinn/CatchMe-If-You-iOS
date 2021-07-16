@@ -22,7 +22,7 @@ extension LookService: TargetType {
         case .other:
             return "/other"
         case .otherDetail(let userID, let index):
-            return "/other/detail/?\(userID)/?\(index)"
+            return "/other/detail/\(userID)/\(index)"
         }
     }
 

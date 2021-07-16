@@ -18,7 +18,7 @@ struct LookDetailModel: Codable {
 // MARK: - LookCharacterReportData
 struct LookCharacterReportData: Codable {
     let character: LookCharacterDetail
-    let characterActivitiesCount, catchRate: Int
+    let characterActivitiesCount, catchRate: Int?
 }
 
 // MARK: - Character
@@ -30,7 +30,7 @@ struct LookCharacterDetail: Codable {
     let characterBirth: String
     let activityCount: Int
     let activity: [LookActivityDetail]?
-    let recentActivityTime: String
+    let recentActivityTime: String?
 
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"

@@ -22,6 +22,10 @@ class CharacterCVC: UICollectionViewCell {
         setupReportView()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     //MARK: - Custom Method
     func configUI() {
         self.backgroundColor = .clear

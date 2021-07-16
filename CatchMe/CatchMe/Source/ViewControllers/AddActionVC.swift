@@ -151,6 +151,9 @@ class AddActionVC: UIViewController {
 
         deletePhotoButton.isHidden = true
         
+        print("characterIndex :\(characterIndex)")
+        print("activityIndex :\(activityIndex)")
+        
         let now = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"

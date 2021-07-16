@@ -158,7 +158,7 @@ class CharacterVC: UIViewController {
            let imageIndex = self.report?.character.characterImageIndex,
            let index = self.report?.character.characterIndex {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
-            vc.characterIndex = index
+//            vc.characterIndex = index
         }
         vc.name = report?.character.characterName
         vc.modalPresentationStyle = .fullScreen

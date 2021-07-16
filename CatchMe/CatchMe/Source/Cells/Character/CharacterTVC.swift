@@ -213,6 +213,7 @@ class CharacterTVC: UITableViewCell {
                 size: 151
             )
             vc.activityIndex = data.activityIndex
+            vc.characterIndex = selectedData.characterIndex
             vc.name = self.characterData?.characterName
             vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)

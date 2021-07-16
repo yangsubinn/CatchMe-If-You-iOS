@@ -43,7 +43,9 @@ class MainCardVC: UIViewController {
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     override func viewDidAppear(_ animated: Bool) {
-        fetchCharacter()
+        self.isFirstButtonChecked = true
+        self.isSecondButtonChecked = false
+        self.isThirdButtonChecked = false
     }
 
     //MARK: - Life Cycle
@@ -53,6 +55,10 @@ class MainCardVC: UIViewController {
         configUI()
         setupCollectionView()
         setupEmptyLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchCharacter()
     }
     
     //MARK: - Custom Method

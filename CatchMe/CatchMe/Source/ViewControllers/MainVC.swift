@@ -418,6 +418,7 @@ extension MainVC {
                     activitys.removeAll()
                     totals.removeAll()
                     characters.removeAll()
+                    indexs.removeAll()
                     
                     data.append(contentsOf: characterData?.data ?? [])
                      
@@ -473,6 +474,12 @@ extension MainVC {
 
                         collectionView.reloadData()
                         pageControl.pages = names.count
+                        
+                        print("----------------------------------------------")
+                        print(names)
+//                        print(levels)
+                        print(indexs)
+                        print("----------------------------------------------")
                         
                         if !names.isEmpty {
                             nameLabel.text = names[0]

@@ -30,7 +30,7 @@ struct CharacterDetail: Codable {
     let characterBirth: String
     let activityCount: Int
     let activity: [ActivityDetail]?
-    let recentActivityTime: String
+    let recentActivityTime: String?
 }
 
 // MARK: - Activity

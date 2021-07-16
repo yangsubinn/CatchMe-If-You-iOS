@@ -20,7 +20,8 @@ class CharacterVC: UIViewController {
     var lookDetailModel: LookDetailModel?
     
     // MARK: - Lazy Properties
-    lazy var naviBar = NavigationBar(vc: self)
+    /// image index, name, level
+    lazy var naviBar = NavigationBar(vc: self, index: 1, name: "귀여운 캐츄")
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
@@ -39,7 +40,8 @@ class CharacterVC: UIViewController {
     var data: ActivityDetail?
     var lookData: LookActivityDetail?
     var posts = [ActivityDetail]()
-    var index = Int()
+    var index = 0
+    var userId = ""
     var detailReport: LookCharacterReportData?
     var lookPosts = [LookActivityDetail]()
     
@@ -66,8 +68,10 @@ class CharacterVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        fetchCharacterDetail() {
-            self.mainTableView.reloadData()
+        if !isDetail {
+            fetchCharacterDetail() {
+                self.mainTableView.reloadData()
+            }
         }
     }
     
@@ -192,7 +196,10 @@ extension CharacterVC: UITableViewDelegate {
             if posts.isEmpty {
                 return 0
             } else {
-                return 112
+                if posts.count < 4 {
+                    return 600
+                }
+                return 300
             }
         }
     }
@@ -324,7 +331,7 @@ extension CharacterVC: UITableViewDataSource {
 extension CharacterVC {
     // MARK: - Network : fetchCharacterDetail
     func fetchCharacterDetail(completion: @escaping (() -> ())) {
-        authProvider.request(.characterDetail(2)) { response in
+        authProvider.request(.characterDetail(index)) { response in
             switch response {
             case .success(let result):
                 do {
@@ -332,13 +339,16 @@ extension CharacterVC {
                     
                     self.characterModel = try result.map(CharacterModel.self)
                     self.report = self.characterModel?.data
-                    self.posts.append(contentsOf: self.characterModel?.data.character.activity ?? [])
+                    
+                    if let data = self.characterModel?.data.character.activity {
+                        self.posts = data
+                    }
                     
                     if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
                        let privacy = self.report?.character.characterPrivacy {
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
-                        self.headerView.lockImageView.isHidden = privacy
+                        self.headerView.lockImageView.isHidden = !privacy
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {
@@ -352,7 +362,7 @@ extension CharacterVC {
     
     // MARK: - Network : fetchLookDetail
     func fetchLookDetail() {
-        authLookProvider.request(.otherDetail("60e5d3114f37e9b252c608be", 2)) { response in
+        authLookProvider.request(.otherDetail(userId, index)) { response in
             switch response {
             case .success(let result):
                 do {
@@ -366,7 +376,7 @@ extension CharacterVC {
                        let imageIndex = self.detailReport?.character.characterIndex,
                        let privacy = self.detailReport?.character.characterPrivacy {
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
-                        self.headerView.lockImageView.isHidden = privacy
+                        self.headerView.lockImageView.isHidden = !privacy
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {

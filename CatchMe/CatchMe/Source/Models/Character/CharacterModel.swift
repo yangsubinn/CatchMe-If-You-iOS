@@ -38,7 +38,7 @@ struct ActivityDetail: Codable {
     let id: String
     let activityIndex: Int
     let activityContent: String
-    let activityImage: String
+    let activityImage: String?
     let activityYear, activityMonth, activityDay: String
     
     enum CodingKeys: String, CodingKey {

@@ -239,7 +239,7 @@ class CharacterTVC: UITableViewCell {
         dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent
 
-        if let image = URL(string: data.activityImage) {
+        if let image = URL(string: data.activityImage ?? "") {
             photoImageView.kf.setImage(with: image)
             photoImageView.snp.makeConstraints { make in
                 make.height.equalTo(228)

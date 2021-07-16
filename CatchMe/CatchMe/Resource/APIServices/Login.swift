@@ -45,9 +45,8 @@ class Login: NSObject {
         def.set(false, forKey: login)
         def.synchronize()
         
-////        let rootVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginNavi")
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = rootVC        
+        let rootVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginNavi")
+        UIApplication.shared.keyWindow?.replaceRootViewController(rootVC, animated: true, completion: nil)
     }
     
     func changeNickname(nickname: String) {

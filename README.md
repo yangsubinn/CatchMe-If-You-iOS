@@ -36,4 +36,5 @@ CatchMe-iOS
 ### 🌈 캐치미 iOS Developers
 | 신윤아          | 김루희    | 양수빈 |
 |:---------------:|:---------:|:-----:|
+|![yoona](https://user-images.githubusercontent.com/55099365/125932678-8914c8dc-0ad7-4a79-b771-8a27e5b2f43a.png) |![ruhee](https://user-images.githubusercontent.com/55099365/125932515-66c6a855-1a36-462a-9a95-bab2e26becfe.png)| ![subin](https://user-images.githubusercontent.com/55099365/125932690-edb6b9ad-b251-494b-a4fe-c8b11dc3c590.png)|
 |[YoonAh-dev](https://github.com/YoonAh-dev)|[heerucan](https://github.com/heerucan) |[yangsubinn](https://github.com/yangsubinn)|

@@ -32,6 +32,7 @@ class LookVC: UIViewController {
     var levels: [Int] = []
     var userids: [String] = []
     var indexs: [Int] = []
+    var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -45,11 +46,11 @@ class LookVC: UIViewController {
     //MARK: - Custom Method
     func setupLayout() {
         view.addSubviews([collectionView, topBackImageView, backButton,
-                          titleLabel, topImageView]) // subTitleLabel
+                          titleLabel, topImageView])
         
         topBackImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(titleLabel.snp.bottom).offset(84)
+            make.bottom.equalTo(titleLabel.snp.bottom).offset(60)
         }
         
         backButton.snp.makeConstraints { make in
@@ -60,6 +61,7 @@ class LookVC: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(UIScreen.main.hasNotch ? 28 : 24)
+            make.height.equalTo(30)
         }
         
         topImageView.snp.makeConstraints { make in
@@ -81,7 +83,7 @@ class LookVC: UIViewController {
         topBackImageView.image = UIImage(named: "scrollRectangle")
         topImageView.image = UIImage(named: "imgGroupCatchu")
         
-        titleLabel.text = "다른 유저들의 캐츄"
+        titleLabel.text = "다른 캐츄 구경하기"
         titleLabel.textColor = .white
         titleLabel.font = .stringBoldSystemFont(ofSize: 22)
     }
@@ -104,14 +106,13 @@ extension LookVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // 서버 연결시 데이터가 있으면 setupLayout(), 없으면 setupEmptyLayout()
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LookCVC.identifier, for: indexPath) as? LookCVC else {
             return UICollectionViewCell()
         }
         
         cell.nicknameLabel.text = "\(nicknames[indexPath.item]) 님의"
         cell.setImageView(level: levels[indexPath.item], index: images[indexPath.item])
-        cell.characterBackgroundView.backgroundColor = setBackgroundColor(index: indexs[indexPath.item])
+        cell.characterBackgroundView.backgroundColor = colors[images[indexPath.item]-1]
         
         return cell
     }
@@ -145,7 +146,14 @@ extension LookVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
-        /// characterIndex 보내주기
+        /// characterIndex 보내주기 property: index
+//        vc.index = indexs[indexPath.item]
+        /// user_id 보내주기 property: userid
+//        vc.userid = userids[indexPath.item]
+        print("-----------index-------------")
+        print(indexs[indexPath.item])
+        print("-----------user_id-------------")
+        print(userids[indexPath.item])
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -172,7 +180,7 @@ extension LookVC {
                     for i in 0..<data.count {
                         nicknames.append(data[i].userNickname)
                         names.append(data[i].characterName)
-                        images.append(data[i].characterIndex)
+                        images.append(data[i].characterImageIndex)
                         levels.append(data[i].characterLevel)
                         userids.append(data[i].userID)
                         indexs.append(data[i].characterIndex)

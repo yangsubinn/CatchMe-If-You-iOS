@@ -47,6 +47,7 @@ class CharacterVC: UIViewController {
     var name = ""
     var imageIndex = 0
     var nickname = ""
+    var activityIndex = 0
     var detailReport: LookCharacterReportData?
     var lookPosts = [LookActivityDetail]()
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
@@ -154,8 +155,10 @@ class CharacterVC: UIViewController {
         vc.setLabel(text: dateString)
         
         if let level = self.report?.character.characterLevel,
-           let imageIndex = self.report?.character.characterImageIndex {
+           let imageIndex = self.report?.character.characterImageIndex,
+           let index = self.report?.character.characterIndex {
             vc.catchu = self.setCharacterImage(level: level, index: imageIndex, size: 151)
+            vc.characterIndex = index
         }
         vc.name = report?.character.characterName
         vc.modalPresentationStyle = .fullScreen
@@ -328,6 +331,7 @@ extension CharacterVC: UITableViewDataSource {
                 if isDetail {
                     restCell.moreButton.isHidden = true
 //                    restCell.data = lookPosts[indexPath.row-1]
+//                    restCell.setData(date: String(lookPosts[indexPath.row-1].activityYear + "." lookPosts[indexPath.row-1].activityMonth + "." + lookPosts[indexPath.row-1].activityDay), comment: lookPosts[indexPath.row-1].activityContent, image: lookPosts[indexPath.row-1].activityImage)
                 }
                 restCell.rootVC = self
                 restCell.characterData = self.characterModel?.data.character
@@ -365,7 +369,8 @@ extension CharacterVC {
                     
                     if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
-                       let privacy = self.report?.character.characterPrivacy{
+                       let privacy = self.report?.character.characterPrivacy,
+                       let activity = self.report?.character.activity{
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = !privacy
                         self.upperView.backgroundView.backgroundColor = self.colors[imageIndex - 1]

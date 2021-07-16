@@ -30,6 +30,7 @@ class AddActionVC: UIViewController {
     var isEdited: Bool = false
     var reloadData: (() -> ())?
     var characterIndex = 0
+    var activityIndex = 0
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -355,7 +356,7 @@ class AddActionVC: UIViewController {
                                                      month: String(date[1]),
                                                      day: String(date[2]),
                                                      index: characterIndex,
-                                                     activityIndex: 36) { result in
+                                                     activityIndex: activityIndex) { result in
                 switch result {
                 case .success(let msg):
                     print("success", msg)

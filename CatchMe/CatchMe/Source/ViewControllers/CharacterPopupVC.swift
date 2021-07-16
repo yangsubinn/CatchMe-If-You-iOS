@@ -12,6 +12,8 @@ import SnapKit
 class CharacterPopupVC: UIViewController {
     // MARK: - lazy Properties
     lazy var popupView = CharacterPopupView(vc: self)
+    var characterIndex = 0
+    var activityIndex = 0
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -40,7 +42,7 @@ class CharacterPopupVC: UIViewController {
     }
     
     @objc func touchupDeleteButton(_ sender: UIButton) {
-        AddActionDeleteService.shared.deleteActivity(index: 1, activityIndex: 2) { result in
+        AddActionDeleteService.shared.deleteActivity(index: characterIndex, activityIndex: activityIndex) { result in
             switch result {
             case .success(let msg):
                 if let msg = msg as? String {

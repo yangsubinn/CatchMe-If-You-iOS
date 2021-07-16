@@ -209,6 +209,7 @@ class CharacterFirstTVC: UITableViewCell {
                 index: selectedData.characterImageIndex,
                 size: 151
             )
+            vc.activityIndex = data.activityIndex
             vc.name = self.characterData?.characterName
             vc.modalPresentationStyle = .overFullScreen
             self.rootVC?.present(vc, animated: true, completion: nil)
@@ -216,6 +217,11 @@ class CharacterFirstTVC: UITableViewCell {
         
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { result in
             let vc = CharacterPopupVC()
+            guard let data = self.data,
+                  let selectedData = self.characterData
+            else { return }
+            vc.activityIndex = data.activityIndex
+            vc.characterIndex = selectedData.characterIndex
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             self.rootVC?.present(vc, animated: true, completion: nil)

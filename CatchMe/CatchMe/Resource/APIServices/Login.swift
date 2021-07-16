@@ -10,6 +10,7 @@ import UIKit
 class Login: NSObject {
     static let shared = Login()
     let login = "isLogin"
+    let auto = "isAuto"
     
     // MARK: - LOGIN
     func isLogin() -> Bool {
@@ -19,12 +20,20 @@ class Login: NSObject {
         return flag
     }
     
-    func setLogin(token: String, nickname: String) {
+    func isAuto() -> Bool {
+        let def = UserDefaults.standard
+        let flag = def.bool(forKey: auto)
+        
+        return flag
+    }
+    
+    func setLogin(token: String, nickname: String, isAuto: Bool) {
         let def = UserDefaults.standard
         UserData.set(token, forKey: .accessToken)
         UserData.set(nickname, forKey: .userName)
         
         def.set(true, forKey: login)
+        def.set(isAuto, forKey: auto)
         def.synchronize()
     }
     

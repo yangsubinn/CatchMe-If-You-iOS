@@ -14,10 +14,8 @@ class CharacterUpperView: UIView {
     // MARK: - Properties
     var catchu: CharacterDetail?
 
-    let backgroundView = UIView().then {
-        $0.backgroundColor = .pink100
-    }
-
+    let backgroundView = UIView()
+    
     let characterImageView = UIImageView()
     
     // MARK: - Lifecycle

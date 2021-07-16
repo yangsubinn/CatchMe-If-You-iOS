@@ -21,11 +21,11 @@ class CharacterVC: UIViewController {
     
     // MARK: - Lazy Properties
     /// image index, name, level
-    lazy var naviBar = NavigationBar(vc: self, index: self.index, name: self.name, level: self.level)
+    lazy var naviBar = NavigationBar(vc: self, index: self.index, name: name, level: self.level)
+    lazy var headerView = CharacterHeaderView(isDetail: isDetail)
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
-    let headerView = CharacterHeaderView()
     let mainTableView = UITableView(frame: .zero, style: .plain)
     let reportCell = CharacterReportTVC()
     let firstCell = CharacterFirstTVC()
@@ -45,8 +45,11 @@ class CharacterVC: UIViewController {
     var userId = ""
     var level = 0
     var name = ""
+    var imageIndex = 0
+    var nickname = ""
     var detailReport: LookCharacterReportData?
     var lookPosts = [LookActivityDetail]()
+    var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -59,14 +62,15 @@ class CharacterVC: UIViewController {
             print("다른 사람들 구경하기 상세")
             fetchLookDetail()
             naviBar.editButton.isHidden = true
-            headerView.nameLabel.text = lookDetailModel?.data.character.characterName
+//            upperView.characterImageView.image = setCharacterImage(level: level, index: imageIndex, size: 151)
+            headerView.dateLabel.text = nickname
             headerView.lockImageView.isHidden = true
-            headerView.writeButton.isHidden = true
+//            headerView.writeButton.isHidden = true
             headerView.fromLabel.text = "님의"
+            
         } else if isDetail == false {
             print("그냥 내 캐릭터 상세")
             fetchCharacterDetail() {
-                self.headerView.dateLabel.text = UserDefaultStorage.userName
             }
         }
     }
@@ -179,7 +183,7 @@ extension CharacterVC: UITableViewDelegate {
                 
                 headerView.dateLabel.text = String(birth[yearRange]) + "." + String(birth[monthRange]) + "." + String(birth[dayRange])
             }
-            headerView.nameLabel.text = report?.character.characterName
+//            headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             
@@ -300,12 +304,20 @@ extension CharacterVC: UITableViewDataSource {
                 } else {
                     if isDetail {
                         firstCell.moreButton.isHidden = true
+                        
                     }
                     firstCell.characterData = self.characterModel?.data.character
                     firstCell.upperView = upperView
                     firstCell.setupAutoLayout()
-                    firstCell.data = posts[0]
-                    firstCell.setData()
+                    
+                    if isDetail {
+                        firstCell.lookData = lookPosts[0]
+                        firstCell.setLookData()
+                    } else {
+                        firstCell.data = posts[0]
+                        firstCell.setData()
+                    }
+                    
                     firstCell.emptyStateImageView.isHidden = true
                     firstCell.emptyStateLabel.isHidden = true
                 }
@@ -315,6 +327,7 @@ extension CharacterVC: UITableViewDataSource {
                 else { return UITableViewCell() }
                 if isDetail {
                     restCell.moreButton.isHidden = true
+//                    restCell.data = lookPosts[indexPath.row-1]
                 }
                 restCell.rootVC = self
                 restCell.characterData = self.characterModel?.data.character
@@ -352,9 +365,11 @@ extension CharacterVC {
                     
                     if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
-                       let privacy = self.report?.character.characterPrivacy {
+                       let privacy = self.report?.character.characterPrivacy{
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = !privacy
+                        self.upperView.backgroundView.backgroundColor = self.colors[imageIndex - 1]
+                        self.headerView.nameLabel.text = self.report?.character.characterName
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {
@@ -374,14 +389,24 @@ extension CharacterVC {
                 do {
                     self.lookPosts.removeAll()
                     self.lookDetailModel = try result.map(LookDetailModel.self)
-                    self.lookPosts.append(contentsOf: self.lookDetailModel?.data.character.activity ?? [])
+                    
                     self.detailReport = self.lookDetailModel?.data
                     
+                    if let data = self.lookDetailModel?.data.character.activity {
+                        self.lookPosts = data
+                    }
+                    
                     if let level = self.detailReport?.character.characterLevel,
-                       let imageIndex = self.detailReport?.character.characterIndex,
-                       let privacy = self.detailReport?.character.characterPrivacy {
-                        self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
+                       let imageIndex = self.detailReport?.character.characterImageIndex,
+                       let privacy = self.detailReport?.character.characterPrivacy,
+                       let name = self.detailReport?.character.characterName {
+//                        self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = !privacy
+//                        self.level = level
+//                        self.name = name
+//                        self.imageIndex = imageIndex
+                        self.headerView.nameLabel.text = name
+                        self.upperView.backgroundView.backgroundColor = self.colors[imageIndex - 1]
                     }
                     self.mainTableView.reloadData()
                 } catch(let err) {

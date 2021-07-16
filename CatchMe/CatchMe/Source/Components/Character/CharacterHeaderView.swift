@@ -61,9 +61,9 @@ class CharacterHeaderView: UIView {
     }
     
     // MARK: - Lifecycle
-    init(date: String = "123", name: String = "") {
+    init(date: String = "", name: String = "", isDetail: Bool) {
         super.init(frame: .zero)
-        configUI(date: date, name: name)
+        configUI(date: date, name: name, isDetail: isDetail)
         setupAutoLayout()
     }
 
@@ -72,11 +72,12 @@ class CharacterHeaderView: UIView {
     }
     
     // MARK: - Custom Method
-    func configUI(date: String, name: String) {
+    func configUI(date: String, name: String, isDetail: Bool) {
         backgroundColor = .black100
         
         dateLabel.text = date
         nameLabel.text = name
+        writeButton.isHidden = isDetail
     }
         
     private func setupAutoLayout() {
@@ -119,5 +120,9 @@ class CharacterHeaderView: UIView {
             make.leading.equalTo(nameView.snp.leading)
             make.trailing.equalTo(nameView.snp.trailing)
         }
+    }
+    
+    func setupLabel(name: String) {
+        nameLabel.text = name
     }
 }

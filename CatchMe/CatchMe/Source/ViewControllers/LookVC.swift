@@ -24,6 +24,7 @@ class LookVC: UIViewController {
     //MARK: - Network
     private let authProvider = MoyaProvider<LookService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     var otherCharacter: LookModel?
+    var lookCharacter: LookCharacterReportData?
     
     //MARK: - Server Data
     var nicknames: [String] = []
@@ -152,7 +153,10 @@ extension LookVC: UICollectionViewDelegate {
         /// user_id 보내주기 property: userid
         vc.userId = userids[indexPath.item]
         vc.isDetail = true
-        vc.headerView.dateLabel.text = nicknames[indexPath.item]
+        vc.name = names[indexPath.item]
+        vc.nickname = nicknames[indexPath.item]
+//        vc.upperView.backgroundView.backgroundColor = colors[indexs[indexPath.row]-1]
+        vc.upperView.characterImageView.image = setCharacterImage(level: levels[indexPath.item], index: images[indexPath.item], size: 151)
         print("-----------index-------------")
         print(indexs[indexPath.item])
         print("-----------user_id-------------")

@@ -5,23 +5,31 @@
 //  Created by Thisisme Hi on 2021/07/16.
 //
 
+import Foundation
+
 // MARK: - LookDetailModel
 struct LookDetailModel: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: LookDetail
+    let data: LookCharacterReportData
 }
 
-// MARK: - LookDetail
-struct LookDetail: Codable {
+// MARK: - LookCharacterReportData
+struct LookCharacterReportData: Codable {
+    let character: LookCharacterDetail
+    let characterActivitiesCount, catchRate: Int
+}
+
+// MARK: - Character
+struct LookCharacterDetail: Codable {
     let userID, userNickname, characterName: String
     let characterIndex, characterImageIndex: Int
     let characterPrivacy: Bool
     let characterLevel: Int
     let characterBirth: String
     let activityCount: Int
-    let activity: [Activity]?
+    let activity: [LookActivityDetail]?
     let recentActivityTime: String
 
     enum CodingKeys: String, CodingKey {
@@ -34,7 +42,7 @@ struct LookDetail: Codable {
 }
 
 // MARK: - Activity
-struct Activity: Codable {
+struct LookActivityDetail: Codable {
     let id: String
     let activityIndex: Int
     let activityContent: String

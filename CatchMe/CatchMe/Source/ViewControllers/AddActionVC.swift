@@ -28,6 +28,7 @@ class AddActionVC: UIViewController {
     var buttonImage: UIImage?
     var report: CharacterReportData?
     var isEdited: Bool = false
+    var reloadData: (() -> ())?
     
     let imagePicker = UIImagePickerController()
     let nameView = UIView()
@@ -346,7 +347,7 @@ class AddActionVC: UIViewController {
     @objc func touchupUploadButton(_ sender: UIButton) {
         guard let date = self.dateLabel.text?.split(separator: ".") else { print("123123123123"); return }
 
-        if isEdited{
+        if isEdited {
             print("수정")
             AddActionEditService.shared.editActivity(imageData: buttonImage,
                                                      content: activityTextView.text!,
@@ -385,6 +386,7 @@ class AddActionVC: UIViewController {
                     switch result {
                     case .success(let msg):
                         print("success", msg)
+                        self.reloadData?()
                         self.dismiss(animated: true, completion: nil)
                     case .requestErr(let msg):
                         print("requestERR", msg)
@@ -397,7 +399,7 @@ class AddActionVC: UIViewController {
                     }
                 }
             }
-        }        
+        }
     }
 }
 

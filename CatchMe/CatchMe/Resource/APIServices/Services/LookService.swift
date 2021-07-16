@@ -9,7 +9,7 @@ import Moya
 
 enum LookService {
     case other
-    case detail(String, Int)
+    case otherDetail(String, Int)
 }
 
 extension LookService: TargetType {
@@ -21,7 +21,7 @@ extension LookService: TargetType {
         switch self {
         case .other:
             return "/other"
-        case .detail(let userID, let index):
+        case .otherDetail(let userID, let index):
             return "/other/detail/?\(userID)/?\(index)"
         }
     }
@@ -29,7 +29,7 @@ extension LookService: TargetType {
     var method: Moya.Method {
         switch self {
         case .other,
-             .detail:
+             .otherDetail:
             return .get
         }
     }
@@ -42,7 +42,7 @@ extension LookService: TargetType {
         switch self {
         case .other:
             return .requestPlain
-        case .detail(let userID, let index):
+        case .otherDetail(let userID, let index):
             return .requestPlain
         }
     }

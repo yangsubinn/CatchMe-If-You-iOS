@@ -37,6 +37,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Server Data
     var report: CharacterReportData?
+    var characterData: CharacterDetail?
     var data: ActivityDetail?
     var lookData: LookActivityDetail?
     var posts = [ActivityDetail]()
@@ -53,22 +54,19 @@ class CharacterVC: UIViewController {
         configUI()
         setupAutoLayout()
         setupTableView()
-        
+                
         if isDetail {
             print("다른 사람들 구경하기 상세")
             fetchLookDetail()
             naviBar.editButton.isHidden = true
+            headerView.nameLabel.text = lookDetailModel?.data.character.characterName
             headerView.lockImageView.isHidden = true
             headerView.writeButton.isHidden = true
             headerView.fromLabel.text = "님의"
-            
-            
-            
         } else if isDetail == false {
             print("그냥 내 캐릭터 상세")
             fetchCharacterDetail() {
                 self.headerView.dateLabel.text = UserDefaultStorage.userName
-//                self.headerView.nameLabel.text = 
             }
         }
     }
@@ -375,7 +373,6 @@ extension CharacterVC {
             case .success(let result):
                 do {
                     self.lookPosts.removeAll()
-                    
                     self.lookDetailModel = try result.map(LookDetailModel.self)
                     self.lookPosts.append(contentsOf: self.lookDetailModel?.data.character.activity ?? [])
                     self.detailReport = self.lookDetailModel?.data

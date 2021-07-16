@@ -61,7 +61,7 @@ class CharacterHeaderView: UIView {
     }
     
     // MARK: - Lifecycle
-    init(date: String = "", name: String = "") {
+    init(date: String = "123", name: String = "") {
         super.init(frame: .zero)
         configUI(date: date, name: name)
         setupAutoLayout()

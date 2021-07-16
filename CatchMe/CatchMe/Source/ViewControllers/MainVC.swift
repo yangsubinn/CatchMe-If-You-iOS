@@ -64,7 +64,7 @@ class MainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupDate()
         nameLabel.text = firstname
-        nameLabel.addCharacterSpacing()
+        nameLabel.addCharacterSpacing(kernValue: -0.6, paragraphValue: 9)
         pageControl.selectedPage = 0
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
@@ -277,7 +277,6 @@ class MainVC: UIViewController {
     @objc func touchupCatching(_ sender: UIButton) {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddActionVC") as? AddActionVC else { return }
-        /// character index, character nickname, imageindex값만 넘겨주세요.
         
         print("index : \(indexs[currentIndex])")
         print("name : \(names[currentIndex])")

@@ -22,13 +22,15 @@ class NavigationBar: UIView {
     
     var index = 0
     var name = ""
+    var level = 0
     
     // MARK: - Lifecycle
-    init(vc: UIViewController, index: Int, name: String) {
+    init(vc: UIViewController, index: Int, name: String, level: Int) {
         super.init(frame: .zero)
         viewController = vc
         self.index = index
         self.name = name
+        self.level = level
         configUI()
     }
     

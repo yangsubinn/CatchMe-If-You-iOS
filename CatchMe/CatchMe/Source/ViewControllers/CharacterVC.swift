@@ -21,7 +21,7 @@ class CharacterVC: UIViewController {
     
     // MARK: - Lazy Properties
     /// image index, name, level
-    lazy var naviBar = NavigationBar(vc: self, index: 1, name: "귀여운 캐츄")
+    lazy var naviBar = NavigationBar(vc: self, index: index, name: name, level: level)
     
     // MARK: - Properties
     let upperView = CharacterUpperView()
@@ -42,6 +42,8 @@ class CharacterVC: UIViewController {
     var posts = [ActivityDetail]()
     var index = 0
     var userId = ""
+    var level = 0
+    var name = ""
     var detailReport: LookCharacterReportData?
     var lookPosts = [LookActivityDetail]()
     
@@ -62,7 +64,10 @@ class CharacterVC: UIViewController {
             headerView.fromLabel.text = "님의"
         } else if isDetail == false {
             print("그냥 내 캐릭터 상세")
-            fetchCharacterDetail(completion: { })
+            fetchCharacterDetail(completion: {
+                self.headerView.nameLabel.text = self.name
+                self.headerView.dateLabel.text = UserDefaultStorage.userName
+            })
         }
     }
     

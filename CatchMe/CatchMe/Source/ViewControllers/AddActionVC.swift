@@ -377,27 +377,26 @@ class AddActionVC: UIViewController {
                 uploadButton.isEnabled = true
             } else {
                 uploadButton.isEnabled = false
-                
-                AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
-                                                             content: activityTextView.text!,
-                                                             year: String(date[0]),
-                                                             month: String(date[1]),
-                                                             day: String(date[2]),
-                                                             index: characterIndex) { result in
-                    switch result {
-                    case .success(let msg):
-                        print("success", msg)
-                        self.reloadData?()
-                        self.dismiss(animated: true, completion: nil)
-                    case .requestErr(let msg):
-                        print("requestERR", msg)
-                    case .pathErr:
-                        print("pathERR")
-                    case .serverErr:
-                        print("serverERR")
-                    case .networkFail:
-                        print("networkFail")
-                    }
+            }
+            AddActionNewService.shared.uploadNewActivity(imageData: buttonImage,
+                                                         content: activityTextView.text!,
+                                                         year: String(date[0]),
+                                                         month: String(date[1]),
+                                                         day: String(date[2]),
+                                                         index: characterIndex) { result in
+                switch result {
+                case .success(let msg):
+                    print("success", msg)
+                    self.reloadData?()
+                    self.dismiss(animated: true, completion: nil)
+                case .requestErr(let msg):
+                    print("requestERR", msg)
+                case .pathErr:
+                    print("pathERR")
+                case .serverErr:
+                    print("serverERR")
+                case .networkFail:
+                    print("networkFail")
                 }
             }
         }

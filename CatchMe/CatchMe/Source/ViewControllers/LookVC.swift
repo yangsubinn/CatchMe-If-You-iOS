@@ -147,14 +147,7 @@ extension LookVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
-        /// characterIndex 보내주기 property: index
-//        vc.index = indexs[indexPath.item]
-        /// user_id 보내주기 property: userid
-//        vc.userid = userids[indexPath.item]
-        print("-----------index-------------")
-        print(indexs[indexPath.item])
-        print("-----------user_id-------------")
-        print(userids[indexPath.item])
+
         navigationController?.pushViewController(vc, animated: true)
     }
 }

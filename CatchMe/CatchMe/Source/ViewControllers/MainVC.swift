@@ -271,11 +271,7 @@ class MainVC: UIViewController {
     @objc func touchupCatching(_ sender: UIButton) {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddActionVC") as? AddActionVC else { return }
-        /// character index, character nickname, imageindex값만 넘겨주세요.
-        
-        // vc.index = indexs[currentIndex]
-        // vc.nickname = names[currnetIndex]
-        // vc.imageIndex = characters[currentIndex]
+
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -370,12 +366,7 @@ extension MainVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
-        /// characterIndex 보내주세요 property: index
-//        vc.index = indexs[indexPath.item]
-        print("-------------------------------")
-        print(indexs)
-        print(indexs[indexPath.item])
-        print("-------------------------------")
+
         navigationController?.pushViewController(vc, animated: true)
     }
 }

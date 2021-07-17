@@ -16,7 +16,10 @@ class CharacterTVC: UITableViewCell {
     // MARK: - Properties
     var rootVC: UIViewController?
     var characterData: CharacterDetail?
+    
     var data: ActivityDetail?
+    var lookData: LookActivityDetail?
+
     var upperView: CharacterUpperView?
     var headerView: CharacterHeaderView?
 
@@ -256,12 +259,20 @@ class CharacterTVC: UITableViewCell {
         }
     }
     
-//    func setData(date: String, comment: String, image: String) {
-//        dateLabel.text = date
-//        commentLabel.text = comment
-//        
-//        if let image = URL(string: image) {
-//            photoImageView.kf.setImage(with: image)
-//        }
-//    }
+    func setLookData() {
+        guard let data = lookData else { return }
+        dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
+        commentLabel.text = data.activityContent
+
+        if let image = URL(string: data.activityImage ?? "") {
+            if data.activityImage == "" {
+                photoImageView.isHidden = true
+            } else {
+                photoImageView.kf.setImage(with: image)
+                photoImageView.snp.makeConstraints { make in
+                    make.height.equalTo(228)
+                }
+            }
+        }
+    }
 }

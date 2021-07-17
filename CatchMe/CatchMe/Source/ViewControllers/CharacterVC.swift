@@ -40,33 +40,33 @@ class CharacterVC: UIViewController {
     var characterData: CharacterDetail?
     var data: ActivityDetail?
     var lookData: LookActivityDetail?
-    var posts = [ActivityDetail]()
-    var index = 0
-    var userId = ""
-    var level = 0
-    var name = ""
-    var imageIndex = 0
-    var nickname = ""
-    var activityIndex = 0
     var detailReport: LookCharacterReportData?
+    var posts = [ActivityDetail]()
     var lookPosts = [LookActivityDetail]()
+    var userId = ""
+    var name = ""
+    var nickname = ""
+    var level = 0
+    var index = 0
+    var imageIndex = 0
+    var activityIndex = 0
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         setupAutoLayout()
         setupTableView()
-                
+       
         if isDetail {
             print("다른 사람들 구경하기 상세")
             fetchLookDetail()
             naviBar.editButton.isHidden = true
-//            upperView.characterImageView.image = setCharacterImage(level: level, index: imageIndex, size: 151)
+            //            upperView.characterImageView.image = setCharacterImage(level: level, index: imageIndex, size: 151)
             headerView.dateLabel.text = nickname
             headerView.lockImageView.isHidden = true
-//            headerView.writeButton.isHidden = true
+            //            headerView.writeButton.isHidden = true
             headerView.fromLabel.text = "님의"
             
         } else if isDetail == false {
@@ -186,18 +186,28 @@ extension CharacterVC: UITableViewDelegate {
                 
                 headerView.dateLabel.text = String(birth[yearRange]) + "." + String(birth[monthRange]) + "." + String(birth[dayRange])
             }
-//            headerView.nameLabel.text = report?.character.characterName
+            //            headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             
             return headerView
         default:
-            if posts.isEmpty {
-                return nil
-            } else {
-                let footerView = CharacterFooterView()
-                return footerView
+            if isDetail {
+                if lookPosts.isEmpty {
+                    return nil
+                } else {
+                    let footerView = CharacterFooterView()
+                    return footerView
+                }
+            } else if !isDetail {
+                if posts.isEmpty {
+                    return nil
+                } else {
+                    let footerView = CharacterFooterView()
+                    return footerView
+                }
             }
+          return UIView()
         }
     }
     
@@ -206,14 +216,24 @@ extension CharacterVC: UITableViewDelegate {
         case 0:
             return 127
         default:
-            if posts.isEmpty {
-                return 0
-            } else {
-                if posts.count < 4 {
+            if isDetail {
+                if lookPosts.isEmpty {
+                    return 0
+                } else if lookPosts.count < 4 {
                     return 600
+                } else {
+                    return 300
                 }
-                return 300
+            } else if !isDetail {
+                if posts.isEmpty {
+                return 0
+                } else if posts.count < 4 {
+                    return 600
+                } else {
+                    return 300
+                }
             }
+            return CGFloat()
         }
     }
     
@@ -272,17 +292,28 @@ extension CharacterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if posts.isEmpty {
-                return 1 + 1 // reportCell + emptySetupLayout인 경우 emptyState 때문에 무조건 줘야 하는 것
-            } else {
-                return 1 + posts.count // reportCell + empty가 아닌 경우
+            if isDetail {
+                if lookPosts.isEmpty {
+                    return 1 + 1
+                } else {
+                    return 1 + lookPosts.count
+                }
+            } else if !isDetail {
+                if posts.isEmpty {
+                    return 1 + 1
+                } else {
+                    return 1 + posts.count
+                }
             }
+            return 0
         default:
             return 0
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(lookPosts.count, "lookPosts.count")
+        print(posts.count, "posts.count")
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
@@ -302,50 +333,67 @@ extension CharacterVC: UITableViewDataSource {
                 else { return UITableViewCell() }
                 firstCell.rootVC = self
                 firstCell.selectionStyle = .none
-                if posts.count == 0 {
-                    firstCell.setupEmptyLayout()
-                } else {
-                    if isDetail {
+                if isDetail { // 다른 사람의 구경하기 상세뷰인 경우 - lookPosts
+                    print("다른사람구경할 거야 - firstcell")
+                    if lookPosts.count == 0 {
+                        firstCell.setupEmptyLayout()
                         firstCell.moreButton.isHidden = true
-                        
-                    }
-                    firstCell.characterData = self.characterModel?.data.character
-                    firstCell.upperView = upperView
-                    firstCell.setupAutoLayout()
-                    
-                    if isDetail {
+                    } else {
+                        firstCell.setupAutoLayout()
+                        firstCell.lookCharacterData = self.lookDetailModel?.data.character
+                        firstCell.upperView = upperView
                         firstCell.lookData = lookPosts[0]
                         firstCell.setLookData()
+                        firstCell.emptyStateImageView.isHidden = true
+                        firstCell.emptyStateLabel.isHidden = true
+                    }
+                } else if isDetail == false { // 내 캐릭터뷰인 경우 - posts
+                    print("내거구경할거야")
+                    if posts.count == 0 {
+                        firstCell.setupEmptyLayout()
                     } else {
+                        firstCell.setupAutoLayout()
+                        firstCell.characterData = self.characterModel?.data.character
+                        firstCell.upperView = upperView
                         firstCell.data = posts[0]
                         firstCell.setData()
+                        firstCell.emptyStateImageView.isHidden = true
+                        firstCell.emptyStateLabel.isHidden = true
                     }
-                    
-                    firstCell.emptyStateImageView.isHidden = true
-                    firstCell.emptyStateLabel.isHidden = true
                 }
                 return firstCell
             } else { // 두 번째부터 lineView가 붙여져 있는 cell
-                guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as? CharacterTVC
+                guard let restCell = tableView.dequeueReusableCell(withIdentifier: "CharacterTVC", for: indexPath) as?
+                        CharacterTVC
                 else { return UITableViewCell() }
-                if isDetail {
-                    restCell.moreButton.isHidden = true
-//                    restCell.data = lookPosts[indexPath.row-1]
-//                    restCell.setData(date: String(lookPosts[indexPath.row-1].activityYear + "." lookPosts[indexPath.row-1].activityMonth + "." + lookPosts[indexPath.row-1].activityDay), comment: lookPosts[indexPath.row-1].activityContent, image: lookPosts[indexPath.row-1].activityImage)
-                }
                 restCell.rootVC = self
-                restCell.characterData = self.characterModel?.data.character
-                restCell.upperView = upperView
                 restCell.selectionStyle = .none
                 restCell.setupAutoLayout()
-                restCell.data = posts[indexPath.row-1]
-                restCell.setData()
-                if posts[indexPath.row - 1].activityContent == "Dsdfs" {
-                    print("asdasd", posts[indexPath.row - 1])
+                restCell.upperView = upperView
+
+                if isDetail {
+                    print("다른사람구경할 거야 - restcell")
+                    restCell.moreButton.isHidden = true
+                    firstCell.lookCharacterData = self.lookDetailModel?.data.character
+                    restCell.lookData = lookPosts[indexPath.row-1]
+                    restCell.setLookData()
+                   
+                } else if !isDetail {
+                    restCell.characterData = self.characterModel?.data.character
+                    restCell.data = posts[indexPath.row-1]
+                    restCell.setData()
+                    if posts[indexPath.row - 1].activityContent == "Dsdfs" {
+                                        print("asdasd", posts[indexPath.row - 1])
+                  }
+                    
                 }
+                restCell.emptyStateImageView.isHidden = true
+                restCell.emptyStateLabel.isHidden = true
                 return restCell
             }
         default:
+            print(lookPosts.count, "lookPosts.count")
+            print(posts.count, "posts.count")
             return UITableViewCell()
         }
     }
@@ -370,7 +418,7 @@ extension CharacterVC {
                     if let level = self.report?.character.characterLevel,
                        let imageIndex = self.report?.character.characterImageIndex,
                        let privacy = self.report?.character.characterPrivacy,
-                       let activity = self.report?.character.activity{
+                       let activity = self.report?.character.activity {
                         self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = !privacy
                         self.upperView.backgroundView.backgroundColor = self.colors[imageIndex - 1]
@@ -405,11 +453,11 @@ extension CharacterVC {
                        let imageIndex = self.detailReport?.character.characterImageIndex,
                        let privacy = self.detailReport?.character.characterPrivacy,
                        let name = self.detailReport?.character.characterName {
-//                        self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
+                        //                        self.upperView.characterImageView.image = self.setCharacterImage(level: level, index: imageIndex, size: 151)
                         self.headerView.lockImageView.isHidden = !privacy
-//                        self.level = level
-//                        self.name = name
-//                        self.imageIndex = imageIndex
+                        //                        self.level = level
+                        //                        self.name = name
+                        //                        self.imageIndex = imageIndex
                         self.headerView.nameLabel.text = name
                         self.upperView.backgroundView.backgroundColor = self.colors[imageIndex - 1]
                     }

@@ -16,10 +16,13 @@ class CharacterFirstTVC: UITableViewCell {
     
     // MARK: - Properties
     var rootVC: UIViewController?
+    
     var characterData: CharacterDetail?
-    var data: ActivityDetail?
     var lookCharacterData: LookCharacterDetail?
+    
+    var data: ActivityDetail?
     var lookData: LookActivityDetail?
+    
     var upperView: CharacterUpperView?
     var headerView: CharacterHeaderView?
 
@@ -256,6 +259,7 @@ class CharacterFirstTVC: UITableViewCell {
     }
     
     func setLookData() {
+        
         guard let data = lookData else { return }
         dateLabel.text = data.activityYear + "." + data.activityMonth + "." + data.activityDay
         commentLabel.text = data.activityContent

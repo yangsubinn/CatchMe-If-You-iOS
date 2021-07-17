@@ -41,6 +41,10 @@ class CharacterPopupVC: UIViewController {
         }
     }
     
+    func setupNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+    }
+    
     @objc func touchupDeleteButton(_ sender: UIButton) {
         AddActionDeleteService.shared.deleteActivity(index: characterIndex, activityIndex: activityIndex) { result in
             switch result {
@@ -48,6 +52,7 @@ class CharacterPopupVC: UIViewController {
                 if let msg = msg as? String {
                     print("success", msg)
                 }
+                self.setupNotification()
                 self.dismiss(animated: true, completion: nil)
             case .requestErr(let msg):
                 print("requestERR", msg)

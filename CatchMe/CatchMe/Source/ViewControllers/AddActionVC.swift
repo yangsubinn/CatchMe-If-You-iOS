@@ -133,7 +133,7 @@ class AddActionVC: UIViewController {
     
     let uploadButton = BottomButton(title: "캐칭 완료").then {
         $0.backgroundColor = .gray300
-        $0.addTarget(self, action: #selector(touchupUploadButton(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(touchupUploadButton), for: .touchUpInside)
     }
     
     // MARK: - Lifecycle
@@ -143,6 +143,11 @@ class AddActionVC: UIViewController {
         setupAutoLayout()
         setupTextView()
         setupImagePicker()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
     }
     
     // MARK: - Custom Method
@@ -316,6 +321,10 @@ class AddActionVC: UIViewController {
         dateLabel.text = text
     }
     
+    func setupNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+    }
+    
     // MARK: - @objc
     @objc func touchupCloseButton(_ sender: UIButton) {
         let vc = AddActionPopupVC()
@@ -363,7 +372,9 @@ class AddActionVC: UIViewController {
                 switch result {
                 case .success(let msg):
                     print("success", msg)
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: {
+                        self.setupNotification()
+                    })
                 case .requestErr(let msg):
                     print("requestERR", msg)
                 case .pathErr:

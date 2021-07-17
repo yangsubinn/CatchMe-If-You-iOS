@@ -46,6 +46,7 @@ class MainCardVC: UIViewController {
         self.isFirstButtonChecked = true
         self.isSecondButtonChecked = false
         self.isThirdButtonChecked = false
+        fetchCharacter()
     }
 
     //MARK: - Life Cycle
@@ -58,7 +59,7 @@ class MainCardVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchCharacter()
+//        fetchCharacter()
     }
     
     //MARK: - Custom Method

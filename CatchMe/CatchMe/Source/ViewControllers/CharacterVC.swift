@@ -58,6 +58,7 @@ class CharacterVC: UIViewController {
         configUI()
         setupAutoLayout()
         setupTableView()
+        setupNotification()
        
         if isDetail {
             print("다른 사람들 구경하기 상세")
@@ -133,6 +134,15 @@ class CharacterVC: UIViewController {
             make.width.equalTo(189)
             make.height.equalTo(58)
         }
+    }
+    
+    func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+    }
+    
+    @objc
+    func reloadTableView() {
+        mainTableView.reloadData()
     }
     
     @objc func touchupCatchGuidebutton(_ sender: UIButton) {

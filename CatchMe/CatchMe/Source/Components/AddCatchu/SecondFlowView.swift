@@ -19,7 +19,18 @@ class SecondFlowView: UIView {
     
     var textCount = 0
     var randomIndex = Int.random(in: 0...5)
-    let recommends: [String] = ["‘___없이 못사는 ___러버’", "‘___랑 함께사는 ___집사’", "‘___만 먹는 ___중독자’", "‘___를 하루종일 하는 ___러버’", "‘___이 너무 재밌는 ___처돌이’", "‘당장 ___하고픈 ___중독자’"]
+    let recommends: [String] = ["___없이 못사는 몰랑이",
+                                "최근 ___에 빠져버린 회원님",
+                                "숨만 쉬고 ____만 하는 후후하하",
+                                "눈뜨면 ____부터 하는 병아리",
+                                "자기 전에 무조건 ___ 하고 자는 북극곰",
+                                "세상에서 제일 가는 ___러버",
+                                "___에 미친 개구쟁이",
+                                "자기전까지 ___만 생각하는 잠만보",
+                                "____에 미친 판다",
+                                "꿈에서도 ___만 생각하는 꾸물이",
+                                "나는야 ___ 제일 좋아",
+                                "머릿속에 온통 ___ 생각뿐인 런닝맨"]
     let babyCatchus: [UIImage?] = [Character.green.getCharacterImage(phase: 1, size: 151),
                                    Character.yellowGreen.getCharacterImage(phase: 1, size: 151),
                                    Character.orange.getCharacterImage(phase: 1, size: 151),

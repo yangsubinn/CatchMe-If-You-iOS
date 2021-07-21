@@ -156,6 +156,10 @@ class CharacterFirstTVC: UITableViewCell {
             make.trailing.equalTo(commentImageView.snp.trailing).inset(14)
             make.bottom.equalTo(commentImageView.snp.bottom).inset(12)
         }
+        
+        photoImageView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+        }
     }
     
     func setupEmptyLayout() {

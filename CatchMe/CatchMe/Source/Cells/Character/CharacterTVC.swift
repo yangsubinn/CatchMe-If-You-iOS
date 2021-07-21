@@ -154,7 +154,8 @@ class CharacterTVC: UITableViewCell {
         }
         
         commentView.snp.makeConstraints { make in
-            make.width.equalTo(303)
+            make.width.equalToSuperview()
+            make.height.equalTo(42)
         }
         
         commentLabel.snp.makeConstraints { make in

@@ -80,8 +80,9 @@ class AddActionDatePickerPopupView: UIView {
         }
         
         selectLineView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(126)
+//            make.top.equalTo(self.snp.top).inset(126)
             make.centerX.equalTo(datePicker.snp.centerX)
+            make.centerY.equalTo(datePicker.snp.centerY)
             make.width.equalTo(275)
             make.height.equalTo(38)
         }

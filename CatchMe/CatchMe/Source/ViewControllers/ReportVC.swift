@@ -187,6 +187,7 @@ class ReportVC: UIViewController {
         dateFormatter.dateFormat = "M"
         let titleMonth = dateFormatter.string(from: firstDayOfMonth!)
         calendarTitleView.applyMonthLabel(to: titleMonth)
+        reportView.titleView.applyMonthLabel(to: titleMonth)
         
         /// Server 연결을 위한 month 설정
         dateFormatter.dateFormat = "MM"

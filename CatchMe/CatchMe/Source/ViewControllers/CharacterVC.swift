@@ -419,6 +419,7 @@ extension CharacterVC {
                     
                     self.characterModel = try result.map(CharacterModel.self)
                     self.report = self.characterModel?.data
+                    self.naviBar.characterData = self.characterModel?.data.character
                     
                     if let data = self.characterModel?.data.character.activity {
                         self.posts = data

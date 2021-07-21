@@ -184,7 +184,7 @@ extension PopupView: UICollectionViewDataSource {
         }
         
         cell.characterImage.image = catchuImages[indexPath.item]
-        cell.backgroundImage.backgroundColor = colors[catchuBack[indexPath.item]]
+        cell.backgroundImage.backgroundColor = colors[catchuBack[indexPath.item]-1]
         
         return cell
     }

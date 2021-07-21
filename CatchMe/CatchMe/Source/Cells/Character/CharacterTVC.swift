@@ -63,7 +63,7 @@ class CharacterTVC: UITableViewCell {
         $0.alignment = .center
     }
     
-    let commentView = UIImageView().then {
+    let commentImageView = UIImageView().then {
         $0.image = UIImage(named: "icCommentRectangle")
     }
     
@@ -111,8 +111,8 @@ class CharacterTVC: UITableViewCell {
     func setupAutoLayout() {
         addSubviews([lineTopView, lineView, pinImageView,
                      dateLabel, contentStackView, moreButton])
-        commentView.addSubview(commentLabel)
-        contentStackView.addArrangedSubview(commentView)
+        commentImageView.addSubview(commentLabel)
+        contentStackView.addArrangedSubview(commentImageView)
         contentStackView.addArrangedSubview(photoImageView)
         
         lineTopView.snp.makeConstraints { make in
@@ -153,8 +153,9 @@ class CharacterTVC: UITableViewCell {
             make.trailing.equalTo(self.snp.trailing).inset(28)
         }
         
-        commentView.snp.makeConstraints { make in
-            make.width.equalTo(303)
+        commentImageView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(42)
         }
         
         commentLabel.snp.makeConstraints { make in
@@ -162,6 +163,10 @@ class CharacterTVC: UITableViewCell {
             make.leading.equalTo(14)
             make.trailing.equalTo(-14)
             make.bottom.equalTo(-12)
+        }
+        
+        photoImageView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
         }
     }
 

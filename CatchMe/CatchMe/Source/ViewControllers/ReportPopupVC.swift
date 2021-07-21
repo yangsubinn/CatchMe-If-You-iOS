@@ -15,11 +15,13 @@ class ReportPopupVC: UIViewController {
     
     // MARK: - Properties
     var date: String?
+    var characterIndex: Int?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        configUI()
     }
     
     // MARK: - Custom Method
@@ -34,5 +36,9 @@ class ReportPopupVC: UIViewController {
             make.width.equalTo(280 * (UIScreen.main.bounds.size.width / 375))
             make.height.equalTo(height == 1 ? 415 : (415 * height) * 0.85)
         }
+    }
+    
+    private func configUI() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }

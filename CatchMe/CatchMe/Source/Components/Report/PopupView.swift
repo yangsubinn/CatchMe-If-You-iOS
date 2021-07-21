@@ -63,6 +63,7 @@ class PopupView: UIView {
         viewController = vc
         configUI(date: date)
         setupCollectionView()
+        setupButtonAction()
         applyButtonHidden()
     }
     
@@ -155,6 +156,16 @@ class PopupView: UIView {
                 rightButton.isHidden = false
             }
         }
+    }
+    
+    private func setupButtonAction() {
+        let checkAction = UIAction { _ in
+            let storyboard = UIStoryboard(name: "Character", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(identifier: "CharacterVC") as? CharacterVC else { return }
+            vc.index = self.catchuIndex[Int(self.currentIndex)]
+            self.viewController.navigationController?.pushViewController(vc, animated: true)
+        }
+        checkButton.addAction(checkAction, for: .touchUpInside)
     }
     
     func setPopupImages(catchus: [String], images: [UIImage?], index: [Int], back: [Int]) {

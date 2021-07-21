@@ -347,7 +347,8 @@ extension ReportVC: UICollectionViewDelegate {
         
         /// 이벤트가 일어난 날짜에만 터치 이벤트가 일어날 수 있도록
         if currentCell.characterImage.isHidden == false {
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "ReportPopupVC") as? ReportPopupVC else { return }
+            guard let nvc = storyboard?.instantiateViewController(withIdentifier: "ReportPopupNavi") as? UINavigationController else { return }
+            guard let vc = nvc.viewControllers.first as? ReportPopupVC else { return }
             
             if let text = currentCell.dateLabel.text {
                 var newText = ""
@@ -398,9 +399,9 @@ extension ReportVC: UICollectionViewDelegate {
                 print(indexArr)
             }
             
-            vc.modalPresentationStyle = .overCurrentContext
-            vc.modalTransitionStyle = .crossDissolve
-            present(vc, animated: true, completion: nil)
+            nvc.modalPresentationStyle = .overCurrentContext
+            nvc.modalTransitionStyle = .crossDissolve
+            present(nvc, animated: true, completion: nil)
         }
     }
 }

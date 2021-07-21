@@ -196,7 +196,6 @@ extension CharacterVC: UITableViewDelegate {
                 
                 headerView.dateLabel.text = String(birth[yearRange]) + "." + String(birth[monthRange]) + "." + String(birth[dayRange])
             }
-            //            headerView.nameLabel.text = report?.character.characterName
             headerView.makeShadow(.black, 0.15, CGSize(width: 0, height: 6), 8)
             headerView.writeButton.addTarget(self, action: #selector(touchupWriteButton(_:)), for: .touchUpInside)
             
@@ -420,6 +419,7 @@ extension CharacterVC {
                     
                     self.characterModel = try result.map(CharacterModel.self)
                     self.report = self.characterModel?.data
+                    self.naviBar.characterData = self.characterModel?.data.character
                     
                     if let data = self.characterModel?.data.character.activity {
                         self.posts = data

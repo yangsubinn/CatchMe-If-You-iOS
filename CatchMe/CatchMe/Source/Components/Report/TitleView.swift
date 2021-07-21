@@ -61,12 +61,11 @@ class TitleView: UIView {
         addSubviews([nicknameLabel, postpositionLabel, monthLabel])
         
         nicknameLabel.text = nickname
-        monthLabel.text = applyThisMonthText() + " 가장 많이 잡은 캐츄는"
+        monthLabel.text = " 월" + " 가장 많이 잡은 캐츄는"
     }
     
-    private func applyThisMonthText() -> String {
-        dateformatter.dateFormat = "M월"
-        let month = dateformatter.string(from: Date())
-        return month
+    func applyMonthLabel(to month: String){
+        let monthString = month + "월"
+        monthLabel.text = monthString + " 가장 많이 잡은 캐츄는"
     }
 }

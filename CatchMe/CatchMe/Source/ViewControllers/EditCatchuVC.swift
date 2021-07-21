@@ -31,6 +31,7 @@ class EditCatchuVC: UIViewController {
     // MARK: - Server Data
     let viewModel = CharacterViewModel.shared
     var characterName: String = ""
+    var characterImageIndex: Int = 0
     var characterIndex: Int = 0
     var characterLevel: Int = 1
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
@@ -44,10 +45,7 @@ class EditCatchuVC: UIViewController {
         setCountLabel()
         setupButtonAction()
         
-        characterImageView.image = setCharacterImage(level: self.characterLevel, index: self.characterIndex, size: 101)
-        nameLabel.text = characterName
-        
-        
+        characterImageView.image = setCharacterImage(level: self.characterLevel, index: self.characterImageIndex, size: 101)
     }
     
     // MARK: - Custom Method
@@ -110,9 +108,9 @@ class EditCatchuVC: UIViewController {
         view.backgroundColor = .black100
         
         backgroundImageView.layer.cornerRadius = 125/2
-        backgroundImageView.backgroundColor = colors[characterIndex-1]
+        backgroundImageView.backgroundColor = colors[characterImageIndex-1]
         
-        characterImageView.image = setCharacterImage(level: characterLevel, index: characterIndex, size: 101)
+        characterImageView.image = setCharacterImage(level: characterLevel, index: characterImageIndex, size: 101)
         
         nameLabel.text = "이름 변경"
         nameLabel.font = .stringMediumSystemFont(ofSize: 18)
@@ -177,7 +175,9 @@ class EditCatchuVC: UIViewController {
         let editAction = UIAction { _ in
             print("edit")
             if let text = self.nameTextField.text {
-                self.viewModel.dispatchCharacterEdit(name: text, index: self.characterIndex, privacy: self.isLock, vc: self)
+                print("간다!!!!!!\(!self.isLock)")
+                self.viewModel.dispatchCharacterEdit(name: text, index: self.characterIndex, privacy: !(self.isLock), vc: self)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         editButton.addAction(editAction, for: .touchUpInside)

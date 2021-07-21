@@ -233,7 +233,7 @@ class AddActionVC: UIViewController {
         
         radiusImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.centerY.equalTo(pinkBackgroundView.snp.bottom)
+            make.bottom.equalTo(pinkBackgroundView.snp.bottom)
             make.height.equalTo(UIScreen.main.hasNotch ? 36 : 25)
         }
         

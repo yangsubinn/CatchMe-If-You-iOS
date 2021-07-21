@@ -58,15 +58,18 @@ class NavigationBar: UIView {
     }
     
     @objc func touchupEditButton() {
-        print(#fileID, #function, #line, "")
         let storyboard = UIStoryboard(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "EditCatchuVC") as? EditCatchuVC else { return }
-        guard let selectedData = self.characterData
-        else { return }
-        vc.characterName = selectedData.characterName
-        vc.characterIndex = selectedData.characterIndex
-        vc.characterLevel = selectedData.characterLevel
-        print("와")
+        if let data = characterData {
+            vc.characterName = data.characterName
+            vc.characterImageIndex = data.characterImageIndex
+            vc.characterIndex = data.characterIndex
+            vc.characterLevel = data.characterLevel
+            vc.isLock = !data.characterPrivacy
+            
+            print("데이터 프라이버시")
+            print(data.characterPrivacy)
+        }
         viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

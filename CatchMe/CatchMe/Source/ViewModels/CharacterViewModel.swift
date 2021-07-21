@@ -24,9 +24,6 @@ class CharacterViewModel {
             case .success(let result):
                 do {
                     self.editModel = try result.map(EditCharacterModel.self)
-                    
-                    /// 뷰 연결하고 나면 뷰 dismiss하는 action 추가
-                    // vc.dismiss(animated: true, completion: nil)
                 } catch(let err) {
                     print(err.localizedDescription)
                 }

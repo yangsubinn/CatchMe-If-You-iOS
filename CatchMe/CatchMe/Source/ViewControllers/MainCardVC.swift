@@ -43,10 +43,16 @@ class MainCardVC: UIViewController {
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     override func viewDidAppear(_ animated: Bool) {
-        self.isFirstButtonChecked = true
-        self.isSecondButtonChecked = false
-        self.isThirdButtonChecked = false
-        fetchCharacter()
+        if self.isFirstButtonChecked == true {
+            print("최근 기록순")
+            fetchCharacter()
+        } else if self.isSecondButtonChecked == true {
+            print("최근생성순")
+            fetchRecentCharacter()
+        } else {
+            fetchMostCharacter()
+            print("활동많은순")
+        }
     }
 
     //MARK: - Life Cycle

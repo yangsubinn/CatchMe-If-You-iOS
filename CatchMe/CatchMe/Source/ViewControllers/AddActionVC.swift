@@ -16,10 +16,7 @@ import SnapKit
 class AddActionVC: UIViewController {
     // MARK: - Properties
     var keyHeight = CGFloat()
-    var enteredText: String?
-    let placholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2km 뛰었음)"
-    let maxWordCount: Int = 150
-    var wordCount: Int = 0
+    let placeholder: String = "(예 : 오늘 아침에 일어나서 중랑천 2km 뛰었음)"
     var text: String?
     var photoURL: UIImage?
     var date: String?
@@ -147,7 +144,6 @@ class AddActionVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        
     }
     
     // MARK: - Custom Method
@@ -166,24 +162,13 @@ class AddActionVC: UIViewController {
         dateLabel.text = dateString
         nameLabel.text = name
         catchuImageView.image = catchu
-        activityTextView.font = .stringRegularSystemFont(ofSize: 14)
+        uploadButton.backgroundColor = .pink100
         
-        if let text = text {
-            dateLabel.text = date
-            activityTextView.text = text
-            activityTextView.textColor = .white
-            uploadButton.backgroundColor = .pink100
-            textExists()
-            
-            if photoURL == nil {
-                photoButton.setImage(UIImage(named: "btnAddPhoto"), for: .normal)
-            } else {
-                photoButton.setImage(photoURL, for: .normal)
-                deletePhotoButton.isHidden = false
-            }
+        if photoURL == nil {
+            photoButton.setImage(UIImage(named: "btnAddPhoto"), for: .normal)
         } else {
-            activityTextView.text = placholder
-            activityTextView.textColor = .gray200
+            photoButton.setImage(photoURL, for: .normal)
+            deletePhotoButton.isHidden = false
         }
     }
     
@@ -290,6 +275,9 @@ class AddActionVC: UIViewController {
     
     func setupTextView() {
         activityTextView.delegate = self
+        activityTextView.text = placeholder /// 초반 placeholder 생성
+        activityTextView.textColor = .gray200 /// 초반 placeholder 색상 설정
+        activityTextView.font = .stringRegularSystemFont(ofSize: 14)
     }
     
     func setupImagePicker() {
@@ -302,20 +290,7 @@ class AddActionVC: UIViewController {
             self.blackBackgroundView.transform = .identity
         })
     }
-    
-    func textExists() {
-        letterNumLabel.textColor = .pink100
-        let textLength = activityTextView.text.count
-        let attributedString = NSMutableAttributedString(string: "\(textLength)/150")
-        attributedString.addAttribute(.foregroundColor, value: UIColor.gray200, range: ("\(textLength)/150" as NSString).range(of:"/150"))
-        letterNumLabel.attributedText = attributedString
-    }
-    
-    func textNotExists() {
-        letterNumLabel.text = "0"
-        letterNumLabel.textColor = .gray200
-    }
-    
+
     func setLabel(text: String) {
         print("텍스트:\(text)")
         dateLabel.text = text
@@ -387,7 +362,7 @@ class AddActionVC: UIViewController {
             }
         } else if isEdited == false {
             print("글 생성")
-            if activityTextView.text == placholder || activityTextView.text == "" {
+            if activityTextView.text == placeholder || activityTextView.text == "" {
                 uploadButton.isEnabled = true
             } else {
                 uploadButton.isEnabled = false
@@ -420,57 +395,54 @@ class AddActionVC: UIViewController {
 // MARK: - UITextViewDelegate
 extension AddActionVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        /// 플레이스 홀더
-        if textView.text == placholder {
+        activityTextView.layer.borderWidth = 1
+        activityTextView.layer.borderColor = UIColor.pink100.cgColor
+        
+        if textView.text == placeholder { /// 플레이스 홀더
             textView.text = nil
             textView.textColor = .white
         } else if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
-            textView.text = placholder
+            textView.text = placeholder
             textView.textColor = .gray200
         }
         
         UIView.animate(withDuration: 0.2, animations: {
             self.blackBackgroundView.transform = CGAffineTransform(translationX: 0, y: -30)
         })
-        
-        activityTextView.layer.borderWidth = 1
-        activityTextView.layer.borderColor = UIColor.pink100.cgColor
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if (textView.text.count > maxWordCount) {
-            textView.deleteBackward()
+        if activityTextView.text.count > 150 {
+            activityTextView.deleteBackward()
         }
         
-        self.enteredText = textView.text
-        self.wordCount = Int(textView.text.count)
-        letterNumLabel.text = "\(wordCount)/150"
-        
-        if textView.text.count == 0 {
-            self.textNotExists()
-        } else {
-            self.textExists()
-        }
+        /// 아래 글자 수 표시되게 하기
+        let textCount = activityTextView.text.count
+        letterNumLabel.text = "\(textCount)/150"
+        let attributedString = NSMutableAttributedString(string: "\(textCount)/150")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.pink100, range: ("\(textCount)/150" as NSString).range(of:"\(textCount)"))
+        letterNumLabel.attributedText = attributedString
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespaces).isEmpty {
-            textView.text = placholder
+        activityTextView.layer.borderWidth = 0
+
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { /// 플레이스 홀더
+            textView.text = placeholder
             textView.textColor = .gray200
+            letterNumLabel.textColor = .gray200
         }
-        
-        /// 기록하기 버튼 변경
-        if activityTextView.text == placholder || activityTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
-            uploadButton.backgroundColor = .gray300
-        } else {
-            uploadButton.backgroundColor = .pink100
-        }
-        
+    
         UIView.animate(withDuration: 0.2, animations: {
             self.blackBackgroundView.transform = .identity
         })
         
-        activityTextView.layer.borderWidth = 0
+        if activityTextView.text == placeholder || activityTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+            uploadButton.backgroundColor = .gray300
+            letterNumLabel.text = "0/150"
+        } else {
+            uploadButton.backgroundColor = .pink100
+        }
     }
 }
 

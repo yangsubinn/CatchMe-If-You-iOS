@@ -43,10 +43,7 @@ class MainCardVC: UIViewController {
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     override func viewDidAppear(_ animated: Bool) {
-        self.isFirstButtonChecked = true
-        self.isSecondButtonChecked = false
-        self.isThirdButtonChecked = false
-        fetchCharacter()
+        setupAlign()
     }
 
     //MARK: - Life Cycle
@@ -174,6 +171,16 @@ class MainCardVC: UIViewController {
         emptySubLabel.snp.makeConstraints { make in
             make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
             make.centerX.equalToSuperview()
+        }
+    }
+    
+    func setupAlign() {
+        if self.isFirstButtonChecked == true {
+            fetchCharacter()
+        } else if self.isSecondButtonChecked == true {
+            fetchRecentCharacter()
+        } else {
+            fetchMostCharacter()
         }
     }
     

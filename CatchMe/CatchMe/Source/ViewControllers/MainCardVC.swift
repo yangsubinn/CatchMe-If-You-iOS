@@ -43,16 +43,7 @@ class MainCardVC: UIViewController {
     var colors: [UIColor] = [.back300, .back300, .back200, .back400, .back100, .back400, .back200, .back100]
     
     override func viewDidAppear(_ animated: Bool) {
-        if self.isFirstButtonChecked == true {
-            print("최근 기록순")
-            fetchCharacter()
-        } else if self.isSecondButtonChecked == true {
-            print("최근생성순")
-            fetchRecentCharacter()
-        } else {
-            fetchMostCharacter()
-            print("활동많은순")
-        }
+        setupAlign()
     }
 
     //MARK: - Life Cycle
@@ -180,6 +171,16 @@ class MainCardVC: UIViewController {
         emptySubLabel.snp.makeConstraints { make in
             make.top.equalTo(emptyTitleLabel.snp.bottom).offset(7)
             make.centerX.equalToSuperview()
+        }
+    }
+    
+    func setupAlign() {
+        if self.isFirstButtonChecked == true {
+            fetchCharacter()
+        } else if self.isSecondButtonChecked == true {
+            fetchRecentCharacter()
+        } else {
+            fetchMostCharacter()
         }
     }
     

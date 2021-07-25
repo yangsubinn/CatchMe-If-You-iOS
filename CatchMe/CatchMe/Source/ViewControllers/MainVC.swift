@@ -69,6 +69,8 @@ class MainVC: UIViewController {
         pageControl.selectedPage = 0
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(printForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -275,7 +277,13 @@ class MainVC: UIViewController {
     }
     
     // MARK: - @objc
-    @objc func touchupCatching(_ sender: UIButton) {
+    @objc
+    func printForeground() {
+        lottieView.play()
+    }
+    
+    @objc
+    func touchupCatching(_ sender: UIButton) {
         let storyboard = UIStoryboard.init(name: "Character", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "AddActionVC") as? AddActionVC else { return }
         

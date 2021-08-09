@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>481195462773-hha8gr7acjmpn0he1ha80pg92dt7s44b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.481195462773-hha8gr7acjmpn0he1ha80pg92dt7s44b</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>481195462773-b9ave9av3gcaccno3hffcmf4kdo1q8ft.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwZjZtjLXPtU82Q5QzgvPfmmFtEYQBlyg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>481195462773</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tiekle.CatchMe</string>
+	<key>PROJECT_ID</key>
+	<string>catchme-ff61f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>catchme-ff61f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:481195462773:ios:ab8449940bee1e2281683c</string>
+</dict>
+</plist>

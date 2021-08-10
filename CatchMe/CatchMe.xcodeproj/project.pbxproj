@@ -110,6 +110,7 @@
 		EDB72D4F269AEB7B003EE228 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D4E269AEB7B003EE228 /* NetworkLoggerPlugin.swift */; };
 		EDB72D51269AEE60003EE228 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D50269AEE60003EE228 /* UserData.swift */; };
 		EDB72D53269AEF86003EE228 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB72D52269AEF86003EE228 /* Login.swift */; };
+		EDB91D8326C11D1200F4562D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB91D8226C11D1100F4562D /* GoogleService-Info.plist */; };
 		EDBBFCCB26930C4600443077 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCA26930C4600443077 /* TitleView.swift */; };
 		EDBBFCCD2693155F00443077 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCC2693155F00443077 /* CharacterView.swift */; };
 		EDBBFCCF26934AC300443077 /* CalendarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */; };
@@ -272,6 +273,7 @@
 		EDB72D4E269AEB7B003EE228 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		EDB72D50269AEE60003EE228 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		EDB72D52269AEF86003EE228 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EDB91D8226C11D1100F4562D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EDBBFCCA26930C4600443077 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		EDBBFCCC2693155F00443077 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		EDBBFCCE26934AC300443077 /* CalendarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTitleView.swift; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				ED63E87E268A14E5000F058F /* CatchMe */,
+				EDB91D8226C11D1100F4562D /* GoogleService-Info.plist */,
 				EDF1AD26268C608E00606006 /* CatchMeTests */,
 				ED63E87D268A14E5000F058F /* Products */,
 				2020FF0DCEB842A2ADB2317F /* Pods */,
@@ -974,6 +977,7 @@
 				EDBBFCDF2693981D00443077 /* DINPro-Medium.otf in Resources */,
 				ED63E889268A14E7000F058F /* Assets.xcassets in Resources */,
 				ED72842C269EE3C300D19FD5 /* DINPro-Bold.otf in Resources */,
+				EDB91D8326C11D1200F4562D /* GoogleService-Info.plist in Resources */,
 				EDD12CA6268EB82B00DF766A /* Report.storyboard in Resources */,
 				ED72845026A1982600D19FD5 /* Splash.storyboard in Resources */,
 			);
